@@ -443,7 +443,7 @@ public static function getNavigationParentItem(): ?string
 ```
 
 :::tip
-    如果你需要像这样的三级导航，应该考虑使用[集群](../navigation/clusters)来替代。集群是资源和[自定义页面](../navigation/custom-pages)的逻辑分组，可以共享独立的导航。`getRecordSubNavigation()` 方法用于构建资源内与特定记录相关的页面之间的导航。
+    如果你需要像这样的三级导航，应该考虑使用[集群](../navigation/clusters)来替代。集群是资源和[自定义页面](../navigation/custom-pages)的逻辑分组，可以共享独立的导航。
 :::
 
 ## 生成资源页面的 URL
