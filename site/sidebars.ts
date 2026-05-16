@@ -39,6 +39,90 @@ const sidebars: SidebarsConfig = {
             'filament/v4.x/resources/listing-records',
           ],
         },
+        {
+          type: 'category',
+          label: '组件',
+          collapsed: true,
+          items: [
+            'filament/v4.x/components/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '表单',
+          collapsed: true,
+          items: [
+            'filament/v4.x/forms/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '表格',
+          collapsed: true,
+          items: [
+            'filament/v4.x/tables/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '操作',
+          collapsed: true,
+          items: [
+            'filament/v4.x/actions/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '通知',
+          collapsed: true,
+          items: [
+            'filament/v4.x/notifications/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '小部件',
+          collapsed: true,
+          items: [
+            'filament/v4.x/widgets/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '导航',
+          collapsed: true,
+          items: [
+            'filament/v4.x/navigation/overview',
+            'filament/v4.x/navigation/custom-pages',
+            'filament/v4.x/navigation/clusters',
+          ],
+        },
+        {
+          type: 'category',
+          label: '样式',
+          collapsed: true,
+          items: [
+            'filament/v4.x/styling/overview',
+            'filament/v4.x/styling/icons',
+          ],
+        },
+        {
+          type: 'category',
+          label: '测试',
+          collapsed: true,
+          items: [
+            'filament/v4.x/testing/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: '其他',
+          collapsed: true,
+          items: [
+            'filament/v4.x/infolists/overview',
+            'filament/v4.x/schemas/overview',
+          ],
+        },
       ],
     },
   ],
