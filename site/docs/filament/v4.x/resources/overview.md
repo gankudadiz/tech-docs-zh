@@ -6,7 +6,7 @@ title: 概述
 
 资源是用于为 Eloquent 模型构建 CRUD 界面的静态类。它们描述了管理员如何通过表格和表单与应用中的数据进行交互。
 
-![资源列表页](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing.jpg)
+![资源列表页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing.jpg)
 
 ## 创建资源
 
@@ -54,9 +54,9 @@ php artisan make:filament-resource Customer --simple
 
 此外，简单资源不会有 `getRelations()` 方法，因为[关联管理器](managing-relationships)只在编辑页和查看页上显示，而简单资源中没有这些页面。其他部分则完全相同。
 
-![简单资源的创建模态窗口](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/simple-modal-create.jpg)
+![简单资源的创建模态窗口](/assets/filament/v4.x/screenshots/images/light/panels/resources/simple-modal-create.jpg)
 
-![简单资源的编辑模态窗口](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/simple-modal-edit.jpg)
+![简单资源的编辑模态窗口](/assets/filament/v4.x/screenshots/images/light/panels/resources/simple-modal-edit.jpg)
 
 ### 自动生成表单和表格
 
@@ -587,7 +587,7 @@ public static function getRecordSubNavigation(Page $page): array
 
 子导航中的每个项都可以使用与普通页面相同的[导航方法](../navigation)进行自定义。
 
-![带子导航的资源](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/sub-navigation.jpg)
+![带子导航的资源](/assets/filament/v4.x/screenshots/images/light/panels/resources/sub-navigation.jpg)
 
 :::tip
     如果你想在资源和[自定义页面](../navigation/custom-pages)之间切换，你可能需要的是[集群](../navigation/clusters)，它用于将这些组合在一起。`getRecordSubNavigation()` 方法旨在构建资源内与特定记录相关的页面之间的导航。
@@ -603,11 +603,11 @@ use Filament\Pages\Enums\SubNavigationPosition;
 protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::End;
 ```
 
-![末尾位置的子导航](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/sub-navigation-end.jpg)
+![末尾位置的子导航](/assets/filament/v4.x/screenshots/images/light/panels/resources/sub-navigation-end.jpg)
 
 `SubNavigationPosition::Top` 选项将子导航渲染为页面内容上方的标签页：
 
-![顶部位置的子导航](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/sub-navigation-top.jpg)
+![顶部位置的子导航](/assets/filament/v4.x/screenshots/images/light/panels/resources/sub-navigation-top.jpg)
 
 ## 删除资源页面
 

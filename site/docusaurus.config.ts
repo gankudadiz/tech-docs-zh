@@ -61,9 +61,9 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'filamentV4Sidebar',
           position: 'left',
-          label: '文档',
+          label: 'Filament v4.x',
         },
         {
           type: 'dropdown',
@@ -95,7 +95,7 @@ const config: Config = {
           items: [
             {
               label: '项目文档',
-              href: '/docs/',
+              href: '/',
             },
           ],
         },
@@ -105,6 +105,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['php'],
     },
   } satisfies Preset.ThemeConfig,
 };
