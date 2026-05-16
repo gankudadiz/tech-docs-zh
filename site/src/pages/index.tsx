@@ -9,7 +9,7 @@ const products = [
   {
     name: 'Filament',
     version: 'v4.x',
-    status: '样板接入',
+    status: '翻译中',
     pages: '5 个样板页面',
     stage: '结构验证中',
     docs: '/docs/filament/v4.x/introduction/overview',
@@ -19,51 +19,29 @@ const products = [
   },
 ];
 
-const workflow = [
-  {label: '来源', value: 'official docs 4.x'},
-  {label: '本地快照', value: 'raw / normalized'},
-  {label: '阅读站', value: 'Docusaurus'},
-];
-
 export default function Home(): ReactNode {
   return (
     <Layout
       title="文档书架"
-      description="本地优先的技术文档采集、翻译与阅读工作台">
+      description="本地优先的中文技术文档阅读站">
       <main className={styles.page}>
         <section className={styles.masthead}>
           <div className={styles.mastheadCopy}>
-            <p className={styles.kicker}>Local documentation workbench</p>
+            <p className={styles.kicker}>Chinese Technical Documentation</p>
             <Heading as="h1" className={styles.title}>
-              技术文档汉化工作台
+              中文技术文档站
             </Heading>
             <p className={styles.subtitle}>
-              面向长期维护的中文技术文档站。先保存官方结构化原文，再清洗、翻译、校对和本地构建，让每个产品文档都按同一套阅读标准沉淀。
+              面向长期维护的中文技术文档阅读站。收录常用开发框架的官方文档中文翻译版本，提供统一的阅读体验。
             </p>
-            <dl className={styles.workflow} aria-label="项目流程">
-              {workflow.map((item) => (
-                <div key={item.label}>
-                  <dt>{item.label}</dt>
-                  <dd>{item.value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
-
-          <figure className={styles.preview}>
-            <img
-              src="/assets/filament/v4.x/screenshots/images/light/panels/dashboard.jpg"
-              alt="Filament v4.x 面板截图"
-            />
-            <figcaption>Filament v4.x 官方界面截图，用于本地阅读样式和内容校对。</figcaption>
-          </figure>
         </section>
 
         <section className={styles.library} aria-labelledby="library-heading">
           <div className={styles.sectionLead}>
             <p className={styles.kicker}>Library</p>
             <Heading as="h2" id="library-heading">
-              文档书架
+              已收录产品
             </Heading>
           </div>
 

@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: '技术文档汉化工作台',
-  tagline: '本地优先的技术文档采集、翻译与阅读工作台',
+  title: '中文技术文档站',
+  tagline: '本地优先的中文技术文档阅读站',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -57,7 +57,7 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: '技术文档汉化工作台',
+      title: '中文技术文档站',
       items: [
         {
           type: 'docSidebar',
@@ -66,9 +66,15 @@ const config: Config = {
           label: '文档',
         },
         {
-          href: 'https://github.com/filamentphp/filament/tree/4.x/docs',
-          label: 'Filament 4.x 源文档',
+          type: 'dropdown',
+          label: '源文档',
           position: 'right',
+          items: [
+            {
+              label: 'Filament v4.x',
+              href: 'https://github.com/filamentphp/filament/tree/4.x/docs',
+            },
+          ],
         },
       ],
     },
@@ -76,7 +82,7 @@ const config: Config = {
       style: 'light',
       links: [
         {
-          title: '产品',
+          title: '已收录产品',
           items: [
             {
               label: 'Filament v4.x',
@@ -88,13 +94,13 @@ const config: Config = {
           title: '项目',
           items: [
             {
-              label: '采集与翻译工作流',
+              label: '项目文档',
               href: '/docs/',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} 技术文档汉化工作台。非官方翻译项目，保留原文来源信息。`,
+      copyright: `Copyright © ${new Date().getFullYear()} 中文技术文档站。非官方翻译项目，保留原文来源信息。`,
     },
     prism: {
       theme: prismThemes.github,
