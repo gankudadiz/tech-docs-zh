@@ -5,12 +5,12 @@ title: 快速入门
 [安装 Filament](introduction/installation#installing-the-panel-builder) 后，你就可以开始构建应用了。
 
 :::info
-    本指南适用于 Filament 面板构建器。如果你想在面板之外使用 Filament UI 组件，请访问[组件](components/overview)文档。
+    本指南适用于 Filament 面板构建器。如果你想在面板之外使用 Filament UI 组件，请访问[组件](components)文档。
 :::
 
 首先，访问 `/admin` 并使用用户账户登录。你将被重定向到面板的默认仪表盘。
 
-![Filament 默认仪表盘](/assets/filament/v4.x/screenshots/images/light/panels/dashboard.jpg)
+![Filament 默认仪表盘](../../raw-assets/docs-assets/screenshots/images/light/panels/dashboard.jpg)
 
 ## 资源（Resources）
 
@@ -25,9 +25,9 @@ title: 快速入门
 
 每个资源通常在侧边栏中有一个菜单项，创建资源后会自动注册。
 
-要开始创建资源，请访问[资源文档](resources/overview)。
+要开始创建资源，请访问[资源文档](resources)。
 
-![资源列表页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing.jpg)
+![资源列表页](../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing.jpg)
 
 ## 小部件（Widgets）
 
@@ -37,7 +37,7 @@ title: 快速入门
 
 Filament 的仪表盘默认包含两个小部件：一个用于向用户打招呼并提供退出登录功能，另一个用于展示 Filament 的相关信息。
 
-要开始向仪表盘添加自定义小部件，请访问[小部件文档](widgets/overview)。
+要开始向仪表盘添加自定义小部件，请访问[小部件文档](widgets)。
 
 ## 自定义页面
 

@@ -2,7 +2,7 @@
 title: 列出记录
 ---
 
-![资源列表页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing.jpg)
+![资源列表页](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing.jpg)
 
 ## 使用标签页筛选记录
 
@@ -24,7 +24,7 @@ public function getTabs(): array
 }
 ```
 
-![带标签页的资源列表页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing-tabs.jpg)
+![带标签页的资源列表页](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing-tabs.jpg)
 
 ### 自定义筛选标签页的标签
 
@@ -57,7 +57,7 @@ Tab::make()
     ->icon('heroicon-m-user-group')
 ```
 
-![带图标的资源列表页标签页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing-tabs-icons.jpg)
+![带图标的资源列表页标签页](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing-tabs-icons.jpg)
 
 你也可以使用 `iconPosition()` 方法将图标位置改为标签之后：
 
@@ -94,7 +94,7 @@ Tab::make()
 
 `badgeColor()` 方法除了接受静态值外，还接受一个函数来动态计算颜色。你可以将各种工具作为参数注入到函数中。
 
-![带彩色徽章的资源列表页标签页](/assets/filament/v4.x/screenshots/images/light/panels/resources/listing-tabs-badge-colors.jpg)
+![带彩色徽章的资源列表页标签页](../../../raw-assets/docs-assets/screenshots/images/light/panels/resources/listing-tabs-badge-colors.jpg)
 
 #### 延迟加载筛选标签页徽章
 
