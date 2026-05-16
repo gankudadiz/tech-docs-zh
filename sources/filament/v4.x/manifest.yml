@@ -1,0 +1,34 @@
+product: filament
+version: v4.x
+retrieved_at: 2026-05-16
+source:
+  type: github_sparse_checkout
+  repository: https://github.com/filamentphp/filament
+  branch: 4.x
+  commit: 1c6be93ed549ad51c04688c8044d726b8f2b050e
+  paths:
+    - docs
+    - docs-assets
+    - LICENSE.md
+    - README.md
+    - translators.csv
+license:
+  name: MIT
+  file: raw/LICENSE.md
+counts:
+  markdown_files: 76
+  asset_files: 1714
+notes:
+  - Filament official documentation currently defaults to 5.x; this snapshot tracks the 4.x branch as a previous-version translation source.
+  - The upstream sparse checkout is kept under sources/_upstream/ and is ignored by Git.
+sample_pages:
+  - source_path: docs/01-introduction/01-overview.md
+    official_url: https://filamentphp.com/docs/4.x/introduction/overview
+  - source_path: docs/01-introduction/02-installation.md
+    official_url: https://filamentphp.com/docs/4.x/introduction/installation
+  - source_path: docs/02-getting-started.md
+    official_url: https://filamentphp.com/docs/4.x/getting-started
+  - source_path: docs/03-resources/01-overview.md
+    official_url: https://filamentphp.com/docs/4.x/resources/overview
+  - source_path: docs/03-resources/02-listing-records.md
+    official_url: https://filamentphp.com/docs/4.x/resources/listing-records

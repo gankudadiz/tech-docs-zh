@@ -1,0 +1,30 @@
+panel:
+  zh: 面板
+  note: Filament 管理界面的核心容器。
+resource:
+  zh: 资源
+  note: Filament Resource 语境下使用“资源”。
+record:
+  zh: 记录
+  note: 通常指 Eloquent 模型的一条数据。
+action:
+  zh: 操作
+  note: Button/action API 语境下使用“操作”。
+schema:
+  zh: Schema
+  note: Filament 4.x 中作为 API 名称时保留英文。
+infolist:
+  zh: 信息列表
+  note: Filament 组件名称，必要时保留英文 Infolist。
+widget:
+  zh: 小组件
+  note: Dashboard widget 语境。
+policy:
+  zh: 策略
+  note: Laravel 授权语境使用“策略”。
+tenant:
+  zh: 租户
+  note: 多租户语境。
+navigation:
+  zh: 导航
+  note: 后台菜单、侧边栏等导航结构。
