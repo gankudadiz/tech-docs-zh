@@ -27,6 +27,8 @@ const sidebars: SidebarsConfig = {
           items: [
             'filament/v4.x/introduction/overview',
             'filament/v4.x/introduction/installation',
+            'filament/v4.x/introduction/ai',
+            'filament/v4.x/introduction/optimizing-local-development',
             'filament/v4.x/getting-started',
           ],
         },
@@ -37,6 +39,8 @@ const sidebars: SidebarsConfig = {
           items: [
             'filament/v4.x/resources/overview',
             'filament/v4.x/resources/listing-records',
+            'filament/v4.x/resources/creating-records',
+            'filament/v4.x/resources/editing-records',
           ],
         },
         {
