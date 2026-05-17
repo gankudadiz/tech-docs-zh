@@ -116,6 +116,34 @@
   line-height: 1.72;
 }
 
+.versionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.versionPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--docs-rust) 30%, var(--docs-line));
+  border-radius: 999px;
+  color: var(--docs-rust);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--docs-rust) 7%, transparent);
+}
+
+.versionPill:hover {
+  color: var(--docs-rust);
+  text-decoration: none;
+  border-color: var(--docs-rust);
+  background: color-mix(in srgb, var(--docs-rust) 11%, transparent);
+}
+
 .productMeta {
   display: flex;
   flex-direction: column;

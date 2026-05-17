@@ -3,21 +3,8 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
+import {docsProducts, getProductDefaultVersion} from '../data/docsCatalog';
 import styles from './index.module.css';
-
-const products = [
-  {
-    name: 'Filament',
-    version: 'v4.x',
-    status: '翻译中',
-    pages: '5 个样板页面',
-    stage: '结构验证中',
-    docs: '/docs/filament/v4.x/introduction/overview',
-    source: 'https://github.com/filamentphp/filament/tree/4.x/docs',
-    description:
-      'Laravel 生态的 Server-Driven UI 框架文档。当前保留官方原文快照，并接入一组 normalized 页面用于验证阅读、翻译和校对流程。',
-  },
-];
 
 export default function Home(): ReactNode {
   return (
@@ -32,7 +19,7 @@ export default function Home(): ReactNode {
               中文技术文档站
             </Heading>
             <p className={styles.subtitle}>
-              面向长期维护的中文技术文档阅读站。收录常用开发框架的官方文档中文翻译版本，提供统一的阅读体验。
+              面向长期维护的中文技术文档阅读站。每个框架保留一个统一入口，框架内部按版本组织和切换。
             </p>
           </div>
         </section>
@@ -45,38 +32,57 @@ export default function Home(): ReactNode {
             </Heading>
           </div>
 
-          {products.map((product) => (
-            <article className={styles.product} key={product.name}>
-              <div className={styles.productMain}>
-                <div className={styles.productHeader}>
-                  <span className={styles.status}>{product.status}</span>
-                  <span>{product.version}</span>
-                </div>
-                <Heading as="h3">{product.name}</Heading>
-                <p>{product.description}</p>
-              </div>
+          {docsProducts.map((product) => {
+            const defaultVersion = getProductDefaultVersion(product);
 
-              <dl className={styles.productMeta}>
-                <div>
-                  <dt>页面</dt>
-                  <dd>{product.pages}</dd>
-                </div>
-                <div>
-                  <dt>阶段</dt>
-                  <dd>{product.stage}</dd>
-                </div>
-              </dl>
+            return (
+              <article className={styles.product} key={product.id}>
+                <div className={styles.productMain}>
+                  <div className={styles.productHeader}>
+                    <span className={styles.status}>{defaultVersion.status}</span>
+                    <span>{product.versions.length} 个版本</span>
+                  </div>
+                  <Heading as="h3">{product.name}</Heading>
+                  <p>{product.description}</p>
 
-              <div className={styles.actions}>
-                <Link className={`${styles.action} ${styles.actionPrimary}`} to={product.docs}>
-                  开始阅读
-                </Link>
-                <Link className={styles.action} to={product.source}>
-                  查看原文
-                </Link>
-              </div>
-            </article>
-          ))}
+                  <div className={styles.versionList} aria-label={`${product.name} 版本`}>
+                    {product.versions.map((version) => (
+                      <Link
+                        className={styles.versionPill}
+                        key={version.slug}
+                        to={version.docsPath}>
+                        {version.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <dl className={styles.productMeta}>
+                  <div>
+                    <dt>默认版本</dt>
+                    <dd>{defaultVersion.label}</dd>
+                  </div>
+                  <div>
+                    <dt>页面</dt>
+                    <dd>{defaultVersion.pages}</dd>
+                  </div>
+                  <div>
+                    <dt>阶段</dt>
+                    <dd>{defaultVersion.stage}</dd>
+                  </div>
+                </dl>
+
+                <div className={styles.actions}>
+                  <Link className={`${styles.action} ${styles.actionPrimary}`} to={defaultVersion.docsPath}>
+                    开始阅读
+                  </Link>
+                  <Link className={styles.action} to={defaultVersion.sourceHref}>
+                    查看原文
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </section>
       </main>
     </Layout>

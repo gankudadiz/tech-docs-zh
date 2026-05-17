@@ -2,7 +2,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+import {docsProducts, getProductDefaultVersion} from './src/data/docsCatalog';
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+const filament = docsProducts.find((product) => product.id === 'filament');
+const filamentDefaultVersion = filament ? getProductDefaultVersion(filament) : undefined;
+const filamentVersionItems =
+  filament?.versions.map((version) => ({
+    label: version.label,
+    to: version.docsPath,
+    activeBasePath: version.docsBasePath,
+  })) ?? [];
 
 const config: Config = {
   title: '中文技术文档站',
@@ -61,9 +72,15 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'filamentV4Sidebar',
+          sidebarId: filamentDefaultVersion?.sidebarId ?? 'filamentV4Sidebar',
           position: 'left',
-          label: 'Filament v4.x',
+          label: 'Filament',
+        },
+        {
+          type: 'dropdown',
+          label: '版本',
+          position: 'left',
+          items: filamentVersionItems,
         },
         {
           type: 'dropdown',
@@ -71,8 +88,10 @@ const config: Config = {
           position: 'right',
           items: [
             {
-              label: 'Filament v4.x',
-              href: 'https://github.com/filamentphp/filament/tree/4.x/docs',
+              label: filamentDefaultVersion?.sourceLabel ?? 'Filament v4.x',
+              href:
+                filamentDefaultVersion?.sourceHref ??
+                'https://github.com/filamentphp/filament/tree/4.x/docs',
             },
           ],
         },
@@ -85,8 +104,8 @@ const config: Config = {
           title: '已收录产品',
           items: [
             {
-              label: 'Filament v4.x',
-              to: '/docs/filament/v4.x/introduction/overview',
+              label: 'Filament',
+              to: filamentDefaultVersion?.docsPath ?? '/docs/filament/v4.x/introduction/overview',
             },
           ],
         },
