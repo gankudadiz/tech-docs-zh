@@ -25,11 +25,10 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'http://127.0.0.1:48763',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // GitHub Pages 部署配置，本地开发时使用 localhost
+  url: process.env.CI ? 'https://gankudadiz.github.io' : 'http://127.0.0.1:48763',
+  // GitHub Pages 需要 /repo-name/ 前缀，本地开发使用 /
+  baseUrl: process.env.CI ? '/tech-docs-zh/' : '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
