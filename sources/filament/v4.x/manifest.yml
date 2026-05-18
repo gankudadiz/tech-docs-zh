@@ -1,6 +1,7 @@
 product: filament
 version: v4.x
 retrieved_at: 2026-05-16
+updated_at: 2026-05-18
 source:
   type: github_sparse_checkout
   repository: https://github.com/filamentphp/filament
@@ -9,6 +10,13 @@ source:
   paths:
     - docs
     - docs-assets
+    - packages/actions/docs
+    - packages/forms/docs
+    - packages/infolists/docs
+    - packages/notifications/docs
+    - packages/schemas/docs
+    - packages/tables/docs
+    - packages/widgets/docs
     - LICENSE.md
     - README.md
     - translators.csv
@@ -16,10 +24,13 @@ license:
   name: MIT
   file: raw/LICENSE.md
 counts:
-  markdown_files: 76
+  root_docs_markdown_files: 76
+  package_docs_markdown_files: 82
+  translatable_markdown_files: 158
   asset_files: 1714
 notes:
   - Filament official documentation currently defaults to 5.x; this snapshot tracks the 4.x branch as a previous-version translation source.
+  - Filament 4.x official docs are assembled from root docs plus packages/*/docs; docs/04-_PACKAGES is a package-doc insertion marker, not a translatable page.
   - The upstream sparse checkout is kept under sources/_upstream/ and is ignored by Git.
 sample_pages:
   - source_path: docs/01-introduction/01-overview.md
@@ -32,3 +43,5 @@ sample_pages:
     official_url: https://filamentphp.com/docs/4.x/resources/overview
   - source_path: docs/03-resources/02-listing-records.md
     official_url: https://filamentphp.com/docs/4.x/resources/listing-records
+  - source_path: packages/tables/docs/03-filters/01-overview.md
+    official_url: https://filamentphp.com/docs/4.x/tables/filters/overview
