@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: site/package-lock.json
 
@@ -38,7 +38,7 @@ jobs:
         run: npm run build
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           name: ${{ env.PAGES_ARTIFACT_NAME }}
           path: site/build
