@@ -1,0 +1,74 @@
+---
+title: Key-value entry
+---
+
+## Introduction
+
+The key-value entry allows you to render key-value pairs of data, from a one-dimensional JSON object / PHP array.
+
+```php
+use Filament\Infolists\Components\KeyValueEntry;
+
+KeyValueEntry::make('meta')
+```
+
+For example, the state of this entry might be represented as:
+
+```php
+[
+    'description' => 'Filament is a collection of Laravel packages',
+    'og:type' => 'website',
+    'og:site_name' => 'Filament',
+]
+```
+
+![Key-value entry](/assets/filament/v4.x/screenshots/images/light/infolists/entries/key-value/simple.jpg)
+
+If you're saving the data in Eloquent, you should be sure to add an `array` [cast](https://laravel.com/docs/eloquent-mutators#array-and-json-casting) to the model property:
+
+```php
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    { 
+        return [
+            'meta' => 'array',
+        ];
+    }
+
+    // ...
+}
+```
+
+## Customizing the key column's label
+
+You may customize the label for the key column using the `keyLabel()` method:
+
+```php
+use Filament\Infolists\Components\KeyValueEntry;
+
+KeyValueEntry::make('meta')
+    ->keyLabel('Property name')
+```
+
+As well as allowing a static value, the `keyLabel()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.
+
+## Customizing the value column's label
+
+You may customize the label for the value column using the `valueLabel()` method:
+
+```php
+use Filament\Infolists\Components\KeyValueEntry;
+
+KeyValueEntry::make('meta')
+    ->valueLabel('Property value')
+```
+
+As well as allowing a static value, the `valueLabel()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.
+
+![Key-value entry with custom column labels](/assets/filament/v4.x/screenshots/images/light/infolists/entries/key-value/custom-labels.jpg)
