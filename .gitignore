@@ -14,3 +14,4 @@ dist/
 Thumbs.db
 *.log
 sources/filament/*/raw/packages/
+plans/
