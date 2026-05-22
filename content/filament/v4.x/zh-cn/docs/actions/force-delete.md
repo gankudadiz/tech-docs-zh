@@ -8,6 +8,9 @@ Filament 包含一个能够强制删除[软删除](https://laravel.com/docs/eloq
 ```php
 use Filament\Actions\ForceDeleteAction;
 
+// 创建一个强制删除操作，用于永久删除软删除的记录
+// 与普通删除不同，强制删除会从数据库中完全移除记录
+// 点击后会显示确认模态框，用户确认后才会执行删除
 ForceDeleteAction::make()
 ```
 
@@ -19,10 +22,13 @@ ForceDeleteAction::make()
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Table;
 
+// 在表格工具栏中添加批量强制删除操作
+// 用户可以勾选多行，然后一次性永久删除选中的所有记录
 public function table(Table $table): Table
 {
     return $table
         ->toolbarActions([
+            // 批量强制删除操作会显示在表格顶部的工具栏中
             ForceDeleteBulkAction::make(),
         ]);
 }
@@ -35,6 +41,8 @@ public function table(Table $table): Table
 ```php
 use Filament\Actions\ForceDeleteAction;
 
+// 设置强制删除成功后的重定向 URL
+// 用户确认删除后会被重定向到文章列表页面
 ForceDeleteAction::make()
     ->successRedirectUrl(route('posts.list'))
 ```
@@ -50,8 +58,9 @@ ForceDeleteAction::make()
 ```php
 use Filament\Actions\ForceDeleteAction;
 
+// 自定义强制删除成功通知的标题
 ForceDeleteAction::make()
-    ->successNotificationTitle('User force-deleted')
+    ->successNotificationTitle('User force-deleted')  // 设置通知标题为 "User force-deleted"
 ```
 
 除了允许静态值，`successNotificationTitle()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -62,12 +71,13 @@ ForceDeleteAction::make()
 use Filament\Actions\ForceDeleteAction;
 use Filament\Notifications\Notification;
 
+// 完全自定义成功通知的外观和内容
 ForceDeleteAction::make()
     ->successNotification(
        Notification::make()
-            ->success()
-            ->title('User force-deleted')
-            ->body('The user has been force-deleted successfully.'),
+            ->success()  // 设置通知类型为成功（绿色）
+            ->title('User force-deleted')  // 通知标题
+            ->body('The user has been force-deleted successfully.'),  // 通知正文内容
     )
 ```
 
@@ -78,6 +88,8 @@ ForceDeleteAction::make()
 ```php
 use Filament\Actions\ForceDeleteAction;
 
+// 完全禁用成功通知
+// 用户强制删除记录后不会看到任何通知消息
 ForceDeleteAction::make()
     ->successNotification(null)
 ```
@@ -89,12 +101,15 @@ ForceDeleteAction::make()
 ```php
 use Filament\Actions\ForceDeleteAction;
 
+// 生命周期钩子允许你在强制删除操作的不同阶段执行自定义代码
 ForceDeleteAction::make()
     ->before(function () {
-        // ...
+        // 在记录强制删除之前运行
+        // 可以用于检查权限、记录日志或执行前置操作
     })
     ->after(function () {
-        // ...
+        // 在记录强制删除之后运行
+        // 可以用于清理关联数据、发送通知或触发后续操作
     })
 ```
 
@@ -109,8 +124,11 @@ ForceDeleteAction::make()
 ```php
 use Filament\Actions\ForceDeleteBulkAction;
 
+// 使用 chunkSelectedRecords() 分批处理大量记录
+// 每次只从数据库加载 250 条记录到内存，减少内存占用
+// 适用于需要永久删除成千上万条记录的场景
 ForceDeleteBulkAction::make()
-    ->chunkSelectedRecords(250)
+    ->chunkSelectedRecords(250)  // 每批处理 250 条记录
 ```
 
 Filament 在删除记录前将 Eloquent 记录加载到内存中有两个原因：
@@ -123,6 +141,9 @@ Filament 在删除记录前将 Eloquent 记录加载到内存中有两个原因�
 ```php
 use Filament\Actions\ForceDeleteBulkAction;
 
+// 使用 fetchSelectedRecords(false) 直接删除，不加载记录到内存
+// 这会跳过单个记录的策略授权检查和模型事件
+// 适用于不需要这些功能且需要最高性能的场景
 ForceDeleteBulkAction::make()
-    ->fetchSelectedRecords(false)
+    ->fetchSelectedRecords(false)  // 禁用记录预加载，直接删除
 ```

@@ -10,9 +10,10 @@ title: 操作
 ```php
 use Filament\Actions\Action;
 
-Action::make('delete')
-    ->requiresConfirmation()
-    ->action(fn () => $this->client->delete())
+// 创建一个删除操作，点击后会弹出确认框
+Action::make('delete')                           // 操作名称，用于标识
+    ->requiresConfirmation()                      // 启用确认模态框，防止误操作
+    ->action(fn () => $this->client->delete())    // 确认后执行的回调，删除当前客户
 ```
 
 操作还可以从用户那里收集额外信息。例如，你可能有一个给客户发邮件的按钮。当用户点击按钮时，会打开一个模态框来收集邮件主题和正文。当用户点击模态框中的"发送"按钮时，邮件就被发送了：
@@ -23,16 +24,17 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\Mail;
 
+// 创建一个发送邮件操作，点击后弹出表单收集邮件内容
 Action::make('sendEmail')
-    ->schema([
-        TextInput::make('subject')->required(),
-        RichEditor::make('body')->required(),
+    ->schema([                                    // 定义模态框中的表单字段
+        TextInput::make('subject')->required(),   // 邮件主题输入框，必填
+        RichEditor::make('body')->required(),     // 邮件正文富文本编辑器，必填
     ])
-    ->action(function (array $data) {
-        Mail::to($this->client)
-            ->send(new GenericEmail(
-                subject: $data['subject'],
-                body: $data['body'],
+    ->action(function (array $data) {             // 表单提交后执行的回调，$data 包含表单数据
+        Mail::to($this->client)                   // 发送给当前客户
+            ->send(new GenericEmail(              // 发送通用邮件
+                subject: $data['subject'],        // 从表单数据中获取主题
+                body: $data['body'],              // 从表单数据中获取正文
             ));
     })
 ```
@@ -44,8 +46,9 @@ Action::make('sendEmail')
 ```php
 use Filament\Actions\Action;
 
+// 创建一个编辑操作，点击后跳转到编辑页面
 Action::make('edit')
-    ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
+    ->url(fn (): string => route('posts.edit', ['post' => $this->post]))  // 动态生成跳转 URL
 ```
 
 除了允许静态值，`url()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -81,8 +84,9 @@ Filament 包含多个可以添加到你的应用中的操作。它们旨在简�
 ```php
 use Filament\Actions\Action;
 
+// 使用"按钮"样式触发，有背景颜色
 Action::make('edit')
-    ->button()
+    ->button()                                    // 设置触发按钮样式为普通按钮
 ```
 
 ![按钮触发按钮](/assets/filament/v4.x/screenshots/images/light/actions/trigger-button/button.jpg)
@@ -92,8 +96,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 使用"链接"样式触发，无背景颜色，像文本链接
 Action::make('edit')
-    ->link()
+    ->link()                                      // 设置触发按钮样式为链接
 ```
 
 ![链接触发按钮](/assets/filament/v4.x/screenshots/images/light/actions/trigger-button/link.jpg)
@@ -103,9 +108,10 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 使用"图标按钮"样式触发，圆形按钮，只有图标没有标签
 Action::make('edit')
-    ->icon('heroicon-m-pencil-square')
-    ->iconButton()
+    ->icon('heroicon-m-pencil-square')            // 设置图标为铅笔方块
+    ->iconButton()                                // 设置触发按钮样式为图标按钮
 ```
 
 ![图标按钮触发按钮](/assets/filament/v4.x/screenshots/images/light/actions/trigger-button/icon-button.jpg)
@@ -115,8 +121,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 使用"徽章"样式触发，有背景颜色
 Action::make('edit')
-    ->badge()
+    ->badge()                                     // 设置触发按钮样式为徽章
 ```
 
 ![徽章触发按钮](/assets/filament/v4.x/screenshots/images/light/actions/trigger-button/badge.jpg)
@@ -128,10 +135,11 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 响应式按钮：在 md 及以上屏幕显示标签，在移动端仅显示图标
 Action::make('edit')
-    ->icon('heroicon-m-pencil-square')
-    ->button()
-    ->labeledFrom('md')
+    ->icon('heroicon-m-pencil-square')            // 设置图标
+    ->button()                                    // 使用按钮样式
+    ->labeledFrom('md')                           // 从 md 断点开始显示标签（移动端自动转为图标按钮）
 ```
 
 ## 设置标签
@@ -141,8 +149,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 自定义按钮标签为"Edit post"
 Action::make('edit')
-    ->label('Edit post')
+    ->label('Edit post')                          // 覆盖默认的标签（默认从名称生成）
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
 ```
 
@@ -155,8 +164,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 设置按钮颜色为危险色（通常为红色），表示破坏性操作
 Action::make('delete')
-    ->color('danger')
+    ->color('danger')                             // 使用 danger 颜色标识删除操作
 ```
 
 除了允许静态值，`color()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -171,8 +181,9 @@ Action::make('delete')
 use Filament\Actions\Action;
 use Filament\Support\Enums\Size;
 
+// 设置按钮大小为大号
 Action::make('create')
-    ->size(Size::Large)
+    ->size(Size::Large)                           // 使用 Large 枚举值设置大尺寸按钮
 ```
 
 除了允许静态值，`size()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -186,9 +197,10 @@ Action::make('create')
 ```php
 use Filament\Actions\Action;
 
+// 为按钮添加图标，增强视觉识别
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->icon('heroicon-m-pencil-square')
+    ->icon('heroicon-m-pencil-square')            // 使用 Heroicons 的铅笔方块图标
 ```
 
 除了允许静态值，`icon()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -201,10 +213,11 @@ Action::make('edit')
 use Filament\Actions\Action;
 use Filament\Support\Enums\IconPosition;
 
+// 将图标位置设置为标签之后（默认在标签之前）
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
     ->icon('heroicon-m-pencil-square')
-    ->iconPosition(IconPosition::After)
+    ->iconPosition(IconPosition::After)           // 图标显示在标签右侧
 ```
 
 除了允许静态值，`iconPosition()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -218,13 +231,17 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 方式一：使用 visible() 控制显示（推荐）
+// 只有当用户有 update 权限时才显示编辑按钮
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->visible(auth()->user()->can('update', $this->post))
+    ->visible(auth()->user()->can('update', $this->post))  // 有权限时显示
 
+// 方式二：使用 hidden() 控制隐藏
+// 当用户没有 update 权限时隐藏编辑按钮
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->hidden(! auth()->user()->can('update', $this->post))
+    ->hidden(! auth()->user()->can('update', $this->post)) // 无权限时隐藏
 ```
 
 这对于仅对有权限的用户授权某些操作非常有用。
@@ -238,9 +255,10 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 使用 Laravel 策略进行授权检查
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->authorize('update')
+    ->authorize('update')                         // 调用 PostPolicy 的 update 方法检查权限
 ```
 
 :::info
@@ -252,10 +270,11 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 授权失败时禁用按钮并显示工具提示（而非隐藏）
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->authorize('update')
-    ->authorizationTooltip()
+    ->authorize('update')                         // 使用策略检查权限
+    ->authorizationTooltip()                      // 授权失败时显示策略返回的消息作为工具提示
 ```
 
 如果拒绝没有提供消息（例如，你的策略返回普通的 `false`，或 `Gate::before()` 钩子短路了检查），操作将被隐藏。你可以使用 `authorizationMessage()` 提供回退消息来保持操作在这种情况下可见。
@@ -267,10 +286,11 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 授权失败时发送通知（按钮保持可点击状态）
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->authorize('update')
-    ->authorizationNotification()
+    ->authorize('update')                         // 使用策略检查权限
+    ->authorizationNotification()                 // 授权失败时发送包含策略消息的通知
 ```
 
 与 `authorizationTooltip()` 一样，如果拒绝没有提供消息，操作将被隐藏，除非你使用 `authorizationMessage()` 提供回退。
@@ -282,8 +302,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 无条件禁用按钮（按钮可见但不可点击）
 Action::make('delete')
-    ->disabled()
+    ->disabled()                                  // 禁用状态，用户无法点击
 ```
 
 你可以通过传递布尔值来有条件地禁用按钮：
@@ -291,8 +312,9 @@ Action::make('delete')
 ```php
 use Filament\Actions\Action;
 
+// 条件禁用：当用户没有 delete 权限时禁用按钮
 Action::make('delete')
-    ->disabled(! auth()->user()->can('delete', $this->post))
+    ->disabled(! auth()->user()->can('delete', $this->post))  // 无权限时禁用
 ```
 
 除了允许静态值，`disabled()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -306,9 +328,10 @@ Action::make('delete')
 ```php
 use Filament\Actions\Action;
 
+// 注册键盘快捷键，支持 Mac 和 Windows
 Action::make('save')
-    ->action(fn () => $this->save())
-    ->keyBindings(['command+s', 'ctrl+s'])
+    ->action(fn () => $this->save())              // 执行保存操作
+    ->keyBindings(['command+s', 'ctrl+s'])        // Command+S（Mac）或 Ctrl+S（Windows）
 ```
 
 除了允许静态值，`keyBindings()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -320,10 +343,11 @@ Action::make('save')
 ```php
 use Filament\Actions\Action;
 
+// 在按钮角上显示数字徽章，用于显示计数
 Action::make('filter')
-    ->iconButton()
-    ->icon('heroicon-m-funnel')
-    ->badge(5)
+    ->iconButton()                                // 使用图标按钮样式
+    ->icon('heroicon-m-funnel')                   // 漏斗图标（筛选）
+    ->badge(5)                                    // 显示数字 5 作为徽章
 ```
 
 除了允许静态值，`badge()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -335,11 +359,12 @@ Action::make('filter')
 ```php
 use Filament\Actions\Action;
 
+// 自定义徽章颜色为成功色（通常为绿色）
 Action::make('filter')
     ->iconButton()
     ->icon('heroicon-m-funnel')
-    ->badge(5)
-    ->badgeColor('success')
+    ->badge(5)                                    // 显示数字 5
+    ->badgeColor('success')                       // 徽章背景色为绿色
 ```
 
 除了允许静态值，`badgeColor()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -353,10 +378,11 @@ Action::make('filter')
 ```php
 use Filament\Actions\Action;
 
+// 使用轮廓样式，降低按钮的视觉突出程度
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->button()
-    ->outlined()
+    ->button()                                    // 使用按钮样式
+    ->outlined()                                  // 改为轮廓样式（透明背景，有边框）
 ```
 
 ![轮廓触发按钮](/assets/filament/v4.x/screenshots/images/light/actions/trigger-button/outlined.jpg)
@@ -366,10 +392,11 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 条件轮廓样式：根据功能开关决定是否使用轮廓
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
     ->button()
-    ->outlined(FeatureFlag::active())
+    ->outlined(FeatureFlag::active())             // 当功能开关激活时使用轮廓样式
 ```
 
 除了允许静态值，`outlined()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -381,10 +408,11 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 添加额外的 HTML 属性，如 title 工具提示
 Action::make('edit')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
-    ->extraAttributes([
-        'title' => 'Edit this post',
+    ->extraAttributes([                           // 合并到按钮的外部 HTML 元素上
+        'title' => 'Edit this post',              // 鼠标悬停时显示的工具提示
     ])
 ```
 
@@ -401,8 +429,9 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 设置频率限制：每分钟最多执行 5 次
 Action::make('delete')
-    ->rateLimit(5)
+    ->rateLimit(5)                                // 超出限制后显示通知并阻止执行
 ```
 
 如果操作打开模态框，频率限制将在模态框提交时应用。
@@ -420,9 +449,10 @@ Action::make('delete')
 ```php
 use Filament\Actions\DeleteAction;
 
+// 自定义频率限制通知的标题
 DeleteAction::make()
     ->rateLimit(5)
-    ->rateLimitedNotificationTitle('Slow down!')
+    ->rateLimitedNotificationTitle('Slow down!')  // 自定义通知标题
 ```
 
 除了允许静态值，`rateLimitedNotificationTitle()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -434,13 +464,14 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\DeleteAction;
 use Filament\Notifications\Notification;
 
+// 完全自定义频率限制通知的内容
 DeleteAction::make()
     ->rateLimit(5)
     ->rateLimitedNotification(
        fn (TooManyRequestsException $exception): Notification => Notification::make()
-            ->warning()
-            ->title('Slow down!')
-            ->body("You can try deleting again in {$exception->secondsUntilAvailable} seconds."),
+            ->warning()                           // 通知类型为警告
+            ->title('Slow down!')                 // 自定义标题
+            ->body("You can try deleting again in {$exception->secondsUntilAvailable} seconds."),  // 包含等待时间
     )
 ```
 
@@ -457,22 +488,25 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 
+// 自定义频率限制：在模态框打开时立即检查
 Action::make('delete')
     ->mountUsing(function () {
+        // 生成唯一的频率限制键：delete:用户ID
         if (RateLimiter::tooManyAttempts(
             $rateLimitKey = 'delete:' . auth()->id(),
-            maxAttempts: 5,
+            maxAttempts: 5,                       // 每分钟最多 5 次
         )) {
+            // 超出限制时发送危险通知
             Notification::make()
                 ->title('Too many attempts')
                 ->body('Please try again in ' . RateLimiter::availableIn($rateLimitKey) . ' seconds.')
                 ->danger()
                 ->send();
                 
-            return;
+            return;                               // 阻止模态框打开
         }
         
-         RateLimiter::hit($rateLimitKey);
+         RateLimiter::hit($rateLimitKey);          // 记录一次请求
     })
 ```
 
@@ -483,24 +517,27 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 
+// 自定义频率限制：在操作执行时检查
 Action::make('delete')
     ->action(function () {
+        // 生成唯一的频率限制键：delete:用户ID
         if (RateLimiter::tooManyAttempts(
             $rateLimitKey = 'delete:' . auth()->id(),
-            maxAttempts: 5,
+            maxAttempts: 5,                       // 每分钟最多 5 次
         )) {
+            // 超出限制时发送危险通知
             Notification::make()
                 ->title('Too many attempts')
                 ->body('Please try again in ' . RateLimiter::availableIn($rateLimitKey) . ' seconds.')
                 ->danger()
                 ->send();
                 
-            return;
+            return;                               // 阻止操作执行
         }
         
-         RateLimiter::hit($rateLimitKey);
+         RateLimiter::hit($rateLimitKey);          // 记录一次请求
         
-        // ...
+        // ... 执行实际的删除逻辑
     })
 ```
 
@@ -514,15 +551,19 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 
+// 在表单字段中嵌入操作按钮
 TextInput::make('title')
-    ->afterContent(
+    ->afterContent(                               // 在输入框下方添加内容
+        // 创建一个生成 slug 的操作按钮
         Action::make('generateSlug')
             ->action(function (Get $schemaGet, Set $schemaSet) {
+                // $schemaGet('title') - 获取 title 字段的值
+                // $schemaSet('slug', ...) - 设置 slug 字段的值
                 $schemaSet('slug', str($schemaGet('title'))->slug());
             })
     )
 
-TextInput::make('slug')
+TextInput::make('slug')                           // slug 输入框，由上面的操作填充
 ```
 
 ### 在模式中添加操作列表
@@ -533,12 +574,13 @@ TextInput::make('slug')
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Actions;
 
-Actions::make([
-    Action::make('star')
-        ->icon('heroicon-m-star'),
-    Action::make('resetStars')
-        ->icon('heroicon-m-x-mark')
-        ->color('danger'),
+// 在模式中创建独立的操作按钮列表
+Actions::make([                                   // Actions 布局组件包装多个操作
+    Action::make('star')                          // 星标操作
+        ->icon('heroicon-m-star'),                // 星形图标
+    Action::make('resetStars')                    // 重置星标操作
+        ->icon('heroicon-m-x-mark')               // X 图标
+        ->color('danger'),                        // 危险色（红色）
 ])
 ```
 
@@ -550,13 +592,14 @@ Actions::make([
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Actions;
 
+// 全宽操作列表，跨越整个模式宽度
 Actions::make([
     Action::make('star')
         ->icon('heroicon-m-star'),
     Action::make('resetStars')
         ->icon('heroicon-m-x-mark')
         ->color('danger'),
-])->fullWidth()
+])->fullWidth()                                   // 操作列表占据整个宽度
 ```
 
 ![模式中的全宽独立操作](/assets/filament/v4.x/screenshots/images/light/schemas/layout/actions/independent/full-width.jpg)
@@ -568,13 +611,14 @@ use Filament\Actions\Action;
 use Filament\Schemas\Components\Actions;
 use Filament\Support\Enums\Alignment;
 
+// 水平居中对齐操作按钮
 Actions::make([
     Action::make('star')
         ->icon('heroicon-m-star'),
     Action::make('resetStars')
         ->icon('heroicon-m-x-mark')
         ->color('danger'),
-])->alignment(Alignment::Center)
+])->alignment(Alignment::Center)                  // 操作按钮在容器中居中显示
 ```
 
 ![模式中居中对齐的独立操作](/assets/filament/v4.x/screenshots/images/light/schemas/layout/actions/independent/horizontally-aligned-center.jpg)
@@ -586,13 +630,14 @@ use Filament\Actions\Action;
 use Filament\Schemas\Components\Actions;
 use Filament\Support\Enums\VerticalAlignment;
 
+// 垂直底部对齐（用于网格布局中）
 Actions::make([
     Action::make('star')
         ->icon('heroicon-m-star'),
     Action::make('resetStars')
         ->icon('heroicon-m-x-mark')
         ->color('danger'),
-])->verticalAlignment(VerticalAlignment::End)
+])->verticalAlignment(VerticalAlignment::End)     // 操作按钮对齐到容器底部
 ```
 
 ![模式中垂直对齐到底部的独立操作](/assets/filament/v4.x/screenshots/images/light/schemas/layout/actions/independent/vertically-aligned-end.jpg)
@@ -605,16 +650,19 @@ Actions::make([
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 
+// 使用 actionJs() 直接在浏览器执行 JavaScript，无需服务器请求
 TextInput::make('title')
-    ->live(onBlur: true)
+    ->live(onBlur: true)                          // 失去焦点时更新值
     ->afterContent(
         Action::make('generateSlug')
-            ->actionJs(<<<'JS'
+            ->actionJs(<<<'JS'                    // 直接执行客户端 JavaScript
                 $set('slug', $get('title').toLowerCase().replaceAll(' ', '-'))
+                // $get('title') - 获取 title 字段值
+                // $set('slug', ...) - 设置 slug 字段值
                 JS)
     )
 
-TextInput::make('slug')
+TextInput::make('slug')                           // slug 输入框，由 JavaScript 自动填充
 ```
 
 JavaScript 字符串可以访问 `$get()` 和 `$set()` 工具，允许你读取和修改模式中表单字段的状态。
@@ -636,9 +684,11 @@ JavaScript 字符串可以访问 `$get()` 和 `$set()` 工具，允许你读取�
 ```php
 use Filament\Actions\Action;
 
+// 工具注入基础示例：闭包可以注入各种工具
 Action::make('edit')
     ->label('Edit post')
     ->url(fn (): string => route('posts.edit', ['post' => $this->post]))
+    // url() 闭包可以注入 $record、$livewire、$action 等工具
 ```
 
 仅此一点就解锁了许多自定义可能性。
@@ -652,8 +702,9 @@ Action::make('edit')
 如果你想访问当前[模态框表单数据](modals#rendering-a-form-in-a-modal)，请定义 `$data` 参数：
 
 ```php
-function (array $data) {
-    // ...
+// 注入当前模态框表单数据
+function (array $data) {                         // $data 包含模态框中所有表单字段的值
+    // ... $data['field_name'] 访问特定字段
 }
 ```
 
@@ -666,8 +717,9 @@ function (array $data) {
 ```php
 use Illuminate\Database\Eloquent\Model;
 
-function (Model $record) {
-    // ...
+// 注入当前 Eloquent 记录（如表格行对应的数据）
+function (Model $record) {                       // $record 是当前操作关联的模型实例
+    // ... $record->id、$record->name 等
 }
 ```
 
@@ -676,8 +728,9 @@ function (Model $record) {
 如果你想访问传递给操作的[当前参数](../components/action#passing-action-arguments)，请定义 `$arguments` 参数：
 
 ```php
-function (array $arguments) {
-    // ...
+// 注入传递给操作的当前参数
+function (array $arguments) {                    // $arguments 包含所有传递的参数
+    // ... $arguments['key'] 访问特定参数
 }
 ```
 
@@ -702,8 +755,9 @@ function (array $arguments) {
 ```php
 use Livewire\Component;
 
-function (Component $livewire) {
-    // ...
+// 注入当前 Livewire 组件实例
+function (Component $livewire) {                 // $livewire 是操作所属的 Livewire 组件
+    // ... 访问组件属性和方法
 }
 ```
 
@@ -712,8 +766,9 @@ function (Component $livewire) {
 如果你想访问当前操作实例，请定义 `$action` 参数：
 
 ```php
-function (Action $action) {
-    // ...
+// 注入当前操作实例
+function (Action $action) {                      // $action 是当前操作对象的实例
+    // ... 访问操作的配置和状态
 }
 ```
 
@@ -724,8 +779,9 @@ function (Action $action) {
 ```php
 use Livewire\Component;
 
-function (array $arguments, Component $livewire) {
-    // ...
+// 同时注入多个工具（使用反射自动解析）
+function (array $arguments, Component $livewire) {  // 可以按任意顺序组合
+    // ... $arguments 包含参数，$livewire 是组件实例
 }
 ```
 
@@ -736,7 +792,8 @@ function (array $arguments, Component $livewire) {
 ```php
 use Illuminate\Http\Request;
 
-function (Request $request, array $arguments) {
-    // ...
+// 从 Laravel 容器注入任何依赖（与工具一起使用）
+function (Request $request, array $arguments) {   // $request 是 HTTP 请求实例
+    // ... $request->input()、$request->user() 等
 }
 ```

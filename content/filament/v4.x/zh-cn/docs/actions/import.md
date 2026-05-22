@@ -30,8 +30,9 @@ php artisan migrate
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 创建导入操作，用于从 CSV 导入数据
 ImportAction::make()
-    ->importer(ProductImporter::class)
+    ->importer(ProductImporter::class)            // 指定导入器类，定义如何导入数据
 ```
 
 ![导入操作模态框](/assets/filament/v4.x/screenshots/images/light/actions/import-action/modal.jpg)
@@ -43,10 +44,11 @@ use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 use Filament\Tables\Table;
 
+// 将导入操作添加到表格头部
 public function table(Table $table): Table
 {
     return $table
-        ->headerActions([
+        ->headerActions([                        // 头部操作区域
             ImportAction::make()
                 ->importer(ProductImporter::class)
         ]);
@@ -60,10 +62,11 @@ public function table(Table $table): Table
 ```php
 use Filament\Actions\ImportAction;
 
-ImportAction::make('importProducts')
+// 同一位置有多个导入操作时，需要指定唯一名称
+ImportAction::make('importProducts')             // 产品导入操作
     ->importer(ProductImporter::class)
 
-ImportAction::make('importBrands')
+ImportAction::make('importBrands')               // 品牌导入操作
     ->importer(BrandImporter::class)
 ```
 
@@ -92,18 +95,19 @@ php artisan make:filament-importer Product --generate
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 定义可以导入的列
 public static function getColumns(): array
 {
     return [
-        ImportColumn::make('name')
-            ->requiredMapping()
-            ->rules(['required', 'max:255']),
-        ImportColumn::make('sku')
-            ->label('SKU')
+        ImportColumn::make('name')                // 名称列
+            ->requiredMapping()                   // 必须映射到 CSV 列
+            ->rules(['required', 'max:255']),     // 验证规则
+        ImportColumn::make('sku')                 // SKU 列
+            ->label('SKU')                        // 自定义标签
             ->requiredMapping()
             ->rules(['required', 'max:32']),
-        ImportColumn::make('price')
-            ->numeric()
+        ImportColumn::make('price')               // 价格列
+            ->numeric()                           // 类型转换为数字
             ->rules(['numeric', 'min:0']),
     ];
 }
@@ -116,8 +120,9 @@ public static function getColumns(): array
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义导入列的标签
 ImportColumn::make('sku')
-    ->label('SKU')
+    ->label('SKU')                               // 覆盖默认标签
 ```
 
 ### 要求导入列映射到 CSV 列
@@ -127,8 +132,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 要求列必须映射到 CSV 列
 ImportColumn::make('sku')
-    ->requiredMapping()
+    ->requiredMapping()                          // 用户必须选择 CSV 中的对应列
 ```
 
 如果你在数据库中要求某列，还需要确保它有 [`rules(['required'])` 验证规则](#验证-csv-数据)。
@@ -140,8 +146,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 仅在创建新记录时要求映射（更新时可选）
 ImportColumn::make('sku')
-    ->requiredMappingForNewRecordsOnly()
+    ->requiredMappingForNewRecordsOnly()         // 新记录必填，更新时可选
 ```
 
 如果 `resolveRecord()` 方法返回一个尚未保存到数据库的模型实例，该列将仅对该行要求映射。如果用户未映射该列，且导入中的某行在数据库中尚不存在，仅该行将失败，并在所有行分析完毕后将消息添加到失败行 CSV 中。
@@ -153,8 +160,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 为导入列添加验证规则
 ImportColumn::make('sku')
-    ->rules(['required', 'max:32'])
+    ->rules(['required', 'max:32'])               // 必填，最大 32 字符
 ```
 
 任何未通过验证的行将不会被导入。相反，它们将被编译成一个新的"失败行" CSV，用户可以在导入完成后下载。用户将看到每行失败的验证错误列表。
@@ -168,16 +176,17 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义类型转换：清理价格字符串并转换为浮点数
 ImportColumn::make('price')
     ->castStateUsing(function (string $state): ?float {
         if (blank($state)) {
-            return null;
+            return null;                         // 空值返回 null
         }
         
-        $state = preg_replace('/[^0-9.]/', '', $state);
-        $state = floatval($state);
+        $state = preg_replace('/[^0-9.]/', '', $state);  // 移除非数字字符
+        $state = floatval($state);               // 转换为浮点数
     
-        return round($state, precision: 2);
+        return round($state, precision: 2);      // 四舍五入到 2 位小数
     })
 ```
 
@@ -194,17 +203,18 @@ Filament 还附带了一些内置的类型转换方法：
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 内置类型转换方法
 ImportColumn::make('price')
-    ->numeric() // 将状态转换为浮点数。
+    ->numeric()                                  // 转换为浮点数
 
 ImportColumn::make('price')
-    ->numeric(decimalPlaces: 2) // 将状态转换为浮点数，并四舍五入到 2 位小数。
+    ->numeric(decimalPlaces: 2)                  // 转换为浮点数，保留 2 位小数
 
 ImportColumn::make('quantity')
-    ->integer() // 将状态转换为整数。
+    ->integer()                                  // 转换为整数
 
 ImportColumn::make('is_visible')
-    ->boolean() // 将状态转换为布尔值。
+    ->boolean()                                  // 转换为布尔值
 ```
 
 #### 类型转换后修改状态
@@ -214,14 +224,15 @@ ImportColumn::make('is_visible')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 类型转换后修改状态（乘以 100 转换为分）
 ImportColumn::make('price')
-    ->numeric()
+    ->numeric()                                  // 先转换为浮点数
     ->castStateUsing(function (float $state): ?float {
         if (blank($state)) {
             return null;
         }
     
-        return round($state * 100);
+        return round($state * 100);              // 元转换为分
     })
 ```
 
@@ -230,9 +241,11 @@ ImportColumn::make('price')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 访问类型转换前的原始状态
 ImportColumn::make('price')
     ->numeric()
     ->castStateUsing(function (float $state, mixed $originalState): ?float {
+        // $state 是转换后的值，$originalState 是原始字符串
         // ...
     })
 ```
@@ -246,8 +259,9 @@ ImportColumn::make('price')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 将单列中的值转换为数组
 ImportColumn::make('documentation_urls')
-    ->multiple(',')
+    ->multiple(',')                             // 使用逗号分隔
 ```
 
 除了允许静态值，`multiple()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -261,9 +275,10 @@ ImportColumn::make('documentation_urls')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 转换数组中的每个项目为整数
 ImportColumn::make('customer_ratings')
-    ->multiple(',')
-    ->integer() // 将数组中的每个项目转换为整数。
+    ->multiple(',')                             // 分隔为数组
+    ->integer()                                  // 每个元素转换为整数
 ```
 
 #### 验证数组中的每个项目
@@ -273,11 +288,12 @@ ImportColumn::make('customer_ratings')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 验证数组中的每个项目
 ImportColumn::make('customer_ratings')
     ->multiple(',')
     ->integer()
-    ->rules(['array'])
-    ->nestedRecursiveRules(['integer', 'min:1', 'max:5'])
+    ->rules(['array'])                           // 验证为数组
+    ->nestedRecursiveRules(['integer', 'min:1', 'max:5'])  // 每个元素：1-5 的整数
 ```
 
 除了允许静态值，`nestedRecursiveRules()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -289,8 +305,9 @@ ImportColumn::make('customer_ratings')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 导入 BelongsTo 关系
 ImportColumn::make('author')
-    ->relationship()
+    ->relationship()                             // CSV 中的 author 列映射到 author_id
 ```
 
 在此示例中，CSV 中的 `author` 列将映射到数据库中的 `author_id` 列。CSV 应包含作者的主键，通常是 `id`。
@@ -302,9 +319,10 @@ ImportColumn::make('author')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 导入 BelongsToMany 关系
 ImportColumn::make('authors')
     ->relationship()
-    ->multiple(',')
+    ->multiple(',')                             // 多个值用逗号分隔
 ```
 
 #### 自定义关系导入解析
@@ -314,8 +332,9 @@ ImportColumn::make('authors')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 使用 email 列查找关联记录（而非默认的 id）
 ImportColumn::make('author')
-    ->relationship(resolveUsing: 'email')
+    ->relationship(resolveUsing: 'email')        // 通过 email 匹配作者
 ```
 
 你可以向 `resolveUsing` 传递多个列，它们将以"或"的方式用于查找作者。例如，如果你传入 `['email', 'username']`，可以通过电子邮件或用户名找到记录：
@@ -323,6 +342,7 @@ ImportColumn::make('author')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 通过 email 或 username 查找记录（或逻辑）
 ImportColumn::make('author')
     ->relationship(resolveUsing: ['email', 'username'])
 ```
@@ -333,11 +353,12 @@ ImportColumn::make('author')
 use App\Models\Author;
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义关系解析函数
 ImportColumn::make('author')
     ->relationship(resolveUsing: function (string $state): ?Author {
         return Author::query()
-            ->where('email', $state)
-            ->orWhere('username', $state)
+            ->where('email', $state)             // 优先通过 email 查找
+            ->orWhere('username', $state)        // 然后通过 username 查找
             ->first();
     })
 ```
@@ -351,11 +372,12 @@ use App\Models\Author;
 use Filament\Actions\Imports\ImportColumn;
 use Illuminate\Database\Eloquent\Collection;
 
+// BelongsToMany 关系解析（返回集合）
 ImportColumn::make('authors')
     ->relationship(resolveUsing: function (array $state): Collection {
         return Author::query()
-            ->whereIn('email', $state)
-            ->orWhereIn('username', $state)
+            ->whereIn('email', $state)           // 批量匹配 email
+            ->orWhereIn('username', $state)      // 或批量匹配 username
             ->get();
     })
 ```
@@ -366,13 +388,14 @@ ImportColumn::make('authors')
 use App\Models\Author;
 use Filament\Actions\Imports\ImportColumn;
 
+// 动态确定使用哪列解析关系
 ImportColumn::make('author')
     ->relationship(resolveUsing: function (string $state): ?Author {
         if (filter_var($state, FILTER_VALIDATE_EMAIL)) {
-            return 'email';
+            return 'email';                      // 如果是邮箱，使用 email 列
         }
     
-        return 'username';
+        return 'username';                       // 否则使用 username 列
     })
 ```
 
@@ -383,9 +406,10 @@ ImportColumn::make('author')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 标记列数据为敏感数据（不记录到失败 CSV）
 ImportColumn::make('ssn')
     ->label('Social security number')
-    ->sensitive()
+    ->sensitive()                                // 防止数据被记录到失败行 CSV
     ->rules(['required', 'digits:9'])
 ```
 
@@ -397,9 +421,10 @@ ImportColumn::make('ssn')
 use App\Models\Product;
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义列如何填充到记录中
 ImportColumn::make('sku')
     ->fillRecordUsing(function (Product $record, string $state): void {
-        $record->sku = strtoupper($state);
+        $record->sku = strtoupper($state);       // 转换为大写
     })
 ```
 
@@ -412,9 +437,10 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 在导入列下方添加帮助文本
 ImportColumn::make('skus')
     ->multiple(',')
-    ->helperText('A comma-separated list of SKUs.')
+    ->helperText('A comma-separated list of SKUs.')  // 显示在映射选择下方
 ```
 
 ## 导入时更新现有记录
@@ -424,14 +450,15 @@ ImportColumn::make('skus')
 ```php
 use App\Models\Product;
 
+// 默认的 resolveRecord 方法（创建新记录）
 public function resolveRecord(): ?Product
 {
     // return Product::firstOrNew([
-    //     // Update existing records, matching them by `$this->data['column_name']`
+    //     // 更新现有记录，按指定列匹配
     //     'email' => $this->data['email'],
     // ]);
 
-    return new Product();
+    return new Product();                        // 默认创建新记录
 }
 ```
 
@@ -440,10 +467,11 @@ public function resolveRecord(): ?Product
 ```php
 use App\Models\Product;
 
+// 更新或创建记录（按 SKU 匹配）
 public function resolveRecord(): ?Product
 {
     return Product::firstOrNew([
-        'sku' => $this->data['sku'],
+        'sku' => $this->data['sku'],             // 按 SKU 查找，不存在则创建
     ]);
 }
 ```
@@ -455,11 +483,12 @@ public function resolveRecord(): ?Product
 ```php
 use App\Models\Product;
 
+// 仅更新现有记录（找不到则返回 null）
 public function resolveRecord(): ?Product
 {
     return Product::query()
         ->where('sku', $this->data['sku'])
-        ->first();
+        ->first();                               // 找不到记录时返回 null
 }
 ```
 
@@ -469,6 +498,7 @@ public function resolveRecord(): ?Product
 use App\Models\Product;
 use Filament\Actions\Imports\Exceptions\RowImportFailedException;
 
+// 找不到记录时抛出异常（导入行失败）
 public function resolveRecord(): ?Product
 {
     $product = Product::query()
@@ -492,8 +522,9 @@ public function resolveRecord(): ?Product
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 忽略空白状态（使用数据库中的现有值）
 ImportColumn::make('price')
-    ->ignoreBlankState()
+    ->ignoreBlankState()                         // CSV 中为空时保留原值
 ```
 
 ## 使用导入选项
@@ -503,10 +534,11 @@ ImportColumn::make('price')
 ```php
 use Filament\Forms\Components\Checkbox;
 
+// 定义导入选项表单
 public static function getOptionsFormComponents(): array
 {
     return [
-        Checkbox::make('updateExisting')
+        Checkbox::make('updateExisting')          // 是否更新现有记录选项
             ->label('Update existing records'),
     ];
 }
@@ -518,10 +550,11 @@ public static function getOptionsFormComponents(): array
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 通过操作传递静态选项值
 ImportAction::make()
     ->importer(ProductImporter::class)
     ->options([
-        'updateExisting' => true,
+        'updateExisting' => true,                // 启用更新现有记录
     ])
 ```
 
@@ -530,15 +563,16 @@ ImportAction::make()
 ```php
 use App\Models\Product;
 
+// 在 resolveRecord 中使用选项
 public function resolveRecord(): ?Product
 {
     if ($this->options['updateExisting'] ?? false) {
-        return Product::firstOrNew([
+        return Product::firstOrNew([             // 更新模式：找到则更新，否则创建
             'sku' => $this->data['sku'],
         ]);
     }
 
-    return new Product();
+    return new Product();                        // 创建模式：总是创建新记录
 }
 ```
 
@@ -549,8 +583,10 @@ public function resolveRecord(): ?Product
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 改进列映射猜测（提供更多可能的列名）
 ImportColumn::make('sku')
     ->guess(['id', 'number', 'stock-keeping unit'])
+    // CSV 列名可能是 id、number 或 stock-keeping unit
 ```
 
 ## 提供示例 CSV 数据
@@ -562,8 +598,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 为示例 CSV 提供示例值
 ImportColumn::make('sku')
-    ->example('ABC123')
+    ->example('ABC123')                          // 示例 SKU 值
 ```
 
 或者如果你想添加多个示例行，可以向 `examples()` 方法传递数组：
@@ -571,8 +608,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 提供多个示例值
 ImportColumn::make('sku')
-    ->examples(['ABC123', 'DEF456'])
+    ->examples(['ABC123', 'DEF456'])             // 多行示例数据
 ```
 
 默认情况下，列的名称用于示例 CSV 的标题中。你可以使用 `exampleHeader()` 自定义每列的标题：
@@ -580,8 +618,9 @@ ImportColumn::make('sku')
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义示例 CSV 的列标题
 ImportColumn::make('sku')
-    ->exampleHeader('SKU')
+    ->exampleHeader('SKU')                       // 使用 "SKU" 作为标题
 ```
 
 ## 使用自定义用户模型
@@ -598,13 +637,17 @@ $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 use App\Models\Admin;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+// 绑定自定义用户模型到容器
 $this->app->bind(Authenticatable::class, Admin::class);
+// 在服务提供者的 register() 方法中调用
 ```
 
 如果你的可认证模型使用与 `users` 不同的表，你应该将该表名传递给 `constrained()`：
 
 ```php
+// 如果用户模型使用不同的表名
 $table->foreignId('user_id')->constrained('admins')->cascadeOnDelete();
+// 约束到 admins 表
 ```
 
 ### 使用多态用户关系
@@ -612,7 +655,8 @@ $table->foreignId('user_id')->constrained('admins')->cascadeOnDelete();
 如果你想将导入与多个用户模型关联，可以使用多态 `MorphTo` 关系。为此，你需要替换 `imports` 表中的 `user_id` 列：
 
 ```php
-$table->morphs('user');
+// 使用多态关系代替外键
+$table->morphs('user');                         // 创建 user_type 和 user_id 列
 ```
 
 然后，在服务提供者的 `boot()` 方法中，你应该调用 `Import::polymorphicUserRelationship()` 将 `Import` 模型上的 `user()` 关系交换为 `MorphTo` 关系：
@@ -620,7 +664,9 @@ $table->morphs('user');
 ```php
 use Filament\Actions\Imports\Models\Import;
 
+// 启用多态用户关系
 Import::polymorphicUserRelationship();
+// 在服务提供者的 boot() 方法中调用
 ```
 
 ## 限制可导入的最大行数
@@ -631,9 +677,10 @@ Import::polymorphicUserRelationship();
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 限制导入的最大行数
 ImportAction::make()
     ->importer(ProductImporter::class)
-    ->maxRows(100000)
+    ->maxRows(100000)                            // 最多导入 10 万行
 ```
 
 除了允许静态值，`maxRows()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -646,9 +693,10 @@ Filament 将对 CSV 进行分块，并在不同的排队作业中处理每个块
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 更改导入分块大小
 ImportAction::make()
     ->importer(ProductImporter::class)
-    ->chunkSize(250)
+    ->chunkSize(250)                             // 每次处理 250 行
 ```
 
 除了允许静态值，`chunkSize()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -665,9 +713,10 @@ CSV 的默认分隔符是逗号（`,`）。如果你的导入使用不同的分�
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 更改 CSV 分隔符
 ImportAction::make()
     ->importer(ProductImporter::class)
-    ->csvDelimiter(';')
+    ->csvDelimiter(';')                          // 使用分号分隔
 ```
 
 除了允许静态值，`csvDelimiter()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -682,9 +731,10 @@ ImportAction::make()
 use App\Filament\Imports\ProductImporter;
 use Filament\Actions\ImportAction;
 
+// 更改列标题偏移量（跳过前 5 行）
 ImportAction::make()
     ->importer(ProductImporter::class)
-    ->headerOffset(5)
+    ->headerOffset(5)                            // 标题在第 6 行
 ```
 
 除了允许静态值，`headerOffset()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -696,11 +746,13 @@ ImportAction::make()
 ```php
 use Filament\Actions\Imports\Models\Import;
 
+// 自定义导入完成通知的标题
 public static function getCompletedNotificationTitle(Import $import): string
 {
     return 'Your product import has finished';
 }
 
+// 自定义导入完成通知的正文
 public static function getCompletedNotificationBody(Import $import): string
 {
     return $import->successful_rows . ' products were imported.';
@@ -714,14 +766,16 @@ use Filament\Actions\Action;
 use Filament\Actions\Imports\Models\Import;
 use Filament\Notifications\Notification;
 
+// 完全自定义导入完成通知
 public static function modifyCompletedNotification(Notification $notification, Import $import): Notification
 {
-    $notification->icon('heroicon-o-shopping-bag');
+    $notification->icon('heroicon-o-shopping-bag');  // 自定义图标
 
+    // 如果用户选择了发送欢迎邮件选项
     if ($import->getOptions()['sendWelcomeEmails'] ?? false) {
         $notification->actions([
             ...$notification->getActions(),
-            Action::make('viewWelcomeEmails')
+            Action::make('viewWelcomeEmails')     // 添加查看邮件操作
                 ->url(route('emails.sent')),
         ]);
     }
@@ -740,7 +794,9 @@ public static function modifyCompletedNotification(Notification $notification, I
 use App\Jobs\ImportCsv;
 use Filament\Actions\Imports\Jobs\ImportCsv as BaseImportCsv;
 
+// 全局替换导入作业类
 $this->app->bind(BaseImportCsv::class, ImportCsv::class);
+// 在服务提供者的 register() 方法中调用
 ```
 
 或者，你可以将新作业类传递给操作上的 `job()` 方法，以自定义特定导入的作业：
@@ -750,9 +806,10 @@ use App\Filament\Imports\ProductImporter;
 use App\Jobs\ImportCsv;
 use Filament\Actions\ImportAction;
 
+// 为特定导入操作设置自定义作业
 ImportAction::make()
     ->importer(ProductImporter::class)
-    ->job(ImportCsv::class)
+    ->job(ImportCsv::class)                      // 使用自定义作业类
 ```
 
 ### 自定义导入队列和连接
@@ -760,18 +817,20 @@ ImportAction::make()
 默认情况下，导入系统将使用默认队列和连接。如果你想自定义某个导入器的作业所使用的队列，可以重写导入器类中的 `getJobQueue()` 方法：
 
 ```php
+// 自定义导入作业使用的队列
 public function getJobQueue(): ?string
 {
-    return 'imports';
+    return 'imports';                            // 使用 imports 队列
 }
 ```
 
 你还可以通过重写导入器类中的 `getJobConnection()` 方法来自定义某个导入器的作业所使用的连接：
 
 ```php
+// 自定义导入作业使用的连接
 public function getJobConnection(): ?string
 {
-    return 'sqs';
+    return 'sqs';                                // 使用 SQS 连接
 }
 ```
 
@@ -782,10 +841,12 @@ public function getJobConnection(): ?string
 ```php
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 
+// 自定义导入作业中间件
 public function getJobMiddleware(): array
 {
     return [
         (new WithoutOverlapping("import{$this->import->getKey()}"))->expireAfter(600),
+        // 防止重叠执行，600 秒后过期
     ];
 }
 ```
@@ -799,9 +860,10 @@ public function getJobMiddleware(): array
 ```php
 use Carbon\CarbonInterface;
 
+// 自定义导入作业重试时间
 public function getJobRetryUntil(): ?CarbonInterface
 {
-    return now()->addHours(12);
+    return now()->addHours(12);                  // 12 小时内重试
 }
 ```
 
@@ -815,9 +877,10 @@ public function getJobRetryUntil(): ?CarbonInterface
 /**
 * @return int | array<int> | null
  */
+// 自定义导入作业退避策略
 public function getJobBackoff(): int | array | null
 {
-    return [60, 120, 300, 600];
+    return [60, 120, 300, 600];                  // 1分钟、2分钟、5分钟、10分钟
 }
 ```
 
@@ -828,9 +891,10 @@ public function getJobBackoff(): int | array | null
 默认情况下，导入系统将使用导入的 ID 标记每个作业。这是为了让你能够轻松找到与某个导入相关的所有作业。该功能在导入器类的 `getJobTags()` 方法中定义：
 
 ```php
+// 自定义导入作业标签
 public function getJobTags(): array
 {
-    return ["import{$this->import->getKey()}"];
+    return ["import{$this->import->getKey()}"];  // 使用导入 ID 作为标签
 }
 ```
 
@@ -841,9 +905,10 @@ public function getJobTags(): array
 默认情况下，导入系统不会为作业批次定义任何名称。如果你想自定义应用于某个导入器的作业批次的名称，可以在导入器类中重写 `getJobBatchName()` 方法：
 
 ```php
+// 自定义导入作业批次名称
 public function getJobBatchName(): ?string
 {
-    return 'product-import';
+    return 'product-import';                    // 批次名称
 }
 ```
 
@@ -852,10 +917,11 @@ public function getJobBatchName(): ?string
 导入系统将在导入前自动验证 CSV 文件。如果有任何错误，用户将看到错误列表，导入将不会被处理。如果你想覆盖任何默认验证消息，可以通过重写导入器类中的 `getValidationMessages()` 方法来实现：
 
 ```php
+// 自定义导入验证消息
 public function getValidationMessages(): array
 {
     return [
-        'name.required' => 'The name column must not be empty.',
+        'name.required' => 'The name column must not be empty.',  // 自定义必填错误消息
     ];
 }
 ```
@@ -869,8 +935,9 @@ public function getValidationMessages(): array
 ```php
 use Filament\Actions\Imports\ImportColumn;
 
+// 自定义验证属性名称（用于错误消息）
 ImportColumn::make('name')
-    ->validationAttribute('full name')
+    ->validationAttribute('full name')           // 使用 "full name" 而非 "name"
 ```
 
 ## 自定义导入文件验证
@@ -881,12 +948,13 @@ ImportColumn::make('name')
 use Filament\Actions\ImportAction;
 use Illuminate\Validation\Rules\File;
 
+// 自定义导入文件验证规则
 ImportAction::make()
     ->importer(ProductImporter::class)
     ->fileRules([
-        'max:1024',
-        // 或者
-        File::types(['csv', 'txt'])->max(1024),
+        'max:1024',                              // 文件大小限制 1MB
+        // 或者使用 File 规则
+        File::types(['csv', 'txt'])->max(1024),  // 只允许 CSV 和 TXT 文件
     ]),
 ```
 
@@ -897,8 +965,10 @@ ImportAction::make()
 钩子可用于在导入器生命周期的不同阶段执行代码，例如在记录保存之前。要设置钩子，请在导入器类上创建一个以钩子名称命名的受保护方法：
 
 ```php
+// 生命周期钩子：保存前执行
 protected function beforeSave(): void
 {
+    // 在数据保存到数据库之前执行
     // ...
 }
 ```
@@ -916,52 +986,52 @@ class ProductImporter extends Importer
 
     protected function beforeValidate(): void
     {
-        // 在行的 CSV 数据验证之前运行。
+        // 验证前：在行的 CSV 数据验证之前运行
     }
 
     protected function afterValidate(): void
     {
-        // 在行的 CSV 数据验证之后运行。
+        // 验证后：在行的 CSV 数据验证之后运行
     }
 
     protected function beforeFill(): void
     {
-        // 在行的经过验证的 CSV 数据填充到模型实例之前运行。
+        // 填充前：在 CSV 数据填充到模型之前运行
     }
 
     protected function afterFill(): void
     {
-        // 在行的经过验证的 CSV 数据填充到模型实例之后运行。
+        // 填充后：在 CSV 数据填充到模型之后运行
     }
 
     protected function beforeSave(): void
     {
-        // 在记录保存到数据库之前运行。
+        // 保存前：在记录保存到数据库之前运行
     }
 
     protected function beforeCreate(): void
     {
-        // 类似于 `beforeSave()`，但仅在创建新记录时运行。
+        // 创建前：类似于 beforeSave()，但仅在创建新记录时运行
     }
 
     protected function beforeUpdate(): void
     {
-        // 类似于 `beforeSave()`，但仅在更新现有记录时运行。
+        // 更新前：类似于 beforeSave()，但仅在更新现有记录时运行
     }
 
     protected function afterSave(): void
     {
-        // 在记录保存到数据库之后运行。
+        // 保存后：在记录保存到数据库之后运行
     }
     
     protected function afterCreate(): void
     {
-        // 类似于 `afterSave()`，但仅在创建新记录时运行。
+        // 创建后：类似于 afterSave()，但仅在创建新记录时运行
     }
     
     protected function afterUpdate(): void
     {
-        // 类似于 `afterSave()`，但仅在更新现有记录时运行。
+        // 更新后：类似于 afterSave()，但仅在更新现有记录时运行
     }
 }
 ```
@@ -978,6 +1048,7 @@ class ProductImporter extends Importer
 use App\Policies\ImportPolicy;
 use Filament\Actions\Imports\Models\Import;
 
+// 注册导入模型的授权策略
 protected $policies = [
     Import::class => ImportPolicy::class,
 ];
@@ -991,9 +1062,10 @@ protected $policies = [
 use App\Models\User;
 use Filament\Actions\Imports\Models\Import;
 
+// 策略的 view 方法：检查用户是否有权访问失败 CSV
 public function view(User $user, Import $import): bool
 {
-    return $import->user()->is($user);
+    return $import->user()->is($user);           // 只有启动导入的用户才能访问
 }
 ```
 

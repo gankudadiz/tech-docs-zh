@@ -9,9 +9,10 @@ Filament 包含一个能够查看 Eloquent 记录的操作。当触发按钮被�
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 
+// 创建查看操作（只读模态框）
 ViewAction::make()
-    ->schema([
-        TextInput::make('title')
+    ->schema([                                    // 定义只读表单字段
+        TextInput::make('title')                  // 标题字段（禁用状态）
             ->required()
             ->maxLength(255),
         // ...
@@ -27,11 +28,12 @@ ViewAction::make()
 ```php
 use Filament\Actions\ViewAction;
 
+// 在填充表单前修改记录数据
 ViewAction::make()
     ->mutateRecordDataUsing(function (array $data): array {
-        $data['user_id'] = auth()->id();
+        $data['user_id'] = auth()->id();          // 添加当前用户 ID
 
-        return $data;
+        return $data;                             // 返回修改后的数据
     })
 ```
 

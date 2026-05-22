@@ -9,10 +9,11 @@ title: 操作分组
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 
-ActionGroup::make([
-    Action::make('view'),
-    Action::make('edit'),
-    Action::make('delete'),
+// 创建操作组（下拉菜单）
+ActionGroup::make([                             // 将多个操作组合到下拉菜单
+    Action::make('view'),                       // 查看操作
+    Action::make('edit'),                       // 编辑操作
+    Action::make('delete'),                     // 删除操作
 ])
 ```
 
@@ -28,14 +29,15 @@ ActionGroup::make([
 use Filament\Actions\ActionGroup;
 use Filament\Support\Enums\Size;
 
+// 自定义组触发按钮样式
 ActionGroup::make([
     // 操作数组
 ])
-    ->label('More actions')
-    ->icon('heroicon-m-ellipsis-vertical')
-    ->size(Size::Small)
-    ->color('primary')
-    ->button()
+    ->label('More actions')                     // 自定义按钮标签
+    ->icon('heroicon-m-ellipsis-vertical')      // 设置图标
+    ->size(Size::Small)                         // 小尺寸
+    ->color('primary')                          // 主题色
+    ->button()                                  // 按钮样式
 ```
 
 ![带自定义触发按钮样式的操作组](/assets/filament/v4.x/screenshots/images/light/actions/group/customized.jpg)
@@ -49,10 +51,11 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 为组触发按钮添加工具提示
 ActionGroup::make([
     // 操作数组
 ])
-    ->tooltip('Actions')
+    ->tooltip('Actions')                        // 鼠标悬停时显示
 ```
 
 ![带操作组工具提示的表格](/assets/filament/v4.x/screenshots/images/light/tables/actions/group-tooltip.jpg)
@@ -66,17 +69,18 @@ use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Support\Icons\Heroicon;
 
+// 使用按钮组设计（而非下拉菜单）
 ActionGroup::make([
-    Action::make('edit')
+    Action::make('edit')                        // 编辑按钮
         ->color('gray')
         ->icon(Heroicon::PencilSquare)
-        ->hiddenLabel(),
-    Action::make('delete')
+        ->hiddenLabel(),                        // 隐藏标签，只显示图标
+    Action::make('delete')                      // 删除按钮
         ->color('gray')
         ->icon(Heroicon::Trash)
         ->hiddenLabel(),
 ])
-    ->buttonGroup()
+    ->buttonGroup()                             // 渲染为按钮组而非下拉菜单
 ```
 
 ![使用按钮组设计的操作组](/assets/filament/v4.x/screenshots/images/light/actions/group/button-group.jpg)
@@ -88,10 +92,11 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 设置下拉菜单的位置
 ActionGroup::make([
     // 操作数组
 ])
-    ->dropdownPlacement('top-start')
+    ->dropdownPlacement('top-start')            // 定位到触发按钮的左上方
 ```
 
 `dropdownPlacement()` 方法还接受一个函数来动态计算值。你可以向该函数注入各种工具作为参数。
@@ -103,10 +108,11 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 自动定位下拉菜单（根据可用空间）
 ActionGroup::make([
     // 操作数组
 ])
-    ->dropdownAutoPlacement()
+    ->dropdownAutoPlacement()                   // 自动选择最佳位置
 ```
 
 ## 在操作之间添加分隔线
@@ -116,11 +122,12 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 在操作之间添加分隔线
 ActionGroup::make([
-    ActionGroup::make([
+    ActionGroup::make([                         // 第一组操作
         // 操作数组
-    ])->dropdown(false),
-    // 操作数组
+    ])->dropdown(false),                        // 不创建嵌套下拉菜单
+    // 第二组操作（自动添加分隔线）
 ])
 ```
 
@@ -138,10 +145,11 @@ ActionGroup::make([
 use Filament\Actions\ActionGroup;
 use Filament\Support\Enums\Width;
 
+// 设置下拉菜单的宽度
 ActionGroup::make([
     // 操作数组
 ])
-    ->dropdownWidth(Width::ExtraSmall)
+    ->dropdownWidth(Width::ExtraSmall)          // 特小宽度
 ```
 
 ![带自定义下拉菜单宽度的操作组](/assets/filament/v4.x/screenshots/images/light/actions/group/dropdown-width.jpg)
@@ -155,10 +163,11 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 控制下拉菜单的偏移量
 ActionGroup::make([
     // 操作数组
 ])
-    ->dropdownOffset(16)
+    ->dropdownOffset(16)                        // 距离触发按钮 16px
 ```
 
 `dropdownOffset()` 方法还接受一个函数来动态计算值。你可以向该函数注入各种工具作为参数。
@@ -170,10 +179,11 @@ ActionGroup::make([
 ```php
 use Filament\Actions\ActionGroup;
 
+// 设置下拉菜单的最大高度（启用滚动）
 ActionGroup::make([
     // 操作数组
 ])
-    ->maxHeight('400px')
+    ->maxHeight('400px')                        // 最大高度 400px
 ```
 
 `maxHeight()` 方法还接受一个函数来动态计算值。你可以向该函数注入各种工具作为参数。

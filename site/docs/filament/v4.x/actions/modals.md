@@ -14,9 +14,10 @@ title: 模态框
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 创建一个删除操作，执行前要求用户确认
 Action::make('delete')
-    ->action(fn (Post $record) => $record->delete())
-    ->requiresConfirmation()
+    ->action(fn (Post $record) => $record->delete())  // 确认后执行删除
+    ->requiresConfirmation()                      // 启用确认模态框
 ```
 
 ![确认模态框](/assets/filament/v4.x/screenshots/images/light/actions/modal/confirmation.jpg)
@@ -35,12 +36,13 @@ Action::make('delete')
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 自定义确认模态框的标题、描述和提交按钮标签
 Action::make('delete')
     ->action(fn (Post $record) => $record->delete())
     ->requiresConfirmation()
-    ->modalHeading('删除文章')
-    ->modalDescription('你确定要删除这篇文章吗？此操作无法撤销。')
-    ->modalSubmitActionLabel('是的，删除它')
+    ->modalHeading('删除文章')                     // 自定义模态框标题
+    ->modalDescription('你确定要删除这篇文章吗？此操作无法撤销。')  // 自定义描述文本
+    ->modalSubmitActionLabel('是的，删除它')       // 自定义提交按钮标签
 ```
 
 ![带有自定义文本的确认模态框](/assets/filament/v4.x/screenshots/images/light/actions/modal/confirmation-custom-text.jpg)
@@ -57,25 +59,26 @@ use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 
+// 在模态框中渲染 Schema 布局（可包含表单或只读信息）
 Action::make('viewUser')
-    ->schema([
-        Grid::make(2)
+    ->schema([                                    // 定义模态框内容
+        Grid::make(2)                             // 使用 2 列网格布局
             ->schema([
-                Section::make('详情')
+                Section::make('详情')             // 第一个区块：用户详情
                     ->schema([
-                        TextInput::make('name'),
-                        Select::make('position')
+                        TextInput::make('name'),  // 姓名输入框
+                        Select::make('position')  // 职位选择器
                             ->options([
                                 'developer' => '开发者',
                                 'designer' => '设计师',
                             ]),
-                        Checkbox::make('is_admin'),
+                        Checkbox::make('is_admin'),  // 管理员复选框
                     ]),
-                Section::make('审计')
+                Section::make('审计')             // 第二个区块：审计信息
                     ->schema([
-                        TextEntry::make('created_at')
+                        TextEntry::make('created_at')  // 创建时间（只读）
                             ->dateTime(),
-                        TextEntry::make('updated_at')
+                        TextEntry::make('updated_at')  // 更新时间（只读）
                             ->dateTime(),
                     ]),
             ]),
@@ -98,16 +101,18 @@ use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 
+// 在模态框中渲染表单，用于更新文章作者
 Action::make('updateAuthor')
     ->schema([
-        Select::make('authorId')
-            ->label('作者')
-            ->options(User::query()->pluck('name', 'id'))
-            ->required(),
+        Select::make('authorId')                  // 作者选择器
+            ->label('作者')                       // 字段标签
+            ->options(User::query()->pluck('name', 'id'))  // 从数据库获取用户选项
+            ->required(),                         // 必填验证
     ])
     ->action(function (array $data, Post $record): void {
-        $record->author()->associate($data['authorId']);
-        $record->save();
+        // $data['authorId'] 包含用户选择的作者 ID
+        $record->author()->associate($data['authorId']);  // 关联作者
+        $record->save();                          // 保存更改
     })
 ```
 
@@ -123,8 +128,9 @@ use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 
+// 使用现有数据预填充表单字段
 Action::make('updateAuthor')
-    ->fillForm(fn (Post $record): array => [
+    ->fillForm(fn (Post $record): array => [      // 用当前文章的作者 ID 填充表单
         'authorId' => $record->author->id,
     ])
     ->schema([
@@ -153,14 +159,15 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
+// 禁用模态框中的所有表单字段（只读模式）
 Action::make('approvePost')
     ->schema([
-        TextInput::make('title'),
-        Textarea::make('content'),
+        TextInput::make('title'),                 // 标题（不可编辑）
+        Textarea::make('content'),                // 内容（不可编辑）
     ])
-    ->disabledForm()
+    ->disabledForm()                              // 禁用整个表单，用户无法编辑任何字段
     ->action(function (Post $record): void {
-        $record->approve();
+        $record->approve();                       // 执行审批操作
     })
 ```
 
@@ -177,32 +184,34 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Wizard\Step;
 
+// 在模态框中创建多步向导
 Action::make('create')
-    ->steps([
-        Step::make('名称')
+    ->steps([                                    // 定义向导步骤
+        Step::make('名称')                       // 第一步：填写名称
             ->description('给分类一个唯一的名称')
             ->schema([
                 TextInput::make('name')
-                    ->required()
-                    ->live()
+                    ->required()                  // 必填
+                    ->live()                      // 实时更新
                     ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
+                    // 名称更新时自动生成 slug
                 TextInput::make('slug')
-                    ->disabled()
+                    ->disabled()                  // 禁用，由名称自动生成
                     ->required()
-                    ->unique(Category::class, 'slug'),
+                    ->unique(Category::class, 'slug'),  // 唯一性验证
             ])
-            ->columns(2),
-        Step::make('描述')
+            ->columns(2),                        // 使用 2 列布局
+        Step::make('描述')                       // 第二步：填写描述
             ->description('添加一些额外的详细信息')
             ->schema([
-                MarkdownEditor::make('description'),
+                MarkdownEditor::make('description'),  // Markdown 编辑器
             ]),
-        Step::make('可见性')
+        Step::make('可见性')                     // 第三步：设置可见性
             ->description('控制谁可以查看它')
             ->schema([
-                Toggle::make('is_visible')
+                Toggle::make('is_visible')        // 可见性开关
                     ->label('对客户可见')
-                    ->default(true),
+                    ->default(true),              // 默认开启
             ]),
     ])
 ```
@@ -217,10 +226,11 @@ Action::make('create')
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 在模态框中添加图标
 Action::make('delete')
     ->action(fn (Post $record) => $record->delete())
     ->requiresConfirmation()
-    ->modalIcon('heroicon-o-trash')
+    ->modalIcon('heroicon-o-trash')               // 添加垃圾桶图标（轮廓样式）
 ```
 
 :::tip
@@ -235,12 +245,13 @@ Action::make('delete')
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 自定义模态框图标颜色（与按钮颜色独立）
 Action::make('delete')
     ->action(fn (Post $record) => $record->delete())
     ->requiresConfirmation()
-    ->color('danger')
+    ->color('danger')                             // 按钮颜色为红色
     ->modalIcon('heroicon-o-trash')
-    ->modalIconColor('warning')
+    ->modalIconColor('warning')                   // 图标颜色为警告色（通常为黄色）
 ```
 
 :::tip
@@ -257,6 +268,7 @@ Action::make('delete')
 use Filament\Actions\Action;
 use Filament\Support\Enums\Alignment;
 
+// 自定义模态框内容的对齐方式
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -264,7 +276,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->modalAlignment(Alignment::Center)
+    ->modalAlignment(Alignment::Center)           // 内容居中对齐（默认对齐到起始位置）
 ```
 
 :::tip
@@ -280,6 +292,7 @@ Action::make('updateAuthor')
 ```php
 use Filament\Actions\Action;
 
+// 使模态框头部固定（滚动时保持可见）
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -287,7 +300,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->stickyModalHeader()
+    ->stickyModalHeader()                         // 头部固定在模态框顶部
 ```
 
 ### 使模态框页脚固定
@@ -297,6 +310,7 @@ Action::make('updateAuthor')
 ```php
 use Filament\Actions\Action;
 
+// 使模态框页脚固定（滚动时保持可见）
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -304,7 +318,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->stickyModalFooter()
+    ->stickyModalFooter()                         // 页脚固定在模态框底部
 ```
 
 ![带有固定头部和页脚的模态框](/assets/filament/v4.x/screenshots/images/light/actions/modal/sticky-header.jpg)
@@ -317,9 +331,10 @@ Action::make('updateAuthor')
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 使用自定义 Blade 视图作为模态框内容
 Action::make('advance')
     ->action(fn (Post $record) => $record->advance())
-    ->modalContent(view('filament.pages.actions.advance'))
+    ->modalContent(view('filament.pages.actions.advance'))  // 加载自定义视图
 ```
 
 :::tip
@@ -334,11 +349,12 @@ Action::make('advance')
 use Filament\Actions\Action;
 use Illuminate\Contracts\View\View;
 
+// 向自定义视图传递数据
 Action::make('advance')
     ->action(fn (Contract $record) => $record->advance())
     ->modalContent(fn (Contract $record): View => view(
         'filament.pages.actions.advance',
-        ['record' => $record],
+        ['record' => $record],                    // 将记录传递给视图
     ))
 ```
 
@@ -350,9 +366,10 @@ Action::make('advance')
 use App\Models\Post;
 use Filament\Actions\Action;
 
+// 在表单下方添加自定义内容（而非默认的上方）
 Action::make('advance')
     ->action(fn (Post $record) => $record->advance())
-    ->modalContentFooter(view('filament.pages.actions.advance'))
+    ->modalContentFooter(view('filament.pages.actions.advance'))  // 页脚内容
 ```
 
 :::tip
@@ -368,16 +385,17 @@ use App\Models\Post;
 use Filament\Actions\Action;
 use Illuminate\Contracts\View\View;
 
+// 向自定义模态框内容添加额外的操作按钮
 Action::make('advance')
-    ->registerModalActions([
-        Action::make('report')
+    ->registerModalActions([                      // 注册模态框内的子操作
+        Action::make('report')                    // 举报操作
             ->requiresConfirmation()
             ->action(fn (Post $record) => $record->report()),
     ])
     ->action(fn (Post $record) => $record->advance())
     ->modalContent(fn (Action $action): View => view(
         'filament.pages.actions.advance',
-        ['action' => $action],
+        ['action' => $action],                    // 将操作实例传递给视图
     ))
 ```
 
@@ -385,6 +403,7 @@ Action::make('advance')
 
 ```blade
 <div>
+    {{-- 在视图中渲染注册的操作按钮 --}}
     {{ $action->getModalAction('report') }}
 </div>
 ```
@@ -396,6 +415,7 @@ Action::make('advance')
 ```php
 use Filament\Actions\Action;
 
+// 使用滑出式面板代替模态框（从右侧滑入）
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -403,7 +423,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->slideOver()
+    ->slideOver()                                 // 启用滑出式面板样式
 ```
 
 ![带有表单的滑出式面板](/assets/filament/v4.x/screenshots/images/light/actions/modal/slide-over.jpg)
@@ -418,6 +438,7 @@ Action::make('updateAuthor')
 use Filament\Actions\Action;
 use Filament\Support\Enums\SlideOverPosition;
 
+// 更改滑出式面板的进入位置
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -426,7 +447,7 @@ Action::make('updateAuthor')
         // ...
     })
     ->slideOver()
-    ->slideOverPosition(SlideOverPosition::Start)
+    ->slideOverPosition(SlideOverPosition::Start)  // 从屏幕起始位置滑入（左侧）
 ```
 
 ![从屏幕起始位置滑出的面板](/assets/filament/v4.x/screenshots/images/light/actions/modal/slide-over-start.jpg)
@@ -441,6 +462,7 @@ Action::make('updateAuthor')
 use Filament\Actions\Action;
 use Filament\Support\Enums\Width;
 
+// 自定义模态框宽度
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -448,7 +470,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->modalWidth(Width::FiveExtraLarge)
+    ->modalWidth(Width::FiveExtraLarge)           // 设置宽度为 5xl（对应 Tailwind 的 max-w-5xl）
 ```
 
 :::tip
@@ -465,11 +487,12 @@ Action::make('updateAuthor')
 use Filament\Actions\Action;
 use Filament\Schemas\Schema;
 
+// 在模态框打开时执行自定义初始化逻辑
 Action::make('create')
     ->mountUsing(function (Schema $form) {
-        $form->fill();
+        $form->fill();                            // 初始化表单（必须调用）
 
-        // ...
+        // ... 其他初始化逻辑
     })
 ```
 
@@ -488,9 +511,10 @@ Action::make('create')
 ```php
 use Filament\Actions\Action;
 
+// 自定义模态框页脚的取消按钮标签
 Action::make('help')
     ->modalContent(view('actions.help'))
-    ->modalCancelAction(fn (Action $action) => $action->label('关闭'))
+    ->modalCancelAction(fn (Action $action) => $action->label('关闭'))  // 修改取消按钮标签
 ```
 
 [可用于自定义触发按钮的方法](overview)将用于修改闭包内的 `$action` 实例。
@@ -506,9 +530,10 @@ Action::make('help')
 ```php
 use Filament\Actions\Action;
 
+// 移除默认的提交按钮（只保留取消按钮）
 Action::make('help')
     ->modalContent(view('actions.help'))
-    ->modalSubmitAction(false)
+    ->modalSubmitAction(false)                    // 禁用提交按钮
 ```
 
 ### 向页脚添加额外的模态框操作按钮
@@ -518,12 +543,14 @@ Action::make('help')
 ```php
 use Filament\Actions\Action;
 
+// 向模态框页脚添加额外的操作按钮
 Action::make('create')
     ->schema([
         // ...
     ])
     // ...
     ->extraModalFooterActions(fn (Action $action): array => [
+        // 创建另一个操作（点击后不关闭模态框）
         $action->makeModalSubmitAction('createAnother', arguments: ['another' => true]),
     ])
 ```
@@ -541,6 +568,7 @@ Action::make('create')
 ```php
 use Filament\Actions\Action;
 
+// 通过参数区分不同操作行为
 Action::make('create')
     ->schema([
         // ...
@@ -550,10 +578,10 @@ Action::make('create')
         $action->makeModalSubmitAction('createAnother', arguments: ['another' => true]),
     ])
     ->action(function (array $data, array $arguments): void {
-        // 创建
+        // 执行创建操作 ...
 
-        if ($arguments['another'] ?? false) {
-            // 重置表单并不关闭模态框
+        if ($arguments['another'] ?? false) {     // 检查是否点击了"创建另一个"
+            // 重置表单并不关闭模态框，继续创建
         }
     })
 ```
@@ -565,13 +593,14 @@ Action::make('create')
 ```php
 use Filament\Actions\Action;
 
+// 从编辑模态框的页脚打开删除确认模态框
 Action::make('edit')
     // ...
     ->extraModalFooterActions([
-        Action::make('delete')
-            ->requiresConfirmation()
+        Action::make('delete')                    // 嵌套的删除操作
+            ->requiresConfirmation()              // 需要确认
             ->action(function () {
-                // ...
+                // ... 执行删除
             }),
     ])
 ```
@@ -583,12 +612,13 @@ Action::make('edit')
 ```php
 use Filament\Actions\Action;
 
+// 执行子操作时取消所有父操作（关闭父模态框）
 Action::make('delete')
     ->requiresConfirmation()
     ->action(function () {
         // ...
     })
-    ->cancelParentActions()
+    ->cancelParentActions()                       // 运行后关闭所有父级模态框
 ```
 
 如果你有深层嵌套的多个父操作，但不想取消所有操作，你可以将要取消的父操作名称（包括其子操作）传递给 `cancelParentActions()`：
@@ -596,30 +626,31 @@ Action::make('delete')
 ```php
 use Filament\Actions\Action;
 
-Action::make('first')
+// 深层嵌套操作：只取消指定的父操作
+Action::make('first')                             // 第一层：first 操作
     ->requiresConfirmation()
     ->action(function () {
         // ...
     })
     ->extraModalFooterActions([
-        Action::make('second')
+        Action::make('second')                    // 第二层：second 操作
             ->requiresConfirmation()
             ->action(function () {
                 // ...
             })
             ->extraModalFooterActions([
-                Action::make('third')
+                Action::make('third')             // 第三层：third 操作
                     ->requiresConfirmation()
                     ->action(function () {
                         // ...
                     })
                     ->extraModalFooterActions([
-                        Action::make('fourth')
+                        Action::make('fourth')    // 第四层：fourth 操作
                             ->requiresConfirmation()
                             ->action(function () {
                                 // ...
                             })
-                            ->cancelParentActions('second'),
+                            ->cancelParentActions('second'),  // 只取消 second（third 也会被取消）
                     ]),
             ]),
     ])
@@ -635,9 +666,10 @@ Action::make('first')
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 
+// 从子操作访问父操作的数据
 Action::make('first')
     ->schema([
-        TextInput::make('foo'),
+        TextInput::make('foo'),                   // 父操作的表单字段
     ])
     ->action(function () {
         // ...
@@ -646,8 +678,8 @@ Action::make('first')
         Action::make('second')
             ->requiresConfirmation()
             ->action(function (array $mountedActions) {
-                dd($mountedActions[0]->getRawData());
-            
+                // $mountedActions[0] 是最顶层父操作（first）
+                dd($mountedActions[0]->getRawData());  // 获取父操作的原始数据（未验证）
                 // ...
             }),
     ])
@@ -660,7 +692,8 @@ Action::make('first')
 ```php
 use Filament\Actions\Action;
 
-Action::make('first')
+// 多层嵌套：访问所有父操作的数据和参数
+Action::make('first')                             // 第一层
     ->schema([
         TextInput::make('foo'),
     ])
@@ -668,16 +701,16 @@ Action::make('first')
         // ...
     })
     ->extraModalFooterActions([
-        Action::make('second')
+        Action::make('second')                    // 第二层
             ->schema([
                 TextInput::make('bar'),
             ])
-            ->arguments(['number' => 2])
+            ->arguments(['number' => 2])         // 传递参数
             ->action(function () {
                 // ...
             })
             ->extraModalFooterActions([
-                Action::make('third')
+                Action::make('third')             // 第三层
                     ->schema([
                         TextInput::make('baz'),
                     ])
@@ -686,16 +719,19 @@ Action::make('first')
                         // ...
                     })
                     ->extraModalFooterActions([
-                        Action::make('fourth')
+                        Action::make('fourth')    // 第四层
                             ->requiresConfirmation()
                             ->action(function (array $mountedActions) {
+                                // $mountedActions[0] = first（第一层）
+                                // $mountedActions[1] = second（第二层）
+                                // $mountedActions[2] = third（第三层）
                                 dd(
-                                    $mountedActions[0]->getRawData(),
-                                    $mountedActions[0]->getArguments(),
-                                    $mountedActions[1]->getRawData(),
-                                    $mountedActions[1]->getArguments(),
-                                    $mountedActions[2]->getRawData(),
-                                    $mountedActions[2]->getArguments(),
+                                    $mountedActions[0]->getRawData(),    // first 的数据
+                                    $mountedActions[0]->getArguments(),  // first 的参数
+                                    $mountedActions[1]->getRawData(),    // second 的数据
+                                    $mountedActions[1]->getArguments(),  // second 的参数
+                                    $mountedActions[2]->getRawData(),    // third 的数据
+                                    $mountedActions[2]->getArguments(),  // third 的参数
                                 );
                                 // ...
                             }),
@@ -713,6 +749,7 @@ Action::make('first')
 ```php
 use Filament\Actions\Action;
 
+// 禁用点击外部关闭模态框
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -720,7 +757,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->closeModalByClickingAway(false)
+    ->closeModalByClickingAway(false)             // 用户必须使用按钮关闭
 ```
 
 :::tip
@@ -732,7 +769,8 @@ Action::make('updateAuthor')
 ```php
 use Filament\Support\View\Components\ModalComponent;
 
-ModalComponent::closedByClickingAway(false);
+// 全局禁用所有模态框的点击外部关闭功能
+ModalComponent::closedByClickingAway(false);      // 在服务提供者或中间件中调用
 ```
 
 ### 按 Escape 键关闭模态框
@@ -742,6 +780,7 @@ ModalComponent::closedByClickingAway(false);
 ```php
 use Filament\Actions\Action;
 
+// 禁用 Escape 键关闭模态框
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -749,7 +788,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->closeModalByEscaping(false)
+    ->closeModalByEscaping(false)                 // 用户必须使用按钮关闭
 ```
 
 :::tip
@@ -761,7 +800,8 @@ Action::make('updateAuthor')
 ```php
 use Filament\Support\View\Components\ModalComponent;
 
-ModalComponent::closedByEscaping(false);
+// 全局禁用所有模态框的 Escape 键关闭功能
+ModalComponent::closedByEscaping(false);         // 在服务提供者或中间件中调用
 ```
 
 ### 隐藏模态框关闭按钮
@@ -771,6 +811,7 @@ ModalComponent::closedByEscaping(false);
 ```php
 use Filament\Actions\Action;
 
+// 隐藏模态框右上角的关闭按钮
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -778,7 +819,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->modalCloseButton(false)
+    ->modalCloseButton(false)                     // 隐藏 X 关闭按钮
 ```
 
 :::tip
@@ -790,7 +831,8 @@ Action::make('updateAuthor')
 ```php
 use Filament\Support\View\Components\ModalComponent;
 
-ModalComponent::closeButton(false);
+// 全局隐藏所有模态框的关闭按钮
+ModalComponent::closeButton(false);              // 在服务提供者或中间件中调用
 ```
 
 ![没有关闭按钮的模态框](/assets/filament/v4.x/screenshots/images/light/actions/modal/no-close-button.jpg)
@@ -802,6 +844,7 @@ ModalComponent::closeButton(false);
 ```php
 use Filament\Actions\Action;
 
+// 禁用模态框打开时的自动聚焦
 Action::make('updateAuthor')
     ->schema([
         // ...
@@ -809,7 +852,7 @@ Action::make('updateAuthor')
     ->action(function (array $data): void {
         // ...
     })
-    ->modalAutofocus(false)
+    ->modalAutofocus(false)                       // 不自动聚焦到第一个可聚焦元素
 ```
 
 :::tip
@@ -821,7 +864,8 @@ Action::make('updateAuthor')
 ```php
 use Filament\Support\View\Components\ModalComponent;
 
-ModalComponent::autofocus(false);
+// 全局禁用所有模态框的自动聚焦
+ModalComponent::autofocus(false);                // 在服务提供者或中间件中调用
 ```
 
 ## 将子操作模态框叠加在父操作模态框之上
@@ -832,17 +876,18 @@ ModalComponent::autofocus(false);
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Repeater;
 
+// 子操作模态框叠加在父模态框之上（而非关闭父级）
 Action::make('editItems')
-    ->slideOver()
+    ->slideOver()                                 // 使用滑出式面板
     ->schema([
-        Repeater::make('items')
+        Repeater::make('items')                   // 重复器组件
             ->schema([
                 // ...
             ])
             ->deleteAction(
                 fn (Action $action) => $action
                     ->requiresConfirmation()
-                    ->overlayParentActions(),
+                    ->overlayParentActions(),     // 确认框叠加在滑出式面板上
             ),
     ])
     ->action(function () {
@@ -863,8 +908,9 @@ Action::make('editItems')
 ```php
 use Filament\Actions\Action;
 
+// 优化：显式声明操作有模态框，避免重复检查
 Action::make('updateAuthor')
-    ->modal()
+    ->modal()                                     // 通知 Filament 此操作存在模态框
 ```
 
 ## 有条件地隐藏模态框
@@ -874,12 +920,13 @@ Action::make('updateAuthor')
 ```php
 use Filament\Actions\Action;
 
+// 有条件地隐藏模态框（非管理员时不显示确认框）
 Action::make('create')
     ->action(function (array $data): void {
         // ...
     })
-    ->modalHidden($this->role !== 'admin')
-    ->modalContent(view('filament.pages.actions.create'))
+    ->modalHidden($this->role !== 'admin')        // 非管理员时隐藏模态框
+    ->modalContent(view('filament.pages.actions.create'))  // 自定义内容
 ```
 
 :::tip
@@ -893,8 +940,9 @@ Action::make('create')
 ```php
 use Filament\Actions\Action;
 
+// 向模态框窗口添加额外的 HTML 属性
 Action::make('updateAuthor')
-    ->extraModalWindowAttributes(['class' => 'update-author-modal'])
+    ->extraModalWindowAttributes(['class' => 'update-author-modal'])  // 添加 CSS 类
 ```
 
 :::tip
@@ -912,8 +960,9 @@ Action::make('updateAuthor')
 ```php
 use Filament\Actions\Action;
 
+// 向模态框遮罩层（背景）添加额外的 HTML 属性
 Action::make('updateAuthor')
-    ->extraModalOverlayAttributes(['class' => 'update-author-overlay'])
+    ->extraModalOverlayAttributes(['class' => 'update-author-overlay'])  // 添加 CSS 类
 ```
 
 :::tip

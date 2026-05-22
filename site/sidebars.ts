@@ -28,7 +28,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '指南',
-      collapsed: false,
+      collapsed: true,
       items: [
         'filament/v4.x/getting-started',
       ],
@@ -36,7 +36,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '资源',
-      collapsed: false,
+      collapsed: true,
       items: [
         'filament/v4.x/resources/overview',
         'filament/v4.x/resources/listing-records',

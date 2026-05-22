@@ -28,8 +28,9 @@ php artisan migrate
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 创建导出操作，用于将数据导出为 CSV 或 XLSX
 ExportAction::make()
-    ->exporter(ProductExporter::class)
+    ->exporter(ProductExporter::class)            // 指定导出器类，定义如何导出数据
 ```
 
 ![导出操作模态框](/assets/filament/v4.x/screenshots/images/light/actions/export-action/modal.jpg)
@@ -41,10 +42,11 @@ use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 use Filament\Tables\Table;
 
+// 将导出操作添加到表格头部
 public function table(Table $table): Table
 {
     return $table
-        ->headerActions([
+        ->headerActions([                        // 头部操作区域
             ExportAction::make()
                 ->exporter(ProductExporter::class),
         ]);
@@ -58,10 +60,11 @@ use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportBulkAction;
 use Filament\Tables\Table;
 
+// 将导出添加为批量操作（用户可选择要导出的行）
 public function table(Table $table): Table
 {
     return $table
-        ->toolbarActions([
+        ->toolbarActions([                       // 工具栏批量操作
             ExportBulkAction::make()
                 ->exporter(ProductExporter::class),
         ]);
@@ -95,13 +98,14 @@ php artisan make:filament-exporter Product --generate
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 定义可以导出的列
 public static function getColumns(): array
 {
     return [
-        ExportColumn::make('name'),
-        ExportColumn::make('sku')
-            ->label('SKU'),
-        ExportColumn::make('price'),
+        ExportColumn::make('name'),               // 名称列
+        ExportColumn::make('sku')                 // SKU 列
+            ->label('SKU'),                       // 自定义标签
+        ExportColumn::make('price'),              // 价格列
     ];
 }
 ```
@@ -113,8 +117,9 @@ public static function getColumns(): array
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 自定义导出列的标签
 ExportColumn::make('sku')
-    ->label('SKU')
+    ->label('SKU')                               // 覆盖默认标签（从列名生成）
 ```
 
 ### 配置默认列选择
@@ -124,8 +129,9 @@ ExportColumn::make('sku')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 配置列的默认选择状态（默认不选中）
 ExportColumn::make('description')
-    ->enabledByDefault(false)
+    ->enabledByDefault(false)                    // 用户默认不导出此列
 ```
 
 你可以在 `ExportAction` 上使用 `enableVisibleTableColumnsByDefault()` 方法，默认只启用当前在表格中可见的列。使用 `enabledByDefault(false)` 的列也将默认被禁用：
@@ -134,9 +140,10 @@ ExportColumn::make('description')
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 默认只启用当前表格中可见的列
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->enableVisibleTableColumnsByDefault()
+    ->enableVisibleTableColumnsByDefault()       // 只选中表格显示的列
 ```
 
 ### 配置列选择表单布局
@@ -147,9 +154,10 @@ ExportAction::make()
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 配置列选择表单的布局为 3 列
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->columnMappingColumns(3)
+    ->columnMappingColumns(3)                    // 在大屏幕上显示 3 列复选框
 ```
 
 这将以 3 列布局显示列选择复选框和标签输入框，当你有很多可导出列时，可以更好地利用可用空间。请注意，虽然大屏幕上布局会有三列，但布局仍然是响应式的，在较小屏幕上会显示更少的列。
@@ -162,9 +170,10 @@ ExportAction::make()
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 禁用列选择（导出所有列）
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->columnMapping(false)
+    ->columnMapping(false)                       // 不显示列选择表单
 ```
 
 ### 计算导出列状态
@@ -177,9 +186,10 @@ ExportAction::make()
 use App\Models\Order;
 use Filament\Actions\Exports\ExportColumn;
 
+// 计算导出列状态（而非直接从数据库读取）
 ExportColumn::make('amount_including_vat')
-    ->state(function (Order $record): float {
-        return $record->amount * (1 + $record->vat_rate);
+    ->state(function (Order $record): float {     // 计算含税金额
+        return $record->amount * (1 + $record->vat_rate);  // 金额 × (1 + 税率)
     })
 ```
 
@@ -192,8 +202,10 @@ ExportColumn::make('amount_including_vat')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 格式化导出列的值（翻译状态文本）
 ExportColumn::make('status')
     ->formatStateUsing(fn (string $state): string => __("statuses.{$state}"))
+    // 使用本地化翻译状态值
 ```
 
 除了 `$state`，`formatStateUsing()` 函数还可以注入各种工具作为参数。
@@ -207,8 +219,9 @@ ExportColumn::make('status')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 限制导出列的文本长度
 ExportColumn::make('description')
-    ->limit(50)
+    ->limit(50)                                  // 最多导出 50 个字符
 ```
 
 除了允许静态值，`limit()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -220,8 +233,9 @@ ExportColumn::make('description')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 限制导出列的字数
 ExportColumn::make('description')
-    ->words(10)
+    ->words(10)                                  // 最多导出 10 个单词
 ```
 
 除了允许静态值，`words()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -233,9 +247,10 @@ ExportColumn::make('description')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 为导出列添加前缀和后缀
 ExportColumn::make('domain')
-    ->prefix('https://')
-    ->suffix('.com')
+    ->prefix('https://')                         // 添加协议前缀
+    ->suffix('.com')                             // 添加域名后缀
 ```
 
 除了允许静态值，`prefix()` 和 `suffix()` 方法还接受函数来动态计算。你可以向这些函数注入各种工具作为参数。
@@ -247,8 +262,9 @@ ExportColumn::make('domain')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 将多个值导出为 JSON 数组（而非逗号分隔）
 ExportColumn::make('tags')
-    ->listAsJson()
+    ->listAsJson()                               // 标签作为 JSON 数组导出
 ```
 
 ### 显示关系数据
@@ -258,7 +274,8 @@ ExportColumn::make('tags')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
-ExportColumn::make('author.name')
+// 使用点表示法访问关系数据
+ExportColumn::make('author.name')                // 获取关联作者的名称
 ```
 
 ### 计算关系数量
@@ -268,8 +285,9 @@ ExportColumn::make('author.name')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 计算关联记录数量
 ExportColumn::make('users_count')
-    ->counts('users')
+    ->counts('users')                            // 统计 users 关联的数量
 ```
 
 在此示例中，`users` 是要计数的关系名称。列的名称必须是 `users_count`，因为这是 [Laravel 使用](https://laravel.com/docs/eloquent-relationships#counting-related-models)的存储结果的约定。
@@ -280,9 +298,10 @@ ExportColumn::make('users_count')
 use Filament\Actions\Exports\ExportColumn;
 use Illuminate\Database\Eloquent\Builder;
 
+// 限定关系范围后计算数量
 ExportColumn::make('users_count')
     ->counts([
-        'users' => fn (Builder $query) => $query->where('is_active', true),
+        'users' => fn (Builder $query) => $query->where('is_active', true),  // 只统计活跃用户
     ])
 ```
 
@@ -293,8 +312,9 @@ ExportColumn::make('users_count')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 检查关系是否存在
 ExportColumn::make('users_exists')
-    ->exists('users')
+    ->exists('users')                            // 检查是否有关联用户
 ```
 
 在此示例中，`users` 是要检查存在性的关系名称。列的名称必须是 `users_exists`，因为这是 [Laravel 使用](https://laravel.com/docs/eloquent-relationships#other-aggregate-functions)的存储结果的约定。
@@ -318,8 +338,9 @@ Filament 提供了多种聚合关系字段的方法，包括 `avg()`、`max()`�
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 聚合关系数据（计算平均值）
 ExportColumn::make('users_avg_age')
-    ->avg('users', 'age')
+    ->avg('users', 'age')                       // 计算用户的平均年龄
 ```
 
 在此示例中，`users` 是关系名称，`age` 是要平均的字段。列的名称必须是 `users_avg_age`，因为这是 [Laravel 使用](https://laravel.com/docs/eloquent-relationships#other-aggregate-functions)的存储结果的约定。
@@ -330,9 +351,10 @@ ExportColumn::make('users_avg_age')
 use Filament\Actions\Exports\ExportColumn;
 use Illuminate\Database\Eloquent\Builder;
 
+// 限定关系范围后计算平均值
 ExportColumn::make('users_avg_age')
     ->avg([
-        'users' => fn (Builder $query) => $query->where('is_active', true),
+        'users' => fn (Builder $query) => $query->where('is_active', true),  // 只计算活跃用户
     ], 'age')
 ```
 
@@ -345,18 +367,19 @@ use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 
+// 配置导出格式
 ExportAction::make()
     ->exporter(ProductExporter::class)
     ->formats([
-        ExportFormat::Csv,
+        ExportFormat::Csv,                       // 只支持 CSV
     ])
     // 或者
     ->formats([
-        ExportFormat::Xlsx,
+        ExportFormat::Xlsx,                      // 只支持 XLSX
     ])
     // 或者
     ->formats([
-        ExportFormat::Xlsx,
+        ExportFormat::Xlsx,                      // 支持 XLSX 和 CSV
         ExportFormat::Csv,
     ])
 ```
@@ -366,10 +389,11 @@ ExportAction::make()
 ```php
 use Filament\Actions\Exports\Enums\ExportFormat;
 
+// 在导出器类中设置默认格式
 public function getFormats(): array
 {
     return [
-        ExportFormat::Csv,
+        ExportFormat::Csv,                       // 默认只支持 CSV
     ];
 }
 ```
@@ -383,9 +407,10 @@ use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
 
+// 修改导出查询（只导出活跃记录）
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->modifyQueryUsing(fn (Builder $query) => $query->where('is_active', true))
+    ->modifyQueryUsing(fn (Builder $query) => $query->where('is_active', true))  // 只导出活跃产品
 ```
 
 你可以向函数注入 `$options` 参数，这是该导出的[选项](#使用导出选项)数组：
@@ -394,9 +419,11 @@ ExportAction::make()
 use App\Filament\Exports\ProductExporter;
 use Illuminate\Database\Eloquent\Builder;
 
+// 使用选项参数动态修改查询
 ExportAction::make()
     ->exporter(ProductExporter::class)
     ->modifyQueryUsing(fn (Builder $query, array $options) => $query->where('is_active', $options['isActive'] ?? true))
+    // $options 包含用户在导出选项表单中选择的值
 ```
 
 或者，你可以重写导出器类中的 `modifyQuery()` 方法，这将修改使用该导出器的所有操作的查询：
@@ -405,13 +432,14 @@ ExportAction::make()
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+// 在导出器类中全局修改查询
 public static function modifyQuery(Builder $query): Builder
 {
-    return $query->with([
+    return $query->with([                        // 预加载关联数据
         'purchasable' => fn (MorphTo $morphTo) => $morphTo->morphWith([
-            ProductPurchase::class => ['product'],
-            ServicePurchase::class => ['service'],
-            Subscription::class => ['plan'],
+            ProductPurchase::class => ['product'],  // 产品购买关联产品
+            ServicePurchase::class => ['service'],  // 服务购买关联服务
+            Subscription::class => ['plan'],        // 订阅关联套餐
         ]),
     ]);
 }
@@ -432,9 +460,10 @@ public static function modifyQuery(Builder $query): Builder
 ```php
 use Filament\Actions\ExportAction;
 
+// 自定义导出文件的存储磁盘
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->fileDisk('s3')
+    ->fileDisk('s3')                             // 使用 S3 磁盘存储导出文件
 ```
 
 你可以在服务提供者（如 `AppServiceProvider`）的 `boot()` 方法中一次性为所有导出操作设置磁盘：
@@ -442,15 +471,18 @@ ExportAction::make()
 ```php
 use Filament\Actions\ExportAction;
 
+// 全局配置所有导出操作的存储磁盘
 ExportAction::configureUsing(fn (ExportAction $action) => $action->fileDisk('s3'));
+// 在服务提供者的 boot() 方法中调用
 ```
 
 或者，你可以重写导出器类中的 `getFileDisk()` 方法，返回磁盘的名称：
 
 ```php
+// 在导出器类中设置存储磁盘
 public function getFileDisk(): string
 {
-    return 's3';
+    return 's3';                                 // 返回磁盘名称
 }
 ```
 
@@ -464,9 +496,11 @@ public function getFileDisk(): string
 use Filament\Actions\ExportAction;
 use Filament\Actions\Exports\Models\Export;
 
+// 自定义导出文件名
 ExportAction::make()
     ->exporter(ProductExporter::class)
     ->fileName(fn (Export $export): string => "products-{$export->getKey()}")
+    // 文件名格式：products-{导出ID}
 ```
 
 或者，你可以重写导出器类中的 `getFileName()` 方法并返回自定义字符串：
@@ -474,9 +508,10 @@ ExportAction::make()
 ```php
 use Filament\Actions\Exports\Models\Export;
 
+// 在导出器类中设置文件名
 public function getFileName(Export $export): string
 {
-    return "products-{$export->getKey()}";
+    return "products-{$export->getKey()}";       // 返回自定义文件名
 }
 ```
 
@@ -487,10 +522,11 @@ public function getFileName(Export $export): string
 ```php
 use Filament\Forms\Components\TextInput;
 
+// 定义导出选项表单（用户可自定义导出行为）
 public static function getOptionsFormComponents(): array
 {
     return [
-        TextInput::make('descriptionLimit')
+        TextInput::make('descriptionLimit')       // 描述长度限制选项
             ->label('Limit the length of the description column content')
             ->integer(),
     ];
@@ -503,10 +539,11 @@ public static function getOptionsFormComponents(): array
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 通过操作传递静态选项值
 ExportAction::make()
     ->exporter(ProductExporter::class)
     ->options([
-        'descriptionLimit' => 250,
+        'descriptionLimit' => 250,               // 设置描述限制为 250 字符
     ])
 ```
 
@@ -517,9 +554,11 @@ ExportAction::make()
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 在格式化回调中使用选项
 ExportColumn::make('description')
     ->formatStateUsing(function (string $state, array $options): string {
         return (string) str($state)->limit($options['descriptionLimit'] ?? 100);
+        // 使用用户选择的限制长度
     })
 ```
 
@@ -528,8 +567,10 @@ ExportColumn::make('description')
 ```php
 use Filament\Actions\Exports\ExportColumn;
 
+// 在 limit 中使用选项（更简洁的方式）
 ExportColumn::make('description')
     ->limit(fn (array $options): int => $options['descriptionLimit'] ?? 100)
+    // 动态限制长度
 ```
 
 ## 使用自定义用户模型
@@ -546,13 +587,17 @@ $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 use App\Models\Admin;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+// 绑定自定义用户模型到容器
 $this->app->bind(Authenticatable::class, Admin::class);
+// 在服务提供者的 register() 方法中调用
 ```
 
 如果你的可认证模型使用与 `users` 不同的表，你应该将该表名传递给 `constrained()`：
 
 ```php
+// 如果用户模型使用不同的表名
 $table->foreignId('user_id')->constrained('admins')->cascadeOnDelete();
+// 约束到 admins 表而非 users 表
 ```
 
 ### 使用多态用户关系
@@ -560,7 +605,8 @@ $table->foreignId('user_id')->constrained('admins')->cascadeOnDelete();
 如果你想将导出与多个用户模型关联，可以使用多态 `MorphTo` 关系。为此，你需要替换 `exports` 表中的 `user_id` 列：
 
 ```php
-$table->morphs('user');
+// 使用多态关系代替外键（支持多个用户模型）
+$table->morphs('user');                         // 创建 user_type 和 user_id 列
 ```
 
 然后，在服务提供者的 `boot()` 方法中，你应该调用 `Export::polymorphicUserRelationship()` 将 `Export` 模型上的 `user()` 关系交换为 `MorphTo` 关系：
@@ -568,7 +614,9 @@ $table->morphs('user');
 ```php
 use Filament\Actions\Exports\Models\Export;
 
+// 启用多态用户关系
 Export::polymorphicUserRelationship();
+// 在服务提供者的 boot() 方法中调用
 ```
 
 ## 限制可导出的最大行数
@@ -579,9 +627,10 @@ Export::polymorphicUserRelationship();
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 限制导出的最大行数
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->maxRows(100000)
+    ->maxRows(100000)                            // 最多导出 10 万行
 ```
 
 ## 更改导出分块大小
@@ -592,9 +641,10 @@ Filament 将对 CSV 进行分块，并在不同的排队作业中处理每个块
 use App\Filament\Exports\ProductExporter;
 use Filament\Actions\ExportAction;
 
+// 更改导出分块大小（处理大型导出时调整）
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->chunkSize(250)
+    ->chunkSize(250)                             // 每次处理 250 行
 ```
 
 除了允许静态值，`chunkSize()` 方法还接受一个函数来动态计算。你可以向该函数注入各种工具作为参数。
@@ -608,9 +658,10 @@ ExportAction::make()
 CSV 的默认分隔符是逗号（`,`）。如果你想使用不同的分隔符导出，可以重写导出器类中的 `getCsvDelimiter()` 方法，返回一个新的分隔符：
 
 ```php
+// 自定义 CSV 分隔符
 public static function getCsvDelimiter(): string
 {
-    return ';';
+    return ';';                                  // 使用分号代替逗号
 }
 ```
 
@@ -627,11 +678,12 @@ public static function getCsvDelimiter(): string
 ```php
 use OpenSpout\Common\Entity\Style\Style;
 
+// 自定义 XLSX 单元格样式
 public function getXlsxCellStyle(): ?Style
 {
     return (new Style())
-        ->setFontSize(12)
-        ->setFontName('Consolas');
+        ->setFontSize(12)                        // 字体大小 12
+        ->setFontName('Consolas');               // 使用 Consolas 字体
 }
 ```
 
@@ -643,17 +695,18 @@ use OpenSpout\Common\Entity\Style\CellVerticalAlignment;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 
+// 自定义 XLSX 表头单元格样式
 public function getXlsxHeaderCellStyle(): ?Style
 {
     return (new Style())
-        ->setFontBold()
-        ->setFontItalic()
-        ->setFontSize(14)
-        ->setFontName('Consolas')
-        ->setFontColor(Color::rgb(255, 255, 77))
-        ->setBackgroundColor(Color::rgb(0, 0, 0))
-        ->setCellAlignment(CellAlignment::CENTER)
-        ->setCellVerticalAlignment(CellVerticalAlignment::CENTER);
+        ->setFontBold()                          // 粗体
+        ->setFontItalic()                        // 斜体
+        ->setFontSize(14)                        // 字体大小 14
+        ->setFontName('Consolas')                // Consolas 字体
+        ->setFontColor(Color::rgb(255, 255, 77)) // 黄色字体
+        ->setBackgroundColor(Color::rgb(0, 0, 0))  // 黑色背景
+        ->setCellAlignment(CellAlignment::CENTER)  // 水平居中
+        ->setCellVerticalAlignment(CellVerticalAlignment::CENTER);  // 垂直居中
 }
 ```
 
@@ -668,6 +721,7 @@ use OpenSpout\Common\Entity\Style\Style;
 /**
  * @param array<mixed> $values
  */
+// 默认的 XLSX 行创建方法
 public function makeXlsxRow(array $values, ?Style $style = null): Row
 {
     return Row::fromValues($values, $style);
@@ -685,26 +739,27 @@ use OpenSpout\Writer\Common\Manager\Style\StyleMerger;
 /**
  * @param array<mixed> $values
  */
+// 自定义不同列的样式
 public function makeXlsxRow(array $values, ?Style $style = null): Row
 {
-    $styleMerger = new StyleMerger();
+    $styleMerger = new StyleMerger();            // 样式合并器
 
     $cells = [];
     
     foreach (array_keys($this->columnMap) as $columnIndex => $column) {
         $cells[] = match ($column) {
-            'name' => Cell::fromValue(
+            'name' => Cell::fromValue(           // name 列：下划线
                 $values[$columnIndex],
                 $styleMerger->merge(
                     (new Style())->setFontUnderline(),
                     $style,
                 ),
             ),
-            'price' => Cell::fromValue(
+            'price' => Cell::fromValue(          // price 列：12号字体
                 $values[$columnIndex],
                 (new Style())->setFontSize(12),
             ),
-            default => Cell::fromValue($values[$columnIndex]),
+            default => Cell::fromValue($values[$columnIndex]),  // 其他列：默认样式
         },
     }
     
@@ -719,11 +774,12 @@ public function makeXlsxRow(array $values, ?Style $style = null): Row
 ```php
 use OpenSpout\Writer\XLSX\Options;
 
+// 自定义 XLSX 写入器选项（如列宽）
 public function getXlsxWriterOptions(): ?Options
 {
     $options = new Options();
-    $options->setColumnWidth(10, 1);
-    $options->setColumnWidthForRange(12, 2, 3);
+    $options->setColumnWidth(10, 1);             // 第 1 列宽度为 10
+    $options->setColumnWidthForRange(12, 2, 3);  // 第 2-3 列宽度为 12
     
     return $options;
 }
@@ -735,15 +791,16 @@ public function getXlsxWriterOptions(): ?Options
 use OpenSpout\Writer\XLSX\Entity\SheetView;
 use OpenSpout\Writer\XLSX\Writer;
 
+// 在写入器关闭前自定义 XLSX（如冻结窗格）
 public function configureXlsxWriterBeforeClose(Writer $writer): Writer
 {
     $sheetView = new SheetView();
-    $sheetView->setFreezeRow(2);
-    $sheetView->setFreezeColumn('B');
+    $sheetView->setFreezeRow(2);                 // 冻结第 2 行（表头）
+    $sheetView->setFreezeColumn('B');            // 冻结 B 列
     
     $sheet = $writer->getCurrentSheet();
     $sheet->setSheetView($sheetView);
-    $sheet->setName('export');
+    $sheet->setName('export');                   // 工作表名称
     
     return $writer;
 }
@@ -756,11 +813,13 @@ public function configureXlsxWriterBeforeClose(Writer $writer): Writer
 ```php
 use Filament\Actions\Exports\Models\Export;
 
+// 自定义导出完成通知的标题
 public static function getCompletedNotificationTitle(Export $export): string
 {
     return 'Your product export is ready';
 }
 
+// 自定义导出完成通知的正文
 public static function getCompletedNotificationBody(Export $export): string
 {
     return $export->successful_rows . ' products were exported.';
@@ -774,14 +833,16 @@ use Filament\Actions\Action;
 use Filament\Actions\Exports\Models\Export;
 use Filament\Notifications\Notification;
 
+// 完全自定义导出完成通知
 public static function modifyCompletedNotification(Notification $notification, Export $export): Notification
 {
-    $notification->icon('heroicon-o-shopping-bag');
+    $notification->icon('heroicon-o-shopping-bag');  // 自定义图标
 
+    // 如果用户选择了通知团队选项
     if ($export->getOptions()['notifyTeam'] ?? false) {
         $notification->actions([
             ...$notification->getActions(),
-            Action::make('shareWithTeam')
+            Action::make('shareWithTeam')          // 添加分享操作
                 ->url(route('exports.share', $export)),
         ]);
     }
@@ -800,7 +861,9 @@ public static function modifyCompletedNotification(Notification $notification, E
 use App\Jobs\PrepareCsvExport;
 use Filament\Actions\Exports\Jobs\PrepareCsvExport as BasePrepareCsvExport;
 
+// 全局替换导出作业类
 $this->app->bind(BasePrepareCsvExport::class, PrepareCsvExport::class);
+// 在服务提供者的 register() 方法中调用
 ```
 
 或者，你可以将新作业类传递给操作上的 `job()` 方法，以自定义特定导出的作业：
@@ -810,9 +873,10 @@ use App\Filament\Exports\ProductExporter;
 use App\Jobs\PrepareCsvExport;
 use Filament\Actions\ExportAction;
 
+// 为特定导出操作设置自定义作业
 ExportAction::make()
     ->exporter(ProductExporter::class)
-    ->job(PrepareCsvExport::class)
+    ->job(PrepareCsvExport::class)               // 使用自定义作业类
 ```
 
 ### 自定义导出队列和连接
@@ -820,18 +884,20 @@ ExportAction::make()
 默认情况下，导出系统将使用默认队列和连接。如果你想自定义某个导出器的作业所使用的队列，可以重写导出器类中的 `getJobQueue()` 方法：
 
 ```php
+// 自定义导出作业使用的队列
 public function getJobQueue(): ?string
 {
-    return 'exports';
+    return 'exports';                            // 使用 exports 队列
 }
 ```
 
 你还可以通过重写导出器类中的 `getJobConnection()` 方法来自定义某个导出器的作业所使用的连接：
 
 ```php
+// 自定义导出作业使用的连接
 public function getJobConnection(): ?string
 {
-    return 'sqs';
+    return 'sqs';                                // 使用 SQS 连接
 }
 ```
 
@@ -840,10 +906,12 @@ public function getJobConnection(): ?string
 默认情况下，导出系统将只从每个导出中一次处理一个作业。这是为了防止服务器过载，以及其他作业被大型导出延迟。该功能在导出器类的 `WithoutOverlapping` 中间件中定义：
 
 ```php
+// 自定义导出作业中间件（防止重叠执行）
 public function getJobMiddleware(): array
 {
     return [
         (new WithoutOverlapping("export{$this->export->getKey()}"))->expireAfter(600),
+        // 600 秒（10 分钟）后过期
     ];
 }
 ```
@@ -857,9 +925,10 @@ public function getJobMiddleware(): array
 ```php
 use Carbon\CarbonInterface;
 
+// 自定义导出作业重试时间
 public function getJobRetryUntil(): ?CarbonInterface
 {
-    return now()->addHours(12);
+    return now()->addHours(12);                  // 12 小时内重试
 }
 ```
 
@@ -873,9 +942,10 @@ public function getJobRetryUntil(): ?CarbonInterface
 /**
 * @return int | array<int> | null
  */
+// 自定义导出作业退避策略
 public function getJobBackoff(): int | array | null
 {
-    return [60, 120, 300, 600];
+    return [60, 120, 300, 600];                  // 1分钟、2分钟、5分钟、10分钟
 }
 ```
 
@@ -886,9 +956,10 @@ public function getJobBackoff(): int | array | null
 默认情况下，导出系统将使用导出的 ID 标记每个作业。这是为了让你能够轻松找到与某个导出相关的所有作业。该功能在导出器类的 `getJobTags()` 方法中定义：
 
 ```php
+// 自定义导出作业标签
 public function getJobTags(): array
 {
-    return ["export{$this->export->getKey()}"];
+    return ["export{$this->export->getKey()}"];  // 使用导出 ID 作为标签
 }
 ```
 
@@ -899,9 +970,10 @@ public function getJobTags(): array
 默认情况下，导出系统不会为作业批次定义任何名称。如果你想自定义应用于某个导出器的作业批次的名称，可以在导出器类中重写 `getJobBatchName()` 方法：
 
 ```php
+// 自定义导出作业批次名称
 public function getJobBatchName(): ?string
 {
-    return 'product-export';
+    return 'product-export';                    // 批次名称
 }
 ```
 
@@ -913,6 +985,7 @@ public function getJobBatchName(): ?string
 use App\Policies\ExportPolicy;
 use Filament\Actions\Exports\Models\Export;
 
+// 注册导出模型的授权策略
 protected $policies = [
     Export::class => ExportPolicy::class,
 ];
@@ -926,9 +999,10 @@ protected $policies = [
 use App\Models\User;
 use Filament\Actions\Exports\Models\Export;
 
+// 策略的 view 方法：检查用户是否有权下载
 public function view(User $user, Export $export): bool
 {
-    return $export->user()->is($user);
+    return $export->user()->is($user);           // 只有启动导出的用户才能下载
 }
 ```
 
@@ -943,9 +1017,11 @@ public function view(User $user, Export $export): bool
 ```php
 use Illuminate\Database\Eloquent\Builder;
 
+// 安全：限定导出查询范围（确保用户只能看到授权记录）
 ExportAction::make()
     ->exporter(ProductExporter::class)
     ->modifyQueryUsing(fn (Builder $query) => $query->whereBelongsTo(auth()->user()))
+    // 只导出当前用户拥有的记录
 ```
 
 你也可以对模型应用[全局作用域](https://laravel.com/docs/eloquent#global-scopes)，以确保只查询授权的记录。
