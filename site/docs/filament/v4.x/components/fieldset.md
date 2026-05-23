@@ -2,10 +2,18 @@
 title: Fieldset Blade 组件
 ---
 
-# Fieldset Blade 组件
+## 简介
 
-:::info 翻译中
-本文档已按 Filament 4.x 官方侧边栏结构接入，正文尚未完成翻译。
-:::
+你可以使用 Fieldset 将多个表单字段组合在一起，并可选择添加标签：
 
-[查看官方英文文档](https://filamentphp.com/docs/4.x/components/fieldset)
+```blade
+<x-filament::fieldset>
+    <x-slot name="label">
+        Address
+    </x-slot>
+
+    {{-- Form fields --}}
+</x-filament::fieldset>
+```
+
+![一个包含表单字段的 Fieldset](/assets/filament/v4.x/screenshots/images/light/components/fieldset/simple.jpg)
