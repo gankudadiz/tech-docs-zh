@@ -1,6 +1,6 @@
-# tech-docs-zh | 中文技术文档翻译站
+# tech-docs-zh | PHP / Laravel 生态技术文档翻译站
 
-> 将开源技术文档翻译为中文，一站一框架，逐步积累。
+> 将 PHP 生态的开源技术文档翻译为中文，一站一框架，逐步积累。
 
 **线上地址**: [https://gankudadiz.github.io/tech-docs-zh/](https://gankudadiz.github.io/tech-docs-zh/)
 

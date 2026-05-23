@@ -1,6 +1,6 @@
-# tech-docs-zh | Chinese Technical Documentation Translation
+# tech-docs-zh | PHP / Laravel Ecosystem Documentation (Chinese)
 
-> Translating open-source technical documentation into Chinese. One framework at a time.
+> Translating PHP ecosystem documentation into Chinese. One framework at a time.
 
 **Live Site**: [https://gankudadiz.github.io/tech-docs-zh/](https://gankudadiz.github.io/tech-docs-zh/)
 
