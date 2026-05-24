@@ -4,7 +4,7 @@ title: 验证
 
 ## 简介
 
-验证规则可以添加到任何[字段](overview#可用字段)。
+验证规则可以添加到任何[字段](overview#表单字段)。
 
 在 Laravel 中，验证规则通常以数组形式定义，如 `['required', 'max:255']`，或以组合字符串形式定义，如 `required|max:255`。如果你只在后端使用简单的表单请求，这没问题。但 Filament 也能够为你的用户提供前端验证，让他们可以在任何后端请求之前修复错误。
 
@@ -189,7 +189,7 @@ Field::make('invitation')->exists(table: Invitation::class)
 Field::make('invitation')->exists(column: 'id')
 ```
 
-你可以通过向 `modifyRuleUsing` 参数传递[闭包](overview#闭包自定义)来进一步自定义规则：
+你可以通过向 `modifyRuleUsing` 参数传递[闭包](overview#字段工具注入)来进一步自定义规则：
 
 ```php
 use Illuminate\Validation\Rules\Exists;
@@ -266,7 +266,7 @@ Field::make('color')->hexColor()
 Field::make('status')->in(['pending', 'completed'])
 ```
 
-[开关按钮](toggle-buttons)、[复选框列表](checkbox-list)、[单选按钮](radio)和[选择器](select#选项验证-in-规则)字段会根据其可用选项自动应用 `in()` 规则，因此你不需要手动添加。
+[开关按钮](toggle-buttons)、[复选框列表](checkbox-list)、[单选按钮](radio)和[选择器](select#有效选项验证in-规则)字段会根据其可用选项自动应用 `in()` 规则，因此你不需要手动添加。
 
 ### IP 地址
 
@@ -386,7 +386,7 @@ Field::make('name')->required()
 
 #### 将字段标记为必填
 
-默认情况下，必填字段会在其标签旁边显示星号 `*`。你可能希望在所有字段都是必填的表单上隐藏星号，或者改为在可选字段旁边添加[提示](#在标签旁边添加提示)：
+默认情况下，必填字段会在其标签旁边显示星号 `*`。你可能希望在所有字段都是必填的表单上隐藏星号，或者改为在可选字段旁边添加[提示](overview#在字段标签后方添加额外内容)：
 
 ```php
 use Filament\Forms\Components\TextInput;
@@ -529,7 +529,7 @@ Field::make('email')->unique(ignoreRecord: false)
 Field::make('email')->unique(ignorable: $ignoredUser)
 ```
 
-你可以通过向 `modifyRuleUsing` 参数传递[闭包](overview#闭包自定义)来进一步自定义规则：
+你可以通过向 `modifyRuleUsing` 参数传递[闭包](overview#字段工具注入)来进一步自定义规则：
 
 ```php
 use Illuminate\Validation\Rules\Unique;
