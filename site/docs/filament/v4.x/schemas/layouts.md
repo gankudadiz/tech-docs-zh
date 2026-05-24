@@ -15,7 +15,7 @@ Filament 的网格系统允许你使用任何布局组件创建响应式多列�
 - [提示框](callouts)
 - [空状态](empty-states)
 
-你也可以[创建自己的自定义布局组件](custom-components#自定义布局组件)来按需显示组件。
+你也可以[创建自己的自定义布局组件](custom-components#自定义组件类)来按需显示组件。
 
 ## 网格系统
 
