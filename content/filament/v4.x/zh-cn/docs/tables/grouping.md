@@ -151,7 +151,7 @@ public function table(Table $table): Table
 
 ## 设置分组键
 
-默认情况下，分组的键将是属性的值。它在内部用作该分组的原始标识符，而不是[标题](#setting-a-group-title)。你可以通过从 `Group` 对象的 `getKeyFromRecordUsing()` 方法返回新键来自定义它：
+默认情况下，分组的键将是属性的值。它在内部用作该分组的原始标识符，而不是[标题](#设置分组标题)。你可以通过从 `Group` 对象的 `getKeyFromRecordUsing()` 方法返回新键来自定义它：
 
 ```php
 use Filament\Tables\Grouping\Group;

@@ -262,7 +262,7 @@ Action::make('delete')
 
 ### 自定义模态框内容的对齐方式
 
-默认情况下，模态框内容会对齐到起始位置，如果模态框的[宽度](#更改-modal-宽度)为 `xs` 或 `sm` 则居中对齐。如果你想更改模态框中内容的对齐方式，可以使用 `modalAlignment()` 方法并传入 `Alignment::Start` 或 `Alignment::Center`：
+默认情况下，模态框内容会对齐到起始位置，如果模态框的[宽度](#更改模态框宽度)为 `xs` 或 `sm` 则居中对齐。如果你想更改模态框中内容的对齐方式，可以使用 `modalAlignment()` 方法并传入 `Alignment::Start` 或 `Alignment::Center`：
 
 ```php
 use Filament\Actions\Action;
