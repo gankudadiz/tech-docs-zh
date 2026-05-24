@@ -84,7 +84,7 @@ TextColumn::make('title')
 
 #### 为空列添加占位文本
 
-有时你可能想为空状态的列显示占位文本，其样式为较浅的灰色文本。这与[默认值](#setting-the-default-state-of-an-column)不同，因为占位符始终是文本，不会被视为真实状态。
+有时你可能想为空状态的列显示占位文本，其样式为较浅的灰色文本。这与[默认值](#设置列的默认状态)不同，因为占位符始终是文本，不会被视为真实状态。
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -209,9 +209,9 @@ TextColumn::make('name')
 
 ![带可排序列的表格](/assets/filament/v4.x/screenshots/images/light/tables/columns/sortable.jpg)
 
-使用列名，Filament 将对 Eloquent 查询应用 `orderBy()` 子句。这对于列名与数据库列名匹配的简单情况很有用。它也可以处理[关联关系](#displaying-data-from-relationships)。
+使用列名，Filament 将对 Eloquent 查询应用 `orderBy()` 子句。这对于列名与数据库列名匹配的简单情况很有用。它也可以处理[关联关系](#显示关联关系中的数据)。
 
-然而，许多列并不那么简单。列的[状态](#column-content-state)可能是自定义的，或者使用了 [Eloquent 访问器](https://laravel.com/docs/eloquent-mutators#accessors-and-mutators)。在这种情况下，你可能需要自定义排序行为。
+然而，许多列并不那么简单。列的[状态](#列内容状态)可能是自定义的，或者使用了 [Eloquent 访问器](https://laravel.com/docs/eloquent-mutators#accessors-and-mutators)。在这种情况下，你可能需要自定义排序行为。
 
 你可以传递一个表中真实数据库列的数组来排序该列：
 
@@ -341,9 +341,9 @@ TextColumn::make('name')
 
 ![带可搜索列的表格](/assets/filament/v4.x/screenshots/images/light/tables/columns/searchable.jpg)
 
-默认情况下，Filament 将对 Eloquent 查询应用 `where` 子句，搜索列名。这对于列名与数据库列名匹配的简单情况很有用。它也可以处理[关联关系](#displaying-data-from-relationships)。
+默认情况下，Filament 将对 Eloquent 查询应用 `where` 子句，搜索列名。这对于列名与数据库列名匹配的简单情况很有用。它也可以处理[关联关系](#显示关联关系中的数据)。
 
-然而，许多列并不那么简单。列的[状态](#column-content-state)可能是自定义的，或者使用了 [Eloquent 访问器](https://laravel.com/docs/eloquent-mutators#accessors-and-mutators)。在这种情况下，你可能需要自定义搜索行为。
+然而，许多列并不那么简单。列的[状态](#列内容状态)可能是自定义的，或者使用了 [Eloquent 访问器](https://laravel.com/docs/eloquent-mutators#accessors-and-mutators)。在这种情况下，你可能需要自定义搜索行为。
 
 你可以传递一个表中真实数据库列的数组来搜索该列：
 
@@ -489,7 +489,7 @@ public static function table(Table $table): Table
 
 ### 在输入框失焦时搜索
 
-你可以在用户输入搜索内容时不自动重新加载表格内容（受搜索字段的[防抖](#customizing-the-table-search-debounce)影响），而是改为仅在用户失焦（切换标签或点击外部）时才搜索表格，使用 `searchOnBlur()` 方法：
+你可以在用户输入搜索内容时不自动重新加载表格内容（受搜索字段的[防抖](#自定义表格搜索防抖)影响），而是改为仅在用户失焦（切换标签或点击外部）时才搜索表格，使用 `searchOnBlur()` 方法：
 
 ```php
 use Filament\Tables\Table;
@@ -557,7 +557,7 @@ TextColumn::make('title')
 `url()` 方法也接受一个函数来动态计算值。这个闭包也支持注入 Filament 的工具参数。
 
 :::tip
-你也可以为整行选择要打开的 URL，而不仅仅是单个列。请参阅[记录 URL 章节](../overview#record-urls-clickable-rows)。
+你也可以为整行选择要打开的 URL，而不仅仅是单个列。请参阅[记录 URL 章节](../overview#记录-url可点击行)。
 
 当同时使用记录 URL 和列 URL 时，列 URL 将仅覆盖那些单元格的记录 URL。
 :::
@@ -620,7 +620,7 @@ TextColumn::make('title')
     ->disabledClick()
 ```
 
-如果启用了[行 URL](../overview#record-urls-clickable-rows)，该单元格将不可点击。
+如果启用了[行 URL](../overview#记录-url可点击行)，该单元格将不可点击。
 
 ## 为列添加工具提示
 
@@ -796,7 +796,7 @@ public function table(Table $table): Table
 
 ![带分组列的表格](/assets/filament/v4.x/screenshots/images/light/tables/columns/grouping.jpg)
 
-你还可以在 `ColumnGroup` 对象上控制组标题的[对齐](#horizontally-aligning-column-content)和[换行](#allowing-column-headers-to-wrap)。为了提高 API 的多行流畅性，你可以将 `columns()` 链式调用到对象上，而不是将其作为第二个参数传递：
+你还可以在 `ColumnGroup` 对象上控制组标题的[对齐](#水平对齐列内容)和[换行](#允许列标题换行)。为了提高 API 的多行流畅性，你可以将 `columns()` 链式调用到对象上，而不是将其作为第二个参数传递：
 
 ```php
 use Filament\Support\Enums\Alignment;
@@ -919,7 +919,7 @@ public function table(Table $table): Table
 
 ![模态框中的列管理器](/assets/filament/v4.x/screenshots/images/light/tables/columns/column-manager-modal.jpg)
 
-你可以使用[触发操作 API](#customizing-the-column-manager-trigger-action)来[自定义模态框](../../actions/modals)，包括[使用 `slideOver()`](../../actions/modals#using-a-slide-over-instead-of-a-modal)。
+你可以使用[触发操作 API](#自定义列管理器触发操作)来[自定义模态框](../../actions/modals)，包括[使用 `slideOver()`](../../actions/modals#使用滑出式面板代替模态框)。
 
 #### 自定义列管理器触发操作
 
@@ -1068,7 +1068,7 @@ TextColumn::make('name')
 
 ### 注入列的当前状态
 
-如果你想访问列的当前[值（状态）](#column-content-state)，请定义 `$state` 参数：
+如果你想访问列的当前[值（状态）](#列内容状态)，请定义 `$state` 参数：
 
 ```php
 function ($state) {
@@ -1162,7 +1162,7 @@ function (Request $request, User $record) {
 
 ## 全局设置
 
-如果你想全局更改所有列的默认行为，可以在服务提供者的 `boot()` 方法中调用静态 `configureUsing()`方法，传递一个闭包来修改列。例如，如果你想使所有 `TextColumn` 列都可 [`toggleable()`](#toggling-column-visibility)，可以这样做：
+如果你想全局更改所有列的默认行为，可以在服务提供者的 `boot()` 方法中调用静态 `configureUsing()`方法，传递一个闭包来修改列。例如，如果你想使所有 `TextColumn` 列都可 [`toggleable()`](#切换列可见性)，可以这样做：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
