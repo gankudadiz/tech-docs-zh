@@ -73,7 +73,7 @@ TextInput::make('name')
     ->maxLength(255)
 ```
 
-在这个示例中，字段设置了 `required()` 和 `maxLength()`。我们提供了[大多数 Laravel 验证规则对应的方法](validation#available-rules)，你甚至可以添加[自定义规则](validation#custom-rules)。
+在这个示例中，字段设置了 `required()` 和 `maxLength()`。我们提供了[大多数 Laravel 验证规则对应的方法](validation#可用规则)，你甚至可以添加[自定义规则](validation#自定义规则)。
 
 ## 设置字段标签
 
@@ -563,7 +563,7 @@ FusedGroup::make([
 
 ![带标签的融合表单字段组](/assets/filament/v4.x/screenshots/images/light/forms/fields/fused-label.jpg)
 
-默认情况下，每个字段都有自己的行。在移动设备上，这通常是最优体验，但在桌面端你可以使用 `columns()` 方法（与[布局组件](../schemas/layouts#grid-system)相同）来水平显示字段：
+默认情况下，每个字段都有自己的行。在移动设备上，这通常是最优体验，但在桌面端你可以使用 `columns()` 方法（与[布局组件](../schemas/layouts#网格系统)相同）来水平显示字段：
 
 ```php
 use Filament\Schemas\Components\FusedGroup;
@@ -658,7 +658,7 @@ TextInput::make('name')
 ![内容下方有操作的表单字段](/assets/filament/v4.x/screenshots/images/light/forms/fields/below-content/action.jpg)
 
 :::tip
-如果你需要一个运行 JavaScript 而不发起网络请求的简单操作，可以使用 [`actionJs()` 方法](../actions/overview#running-javascript-when-an-action-is-clicked)。这对于使用 `$get()` 和 `$set()` 更新表单字段值等简单交互很有用。使用 `actionJs()` 的操作不能打开模态框。
+如果你需要一个运行 JavaScript 而不发起网络请求的简单操作，可以使用 [`actionJs()` 方法](../actions/overview#操作点击时运行-javascript)。这对于使用 `$get()` 和 `$set()` 更新表单字段值等简单交互很有用。使用 `actionJs()` 的操作不能打开模态框。
 :::
 
 你可以通过向方法传递内容数组来在插槽中插入任意组合的内容：
@@ -715,7 +715,7 @@ TextInput::make('name')
 ```
 
 :::tip
-如上面 `Schema::between()` 的示例所示，[`Flex` 组件](../schemas/layouts#flex-component)用于将图标和文本组合在一起，使它们之间没有空隙。图标使用 `grow(false)` 来防止它占据一半的水平空间，让文本占据剩余空间。
+如上面 `Schema::between()` 的示例所示，[`Flex` 组件](../schemas/layouts#弹性布局组件)用于将图标和文本组合在一起，使它们之间没有空隙。图标使用 `grow(false)` 来防止它占据一半的水平空间，让文本占据剩余空间。
 :::
 
 ![内容下方有对齐组件的表单字段](/assets/filament/v4.x/screenshots/images/light/forms/fields/below-content/alignment.jpg)
@@ -876,7 +876,7 @@ TextInput::make('name')
 ![内容前方有额外内容的表单字段](/assets/filament/v4.x/screenshots/images/light/forms/fields/before-content.jpg)
 
 :::tip
-某些字段（如[文本输入](text-input#adding-affix-text-aside-the-field)、[选择器](select#adding-affix-text-aside-the-field)和[日期时间选择器](date-time-picker#adding-affix-text-aside-the-field)）有 `prefix()` 方法，可以在字段内容前方插入内容，与字段本身相连。这通常是比使用 `beforeContent()` 更好的 UI 选择。
+某些字段（如[文本输入](text-input#在字段旁添加前后缀文本)、[选择器](select#在字段旁添加前后缀文本)和[日期时间选择器](date-time-picker#在字段旁添加前后缀文本)）有 `prefix()` 方法，可以在字段内容前方插入内容，与字段本身相连。这通常是比使用 `beforeContent()` 更好的 UI 选择。
 
 ![带前后缀的文本输入](/assets/filament/v4.x/screenshots/images/light/forms/fields/text-input/affix.jpg)
 :::
@@ -901,7 +901,7 @@ TextInput::make('name')
 ![内容后方有额外内容的表单字段](/assets/filament/v4.x/screenshots/images/light/forms/fields/after-content.jpg)
 
 :::tip
-某些字段（如[文本输入](text-input#adding-affix-text-aside-the-field)、[选择器](select#adding-affix-text-aside-the-field)和[日期时间选择器](date-time-picker#adding-affix-text-aside-the-field)）有 `suffix()` 方法，可以在字段内容后方插入内容，与字段本身相连。这通常是比使用 `afterContent()` 更好的 UI 选择。
+某些字段（如[文本输入](text-input#在字段旁添加前后缀文本)、[选择器](select#在字段旁添加前后缀文本)和[日期时间选择器](date-time-picker#在字段旁添加前后缀文本)）有 `suffix()` 方法，可以在字段内容后方插入内容，与字段本身相连。这通常是比使用 `afterContent()` 更好的 UI 选择。
 
 ![带前后缀的文本输入](/assets/filament/v4.x/screenshots/images/light/forms/fields/text-input/affix.jpg)
 :::
@@ -1351,7 +1351,7 @@ TextInput::make('password_confirmation')
 如果你的 schema 自动将数据保存到数据库（如在[资源](../resources/overview)中），这对于阻止纯粹用于展示目的的字段被保存到数据库很有用。
 
 :::info
-即使字段未被保存，它仍然会被验证。要了解更多关于此行为的信息，请参阅[验证](validation#disabling-validation-when-fields-are-not-saved)部分。
+即使字段未被保存，它仍然会被验证。要了解更多关于此行为的信息，请参阅[验证](validation#当字段未保存时禁用验证)部分。
 :::
 
 ### 字段渲染
@@ -1802,7 +1802,7 @@ Group::make()
 
 ## 全局设置
 
-如果你希望全局更改字段的默认行为，可以在服务提供者的 `boot()` 方法或中间件中调用静态 `configureUsing()` 方法。传递一个可以修改组件的闭包。例如，如果你希望将所有[复选框设置为 `inline(false)`](checkbox#positioning-the-label-above)，可以这样做：
+如果你希望全局更改字段的默认行为，可以在服务提供者的 `boot()` 方法或中间件中调用静态 `configureUsing()` 方法。传递一个可以修改组件的闭包。例如，如果你希望将所有[复选框设置为 `inline(false)`](checkbox#将标签置于上方)，可以这样做：
 
 ```php
 use Filament\Forms\Components\Checkbox;

@@ -90,7 +90,7 @@ TextEntry::make('title')
 
 #### 为空条目添加占位文本
 
-有时你可能想为空状态的条目显示占位文本，其样式为较浅的灰色文本。这与[默认值](#setting-the-default-state-of-an-entry)不同，因为占位符始终是文本，不会被视为真实状态。
+有时你可能想为空状态的条目显示占位文本，其样式为较浅的灰色文本。这与[默认值](#设置条目的默认状态)不同，因为占位符始终是文本，不会被视为真实状态。
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -126,7 +126,7 @@ TextEntry::make('name')
 ### 隐藏条目标签
 
 :::tip
-    如果你正在寻找隐藏条目标签的方法，可能是因为你试图将条目用于任意文本或 UI。条目专门设计用于以结构化方式显示数据，但 [Prime 组件](../schemas/overview#prime-components)是用于渲染基本独立静态内容（如文本、图片和按钮（操作））的简单组件。你可能需要考虑改用 Prime 组件。
+    如果你正在寻找隐藏条目标签的方法，可能是因为你试图将条目用于任意文本或 UI。条目专门设计用于以结构化方式显示数据，但 [Prime 组件](../schemas/overview#可用组件)是用于渲染基本独立静态内容（如文本、图片和按钮（操作））的简单组件。你可能需要考虑改用 Prime 组件。
 :::
 
 将标签设置为空字符串来隐藏它可能很诱人，但不推荐这样做。将标签设置为空字符串不会向屏幕阅读器传达条目的目的，即使目的在视觉上很清晰。相反，你应该使用 `hiddenLabel()` 方法，这样它在视觉上是隐藏的，但仍然可以被屏幕阅读器访问：
@@ -498,7 +498,7 @@ TextEntry::make('title')
 
 ## 向条目添加额外内容
 
-条目包含许多"插槽"，可以在子 schema 中插入内容。插槽可以接受文本、[任何 schema 组件](../schemas)、[操作](../actions/overview)和[操作组](../actions/grouping-actions)。通常，[Prime 组件](../schemas/primes)用于内容。
+条目包含许多"插槽"，可以在子 schema 中插入内容。插槽可以接受文本、[任何 schema 组件](../schemas/overview)、[操作](../actions/overview)和[操作组](../actions/grouping-actions)。通常，[Prime 组件](../schemas/primes)用于内容。
 
 所有条目都可以使用以下插槽：
 
@@ -524,7 +524,7 @@ TextEntry::make('name')
 
 ![内容下方带有文本的信息列表条目](/assets/filament/v4.x/screenshots/images/light/infolists/entries/below-content/text.jpg)
 
-要插入 schema 组件（通常是 [Prime 组件](../schemas/primes)），你可以将组件传递给方法：
+要插入 schema 组件（通常是 [Prime 组件](../schemas/overview)），你可以将组件传递给方法：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -603,14 +603,14 @@ TextEntry::make('name')
 ```
 
 :::tip
-    如上面 `Schema::between()` 的示例所示，[`Flex` 组件](../schemas/layouts#flex-component)用于将图标和文本分组在一起，使它们之间没有空格。图标使用 `grow(false)` 来防止它占用一半的水平空间，让文本消耗剩余的空间。
+    如上面 `Schema::between()` 的示例所示，[`Flex` 组件](../schemas/layouts#弹性布局组件)用于将图标和文本分组在一起，使它们之间没有空格。图标使用 `grow(false)` 来防止它占用一半的水平空间，让文本消耗剩余的空间。
 :::
 
 ![内容下方带有对齐组件的信息列表条目](/assets/filament/v4.x/screenshots/images/light/infolists/entries/below-content/alignment.jpg)
 
 ### 在条目标签上方添加额外内容
 
-你可以使用 `aboveLabel()` 方法在条目标签上方插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `aboveLabel()` 方法在条目标签上方插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -630,7 +630,7 @@ TextEntry::make('name')
 
 ### 在条目前添加额外内容
 
-你可以使用 `beforeLabel()` 方法在条目前插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `beforeLabel()` 方法在条目前插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -647,7 +647,7 @@ TextEntry::make('name')
 
 ### 在条目后添加额外内容
 
-你可以使用 `afterLabel()` 方法在条目后插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `afterLabel()` 方法在条目后插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -686,7 +686,7 @@ TextEntry::make('name')
 
 ### 在条目标签下方添加额外内容
 
-你可以使用 `belowLabel()` 方法在条目标签下方插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `belowLabel()` 方法在条目标签下方插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -705,12 +705,12 @@ TextEntry::make('name')
 ![标签下方带有额外内容的信息列表条目](/assets/filament/v4.x/screenshots/images/light/infolists/entries/below-label.jpg)
 
 :::info
-    这看起来可能与 [`aboveContent()` 方法](#adding-extra-content-above-an-entries-content)相同。但是，当使用[内联标签](#inline-labels)时，`aboveContent()` 方法将把内容放在条目上方，而不是标签下方，因为标签显示在条目内容的单独列中。
+    这看起来可能与 [`aboveContent()` 方法](#在条目内容上方添加额外内容)相同。但是，当使用[内联标签](#内联标签)时，`aboveContent()` 方法将把内容放在条目上方，而不是标签下方，因为标签显示在条目内容的单独列中。
 :::
 
 ### 在条目内容上方添加额外内容
 
-你可以使用 `aboveContent()` 方法在条目内容上方插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `aboveContent()` 方法在条目内容上方插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -729,12 +729,12 @@ TextEntry::make('name')
 ![内容上方带有额外内容的信息列表条目](/assets/filament/v4.x/screenshots/images/light/infolists/entries/above-content.jpg)
 
 :::info
-    这看起来可能与 [`belowLabel()` 方法](#adding-extra-content-below-an-entries-label)相同。但是，当使用[内联标签](#inline-labels)时，`belowLabel()` 方法将把内容放在标签下方，而不是条目内容上方，因为标签显示在条目内容的单独列中。
+    这看起来可能与 [`belowLabel()` 方法](#在条目标签下方添加额外内容)相同。但是，当使用[内联标签](#内联标签)时，`belowLabel()` 方法将把内容放在标签下方，而不是条目内容上方，因为标签显示在条目内容的单独列中。
 :::
 
 ### 在条目内容之前添加额外内容
 
-你可以使用 `beforeContent()` 方法在条目内容之前插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `beforeContent()` 方法在条目内容之前插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -751,7 +751,7 @@ TextEntry::make('name')
 
 ### 在条目内容之后添加额外内容
 
-你可以使用 `afterContent()` 方法在条目内容之后插入额外内容。你可以[传递任何内容](#adding-extra-content-to-an-entry)给此方法，如文本、schema 组件、操作或操作组：
+你可以使用 `afterContent()` 方法在条目内容之后插入额外内容。你可以[传递任何内容](#向条目添加额外内容)给此方法，如文本、schema 组件、操作或操作组：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -822,7 +822,7 @@ TextEntry::make('role')
 
 ### 注入条目的当前状态
 
-如果你想访问条目的当前[值（状态）](#entry-content-state)，请定义一个 `$state` 参数：
+如果你想访问条目的当前[值（状态）](#条目内容状态)，请定义一个 `$state` 参数：
 
 ```php
 function ($state) {
@@ -844,7 +844,7 @@ function (Get $get) {
 ```
 
 :::tip
-    除非表单字段是[响应式的](../forms/overview#the-basics-of-reactivity)，否则当字段值更改时，schema 不会刷新，只有在下一次用户交互发生并向服务器发出请求时才会刷新。如果你需要对字段值的更改做出反应，它应该是 `live()`。
+    除非表单字段是[响应式的](../forms/overview#响应式基础)，否则当字段值更改时，schema 不会刷新，只有在下一次用户交互发生并向服务器发出请求时才会刷新。如果你需要对字段值的更改做出反应，它应该是 `live()`。
 :::
 
 ### 注入当前 Eloquent 记录
@@ -926,7 +926,7 @@ function (Request $request, User $record) {
 
 ## 全局设置
 
-如果你想全局更改所有条目的默认行为，可以在服务提供者的 `boot()` 方法中调用静态 `configureUsing()` 方法，传递一个闭包来修改条目。例如，如果你想使所有 `TextEntry` 组件 [`words(10)`](text-entry#limiting-word-count)，可以这样做：
+如果你想全局更改所有条目的默认行为，可以在服务提供者的 `boot()` 方法中调用静态 `configureUsing()` 方法，传递一个闭包来修改条目。例如，如果你想使所有 `TextEntry` 组件 [`words(10)`](text-entry#限制字数)，可以这样做：
 
 ```php
 use Filament\Infolists\Components\TextEntry;

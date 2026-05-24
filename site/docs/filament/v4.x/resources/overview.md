@@ -39,7 +39,7 @@ php artisan make:filament-resource Customer
 `Schemas` 目录中的类用于定义资源的[表单](../forms)和[信息列表](../infolists)内容。`Tables` 目录中的类用于构建资源的表格。
 
 :::tip
-    创建了资源但没有出现在导航菜单中？如果你有[模型策略](#authorization)，请确保 `viewAny()` 方法返回 `true`。
+    创建了资源但没有出现在导航菜单中？如果你有[模型策略](#授权)，请确保 `viewAny()` 方法返回 `true`。
 :::
 
 ### 简单（模态）资源
@@ -60,7 +60,7 @@ php artisan make:filament-resource Customer --simple
 
 ### 自动生成表单和表格
 
-如果你想节省时间，Filament 可以根据模型的数据库字段自动生成[表单](#resource-forms)和[表格](#resource-tables)，使用 `--generate` 参数：
+如果你想节省时间，Filament 可以根据模型的数据库字段自动生成[表单](#资源表单)和[表格](#资源表格)，使用 `--generate` 参数：
 
 ```bash
 php artisan make:filament-resource Customer --generate
@@ -74,7 +74,7 @@ php artisan make:filament-resource Customer --generate
 php artisan make:filament-resource Customer --soft-deletes
 ```
 
-更多关于软删除的信息，请参阅[此处](deleting-records#handling-soft-deletes)。
+更多关于软删除的信息，请参阅[此处](deleting-records#处理软删除)。
 
 ### 生成查看页
 
@@ -94,7 +94,7 @@ php artisan make:filament-resource Customer --model-namespace=Custom\\Path\\Mode
 
 在这个例子中，模型应该位于 `Custom\Path\Models\Customer`。请注意命令中需要使用双反斜杠 `\\`。
 
-这样在[生成资源](#automatically-generating-forms-and-tables)时，Filament 就能定位模型并读取数据库结构。
+这样在[生成资源](#自动生成表单和表格)时，Filament 就能定位模型并读取数据库结构。
 
 ### 同时生成模型、迁移文件和工厂
 
@@ -153,7 +153,7 @@ public static function configure(Schema $schema): Schema
 }
 ```
 
-`components()` 方法用于定义表单的结构。它是一个包含[字段](../forms/overview#available-fields)和[布局组件](../schemas/layouts#available-layout-components)的数组，按照它们在表单中出现的顺序排列。
+`components()` 方法用于定义表单的结构。它是一个包含[字段](../forms/overview#表单字段)和布局组件的数组，按照它们在表单中出现的顺序排列。
 
 查看表单文档，了解如何使用 Filament 构建表单的[指南](../forms)。
 
@@ -344,7 +344,7 @@ protected static bool $hasTitleCaseModelLabel = false;
 
 ## 资源导航项
 
-Filament 会使用[复数标签](#plural-label)自动为你的资源生成导航菜单项。
+Filament 会使用[复数标签](#自定义复数模型标签)自动为你的资源生成导航菜单项。
 
 如果你想自定义导航项标签，可以使用 `$navigationLabel` 属性：
 
@@ -478,7 +478,7 @@ CustomerResource::getUrl('edit', ['record' => $customer]); // /admin/customers/e
 
 ### 生成资源模态窗口的 URL
 
-如果你使用的是只有单个页面的[简单资源](#simple-modal-resources)，这会特别有用。
+如果你使用的是只有单个页面的[简单资源](#简单模态资源)，这会特别有用。
 
 要为资源表格中的操作生成 URL，你应该将 `tableAction` 和 `tableActionRecord` 作为 URL 参数传递：
 
@@ -564,9 +564,9 @@ protected static ?string $slug = 'pending-orders';
 
 - 查看客户，一个 [`ViewRecord` 页面](viewing-records)，提供客户详细信息的只读视图。
 - 编辑客户，一个 [`EditRecord` 页面](editing-records)，允许用户编辑客户的详细信息。
-- 编辑客户联系方式，一个 [`EditRecord` 页面](editing-records)，允许用户编辑客户的联系方式。你可以[学习如何创建多个编辑页](editing-records#creating-another-edit-page)。
-- 管理地址，一个 [`ManageRelatedRecords` 页面](managing-relationships#relation-pages)，允许用户管理客户的地址。
-- 管理付款，一个 [`ManageRelatedRecords` 页面](managing-relationships#relation-pages)，允许用户管理客户的付款。
+- 编辑客户联系方式，一个 [`EditRecord` 页面](editing-records)，允许用户编辑客户的联系方式。你可以[学习如何创建多个编辑页](editing-records#创建另一个编辑页面)。
+- 管理地址，一个 [`ManageRelatedRecords` 页面](managing-relationships)，允许用户管理客户的地址。
+- 管理付款，一个 [`ManageRelatedRecords` 页面](managing-relationships)，允许用户管理客户的付款。
 
 要为资源中的每个"单一记录"页面添加子导航，你可以在资源类中添加 `getRecordSubNavigation()` 方法：
 
@@ -640,7 +640,7 @@ public static function getPages(): array
 - `delete()` 用于阻止删除单条记录。`deleteAny()` 用于阻止批量删除记录。Filament 使用 `deleteAny()` 方法是因为遍历多条记录并检查 `delete()` 策略的性能不佳。使用 `DeleteBulkAction` 时，如果你想为每条记录调用 `delete()` 方法，应该使用 `DeleteBulkAction::make()->authorizeIndividualRecords()` 方法。任何未通过授权检查的记录都不会被处理。
 - `forceDelete()` 用于阻止强制删除单条软删除记录。`forceDeleteAny()` 用于阻止批量强制删除记录。Filament 使用 `forceDeleteAny()` 方法是因为遍历多条记录并检查 `forceDelete()` 策略的性能不佳。使用 `ForceDeleteBulkAction` 时，如果你想为每条记录调用 `forceDelete()` 方法，应该使用 `ForceDeleteBulkAction::make()->authorizeIndividualRecords()` 方法。任何未通过授权检查的记录都不会被处理。
 - `restore()` 用于阻止恢复单条软删除记录。`restoreAny()` 用于阻止批量恢复记录。Filament 使用 `restoreAny()` 方法是因为遍历多条记录并检查 `restore()` 策略的性能不佳。使用 `RestoreBulkAction` 时，如果你想为每条记录调用 `restore()` 方法，应该使用 `RestoreBulkAction::make()->authorizeIndividualRecords()` 方法。任何未通过授权检查的记录都不会被处理。
-- `reorder()` 用于控制[在表格中重新排序记录](listing-records#reordering-records)。
+- `reorder()` 用于控制在表格中重新排序记录。
 
 ### 跳过授权
 
@@ -658,7 +658,7 @@ Filament 会将所有模型属性暴露给 JavaScript，除非它们在模型上
     虽然属性可能在 JavaScript 中可见，但只有具有表单字段的属性才能被用户编辑。这不是批量赋值的问题。
 :::
 
-要在编辑页和查看页上从 JavaScript 中移除某些属性，你可以重写[填充表单前的 `mutateFormDataBeforeFill()` 方法](editing-records#customizing-data-before-filling-the-form)：
+要在编辑页和查看页上从 JavaScript 中移除某些属性，你可以重写[填充表单前的 `mutateFormDataBeforeFill()` 方法](editing-records#在填充表单前自定义数据)：
 
 ```php
 protected function mutateFormDataBeforeFill(array $data): array
