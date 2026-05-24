@@ -113,8 +113,8 @@ use Filament\View\PanelsRenderHook;
 - `PanelsRenderHook::SIDEBAR_START` - 侧边栏容器开头
 - `PanelsRenderHook::STYLES_AFTER` - 样式定义之后
 - `PanelsRenderHook::STYLES_BEFORE` - 样式定义之前
-- `PanelsRenderHook::TENANT_MENU_AFTER` - [租户菜单](../users/tenancy#customizing-the-tenant-menu)之后
-- `PanelsRenderHook::TENANT_MENU_BEFORE` - [租户菜单](../users/tenancy#customizing-the-tenant-menu)之前
+- `PanelsRenderHook::TENANT_MENU_AFTER` - [租户菜单](../users/tenancy#自定义租户菜单)之后
+- `PanelsRenderHook::TENANT_MENU_BEFORE` - [租户菜单](../users/tenancy#自定义租户菜单)之前
 - `PanelsRenderHook::TOPBAR_AFTER` - 顶栏下方
 - `PanelsRenderHook::TOPBAR_BEFORE` - 顶栏上方
 - `PanelsRenderHook::TOPBAR_END` - 顶栏容器末尾
@@ -146,13 +146,13 @@ use Filament\Tables\View\TablesRenderHook;
 - `TablesRenderHook::TOOLBAR_END` - 工具栏末尾
 - `TablesRenderHook::TOOLBAR_GROUPING_SELECTOR_AFTER` - [分组](../tables/grouping)选择器之后
 - `TablesRenderHook::TOOLBAR_GROUPING_SELECTOR_BEFORE` - [分组](../tables/grouping)选择器之前
-- `TablesRenderHook::TOOLBAR_REORDER_TRIGGER_AFTER` - [重排序](../tables/overview#reordering-records)触发器之后
-- `TablesRenderHook::TOOLBAR_REORDER_TRIGGER_BEFORE` - [重排序](../tables/overview#reordering-records)触发器之前
-- `TablesRenderHook::TOOLBAR_SEARCH_AFTER` - [搜索](../tables/overview#making-columns-sortable-and-searchable)容器之后
-- `TablesRenderHook::TOOLBAR_SEARCH_BEFORE` - [搜索](../tables/overview#making-columns-sortable-and-searchable)容器之前
+- `TablesRenderHook::TOOLBAR_REORDER_TRIGGER_AFTER` - [重排序](../tables/overview#重新排序记录)触发器之后
+- `TablesRenderHook::TOOLBAR_REORDER_TRIGGER_BEFORE` - [重排序](../tables/overview#重新排序记录)触发器之前
+- `TablesRenderHook::TOOLBAR_SEARCH_AFTER` - [搜索](../tables/overview#使列可排序和可搜索)容器之后
+- `TablesRenderHook::TOOLBAR_SEARCH_BEFORE` - [搜索](../tables/overview#使列可排序和可搜索)容器之前
 - `TablesRenderHook::TOOLBAR_START` - 工具栏开头
-- `TablesRenderHook::TOOLBAR_COLUMN_MANAGER_TRIGGER_AFTER` - [列管理器](../tables/columns/overview#toggling-column-visibility)触发器之后
-- `TablesRenderHook::TOOLBAR_COLUMN_MANAGER_TRIGGER_BEFORE` - [列管理器](../tables/columns/overview#toggling-column-visibility)触发器之前
+- `TablesRenderHook::TOOLBAR_COLUMN_MANAGER_TRIGGER_AFTER` - [列管理器](../tables/columns/overview#切换列可见性)触发器之后
+- `TablesRenderHook::TOOLBAR_COLUMN_MANAGER_TRIGGER_BEFORE` - [列管理器](../tables/columns/overview#切换列可见性)触发器之前
 
 
 ### Actions 渲染钩子
@@ -165,12 +165,12 @@ use Filament\Tables\View\TablesRenderHook;
 use Filament\Actions\View\ActionsRenderHook;
 ```
 
-- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_AFTER` - [模态框内容](../actions/modals#custom-modal-content)之后
-- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_BEFORE` - [模态框内容](../actions/modals#custom-modal-content)之前
-- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_FOOTER_AFTER` - [模态框内容页脚](../actions/modals#adding-custom-modal-content-below-the-form)之后
-- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_FOOTER_BEFORE` - [模态框内容页脚](../actions/modals#adding-custom-modal-content-below-the-form)之前
-- `ActionsRenderHook::MODAL_SCHEMA_AFTER` - [模态框 Schema](../actions/modals#rendering-a-schema-in-a-modal)之后
-- `ActionsRenderHook::MODAL_SCHEMA_BEFORE` - [模态框 Schema](../actions/modals#rendering-a-schema-in-a-modal)之前
+- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_AFTER` - [模态框内容](../actions/modals#自定义模态框内容)之后
+- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_BEFORE` - [模态框内容](../actions/modals#自定义模态框内容)之前
+- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_FOOTER_AFTER` - [模态框内容页脚](../actions/modals#在表单下方添加自定义模态框内容)之后
+- `ActionsRenderHook::MODAL_CUSTOM_CONTENT_FOOTER_BEFORE` - [模态框内容页脚](../actions/modals#在表单下方添加自定义模态框内容)之前
+- `ActionsRenderHook::MODAL_SCHEMA_AFTER` - [模态框 Schema](../actions/modals#在模态框中渲染-schema)之后
+- `ActionsRenderHook::MODAL_SCHEMA_BEFORE` - [模态框 Schema](../actions/modals#在模态框中渲染-schema)之前
 
 
 ### Widgets 渲染钩子
@@ -179,8 +179,8 @@ use Filament\Actions\View\ActionsRenderHook;
 use Filament\Widgets\View\WidgetsRenderHook;
 ```
 
-- `WidgetsRenderHook::TABLE_WIDGET_END` - [表格小部件](../widgets/overview#table-widgets)末尾，表格本身之后，也可以[限定范围](#限定渲染钩子范围)到表格小部件类
-- `WidgetsRenderHook::TABLE_WIDGET_START` - [表格小部件](../widgets/overview#table-widgets)开头，表格本身之前，也可以[限定范围](#限定渲染钩子范围)到表格小部件类
+- `WidgetsRenderHook::TABLE_WIDGET_END` - [表格小部件](../widgets/overview#表格小部件)末尾，表格本身之后，也可以[限定范围](#限定渲染钩子范围)到表格小部件类
+- `WidgetsRenderHook::TABLE_WIDGET_START` - [表格小部件](../widgets/overview#表格小部件)开头，表格本身之前，也可以[限定范围](#限定渲染钩子范围)到表格小部件类
 
 
 ## 限定渲染钩子范围

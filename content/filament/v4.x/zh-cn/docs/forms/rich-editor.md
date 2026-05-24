@@ -361,7 +361,7 @@ RichContentRenderer::make($record->content)
 如果你[以 JSON 格式存储内容](#以-json-格式存储内容)而不是 HTML，或者你的内容需要处理以注入[私有图片 URL](#在编辑器中使用私有图片)等，你可以使用[内容渲染器](#渲染富文本内容)来输出 HTML。它会自动为你清理 HTML，因此你无需担心。
 
 :::danger
-Filament 内置的 HTML 清理器允许行内 `style` 属性，以支持富文本格式功能，如字体颜色、文本高亮和图片尺寸调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#customizing-the-sanitizer)。
+Filament 内置的 HTML 清理器允许行内 `style` 属性，以支持富文本格式功能，如字体颜色、文本高亮和图片尺寸调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#自定义清理器)。
 :::
 
 ## 向编辑器上传图片
@@ -450,7 +450,7 @@ RichEditor::make('content')
 你可以将各种工具注入到传递给 `allowFilePathUsing` 的函数中作为参数。该函数接收一个 `string` 类型的 `$file` 参数，即正在授权的已提交 `data-id` 值。
 :::
 
-验证错误消息可以通过 [`validationMessages()`](validation#自定义验证消息) 使用 `tampered` 键来自定义：
+验证错误消息可以通过 [`validationMessages()`](validation#验证消息) 使用 `tampered` 键来自定义：
 
 ```php
 use Filament\Forms\Components\RichEditor;

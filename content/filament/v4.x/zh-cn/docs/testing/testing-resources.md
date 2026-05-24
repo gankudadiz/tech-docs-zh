@@ -48,7 +48,7 @@ it('can load the page', function () {
 
 要测试列表页面上的表格，请访问[测试表格](testing-tables)部分。要测试页面头部的任何操作或表格中的操作，请访问[测试操作](testing-actions)部分。以下是你可以在列表页面上运行的其他一些常见测试示例。
 
-要[测试表格搜索是否正常工作](testing-tables#testing-that-a-column-can-be-searched)，你可以使用 `searchTable()` 方法搜索特定记录。你还可以使用 `assertCanSeeTableRecords()` 和 `assertCanNotSeeTableRecords()` 方法检查正确的记录是否正在表格中显示：
+要[测试表格搜索是否正常工作](testing-tables#测试列是否可搜索)，你可以使用 `searchTable()` 方法搜索特定记录。你还可以使用 `assertCanSeeTableRecords()` 和 `assertCanNotSeeTableRecords()` 方法检查正确的记录是否正在表格中显示：
 
 ```php
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -68,7 +68,7 @@ it('can search users by `name` or `email`', function () {
 });
 ```
 
-要[测试表格排序是否正常工作](testing-tables#testing-that-a-column-can-be-sorted)，你可以使用 `sortTable()` 方法按特定列对表格进行排序。你还可以使用 `assertCanSeeTableRecords()` 方法检查记录是否以正确的顺序显示：
+要[测试表格排序是否正常工作](testing-tables#测试列是否可排序)，你可以使用 `sortTable()` 方法按特定列对表格进行排序。你还可以使用 `assertCanSeeTableRecords()` 方法检查记录是否以正确的顺序显示：
 
 ```php
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -86,7 +86,7 @@ it('can sort users by `name`', function () {
 });
 ```
 
-要[测试表格过滤是否正常工作](testing-tables#testing-filters)，你可以使用 `filterTable()` 方法按特定列过滤表格。你还可以使用 `assertCanSeeTableRecords()` 和 `assertCanNotSeeTableRecords()` 方法检查正确的记录是否正在表格中显示：
+要[测试表格过滤是否正常工作](testing-tables#测试过滤器)，你可以使用 `filterTable()` 方法按特定列过滤表格。你还可以使用 `assertCanSeeTableRecords()` 和 `assertCanNotSeeTableRecords()` 方法检查正确的记录是否正在表格中显示：
 
 ```php
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -103,7 +103,7 @@ it('can filter users by `locale`', function () {
 });
 ```
 
-要[测试表格批量操作是否正常工作](testing-actions#testing-table-bulk-actions)，你可以使用 `selectTableRecords()` 方法在表格中选择多个记录。你还可以使用 `callAction()` 方法对选定的记录调用特定操作：
+要[测试表格批量操作是否正常工作](testing-actions#测试表格批量操作)，你可以使用 `selectTableRecords()` 方法在表格中选择多个记录。你还可以使用 `callAction()` 方法对选定的记录调用特定操作：
 
 ```php
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -367,7 +367,7 @@ it('can load the relation manager', function () {
 });
 ```
 
-你可以像在资源列表页面上一样[测试搜索](testing-tables#testing-that-a-column-can-be-searched)、[排序](testing-tables#testing-that-a-column-can-be-sorted)和[过滤](testing-tables#testing-filters)。
+你可以像在资源列表页面上一样[测试搜索](testing-tables#测试列是否可搜索)、[排序](testing-tables#测试列是否可排序)和[过滤](testing-tables#测试过滤器)。
 
 你也可以[测试操作](testing-actions)，例如表格头部的 `CreateAction`：
 

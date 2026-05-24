@@ -363,7 +363,7 @@ TextInput::configureUsing(function (TextInput $component): void {
 
 ## 将字段设为只读
 
-不要与[禁用字段](overview#disabling-a-field)混淆，你可以使用 `readOnly()` 方法将字段设为"只读"：
+不要与[禁用字段](overview#禁用字段)混淆，你可以使用 `readOnly()` 方法将字段设为"只读"：
 
 ```php
 use Filament\Forms\Components\TextInput;
@@ -372,9 +372,9 @@ TextInput::make('name')
     ->readOnly()
 ```
 
-与 [`disabled()`](overview#disabling-a-field) 相比有几个区别：
+与 [`disabled()`](overview#禁用字段) 相比有几个区别：
 
-- 使用 `readOnly()` 时，字段在表单提交时仍会发送到服务器。它可以通过浏览器控制台或 JavaScript 进行修改。你可以使用 [`saved(false)`](overview#preventing-a-field-from-being-saved) 来防止这种情况。
+- 使用 `readOnly()` 时，字段在表单提交时仍会发送到服务器。它可以通过浏览器控制台或 JavaScript 进行修改。你可以使用 [`saved(false)`](overview#阻止字段被保存) 来防止这种情况。
 - 使用 `readOnly()` 时没有样式变化，如降低不透明度。
 - 使用 `readOnly()` 时字段仍然可以获得焦点。
 

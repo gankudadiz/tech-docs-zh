@@ -8,7 +8,7 @@ title: 在 Blade 视图中渲染表格
 ```bash
 composer show filament/tables
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 设置 Livewire 组件
@@ -39,7 +39,7 @@ Route::get('products', ListProducts::class);
 在 Livewire 组件类中添加表格有 3 个任务：
 
 1) 实现 `HasTable` 和 `HasSchemas` 接口，并使用 `InteractsWithTable` 和 `InteractsWithSchemas` trait。
-2) 添加一个 `table()` 方法，这是你配置表格的地方。[添加表格的列、过滤器和操作](../tables/overview#columns)。
+2) 添加一个 `table()` 方法，这是你配置表格的地方。[添加表格的列、过滤器和操作](../tables/overview#定义表格列)。
 3) 确保定义用于获取表格行的基础查询。例如，如果你正在列出 `Product` 模型的产品，你需要返回 `Product::query()`。
 
 ```php
@@ -108,9 +108,9 @@ class ListProducts extends Component implements HasActions, HasSchemas, HasTable
 - `filament/support`
 
 这些包允许你在 Livewire 组件中使用它们的组件。
-例如，如果你的表格使用了[操作](action#setting-up-the-livewire-component)，请记得实现 `HasActions` 接口并包含 `InteractsWithActions` trait。
+例如，如果你的表格使用了[操作](action#设置-livewire-组件)，请记得实现 `HasActions` 接口并包含 `InteractsWithActions` trait。
 
-如果你在表格中使用了任何其他 [Filament 组件](overview#package-components)，请确保也安装并集成了相应的包。
+如果你在表格中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::
 
 ## 为 Eloquent 关系构建表格
@@ -141,7 +141,7 @@ public function table(Table $table): Table
 
 如果你的关系使用了中间表，你可以像使用表格上的普通列一样使用所有中间表列，只要它们列在关系*和*反向关系定义的 `withPivot()` 方法中。
 
-关系表在面板构建器中用作["关系管理器"](../resources/managing-relationships#creating-a-relation-manager)。关系管理器的大部分文档化功能也适用于关系表。例如，[附加和分离](../resources/managing-relationships#attaching-and-detaching-records)以及[关联和取消关联](../resources/managing-relationships#associating-and-dissociating-records)操作。
+关系表在面板构建器中用作["关系管理器"](../resources/managing-relationships#创建关联管理器)。关系管理器的大部分文档化功能也适用于关系表。例如，[附加和分离](../resources/managing-relationships#关联和取消关联记录)以及[关联和取消关联](../resources/managing-relationships#关联和取消关联合记录)操作。
 
 ## 使用 CLI 生成表格 Livewire 组件
 

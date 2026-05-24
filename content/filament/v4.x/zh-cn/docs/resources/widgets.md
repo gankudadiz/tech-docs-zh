@@ -61,7 +61,7 @@ class ListCustomers extends ListRecords
 
 `getHeaderWidgets()` 返回在页面内容上方显示的小部件数组，而 `getFooterWidgets()` 则在页面内容下方显示。
 
-如果你想自定义用于排列小部件的网格列数，请查阅[页面文档](../navigation/custom-pages#customizing-the-widgets-grid)。
+如果你想自定义用于排列小部件的网格列数，请查阅[页面文档](../navigation/custom-pages#自定义小部件的网格)。
 
 ## 在小部件中访问当前记录
 

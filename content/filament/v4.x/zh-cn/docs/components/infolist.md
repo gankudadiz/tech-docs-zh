@@ -8,7 +8,7 @@ title: 在 Blade 视图中渲染信息列表
 ```bash
 composer show filament/infolists
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 设置 Livewire 组件
@@ -82,7 +82,7 @@ public function productInfolist(Schema $schema): Schema
 这些包允许你在 Livewire 组件中使用它们的组件。
 例如，如果你的信息列表使用了[操作](../actions)，请记得在 Livewire 组件类上实现 `HasActions` 接口并使用 `InteractsWithActions` trait。
 
-如果你在信息列表中使用了任何其他 [Filament 组件](overview#package-components)，请确保也安装并集成了相应的包。
+如果你在信息列表中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::
 
 ## 向信息列表传递数据

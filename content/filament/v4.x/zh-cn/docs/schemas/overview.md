@@ -66,7 +66,7 @@ Schema 由 `Filament\Schemas\Schema` 对象表示，你可以在 `components()` 
 - [向导](wizards)
 - [提示框](callouts)
 - [空状态](empty-states)
-- 或者，构建你自己的[自定义布局组件](custom-components#自定义布局组件)
+- 或者，构建你自己的[自定义布局组件](custom-components#自定义组件类)
 
 为了显示任意内容，Filament 包含了[基础](primes)组件：
 

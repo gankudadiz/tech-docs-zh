@@ -15,7 +15,7 @@ Filament 包含两种 MFA 方法，你可以开箱即用：
 - [应用认证](#应用认证)使用兼容 Google Authenticator 的应用（如 Google Authenticator、Authy 或 Microsoft Authenticator 应用）生成基于时间的一次性密码（TOTP）来验证用户。
 - [电子邮件认证](#电子邮件认证)向用户的电子邮件地址发送一次性代码，用户必须输入该代码来验证其身份。
 
-在 Filament 中，用户从其[个人资料页面](overview#authentication-features)设置多因素认证。如果你使用 Filament 的个人资料页面功能，设置多因素认证将自动在个人资料页面上添加正确的 UI 元素：
+在 Filament 中，用户从其[个人资料页面](overview#认证功能)设置多因素认证。如果你使用 Filament 的个人资料页面功能，设置多因素认证将自动在个人资料页面上添加正确的 UI 元素：
 
 ```php
 use Filament\Panel;

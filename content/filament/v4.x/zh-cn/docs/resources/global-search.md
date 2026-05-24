@@ -10,7 +10,7 @@ title: 全局搜索
 
 ## 设置全局搜索结果标题
 
-要为模型启用全局搜索，你必须为资源[设置标题属性](overview#record-titles)：
+要为模型启用全局搜索，你必须为资源[设置标题属性](overview#记录标题)：
 
 ```php
 protected static ?string $recordTitleAttribute = 'title';
@@ -73,7 +73,7 @@ public static function getGlobalSearchEloquentQuery(): Builder
 
 ## 自定义全局搜索结果 URL
 
-全局搜索结果将链接到资源的[编辑页面](editing-records)，或者如果用户没有[编辑权限](editing-records#authorization)，则链接到[查看页面](viewing-records)。要自定义这一点，你可以覆盖 `getGlobalSearchResultUrl()` 方法并返回你选择的路由：
+全局搜索结果将链接到资源的[编辑页面](editing-records)，或者如果用户没有[编辑权限](editing-records#授权)，则链接到[查看页面](viewing-records)。要自定义这一点，你可以覆盖 `getGlobalSearchResultUrl()` 方法并返回你选择的路由：
 
 ```php
 public static function getGlobalSearchResultUrl(Model $record): string
@@ -164,7 +164,7 @@ protected static ?int $globalSearchSort = 3;
 
 ## 禁用全局搜索
 
-如[上所述](#title)，一旦你为资源设置了标题属性，全局搜索就会自动启用。有时你可能希望指定标题属性而不启用全局搜索。
+如[上所述](#设置全局搜索结果标题)，一旦你为资源设置了标题属性，全局搜索就会自动启用。有时你可能希望指定标题属性而不启用全局搜索。
 
 这可以通过在[配置](../panel-configuration)中禁用全局搜索来实现：
 
@@ -181,7 +181,7 @@ public function panel(Panel $panel): Panel
 
 ## 要求资源选择加入全局搜索
 
-默认情况下，所有具有[标题属性](#setting-global-search-result-titles)的资源都包含在全局搜索结果中。如果你希望资源显式选择加入，可以在[配置](../panel-configuration)中使用 `globalSearchResourceOptIn()` 方法：
+默认情况下，所有具有[标题属性](#设置全局搜索结果标题)的资源都包含在全局搜索结果中。如果你希望资源显式选择加入，可以在[配置](../panel-configuration)中使用 `globalSearchResourceOptIn()` 方法：
 
 ```php
 use Filament\Panel;
@@ -236,7 +236,7 @@ public function panel(Panel $panel): Panel
 
 全局搜索字段默认不包含任何后缀。你可以在[配置](../panel-configuration)中使用 `globalSearchFieldSuffix()` 方法来自定义它。
 
-如果你想在后缀中显示当前配置的[全局搜索键盘快捷键](#registering-global-search-key-bindings)，可以使用 `globalSearchFieldKeyBindingSuffix()` 方法，它将显示第一个注册的键盘快捷键作为全局搜索字段的后缀：
+如果你想在后缀中显示当前配置的[全局搜索键盘快捷键](#注册全局搜索键盘快捷键)，可以使用 `globalSearchFieldKeyBindingSuffix()` 方法，它将显示第一个注册的键盘快捷键作为全局搜索字段的后缀：
 
 ```php
 use Filament\Panel;

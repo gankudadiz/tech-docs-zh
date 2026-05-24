@@ -4,7 +4,7 @@ title: 操作
 
 ## 简介
 
-Filament 的表格可以使用[操作](../actions)。它们是可以添加到[任何表格行末尾](#record-actions)的按钮，甚至可以添加到表格的[头部](#header-actions)或[工具栏](#toolbar-actions)中。例如，你可能想要一个在头部"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](#bulk-actions)可用于在表格中的记录被选中时执行代码。此外，操作可以添加到任何[表格列](#column-actions)中，使得该列中的每个单元格都成为操作的触发器。
+Filament 的表格可以使用[操作](../actions)。它们是可以添加到[任何表格行末尾](#记录操作)的按钮，甚至可以添加到表格的[头部](#头部操作)或[工具栏](#工具栏操作)中。例如，你可能想要一个在头部"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](#批量操作)可用于在表格中的记录被选中时执行代码。此外，操作可以添加到任何[表格列](#列操作)中，使得该列中的每个单元格都成为操作的触发器。
 
 强烈建议你阅读关于[自定义操作触发按钮](../actions/overview)和[操作模态框](../actions/modals)的文档，以了解操作的全部功能。
 
@@ -83,7 +83,7 @@ public function table(Table $table): Table
 
 ### 全局记录操作设置
 
-要自定义未分组记录操作使用的默认配置，你可以在服务提供者的 `boot()` 方法中使用 [`Table::configureUsing()` 函数](overview#global-settings)中的 `modifyUngroupedRecordActionsUsing()`：
+要自定义未分组记录操作使用的默认配置，你可以在服务提供者的 `boot()` 方法中使用 [`Table::configureUsing()` 函数](overview#全局设置)中的 `modifyUngroupedRecordActionsUsing()`：
 
 ```php
 use Filament\Actions\Action;
@@ -99,7 +99,7 @@ Table::configureUsing(function (Table $table): void {
 
 ### 访问选中的表格行
 
-你可能希望操作能够访问表格中所有选中的行。通常，这是通过表格头部的[批量操作](#bulk-actions)完成的。然而，你可能希望使用行操作来完成，其中选中的行为操作提供上下文。
+你可能希望操作能够访问表格中所有选中的行。通常，这是通过表格头部的[批量操作](#批量操作)完成的。然而，你可能希望使用行操作来完成，其中选中的行为操作提供上下文。
 
 例如，你可能希望有一个行操作，将行数据复制到所有选中的记录。要强制表格可选中（即使没有定义批量操作），你需要使用 `selectable()` 方法。要允许操作访问选中的记录，你需要使用 `accessSelectedRecords()` 方法。然后，你可以在操作中使用 `$selectedRecords` 参数来访问选中的记录：
 
@@ -174,7 +174,7 @@ BulkAction::make('delete')
 
 ### 批量操作通知
 
-批量操作完成后，你可能希望向用户发送通知，总结操作的成功情况。如果你对单个记录使用[授权](#authorizing-bulk-actions)，这尤其有用，因为用户可能不知道实际影响了多少记录。
+批量操作完成后，你可能希望向用户发送通知，总结操作的成功情况。如果你对单个记录使用[授权](#授权批量操作)，这尤其有用，因为用户可能不知道实际影响了多少记录。
 
 要在批量操作完成后发送通知，你应该设置 `successNotificationTitle()` 和 `failureNotificationTitle()`：
 
@@ -239,7 +239,7 @@ class UserPolicy
 
 #### 报告批量操作处理中的失败
 
-除了[单个记录授权](#authorizing-bulk-actions)消息外，你还可以报告批量操作处理本身的失败。如果你想为每个因特定原因处理失败的记录提供消息（即使授权通过），这很有用。这是通过将 `Action` 实例注入到 `action()` 函数中，并调用其 `reportBulkProcessingFailure()` 方法来完成的，传递一个类似于 `DenyResponse` 的键和消息函数：
+除了[单个记录授权](#授权批量操作)消息外，你还可以报告批量操作处理本身的失败。如果你想为每个因特定原因处理失败的记录提供消息（即使授权通过），这很有用。这是通过将 `Action` 实例注入到 `action()` 函数中，并调用其 `reportBulkProcessingFailure()` 方法来完成的，传递一个类似于 `DenyResponse` 的键和消息函数：
 
 ```php
 use Filament\Actions\BulkAction;
@@ -451,7 +451,7 @@ BulkAction::make()
 
 ## 头部操作
 
-操作和[批量操作](#bulk-actions)都可以渲染在表格的头部。你可以将它们放在 `$table->headerActions()` 方法中：
+操作和[批量操作](#批量操作)都可以渲染在表格的头部。你可以将它们放在 `$table->headerActions()` 方法中：
 
 ```php
 use Filament\Tables\Table;
@@ -471,7 +471,7 @@ public function table(Table $table): Table
 
 ## 工具栏操作
 
-操作和[批量操作](#bulk-actions)都可以渲染在表格的工具栏中。你可以将它们放在 `$table->toolbarActions()` 方法中：
+操作和[批量操作](#批量操作)都可以渲染在表格的工具栏中。你可以将它们放在 `$table->toolbarActions()` 方法中：
 
 ```php
 use Filament\Tables\Table;
@@ -491,7 +491,7 @@ public function table(Table $table): Table
 
 ## 列操作
 
-操作可以添加到列中，使得当该列中的单元格被点击时，它充当操作的触发器。你可以在文档中了解更多关于[列操作](columns/overview#triggering-actions)的信息。
+操作可以添加到列中，使得当该列中的单元格被点击时，它充当操作的触发器。你可以在文档中了解更多关于[列操作](columns/overview#触发操作)的信息。
 
 ## 分组操作
 

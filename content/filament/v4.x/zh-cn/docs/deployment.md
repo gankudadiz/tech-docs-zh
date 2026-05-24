@@ -12,7 +12,7 @@ title: 部署到生产环境
 
 当 Filament 检测到应用的 `APP_ENV` 不是 `local` 时，会要求你为用户设置访问授权。这是为了确保只有被授权的用户才能在生产环境中访问你的 Filament 面板，同时保持本地环境的易用性。
 
-要授权用户访问面板，请参阅[用户章节中的指南](users/overview#authorizing-access-to-the-panel)。
+要授权用户访问面板，请参阅[用户章节中的指南](users/overview#授权访问面板)。
 
 :::warning
 如果你未执行上述步骤，且你的用户模型没有实现 `FilamentUser` 接口，在生产环境中将没有任何用户能够登录面板。

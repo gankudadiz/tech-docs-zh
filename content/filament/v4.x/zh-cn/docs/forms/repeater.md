@@ -575,7 +575,7 @@ Repeater::make('qualifications')
 
 ![具有 2 列网格布局的重复器](/assets/filament/v4.x/screenshots/images/light/forms/fields/repeater/grid.jpg)
 
-该方法接受与[网格](../schemas/layouts#grid-system)的 `columns()` 方法相同的选项。这允许你在不同断点处响应式地自定义网格列数。
+该方法接受与[网格](../schemas/layouts#网格系统)的 `columns()` 方法相同的选项。这允许你在不同断点处响应式地自定义网格列数。
 
 :::tip
 `grid()` 方法除了接受静态值外，还接受一个函数来动态计算。你可以将各种工具注入到函数参数中。

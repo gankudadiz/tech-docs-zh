@@ -87,7 +87,7 @@ SelectFilter::make('status')
 
 ### 在表格的分组标题中使用枚举标签
 
-如果你在 Table Builder 中使用[分组](../tables/grouping)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasLabel` 接口显示枚举的标签而不是其原始值。标签将显示为[每个组的标题](../tables/grouping#setting-a-group-title)。
+如果你在 Table Builder 中使用[分组](../tables/grouping)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasLabel` 接口显示枚举的标签而不是其原始值。标签将显示为[每个组的标题](../tables/grouping#设置分组标题)。
 
 ### 在信息列表的文本条目中使用枚举标签
 
@@ -121,11 +121,11 @@ enum Status: string implements HasColor
 
 ### 在表格的文本列中使用枚举颜色
 
-如果你在 Table Builder 中使用 [`TextColumn`](../tables/columns/text)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasColor` 接口以其颜色显示枚举标签。如果在列上使用 [`badge()`](../tables/columns/text#displaying-as-a-badge) 方法，效果最佳。
+如果你在 Table Builder 中使用 [`TextColumn`](../tables/columns/text)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasColor` 接口以其颜色显示枚举标签。如果在列上使用 [`badge()`](../tables/columns/text#显示为徽章) 方法，效果最佳。
 
 ### 在信息列表的文本条目中使用枚举颜色
 
-如果你在信息列表中使用 [`TextEntry`](../infolists/text-entry)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasColor` 接口以其颜色显示枚举标签。如果在条目上使用 [`badge()`](../infolists/text-entry#displaying-as-a-badge) 方法，效果最佳。
+如果你在信息列表中使用 [`TextEntry`](../infolists/text-entry)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasColor` 接口以其颜色显示枚举标签。如果在条目上使用 [`badge()`](../infolists/text-entry#显示为徽章) 方法，效果最佳。
 
 ### 在表单的切换按钮字段中使用枚举颜色
 
@@ -162,11 +162,11 @@ enum Status: string implements HasIcon
 
 ### 在表格的文本列中使用枚举图标
 
-如果你在 Table Builder 中使用 [`TextColumn`](../tables/columns/text)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasIcon` 接口在枚举标签旁边显示枚举的图标。如果在列上使用 [`badge()`](../tables/columns/text#displaying-as-a-badge) 方法，效果最佳。
+如果你在 Table Builder 中使用 [`TextColumn`](../tables/columns/text)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasIcon` 接口在枚举标签旁边显示枚举的图标。如果在列上使用 [`badge()`](../tables/columns/text#显示为徽章) 方法，效果最佳。
 
 ### 在信息列表的文本条目中使用枚举图标
 
-如果你在信息列表中使用 [`TextEntry`](../infolists/text-entry)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasIcon` 接口在枚举标签旁边显示枚举的图标。如果在条目上使用 [`badge()`](../infolists/text-entry#displaying-as-a-badge) 方法，效果最佳。
+如果你在信息列表中使用 [`TextEntry`](../infolists/text-entry)，并且它在 Eloquent 模型中被转换为枚举，Filament 将自动使用 `HasIcon` 接口在枚举标签旁边显示枚举的图标。如果在条目上使用 [`badge()`](../infolists/text-entry#显示为徽章) 方法，效果最佳。
 
 ### 在表单的切换按钮字段中使用枚举图标
 
@@ -207,7 +207,7 @@ enum Status: string implements HasLabel, HasDescription
 
 ### 在表单字段描述中使用枚举描述
 
-`HasDescription` 接口可用于从枚举生成描述数组，其中枚举的值是键，枚举的描述是值。这适用于表单字段，如 [`Radio`](../forms/radio#setting-option-descriptions) 和 [`CheckboxList`](../forms/checkbox-list#setting-option-descriptions)：
+`HasDescription` 接口可用于从枚举生成描述数组，其中枚举的值是键，枚举的描述是值。这适用于表单字段，如 [`Radio`](../forms/radio#设置选项描述) 和 [`CheckboxList`](../forms/checkbox-list#设置选项描述)：
 
 ```php
 use Filament\Forms\Components\CheckboxList;

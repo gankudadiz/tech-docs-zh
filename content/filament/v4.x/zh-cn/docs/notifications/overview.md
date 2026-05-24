@@ -45,7 +45,7 @@ Notification::make()
 标题文本可以包含基本的安全 HTML 元素。要使用 Markdown 生成安全的 HTML，可以使用 [`Str::markdown()` 辅助函数](https://laravel.com/docs/strings#method-str-markdown)：`title(Str::markdown('Saved **successfully**'))`
 
 :::danger
-Filament 内置的 HTML 净化器允许内联 `style` 属性，以支持富文本格式功能，如字体颜色、文本高亮和图片尺寸调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从净化后的 HTML 中移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。详见[安全文档](../advanced/security#customizing-the-sanitizer)了解如何自定义净化器。
+Filament 内置的 HTML 净化器允许内联 `style` 属性，以支持富文本格式功能，如字体颜色、文本高亮和图片尺寸调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从净化后的 HTML 中移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。详见[安全文档](../advanced/security#自定义清理器)了解如何自定义净化器。
 :::
 
 或使用 JavaScript：

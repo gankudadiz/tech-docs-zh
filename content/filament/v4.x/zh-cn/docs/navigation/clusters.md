@@ -13,7 +13,7 @@ title: 集群
 - 一个新的导航项会添加到导航中，它是集群中第一个资源或页面的链接。
 - 资源或页面的各个导航项在主导航中不再可见。
 - 每个集群中的资源或页面会添加一个新的子导航 UI，其中包含集群中资源或页面的导航项。
-- 集群中的资源和页面会获得一个新的 URL，以集群名称为前缀。如果你正确生成了[资源](../resources#generating-urls-to-resource-pages)和[页面](custom-pages#generating-urls-to-pages)的 URL，那么此更改应该会自动为你处理。
+- 集群中的资源和页面会获得一个新的 URL，以集群名称为前缀。如果你正确生成了[资源](../resources#generating-urls-to-resource-pages)和[页面](custom-pages#生成页面-url)的 URL，那么此更改应该会自动为你处理。
 - 集群的名称位于集群中所有资源和页面的面包屑中。点击它时，你会被带到集群中的第一个资源或页面。
 
 ## 创建集群

@@ -98,7 +98,7 @@ CheckboxList::make('technologies')
 
 ![两列的复选框列表](/assets/filament/v4.x/screenshots/images/light/forms/fields/checkbox-list/columns.jpg)
 
-该方法接受与[网格](../schemas/layouts#grid-system)的 `columns()` 方法相同的选项。这允许你根据不同的响应式断点自定义列数。
+该方法接受与[网格](../schemas/layouts#网格系统)的 `columns()` 方法相同的选项。这允许你根据不同的响应式断点自定义列数。
 
 ### 设置网格方向
 
@@ -226,7 +226,7 @@ CheckboxList::make('technologies')
     ->in(fn (CheckboxList $component): array => array_keys($component->getEnabledOptions()))
 ```
 
-有关 `in()` 函数的更多信息，请参阅[验证文档](validation#in)。
+有关 `in()` 函数的更多信息，请参阅[验证文档](validation#在中)。
 
 ## 允许选项标签中的 HTML
 
@@ -274,7 +274,7 @@ CheckboxList::make('technology')
 
 ## 与 Eloquent 关联集成
 
-> 如果你在 Livewire 组件中构建表单，请确保已设置[表单的模型](../components/form#setting-a-form-model)。否则，Filament 不知道使用哪个模型来检索关联。
+> 如果你在 Livewire 组件中构建表单，请确保已设置[表单的模型](../components/form#设置表单模型)。否则，Filament 不知道使用哪个模型来检索关联。
 
 你可以使用 `CheckboxList` 的 `relationship()` 方法指向一个 `BelongsToMany` 关联。Filament 将从关联中加载选项，并在表单提交时将它们保存回关联的中间表。`titleAttribute` 是用于为每个选项生成标签的列名：
 

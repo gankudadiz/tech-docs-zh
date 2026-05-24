@@ -31,7 +31,7 @@ Filament 表格列**不是** Livewire 组件。在表格列类上定义公共属
 
 ## 在 Blade 视图中访问列的状态
 
-在 Blade 视图中，你可以使用 `$getState()` 函数访问列的[状态](overview#column-content-state)：
+在 Blade 视图中，你可以使用 `$getState()` 函数访问列的[状态](overview#列内容状态)：
 
 ```blade
 <div>
@@ -125,7 +125,7 @@ AudioPlayerColumn::make('recording')
 
 ## 在自定义列配置方法中允许实用工具注入
 
-[实用工具注入](overview#column-utility-injection)是 Filament 的强大功能，允许用户使用可以访问各种实用工具的函数来配置组件。你可以通过确保配置的参数类型和属性类型允许用户传递 `Closure` 来允许实用工具注入。在 getter 方法中，你应该将配置值传递给 `$this->evaluate()` 方法，如果用户传递了函数，它会将实用工具注入到用户的函数中，如果是静态值则返回该值：
+[实用工具注入](overview#列实用工具注入)是 Filament 的强大功能，允许用户使用可以访问各种实用工具的函数来配置组件。你可以通过确保配置的参数类型和属性类型允许用户传递 `Closure` 来允许实用工具注入。在 getter 方法中，你应该将配置值传递给 `$this->evaluate()` 方法，如果用户传递了函数，它会将实用工具注入到用户的函数中，如果是静态值则返回该值：
 
 ```php
 use Closure;
@@ -151,7 +151,7 @@ class AudioPlayerColumn extends Column
 }
 ```
 
-现在，你可以向 `speed()` 方法传递静态值或函数，并[注入任何实用工具](overview#component-utility-injection)作为参数：
+现在，你可以向 `speed()` 方法传递静态值或函数，并[注入任何实用工具](overview#列实用工具注入)作为参数：
 
 ```php
 use App\Filament\Tables\Columns\AudioPlayerColumn;

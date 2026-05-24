@@ -2,7 +2,7 @@
 title: 快速入门
 ---
 
-[安装 Filament](introduction/installation#installing-the-panel-builder) 后，你就可以开始构建应用了。
+[安装 Filament](introduction/installation#安装面板构建器) 后，你就可以开始构建应用了。
 
 :::info
     本指南适用于 Filament 面板构建器。如果你想在面板之外使用 Filament UI 组件，请访问[组件](components/overview)文档。

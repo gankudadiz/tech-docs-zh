@@ -35,7 +35,7 @@ public static function canAccess(): bool
 
 操作是可以在页面上执行任务或访问 URL 的按钮。你可以[在这里](../actions)阅读更多关于它们的功能。
 
-由于所有页面都是 Livewire 组件，你可以在任何地方[添加操作](../components/action#adding-the-action)。页面已经为你设置好了 `InteractsWithActions` trait、`HasActions` 接口和 `<x-filament-actions::modals />` Blade 组件。
+由于所有页面都是 Livewire 组件，你可以在任何地方[添加操作](../components/action#添加操作)。页面已经为你设置好了 `InteractsWithActions` trait、`HasActions` 接口和 `<x-filament-actions::modals />` Blade 组件。
 
 ### 头部操作
 

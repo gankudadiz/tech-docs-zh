@@ -225,7 +225,7 @@ npx @tailwindcss/upgrade
 
 如果你在自己的 Blade 视图、Livewire 组件或其他代码中使用了 Tailwind 类，且没有自定义主题，这些样式将不再生效。要解决此问题，你需要创建一个自定义主题。
 
-运行 `php artisan make:filament-theme` 并按照[主题文档](styling/overview#creating-a-custom-theme)操作。在你的主题 CSS 文件中，添加指向使用 Tailwind 类的文件的 `@source` 条目：
+运行 `php artisan make:filament-theme` 并按照[主题文档](styling/overview#创建自定义主题)操作。在你的主题 CSS 文件中，添加指向使用 Tailwind 类的文件的 `@source` 条目：
 
 ```css
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
@@ -482,7 +482,7 @@ Filament v4 重命名了资源页面上使用的一些 URL 参数，使它们在
 
 在 v3 中使用租户功能时，Filament 仅将资源查询限定在当前租户范围内：用于渲染资源表单、解析 URL 参数和获取全局搜索结果。在面板中，许多其他查询默认不会被限定范围，开发者必须手动限定。虽然这是一个有文档说明的功能，但它给开发者带来了大量额外工作。
 
-在 v4 中，Filament 会自动将面板中的所有查询限定在当前租户范围内，并使用模型事件自动将新记录与当前租户关联。这意味着在大多数情况下，你不再需要手动限定查询范围或关联新的 Eloquent 记录。仍有一些重要的注意事项，因此[文档](users/tenancy#tenancy-security)已更新以反映这些变化。
+在 v4 中，Filament 会自动将面板中的所有查询限定在当前租户范围内，并使用模型事件自动将新记录与当前租户关联。这意味着在大多数情况下，你不再需要手动限定查询范围或关联新的 Eloquent 记录。仍有一些重要的注意事项，因此[文档](users/tenancy#租户安全)已更新以反映这些变化。
 
 </details>
 
@@ -515,7 +515,7 @@ Radio::configureUsing(fn (Radio $radio) => $radio
 
 在 v4 中，它们会重试 3 次，每次重试之间有 60 秒的退避间隔。
 
-此行为可以在[导入器](actions/import#customizing-the-import-job-retries)和[导出器](actions/export#customizing-the-export-job-retries)类中自定义。
+此行为可以在[导入器](actions/import#自定义导入作业重试)和[导出器](actions/export#自定义导出作业重试)类中自定义。
 
 </details>
 

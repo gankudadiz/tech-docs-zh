@@ -4,7 +4,7 @@ title: 自定义数据
 
 ## 简介
 
-[Filament 的表格构建器](overview/#introduction)最初设计用于在 Laravel 应用程序中使用 [Eloquent 模型](https://laravel.com/docs/eloquent)直接从 SQL 数据库渲染数据。Filament 表格中的每一行对应数据库中的一行，由一个 Eloquent 模型实例表示。
+[Filament 的表格构建器](overview/#简介)最初设计用于在 Laravel 应用程序中使用 [Eloquent 模型](https://laravel.com/docs/eloquent)直接从 SQL 数据库渲染数据。Filament 表格中的每一行对应数据库中的一行，由一个 Eloquent 模型实例表示。
 
 然而，这种设置并非总是可行或实用的。你可能需要显示未存储在数据库中的数据——或者存储了但无法通过 Eloquent 访问的数据。
 
@@ -52,7 +52,7 @@ public function table(Table $table): Table
 
 表格中的[列](columns)与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)时的工作方式类似，但有一个关键区别：列名表示 `records()` 函数返回的数组中的键，而不是模型属性或关联关系。
 
-在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](columns#setting-the-state-of-a-column) 函数定义列，你可以这样做：
+在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](columns#设置列的状态) 函数定义列，你可以这样做：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -65,7 +65,7 @@ TextColumn::make('is_featured')
 
 ### 排序
 
-Filament 的内置[排序](columns#sorting)功能使用 SQL 对数据进行排序。使用自定义数据时，你需要自己处理排序。
+Filament 的内置[排序](columns#排序)功能使用 SQL 对数据进行排序。使用自定义数据时，你需要自己处理排序。
 
 要访问当前排序的列和方向，你可以将 `$sortColumn` 和 `$sortDirection` 注入到 `records()` 函数中。如果没有应用排序，这些变量为 `null`。
 
@@ -106,7 +106,7 @@ public function table(Table $table): Table
 
 ### 搜索
 
-Filament 的内置[搜索](columns#searching)功能使用 SQL 搜索数据。使用自定义数据时，你需要自己处理搜索。
+Filament 的内置[搜索](columns#搜索)功能使用 SQL 搜索数据。使用自定义数据时，你需要自己处理搜索。
 
 要访问当前搜索查询，你可以将 `$search` 注入到 `records()` 函数中。如果没有正在使用的搜索查询，此变量为 `null`。
 
@@ -151,7 +151,7 @@ public function table(Table $table): Table
 
 #### 搜索单个列
 
-[单个列搜索](#searching-individually)功能提供了一种为每列单独渲染搜索字段的方式，允许更精确的过滤。使用自定义数据时，你需要自己实现此功能。
+[单个列搜索](#搜索单个列)功能提供了一种为每列单独渲染搜索字段的方式，允许更精确的过滤。使用自定义数据时，你需要自己实现此功能。
 
 你可以将 `$columnSearches` 数组注入到 `records()` 函数中，而不是注入 `$search`，该数组包含每列的搜索查询。
 
@@ -277,11 +277,11 @@ public function table(Table $table): Table
 
 过滤器值不能直接通过 `$filters['filterName']` 访问。相反，每个过滤器包含一个或多个表单字段，这些字段名称用作过滤器数据数组中的键。例如：
 
-- 没有自定义模式的[复选框](filters/overview#introduction)或[开关过滤器](filters/overview#using-a-toggle-button-instead-of-a-checkbox)（例如 featured）使用 `isActive` 作为键：`$filters['featured']['isActive']`
+- 没有自定义模式的[复选框](filters/overview#简介)或[开关过滤器](filters/overview#使用开关按钮代替复选框)（例如 featured）使用 `isActive` 作为键：`$filters['featured']['isActive']`
 
-- [选择过滤器](filters/select#introduction)（例如 author）使用 `value`：`$filters['author']['value']`
+- [选择过滤器](filters/select#简介)（例如 author）使用 `value`：`$filters['author']['value']`
 
-- [自定义模式过滤器](filters/custom#custom-filter-schemas)（例如 creation_date）使用实际的表单字段名称。如果字段名为 `date`，则这样访问：`$filters['creation_date']['date']`
+- [自定义模式过滤器](filters/custom#自定义过滤器模式)（例如 creation_date）使用实际的表单字段名称。如果字段名为 `date`，则这样访问：`$filters['creation_date']['date']`
 
 :::info
 看起来 Filament 应该为你过滤数据，但在许多情况下，最好让你的数据源（如自定义查询或 API 调用）来处理过滤。
@@ -289,7 +289,7 @@ public function table(Table $table): Table
 
 ## 分页
 
-Filament 的内置[分页](overview#pagination)功能使用 SQL 对数据进行分页。使用自定义数据时，你需要自己处理分页。
+Filament 的内置[分页](overview#分页)功能使用 SQL 对数据进行分页。使用自定义数据时，你需要自己处理分页。
 
 `$page` 和 `$recordsPerPage` 参数被注入到 `records()` 函数中，你可以使用它们对数据进行分页。`records()` 函数应返回一个 `LengthAwarePaginator`，Filament 将为你处理分页链接和其他分页功能：
 
@@ -491,11 +491,11 @@ public function table(Table $table): Table
 
 ## 使用外部 API 作为表格数据源
 
-[Filament 的表格构建器](overview/#introduction)允许你使用从任何外部源获取的数据填充表格——而不仅仅是 [Eloquent 模型](https://laravel.com/docs/eloquent)。当你想显示来自 REST API 或第三方服务的数据时，这特别有用。
+[Filament 的表格构建器](overview/#简介)允许你使用从任何外部源获取的数据填充表格——而不仅仅是 [Eloquent 模型](https://laravel.com/docs/eloquent)。当你想显示来自 REST API 或第三方服务的数据时，这特别有用。
 
 ### 从外部 API 获取数据
 
-下面的示例演示了如何使用 [DummyJSON](https://dummyjson.com)（一个用于占位符 JSON 的免费假 REST API）获取数据，并在 [Filament 表格](overview/#introduction)中显示它：
+下面的示例演示了如何使用 [DummyJSON](https://dummyjson.com)（一个用于占位符 JSON 的免费假 REST API）获取数据，并在 [Filament 表格](overview/#简介)中显示它：
 
 ```php
 use Filament\Tables\Columns\IconColumn;
@@ -527,14 +527,14 @@ public function table(Table $table): Table
 :::
 
 :::info
-DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#external-api-pagination) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
+DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-api-分页) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
 :::
 
 #### 使用 API 数据设置列的状态
 
-[列](#columns)映射到 `records()` 函数返回的数组键。
+[列](#列)映射到 `records()` 函数返回的数组键。
 
-在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](columns/overview#setting-the-state-of-a-column) 函数定义列，你可以这样做：
+在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](columns/overview#设置列的状态) 函数定义列，你可以这样做：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -551,12 +551,12 @@ TextColumn::make('category_brand')
 ```
 
 :::tip
-你可以使用 [`formatStateUsing()`](columns/text#formatting) 方法来格式化文本列的状态，而不改变状态本身。
+你可以使用 [`formatStateUsing()`](columns/text#格式化) 方法来格式化文本列的状态，而不改变状态本身。
 :::
 
 ### 外部 API 排序
 
-即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[排序](columns#sorting)。下面的示例演示了如何将排序参数（`sort_column` 和 `sort_direction`）传递给 [DummyJSON](https://dummyjson.com/docs/products#products-sort) API 以及 API 如何处理它们。
+即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[排序](columns#排序)。下面的示例演示了如何将排序参数（`sort_column` 和 `sort_direction`）传递给 [DummyJSON](https://dummyjson.com/docs/products#products-sort) API 以及 API 如何处理它们。
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -594,12 +594,12 @@ public function table(Table $table): Table
 :::
 
 :::info
-DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#external-api-pagination) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
+DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-api-分页) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
 :::
 
 ### 外部 API 搜索
 
-即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[搜索](columns#searching)。下面的示例演示了如何将 `search` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
+即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[搜索](columns#搜索)。下面的示例演示了如何将 `search` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -636,7 +636,7 @@ public function table(Table $table): Table
 :::
 
 :::info
-DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#external-api-pagination) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
+DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-api-分页) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
 :::
 
 ### 外部 API 过滤
@@ -692,12 +692,12 @@ public function table(Table $table): Table
 :::
 
 :::info
-DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#external-api-pagination) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
+DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-api-分页) 查询参数来分页所有项目，或使用 [`limit=0`](https://dummyjson.com/docs/products#products-limit_skip) 获取所有项目。
 :::
 
 ### 外部 API 分页
 
-使用外部 API 作为表格数据源时，你可以启用[分页](overview#pagination)。Filament 将当前页面和每页记录数传递给你的 `records()` 函数。下面的示例演示了如何手动构建 `LengthAwarePaginator` 并从 [DummyJSON](https://dummyjson.com/docs/products#products-limit_skip) API 获取分页数据，该 API 使用 `limit` 和 `skip` 参数进行分页：
+使用外部 API 作为表格数据源时，你可以启用[分页](overview#分页)。Filament 将当前页面和每页记录数传递给你的 `records()` 函数。下面的示例演示了如何手动构建 `LengthAwarePaginator` 并从 [DummyJSON](https://dummyjson.com/docs/products#products-limit_skip) API 获取分页数据，该 API 使用 `limit` 和 `skip` 参数进行分页：
 
 ```php
 public function table(Table $table): Table
@@ -742,13 +742,13 @@ public function table(Table $table): Table
 
 在使用外部 API 的表格中使用[操作](../actions/overview)时，过程与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)几乎相同。主要区别是操作回调函数中的 `$record` 参数将是 `array` 而不是 `Model` 实例。
 
-Filament 提供了多种[内置操作](../actions/overview#available-actions)，你可以在应用程序中使用。但是，你不限于这些。你可以创建针对应用程序需求的[自定义操作](../actions/overview#introduction)。
+Filament 提供了多种[内置操作](../actions/overview#可用的操作)，你可以在应用程序中使用。但是，你不限于这些。你可以创建针对应用程序需求的[自定义操作](../actions/overview#简介)。
 
 下面的示例演示了如何使用 [DummyJSON](https://dummyjson.com) 作为模拟 API 源来创建和使用外部 API 的操作。
 
 #### 外部 API 创建操作示例
 
-此示例中的创建操作提供了一个[模态框表单](../actions/modals#rendering-a-form-in-a-modal)，允许用户使用外部 API 创建新产品。当表单提交时，会向 API 发送 `POST` 请求以创建新产品。
+此示例中的创建操作提供了一个[模态框表单](../actions/modals#在模态框中渲染表单)，允许用户使用外部 API 创建新产品。当表单提交时，会向 API 发送 `POST` 请求以创建新产品。
 
 ```php
 use Filament\Actions\Action;
@@ -811,8 +811,8 @@ public function table(Table $table): Table
 }
 ```
 
-- [`modalHeading()`](../actions/modals#customizing-the-modals-heading-description-and-submit-action-label) 设置操作触发时出现的模态框标题。
-- [`schema()`](../actions/modals#rendering-a-schema-in-a-modal) 定义模态框中显示的表单字段。
+- [`modalHeading()`](../actions/modals#自定义模态框的标题描述和提交操作标签) 设置操作触发时出现的模态框标题。
+- [`schema()`](../actions/modals#在模态框中渲染-schema) 定义模态框中显示的表单字段。
 - `action()` 定义用户提交表单时将执行的逻辑。
 
 :::warning
@@ -834,7 +834,7 @@ Action::make('create')
 
 #### 外部 API 编辑操作示例
 
-此示例中的编辑操作提供了一个[模态框表单](../actions/modals#rendering-a-form-in-a-modal)，用于编辑从外部 API 获取的产品详情。用户可以更新产品标题和类别等字段，更改将使用 `PUT` 请求发送到外部 API。
+此示例中的编辑操作提供了一个[模态框表单](../actions/modals#在模态框中渲染表单)，用于编辑从外部 API 获取的产品详情。用户可以更新产品标题和类别等字段，更改将使用 `PUT` 请求发送到外部 API。
 
 ```php
 use Filament\Actions\Action;
@@ -901,9 +901,9 @@ public function table(Table $table): Table
 ```
 
 - `icon()` 定义表格中此操作显示的图标。
-- [`modalHeading()`](../actions/modals#customizing-the-modals-heading-description-and-submit-action-label) 设置操作触发时出现的模态框标题。
-- [`fillForm()`](../actions/modals#filling-the-form-with-existing-data) 自动使用所选记录的现有值填充表单字段。
-- [`schema()`](../actions/modals#rendering-a-schema-in-a-modal) 定义模态框中显示的表单字段。
+- [`modalHeading()`](../actions/modals#自定义模态框的标题描述和提交操作标签) 设置操作触发时出现的模态框标题。
+- [`fillForm()`](../actions/modals#使用现有数据填充表单) 自动使用所选记录的现有值填充表单字段。
+- [`schema()`](../actions/modals#在模态框中渲染-schema) 定义模态框中显示的表单字段。
 - `action()` 定义用户提交表单时将执行的逻辑。
 
 :::warning
@@ -988,10 +988,10 @@ public function table(Table $table): Table
 
 - `color()` 设置操作按钮的颜色。
 - `icon()` 定义表格中此操作显示的图标。
-- [`modalHeading()`](../actions/modals#customizing-the-modals-heading-description-and-submit-action-label) 设置操作触发时出现的模态框标题。
-- [`schema()`](../actions/modals#rendering-a-schema-in-a-modal) 定义模态框中显示的表单字段。
-- [`modalSubmitAction(false)`](../actions/modals#modifying-the-default-modal-footer-action-button) 禁用提交按钮，使其成为只读查看操作。
-- [`modalCancelActionLabel()`](../actions/modals#modifying-the-default-modal-footer-action-button) 自定义关闭按钮的标签。
+- [`modalHeading()`](../actions/modals#自定义模态框的标题描述和提交操作标签) 设置操作触发时出现的模态框标题。
+- [`schema()`](../actions/modals#在模态框中渲染-schema) 定义模态框中显示的表单字段。
+- [`modalSubmitAction(false)`](../actions/modals#修改默认模态框页脚操作按钮) 禁用提交按钮，使其成为只读查看操作。
+- [`modalCancelActionLabel()`](../actions/modals#修改默认模态框页脚操作按钮) 自定义关闭按钮的标签。
 
 :::warning
 这是一个仅供演示的基本示例。在使用 API 时，开发者有责任实现适当的身份验证、授权、验证、错误处理、速率限制和其他最佳实践。
@@ -1069,9 +1069,9 @@ public function table(Table $table): Table
 
 - `color()` 设置操作按钮的颜色。
 - `icon()` 定义表格中此操作显示的图标。
-- [`modalIcon()`](../actions/modals#adding-an-icon-inside-the-modal) 设置确认模态框中显示的图标。
-- [`modalHeading()`](../actions/modals#customizing-the-modals-heading-description-and-submit-action-label) 设置操作触发时出现的模态框标题。
-- [`requiresConfirmation()`](../actions/modals#confirmation-modals) 确保用户必须在执行前确认删除。
+- [`modalIcon()`](../actions/modals#在模态框中添加图标) 设置确认模态框中显示的图标。
+- [`modalHeading()`](../actions/modals#自定义模态框的标题描述和提交操作标签) 设置操作触发时出现的模态框标题。
+- [`requiresConfirmation()`](../actions/modals#确认模态框) 确保用户必须在执行前确认删除。
 - `action()` 定义用户确认提交时将执行的逻辑。
 
 :::warning
@@ -1084,13 +1084,13 @@ public function table(Table $table): Table
 
 ### 外部 API 完整示例
 
-此示例演示了在使用外部 API 作为数据源时如何组合[排序](#external-api-sorting)、[搜索](#external-api-searching)、[类别过滤](#external-api-filtering)和[分页](#external-api-pagination)。此处使用的 API 是 [DummyJSON](https://dummyjson.com)，它单独支持这些功能，但**不允许在单个请求中组合所有这些功能**。这是因为每个功能使用不同的端点：
+此示例演示了在使用外部 API 作为数据源时如何组合[排序](#外部-api-排序)、[搜索](#外部-api-搜索)、[类别过滤](#外部-api-过滤)和[分页](#外部-api-分页)。此处使用的 API 是 [DummyJSON](https://dummyjson.com)，它单独支持这些功能，但**不允许在单个请求中组合所有这些功能**。这是因为每个功能使用不同的端点：
 
-- [搜索](#external-api-searching)通过 `/products/search` 端点使用 `q` 参数执行。
-- [类别过滤](#external-api-filtering)使用 `/products/category/{category}` 端点。
-- [排序](#external-api-sorting)通过向 `/products` 端点发送 `sortBy` 和 `order` 参数来处理。
+- [搜索](#外部-api-搜索)通过 `/products/search` 端点使用 `q` 参数执行。
+- [类别过滤](#外部-api-过滤)使用 `/products/category/{category}` 端点。
+- [排序](#外部-api-排序)通过向 `/products` 端点发送 `sortBy` 和 `order` 参数来处理。
 
-唯一可以与上述每个功能组合的功能是[分页](#external-api-pagination)，因为 `limit` 和 `skip` 参数在所有三个端点中都受支持。
+唯一可以与上述每个功能组合的功能是[分页](#外部-api-分页)，因为 `limit` 和 `skip` 参数在所有三个端点中都受支持。
 
 ```php
 use Filament\Tables\Columns\ImageColumn;

@@ -132,7 +132,7 @@ livewire(ManageInvoices::class)
 
 ## 测试资源的 `getFormActions()`
 
-有关如何测试资源页面 `getFormActions()` 中自定义操作的详细信息，请参阅[测试资源](testing-resources#testing-create--edit-page-getformactions)文档。
+有关如何测试资源页面 `getFormActions()` 中自定义操作的详细信息，请参阅[测试资源](testing-resources#测试创建编辑页面的-getformactions)文档。
 
 ## 测试操作模态框中的表单
 

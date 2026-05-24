@@ -65,7 +65,7 @@ class OrderResourceConfiguration extends ResourceConfiguration
 }
 ```
 
-配置类遵循与 Filament 其余部分相同的[流畅 API 模式](../plugins/panel-plugins#configuring-plugins-per-panel) - setter 方法返回 `$this` 以便链接，getter 方法检索存储的值。
+配置类遵循与 Filament 其余部分相同的[流畅 API 模式](../plugins/panel-plugins#每个面板配置插件) - setter 方法返回 `$this` 以便链接，getter 方法检索存储的值。
 
 :::tip
 `ResourceConfiguration` 基类已经包含一个用于覆盖 URL slug 的 `slug()` 方法。你只需要添加特定于插件的属性。
@@ -126,7 +126,7 @@ $panel->resources([
 ```
 
 :::tip
-如果你正在构建[插件类](panel-plugins#configuring-the-panel-with-a-plugin-class)，你会在 `register(Panel $panel)` 方法中注册配置。有关完整示例，请参阅[在插件类中使用可配置资源](#using-configurable-resources-in-a-plugin-class)。
+如果你正在构建[插件类](panel-plugins#使用插件类配置面板)，你会在 `register(Panel $panel)` 方法中注册配置。有关完整示例，请参阅[在插件类中使用可配置资源](#在插件类中使用可配置资源)。
 :::
 
 ### URL slug

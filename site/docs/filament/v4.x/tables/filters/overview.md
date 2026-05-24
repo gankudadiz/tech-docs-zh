@@ -30,10 +30,10 @@ public function table(Table $table): Table
 
 默认情况下，使用 `Filter::make()` 方法会渲染一个复选框表单组件。当复选框打开时，`query()` 将被激活。
 
-- 你也可以[用开关按钮替换复选框](#using-a-toggle-button-instead-of-a-checkbox)。
+- 你也可以[用开关按钮替换复选框](#使用开关按钮代替复选框)。
 - 你可以使用[选择过滤器](select)允许用户从选项列表中选择，并使用选择进行筛选。
 - 你可以使用[三态过滤器](ternary)将复选框替换为选择字段，允许用户在 3 种状态之间选择——通常是"true"、"false"和"blank"。这对于筛选布尔列很有用。
-- [回收站过滤器](ternary#filtering-soft-deletable-records)是一个预构建的三态过滤器，允许你筛选可软删除的记录。
+- [回收站过滤器](ternary#筛选可软删除的记录)是一个预构建的三态过滤器，允许你筛选可软删除的记录。
 - 使用[查询构建器](query-builder)，用户可以创建复杂的过滤器集合，具有用于组合约束的高级用户界面。
 - 你可以使用其他表单字段构建[自定义过滤器](custom)，做任何你想做的事。
 
@@ -80,7 +80,7 @@ Filter::make('is_featured')
 
 ### 自定义内置过滤器表单字段
 
-无论你使用复选框、[开关](#using-a-toggle-button-instead-of-a-checkbox)还是[选择](select)，你都可以使用 `modifyFormFieldUsing()` 方法自定义过滤器使用的内置表单字段。该方法接受一个带有 `$field` 参数的函数，该参数给你访问表单字段对象以进行自定义：
+无论你使用复选框、[开关](#使用开关按钮代替复选框)还是[选择](select)，你都可以使用 `modifyFormFieldUsing()` 方法自定义过滤器使用的内置表单字段。该方法接受一个带有 `$field` 参数的函数，该参数给你访问表单字段对象以进行自定义：
 
 ```php
 use Filament\Forms\Components\Checkbox;
@@ -103,7 +103,7 @@ Filter::make('is_featured')
     ->default()
 ```
 
-如果你使用[选择过滤器](select)，请访问[默认应用选择过滤器章节](select#applying-select-filters-by-default)。
+如果你使用[选择过滤器](select)，请访问[默认应用选择过滤器章节](select#默认应用选择过滤器)。
 
 ## 在用户会话中持久化过滤器
 

@@ -75,7 +75,7 @@ public function table(Table $table): Table
 
 ![带模态框过滤器的表格](/assets/filament/v4.x/screenshots/images/light/tables/filters/modal.jpg)
 
-你可以使用[触发操作 API](overview#customizing-the-filters-trigger-action)来[自定义模态框](../../actions/modals)，包括[使用 `slideOver()`](../../actions/modals#using-a-slide-over-instead-of-a-modal)。
+你可以使用[触发操作 API](overview#自定义过滤器触发操作)来[自定义模态框](../../actions/modals)，包括[使用 `slideOver()`](../../actions/modals#使用滑出式面板代替模态框)。
 
 ## 在表格内容上方显示过滤器
 

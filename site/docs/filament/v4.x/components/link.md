@@ -174,7 +174,7 @@ Link 组件用于渲染一个可点击的链接，可以执行某个操作：
 </x-filament::link>
 ```
 
-你可以使用 `badge-color` 属性[更改徽章颜色](badge#changing-the-color-of-the-badge)：
+你可以使用 `badge-color` 属性[更改徽章颜色](badge#更改徽章的颜色)：
 
 ```blade
 <x-filament::link badge-color="danger">

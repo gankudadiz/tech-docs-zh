@@ -20,9 +20,9 @@ Filament 提供了多种管理应用中关联关系的方式。你应该使用�
     这些适用于 `BelongsTo`、`MorphTo` 和 `BelongsToMany` 关联关系。
 :::
 
-使用 [select](../forms/select#integrating-with-an-eloquent-relationship) 时，用户可以从现有记录列表中进行选择。你还可以[添加一个按钮，允许在模态框内创建新记录](../forms/select#creating-new-records)，而无需离开页面。
+使用 [select](../forms/select#与-eloquent-关联集成) 时，用户可以从现有记录列表中进行选择。你还可以[添加一个按钮，允许在模态框内创建新记录](../forms/select#在模态框中创建新选项)，而无需离开页面。
 
-当 `BelongsToMany` 关联关系配合 select 使用时，你可以选择多个选项，而不仅仅是一个。提交表单时，记录会自动添加到你的中间表中。如果你愿意，可以用简单的[复选框列表](../forms/checkbox-list#integrating-with-an-eloquent-relationship)替换多选下拉框。两个组件的工作方式相同。
+当 `BelongsToMany` 关联关系配合 select 使用时，你可以选择多个选项，而不仅仅是一个。提交表单时，记录会自动添加到你的中间表中。如果你愿意，可以用简单的[复选框列表](../forms/checkbox-list#与-eloquent-关联集成)替换多选下拉框。两个组件的工作方式相同。
 
 ### Repeater - 在所有者表单内对多个关联记录进行 CRUD
 
@@ -30,7 +30,7 @@ Filament 提供了多种管理应用中关联关系的方式。你应该使用�
     这些适用于 `HasMany` 和 `MorphMany` 关联关系。
 :::
 
-[Repeater](../forms/repeater#integrating-with-an-eloquent-relationship)是标准的表单组件，可以渲染一组可无限重复的字段。它们可以连接到关联关系，从而自动从关联表中读取、创建、更新和删除记录。它们位于主表单 schema 内，可以在资源页面中使用，也可以嵌套在操作模态框内。
+[Repeater](../forms/repeater#与-eloquent-关联集成)是标准的表单组件，可以渲染一组可无限重复的字段。它们可以连接到关联关系，从而自动从关联表中读取、创建、更新和删除记录。它们位于主表单 schema 内，可以在资源页面中使用，也可以嵌套在操作模态框内。
 
 从用户体验角度来看，此解决方案仅适用于关联模型只有少量字段的情况。否则，表单会变得非常长。
 
@@ -40,7 +40,7 @@ Filament 提供了多种管理应用中关联关系的方式。你应该使用�
     这些适用于 `BelongsTo`、`HasOne` 和 `MorphOne` 关联关系。
 :::
 
-所有布局表单组件（[Grid](../schemas/layouts#grid-component)、[Section](../schemas/sections)、[Fieldset](../schemas/layouts#fieldset-component) 等）都有一个 [`relationship()` 方法](../forms/overview#saving-data-to-relationships)。当你使用它时，该布局内的所有字段都会保存到关联模型，而不是所有者模型：
+所有布局表单组件（[Grid](../schemas/layouts#网格组件)、[Section](../schemas/sections)、[Fieldset](../schemas/layouts#字段集组件) 等）都有一个 [`relationship()` 方法](../forms/overview#保存数据到关系)。当你使用它时，该布局内的所有字段都会保存到关联模型，而不是所有者模型：
 
 ```php
 use Filament\Forms\Components\FileUpload;
@@ -59,7 +59,7 @@ Fieldset::make('Metadata')
 
 在这个例子中，`title`、`description` 和 `image` 会自动从 `metadata` 关联关系加载，并在表单提交时再次保存。如果 `metadata` 记录不存在，它会被自动创建。
 
-此功能在[表单文档](../forms/overview#saving-data-to-relationships)中有更深入的解释。请访问该页面了解更多关于如何使用它的信息。
+此功能在[表单文档](../forms/overview#保存数据到关系)中有更深入的解释。请访问该页面了解更多关于如何使用它的信息。
 
 ## 创建关联管理器
 
@@ -73,7 +73,7 @@ php artisan make:filament-relation-manager CategoryResource posts title
 - `posts` 是你要管理的关联关系名称。
 - `title` 是用于标识帖子的属性名称。
 
-这将创建一个 `CategoryResource/RelationManagers/PostsRelationManager.php` 文件。其中包含一个类，你可以在其中定义关联管理器的[表单](overview#resource-forms)和[表格](overview#resource-tables)：
+这将创建一个 `CategoryResource/RelationManagers/PostsRelationManager.php` 文件。其中包含一个类，你可以在其中定义关联管理器的[表单](overview#资源表单)和[表格](overview#资源表格)：
 
 ```php
 use Filament\Forms;
@@ -670,7 +670,7 @@ public function table(Table $table): Table
 
 ## 导入关联记录
 
-[`ImportAction`](../actions/import) 可以添加到关联管理器的头部来导入记录。在这种情况下，你可能希望告诉导入器这些新记录属于哪个所有者。你可以使用[导入选项](../actions/import#using-import-options)来传递所有者记录的 ID：
+[`ImportAction`](../actions/import) 可以添加到关联管理器的头部来导入记录。在这种情况下，你可能希望告诉导入器这些新记录属于哪个所有者。你可以使用[导入选项](../actions/import#使用导入选项)来传递所有者记录的 ID：
 
 ```php
 ImportAction::make()
@@ -710,7 +710,7 @@ protected function afterSave(): void
 $this->getOwnerRecord()
 ```
 
-但是，如果你在 `static` 方法（如 `form()` 或 `table()`）内，`$this` 是不可访问的。因此，你可以[使用回调](../forms/overview#field-utility-injection)来访问 `$livewire` 实例：
+但是，如果你在 `static` 方法（如 `form()` 或 `table()`）内，`$this` 是不可访问的。因此，你可以[使用回调](../forms/overview#字段工具注入)来访问 `$livewire` 实例：
 
 ```php
 use Filament\Forms;
@@ -1019,7 +1019,7 @@ public static function getTitle(Model $ownerRecord, string $pageClass): string
 }
 ```
 
-标题将反映在[表格标题](../tables/overview#customizing-the-table-header)中，如果存在多个关联管理器，还会反映在关联管理器选项卡中。如果你想独立自定义表格标题，仍然可以使用 `$table->heading()` 方法：
+标题将反映在[表格标题](../tables/overview#自定义表格标题)中，如果存在多个关联管理器，还会反映在关联管理器选项卡中。如果你想独立自定义表格标题，仍然可以使用 `$table->heading()` 方法：
 
 ```php
 use Filament\Tables;
@@ -1079,7 +1079,7 @@ AttachAction::make()
 
 使用 `ManageRelatedRecords` 页面是使用关联管理器的替代方案，如果你希望将管理关联关系的功能与编辑或查看所有者记录分开。
 
-如果你使用[资源子导航](overview#resource-sub-navigation)，此功能非常理想，因为你可以轻松地在查看或编辑页面与关联页面之间切换。
+如果你使用[资源子导航](overview#资源子导航)，此功能非常理想，因为你可以轻松地在查看或编辑页面与关联页面之间切换。
 
 要创建关联页面，你应该使用 `make:filament-page` 命令：
 
@@ -1112,7 +1112,7 @@ public static function getPages(): array
 
 ### 将关联页面添加到资源子导航
 
-如果你使用[资源子导航](overview#resource-sub-navigation)，你可以在资源的 `getRecordSubNavigation()` 中正常注册此页面：
+如果你使用[资源子导航](overview#资源子导航)，你可以在资源的 `getRecordSubNavigation()` 中正常注册此页面：
 
 ```php
 use App\Filament\Resources\Customers\Pages;

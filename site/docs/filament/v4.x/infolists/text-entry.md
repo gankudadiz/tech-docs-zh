@@ -110,7 +110,7 @@ TextEntry::make('status')
 
 ## 格式化
 
-使用文本条目时，你可能希望 UI 中实际输出的文本与条目的原始[状态](overview#entry-content-state)不同，后者通常是从 Eloquent 模型自动检索的。格式化状态允许你保持原始数据的完整性，同时允许以更用户友好的方式呈现它。
+使用文本条目时，你可能希望 UI 中实际输出的文本与条目的原始[状态](overview#条目内容状态)不同，后者通常是从 Eloquent 模型自动检索的。格式化状态允许你保持原始数据的完整性，同时允许以更用户友好的方式呈现它。
 
 要格式化文本条目的状态而不更改状态本身，可以使用 `formatStateUsing()` 方法。此方法接受一个函数，该函数以状态作为参数并返回格式化后的状态：
 
@@ -210,7 +210,7 @@ TextEntry::make('created_at')
 
 #### 在工具提示中显示格式化日期
 
-此外，你可以使用 `dateTooltip()`、`dateTimeTooltip()`、`timeTooltip()`、`isoDateTooltip()`、`isoDateTimeTooltip()`、`isoTime()`、`isoTimeTooltip()` 或 `sinceTooltip()` 方法在[工具提示](overview#adding-a-tooltip-to-an-entry)中显示格式化日期，通常用于提供额外信息：
+此外，你可以使用 `dateTooltip()`、`dateTimeTooltip()`、`timeTooltip()`、`isoDateTooltip()`、`isoDateTimeTooltip()`、`isoTime()`、`isoTimeTooltip()` 或 `sinceTooltip()` 方法在[工具提示](overview#向条目添加工具提示)中显示格式化日期，通常用于提供额外信息：
 
 ```php
 use Filament\Infolists\Components\TextEntry;
@@ -418,7 +418,7 @@ TextEntry::make('description')
 除了允许静态值外，`html()` 方法还接受一个函数来动态计算它。你可以将各种实用工具作为参数注入到函数中。
 
 :::danger
-    Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片大小调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中剥离。如果你的内容来自不受信任的用户，你应该考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#customizing-the-sanitizer)。
+    Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片大小调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中剥离。如果你的内容来自不受信任的用户，你应该考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#自定义清理器)。
 :::
 
 #### 渲染未经清理的原始 HTML
@@ -452,7 +452,7 @@ TextEntry::make('description')
 
 ## 列出多个值
 
-如果文本条目的[状态](overview#entry-content-state)是数组，可以在文本条目中渲染多个值。如果你在 Eloquent 属性上使用 `array` 转换、具有多个结果的 Eloquent 关联，或者你已将数组传递给 [`state()` 方法](overview#setting-the-state-of-an-entry)，就会发生这种情况。如果文本条目中有多个值，它们将以逗号分隔。你可以使用 `listWithLineBreaks()` 方法在新行上显示它们：
+如果文本条目的[状态](overview#条目内容状态)是数组，可以在文本条目中渲染多个值。如果你在 Eloquent 属性上使用 `array` 转换、具有多个结果的 Eloquent 关联，或者你已将数组传递给 [`state()` 方法](overview#设置条目的状态)，就会发生这种情况。如果文本条目中有多个值，它们将以逗号分隔。你可以使用 `listWithLineBreaks()` 方法在新行上显示它们：
 
 ```php
 use Filament\Infolists\Components\TextEntry;

@@ -4,7 +4,7 @@ title: 嵌套资源
 
 ## 概述
 
-[关联管理器](managing-relationships#creating-a-relation-manager)和[关联页面](managing-relationships#relation-pages)为你提供了一种在资源中渲染关联记录表格的简便方式。
+[关联管理器](managing-relationships#创建关联管理器)和[关联页面](managing-relationships#关联页面)为你提供了一种在资源中渲染关联记录表格的简便方式。
 
 例如，在 `CourseResource` 中，你可能有一个用于该课程所属 `lessons` 的关联管理器或页面。你可以从表格中创建和编辑课程，这会打开模态对话框。
 
@@ -20,7 +20,7 @@ title: 嵌套资源
 php artisan make:filament-resource Lesson --nested
 ```
 
-要访问嵌套资源，你还需要一个[关联管理器](managing-relationships#creating-a-relation-manager)或[关联页面](managing-relationships#relation-pages)。这是用户查看关联记录列表，并点击"创建"和"编辑"页面链接的地方。
+要访问嵌套资源，你还需要一个[关联管理器](managing-relationships#创建关联管理器)或[关联页面](managing-relationships#关联页面)。这是用户查看关联记录列表，并点击"创建"和"编辑"页面链接的地方。
 
 要创建关联管理器或页面，你可以使用 `make:filament-relation-manager` 或 `make:filament-page` 命令：
 
@@ -72,7 +72,7 @@ public static function getParentResourceRegistration(): ?ParentResourceRegistrat
 
 当处理由关联管理器列出的嵌套资源，且该关联管理器与其他关联管理器共存于同一页面时，你可能会注意到从嵌套资源重定向回该关联管理器时 URL 不正确。这是因为资源上注册的每个关联管理器都被分配了一个整数，用于在 URL 中标识它，以便在多个关联管理器之间切换。例如，URL 中的 `?relation=0` 可能代表一个关联管理器，而 `?relation=1` 可能代表另一个。
 
-从嵌套资源重定向回关联管理器时，Filament 会假设关系名称用于在 URL 中标识该关联管理器。例如，如果你有一个嵌套的 `LessonResource` 和一个 `LessonsRelationManager`，关系名称是 `lessons`，在注册时它应作为该关联管理器的 [URL 参数键](managing-relationships#customizing-the-relation-managers-url-parameter)：
+从嵌套资源重定向回关联管理器时，Filament 会假设关系名称用于在 URL 中标识该关联管理器。例如，如果你有一个嵌套的 `LessonResource` 和一个 `LessonsRelationManager`，关系名称是 `lessons`，在注册时它应作为该关联管理器的 [URL 参数键](managing-relationships#自定义关联管理器的-url-参数)：
 
 ```php
 public static function getRelations(): array

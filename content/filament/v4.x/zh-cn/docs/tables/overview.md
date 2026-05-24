@@ -39,7 +39,7 @@ public function table(Table $table): Table
 
 #### 使列可排序和可搜索
 
-你可以通过链式调用方法来轻松修改列。例如，你可以使用 `searchable()` 方法使列[可搜索](columns/overview#searching)。现在，表格中将出现一个搜索字段，你可以通过该列的值来筛选行：
+你可以通过链式调用方法来轻松修改列。例如，你可以使用 `searchable()` 方法使列[可搜索](columns/overview#搜索)。现在，表格中将出现一个搜索字段，你可以通过该列的值来筛选行：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -52,7 +52,7 @@ TextColumn::make('title')
 
 你可以让多列可搜索，Filament 将能够同时在所有可搜索列中进行匹配搜索。
 
-你还可以使用 `sortable()` 方法使列[可排序](columns/overview#sorting)。这将在列标题上添加一个排序按钮，点击它将按该列对表格进行排序：
+你还可以使用 `sortable()` 方法使列[可排序](columns/overview#排序)。这将在列标题上添加一个排序按钮，点击它将按该列对表格进行排序：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -77,7 +77,7 @@ TextColumn::make('author.name')
 
 在这种情况下，Filament 会在 `Post` 模型上查找 `author` 关联，然后显示该关联的 `name` 属性。我们称之为"点表示法"，你可以用它来显示任何关联的任何属性，甚至嵌套关联。Filament 使用这种点表示法来为你预加载该关联的结果。
 
-有关列关联的更多信息，请访问[关联关系章节](columns/overview#displaying-data-from-relationships)。
+有关列关联的更多信息，请访问[关联关系章节](columns/overview#显示关联关系中的数据)。
 
 #### 在现有列旁边添加新列
 
@@ -85,7 +85,7 @@ TextColumn::make('author.name')
 
 Filament 提供了 `pushColumns()` 方法来实现这一目的。与替换整个列配置的 `columns()` 不同，`pushColumns()` 会将新列追加到任何现有列之后。
 
-当与服务提供者（如 `AppServiceProvider`）的 `boot()` 方法中的[全局表格设置](#global-settings)结合使用时，这尤其强大：
+当与服务提供者（如 `AppServiceProvider`）的 `boot()` 方法中的[全局表格设置](#全局设置)结合使用时，这尤其强大：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -148,7 +148,7 @@ public function table(Table $table): Table
 
 ### 定义表格操作
 
-Filament 的表格可以使用[操作](../actions/overview)。它们是可以添加到[任何表格行末尾](actions#record-actions)的按钮，甚至可以放在表格的[标题](actions#header-actions)中。例如，你可能希望在标题中有一个"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](actions#bulk-actions)可以在选中表格中的记录时执行代码。
+Filament 的表格可以使用[操作](../actions/overview)。它们是可以添加到[任何表格行末尾](actions#记录操作)的按钮，甚至可以放在表格的[标题](actions#头部操作)中。例如，你可能希望在标题中有一个"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](actions#批量操作)可以在选中表格中的记录时执行代码。
 
 ```php
 use App\Models\Post;
@@ -188,7 +188,7 @@ public function table(Table $table): Table
 
 在这个示例中，我们为表格行定义了 2 个操作。第一个是"精选"操作。点击时，它会将记录的 `is_featured` 属性设置为 `true`——这写在 `action()` 方法中。使用 `hidden()` 方法，如果记录已经是精选的，该操作将被隐藏。第二个是"取消精选"操作。点击时，它会将记录的 `is_featured` 属性设置为 `false`。使用 `visible()` 方法，如果记录不是精选的，该操作将被隐藏。
 
-我们还定义了一个批量操作。定义批量操作时，表格中的每一行都会有一个复选框。这个批量操作是 [Filament 内置的](../actions/delete#bulk-delete)，它将删除所有选中的记录。不过，你也可以轻松地[编写自定义批量操作](actions#bulk-actions)。
+我们还定义了一个批量操作。定义批量操作时，表格中的每一行都会有一个复选框。这个批量操作是 [Filament 内置的](../actions/delete#提高批量删除操作的性能)，它将删除所有选中的记录。不过，你也可以轻松地[编写自定义批量操作](actions#批量操作)。
 
 ![打开操作模态框的表格](/assets/filament/v4.x/screenshots/images/light/tables/overview/actions-modal.jpg)
 
@@ -233,7 +233,7 @@ public function table(Table $table): Table
 ```
 
 :::info
-确保默认分页页面选项包含在[分页选项](#customizing-the-pagination-options)中。
+确保默认分页页面选项包含在[分页选项](#自定义分页选项)中。
 :::
 
 ### 显示首页和末页的分页链接
@@ -336,7 +336,7 @@ public function table(Table $table): Table
 使用[资源](../resources)表格时，每行的 URL 通常已经为你设置好了，但可以调用此方法来覆盖每行的默认 URL。
 
 :::tip
-你还可以为特定列[覆盖 URL](columns/overview#opening-urls)，或在点击列时[触发操作](columns/overview#triggering-actions)。
+你还可以为特定列[覆盖 URL](columns/overview#打开-url)，或在点击列时[触发操作](columns/overview#触发操作)。
 :::
 
 你也可以在新标签页中打开 URL：

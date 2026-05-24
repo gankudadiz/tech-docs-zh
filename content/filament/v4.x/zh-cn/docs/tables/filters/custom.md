@@ -65,7 +65,7 @@ Filter::make('is_admin')
     ->indicator('Administrators')
 ```
 
-如果你使用的是[自定义过滤器模式](#custom-filter-schemas)，你应该使用 [`indicateUsing()`](#custom-active-indicators) 来显示活动指示器。
+如果你使用的是[自定义过滤器模式](#自定义过滤器模式)，你应该使用 [`indicateUsing()`](#自定义活动指示器) 来显示活动指示器。
 
 请注意：如果你的过滤器没有指示器，那么表格中活动过滤器数量的徽章将不会包含该过滤器。
 

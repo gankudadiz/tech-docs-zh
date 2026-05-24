@@ -14,7 +14,7 @@ title: 构建面板插件
 
 ## 第 1 步：创建插件
 
-首先，我们将使用[快速入门指南](getting-started#creating-a-plugin)中概述的步骤创建插件。
+首先，我们将使用[快速入门指南](getting-started#创建插件)中概述的步骤创建插件。
 
 ## 第 2 步：清理
 
@@ -84,7 +84,7 @@ npm install
 现在我们已经清理了插件，可以开始添加代码。`src/ClockWidgetServiceProvider.php` 文件中的样板代码有很多内容，所以让我们删除所有内容并从头开始。
 
 :::info
-在此示例中，我们将注册一个[异步 Alpine 组件](../advanced/assets#asynchronous-alpinejs-components)。由于这些资源仅在请求时加载，我们可以在 `packageBooted()` 方法中正常注册它们。如果你正在注册资源，如 CSS 或 JS 文件，这些文件会在每个页面上加载，无论是否使用，你应该在 `Plugin` 配置对象的 `register()` 方法中注册它们，使用 [`$panel->assets()`](../panel-configuration#registering-assets-for-a-panel)。否则，如果你在 `packageBooted()` 方法中注册它们，它们将在每个面板中加载，无论插件是否已为该面板注册。
+在此示例中，我们将注册一个[异步 Alpine 组件](../advanced/assets#异步-alpinejs-组件)。由于这些资源仅在请求时加载，我们可以在 `packageBooted()` 方法中正常注册它们。如果你正在注册资源，如 CSS 或 JS 文件，这些文件会在每个页面上加载，无论是否使用，你应该在 `Plugin` 配置对象的 `register()` 方法中注册它们，使用 [`$panel->assets()`](../panel-configuration#为面板注册资源)。否则，如果你在 `packageBooted()` 方法中注册它们，它们将在每个面板中加载，无论插件是否已为该面板注册。
 :::
 
 我们需要能够向面板注册我们的 Widget，并在使用 Widget 时加载 Alpine 组件。为此，我们需要在服务提供者的 `packageBooted` 方法中添加以下内容。这将向 Livewire 注册我们的 Widget 组件，并向 Filament 资源管理器注册我们的 Alpine 组件。
@@ -137,7 +137,7 @@ class ClockWidget extends Widget
 
 接下来，我们需要为 Widget 创建视图。在 `resources/views/widget.blade.php` 创建一个新文件并添加以下代码。我们将利用 Filament 的 Blade 组件来节省编写 Widget HTML 的时间。
 
-我们使用异步 Alpine 来加载 Alpine 组件，因此我们需要在 div 上添加 `x-load` 属性来告诉 Alpine 加载我们的组件。你可以在文档的[核心概念](../advanced/assets#asynchronous-alpinejs-components)部分了解更多信息。
+我们使用异步 Alpine 来加载 Alpine 组件，因此我们需要在 div 上添加 `x-load` 属性来告诉 Alpine 加载我们的组件。你可以在文档的[核心概念](../advanced/assets#异步-alpinejs-组件)部分了解更多信息。
 
 ```blade
 <x-filament-widgets::widget>

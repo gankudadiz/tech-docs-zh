@@ -17,7 +17,7 @@ protected function mutateFormDataBeforeCreate(array $data): array
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#saving-data-before-creating)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#在保存前自定义数据)。
 
 ## 自定义创建过程
 
@@ -32,7 +32,7 @@ protected function handleRecordCreation(array $data): Model
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#customizing-the-creation-process)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#自定义创建过程)。
 
 ## 自定义重定向
 
@@ -86,7 +86,7 @@ protected function getCreatedNotificationTitle(): ?string
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#customizing-the-save-notification)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#自定义保存通知)。
 
 你可以通过覆盖创建页面类中的 `getCreatedNotification()` 方法来自定义整个通知：
 
@@ -208,7 +208,7 @@ class CreateUser extends CreateRecord
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#lifecycle-hooks)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#生命周期钩子)。
 
 ## 中止创建过程
 
@@ -238,7 +238,7 @@ protected function beforeCreate(): void
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#halting-the-creation-process)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#中止创建过程)。
 
 ## 授权
 
@@ -311,7 +311,7 @@ protected function getSteps(): array
 }
 ```
 
-或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#using-a-wizard)。
+或者，如果你在模态操作中创建记录，请查阅[操作文档](../actions/create#使用向导)。
 
 现在，创建一条新记录来查看你的向导效果！编辑页面仍将使用资源类中定义的表单。
 
@@ -407,7 +407,7 @@ protected function getHeaderActions(): array
 }
 ```
 
-需要[创建](../actions/import#creating-an-importer)"导入器"类来告诉 Filament 如何导入 CSV 的每一行。你可以在[操作文档](../actions/import)中了解关于 `ImportAction` 的一切。
+需要[创建](../actions/import#创建导入器)"导入器"类来告诉 Filament 如何导入 CSV 的每一行。你可以在[操作文档](../actions/import)中了解关于 `ImportAction` 的一切。
 
 ## 自定义操作
 
@@ -461,7 +461,7 @@ class CreateUser extends CreateRecord
 }
 ```
 
-要查看完整的操作 API，请访问[页面部分](../navigation/custom-pages#adding-actions-to-pages)。
+要查看完整的操作 API，请访问[页面部分](../navigation/custom-pages#为页面添加操作)。
 
 ### 将创建操作按钮添加到头部
 

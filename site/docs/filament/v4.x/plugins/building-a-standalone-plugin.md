@@ -14,7 +14,7 @@ title: 构建独立插件
 
 ## 第 1 步：创建插件
 
-首先，我们将使用[快速入门指南](getting-started#creating-a-plugin)中概述的步骤创建插件。
+首先，我们将使用[快速入门指南](getting-started#创建插件)中概述的步骤创建插件。
 
 ## 第 2 步：清理
 
@@ -187,7 +187,7 @@ class Heading extends Component
 
 接下来，我们需要为组件创建视图。在 `resources/views/heading.blade.php` 创建一个新文件并添加以下代码。
 
-我们使用 x-load 异步加载样式表，因此它仅在必要时加载。你可以在文档的[核心概念](../advanced/assets#lazy-loading-css)部分了解更多信息。
+我们使用 x-load 异步加载样式表，因此它仅在必要时加载。你可以在文档的[核心概念](../advanced/assets#延迟加载-css)部分了解更多信息。
 
 ```blade
 @php

@@ -78,7 +78,7 @@ TextColumn::make('email')
 
 ## 显示为"徽章"
 
-默认情况下，文本很普通，没有背景色。你可以使用 `badge()` 方法使其显示为"徽章"。一个很好的用例是状态，你可能希望显示一个与状态匹配的[颜色](#customizing-the-color)的徽章：
+默认情况下，文本很普通，没有背景色。你可以使用 `badge()` 方法使其显示为"徽章"。一个很好的用例是状态，你可能希望显示一个与状态匹配的[颜色](#自定义颜色)的徽章：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -95,7 +95,7 @@ TextColumn::make('status')
 
 ![徽章文本列](/assets/filament/v4.x/screenshots/images/light/tables/columns/text/badge.jpg)
 
-你可以向徽章添加其他内容，如[图标](#adding-an-icon)。
+你可以向徽章添加其他内容，如[图标](#添加图标)。
 
 你可以选择传递一个布尔值来控制文本是否应显示为徽章：
 
@@ -110,7 +110,7 @@ TextColumn::make('status')
 
 ## 格式化
 
-使用文本列时，你可能希望 UI 中实际输出的文本与列的原始[状态](overview#column-content-state)不同，后者通常从 Eloquent 模型自动检索。格式化状态允许你保留原始数据的完整性，同时以更用户友好的方式呈现。
+使用文本列时，你可能希望 UI 中实际输出的文本与列的原始[状态](overview#列内容状态)不同，后者通常从 Eloquent 模型自动检索。格式化状态允许你保留原始数据的完整性，同时以更用户友好的方式呈现。
 
 要在不更改状态本身的情况下格式化文本列的状态，可以使用 `formatStateUsing()` 方法。此方法接受一个以状态为参数并返回格式化状态的函数：
 
@@ -210,7 +210,7 @@ TextColumn::make('created_at')
 
 #### 在工具提示中显示格式化日期
 
-此外，你可以使用 `dateTooltip()`、`dateTimeTooltip()`、`timeTooltip()`、`isoDateTooltip()`、`isoDateTimeTooltip()`、`isoTimeTooltip()` 或 `sinceTooltip()` 方法在[工具提示](overview#adding-a-tooltip-to-an-column)中显示格式化日期，通常用于提供额外信息：
+此外，你可以使用 `dateTooltip()`、`dateTimeTooltip()`、`timeTooltip()`、`isoDateTooltip()`、`isoDateTimeTooltip()`、`isoTimeTooltip()` 或 `sinceTooltip()` 方法在[工具提示](overview#为列添加工具提示)中显示格式化日期，通常用于提供额外信息：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -418,7 +418,7 @@ TextColumn::make('description')
 除固定值外，`html()` 方法也可以接收闭包来动态计算，并支持注入 Filament 的工具参数。
 
 :::danger
-Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片大小调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中剥离。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../../advanced/security#customizing-the-sanitizer)。
+Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片大小调整。这意味着像 `background: url(...)` 或 `position: fixed` 这样的 CSS 属性不会从清理后的 HTML 中剥离。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../../advanced/security#自定义清理器)。
 :::
 
 #### 渲染未清理的原始 HTML
@@ -480,7 +480,7 @@ TextColumn::make('title')
 
 ## 列出多个值
 
-如果文本列的[状态](overview#column-content-state)是数组，可以在文本列中渲染多个值。如果你在 Eloquent 属性上使用了 `array` 转换、具有多个结果的 Eloquent 关联关系，或者已经将数组传递给 [`state()` 方法](overview#setting-the-state-of-an-column)，就会发生这种情况。如果文本列中有多个值，它们将以逗号分隔。你可以使用 `listWithLineBreaks()` 方法改为在新行上显示它们：
+如果文本列的[状态](overview#列内容状态)是数组，可以在文本列中渲染多个值。如果你在 Eloquent 属性上使用了 `array` 转换、具有多个结果的 Eloquent 关联关系，或者已经将数组传递给 [`state()` 方法](overview#设置列的状态)，就会发生这种情况。如果文本列中有多个值，它们将以逗号分隔。你可以使用 `listWithLineBreaks()` 方法改为在新行上显示它们：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -574,7 +574,7 @@ TextColumn::make('authors.name')
 
 ### 将单个值拆分为多个列表项
 
-如果你想将模型中的文本字符串"分割"为多个列表项，可以使用 `separator()` 方法。例如，这对于将逗号分隔的标签[显示为徽章](#displaying-as-a-badge)很有用：
+如果你想将模型中的文本字符串"分割"为多个列表项，可以使用 `separator()` 方法。例如，这对于将逗号分隔的标签[显示为徽章](#显示为徽章)很有用：
 
 ```php
 use Filament\Tables\Columns\TextColumn;

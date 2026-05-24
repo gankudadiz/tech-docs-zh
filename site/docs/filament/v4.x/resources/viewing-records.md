@@ -32,7 +32,7 @@ public static function infolist(Schema $schema): Schema
 }
 ```
 
-`components()` 方法用于定义信息列表的结构。它是一个由[条目](../infolists/overview#available-entries)和[布局组件](../schemas/layouts#available-layout-components)组成的数组，按它们在信息列表中出现的顺序排列。
+`components()` 方法用于定义信息列表的结构。它是一个由[条目](../infolists/overview#定义条目)和[布局组件](../schemas/layouts#基本布局组件)组成的数组，按它们在信息列表中出现的顺序排列。
 
 请查阅信息列表文档，了解如何使用 Filament 构建信息列表的[指南](../infolists)。
 
@@ -60,7 +60,7 @@ public static function getPages(): array
 
 ## 在模态框中查看记录
 
-如果你的资源比较简单，你可能希望在模态框中查看记录，而不是在[查看页面](viewing-records)上查看。如果是这种情况，你可以直接[删除查看页面](overview#deleting-resource-pages)。
+如果你的资源比较简单，你可能希望在模态框中查看记录，而不是在[查看页面](viewing-records)上查看。如果是这种情况，你可以直接[删除查看页面](overview#删除资源页面)。
 
 如果你的资源没有包含 `ViewAction`，你可以将其添加到 `$table->recordActions()` 数组中：
 
@@ -94,7 +94,7 @@ protected function mutateFormDataBeforeFill(array $data): array
 }
 ```
 
-或者，如果你在模态操作中查看记录，请查阅[操作文档](../actions/view#customizing-data-before-filling-the-form)。
+或者，如果你在模态操作中查看记录，请查阅[操作文档](../actions/view#在填充表单前自定义数据)。
 
 ## 生命周期钩子
 
@@ -127,7 +127,7 @@ class ViewUser extends ViewRecord
 
 ## 创建另一个查看页面
 
-一个查看页面可能没有足够的空间让用户浏览大量的信息。你可以为资源创建任意多个查看页面。如果你使用[资源子导航](overview#resource-sub-navigation)，这一点尤其有用，因为你可以轻松地在不同的查看页面之间切换。
+一个查看页面可能没有足够的空间让用户浏览大量的信息。你可以为资源创建任意多个查看页面。如果你使用[资源子导航](overview#资源子导航)，这一点尤其有用，因为你可以轻松地在不同的查看页面之间切换。
 
 要创建查看页面，你应该使用 `make:filament-page` 命令：
 
@@ -178,7 +178,7 @@ protected function getAllRelationManagers(): array
 }
 ```
 
-当你有[多个查看页面](#creating-another-view-page)并且需要在每个页面上显示不同的关联管理器时，这非常有用：
+当你有[多个查看页面](#创建另一个查看页面)并且需要在每个页面上显示不同的关联管理器时，这非常有用：
 
 ```php
 // ViewCustomer.php
@@ -204,7 +204,7 @@ protected function getAllRelationManagers(): array
 
 ## 将查看页面添加到资源子导航
 
-如果你使用[资源子导航](overview#resource-sub-navigation)，你可以在资源的 `getRecordSubNavigation()` 中正常注册此页面：
+如果你使用[资源子导航](overview#资源子导航)，你可以在资源的 `getRecordSubNavigation()` 中正常注册此页面：
 
 ```php
 use App\Filament\Resources\Customers\Pages;

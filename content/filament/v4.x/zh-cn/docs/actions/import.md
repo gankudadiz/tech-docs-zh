@@ -14,7 +14,7 @@ php artisan vendor:publish --tag=filament-actions-migrations
 php artisan migrate
 ```
 
-如果你想在面板中接收导入通知，可以在[面板配置](../notifications/database-notifications#enabling-database-notifications-in-a-panel)中启用它们。
+如果你想在面板中接收导入通知，可以在[面板配置](../notifications/database-notifications#在面板中启用数据库通知)中启用它们。
 
 :::info
 如果你使用 PostgreSQL，请确保通知迁移中的 `data` 列使用 `json()`：`$table->json('data')`。

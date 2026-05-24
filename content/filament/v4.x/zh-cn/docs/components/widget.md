@@ -8,7 +8,7 @@ title: 在 Blade 视图中渲染小部件
 ```bash
 composer show filament/widgets
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 创建小部件
@@ -26,6 +26,6 @@ composer show filament/widgets
 ```
 
 :::info
-如果你正在使用[表格小部件](../widgets/overview#table-widgets)，请确保也安装了 `filament/tables`。
-请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照步骤正确配置**独立组件**。
+如果你正在使用[表格小部件](../widgets/overview#表格小部件)，请确保也安装了 `filament/tables`。
+请参考[安装指南](../introduction/installation#安装独立组件)并按照步骤正确配置**独立组件**。
 :::

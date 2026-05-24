@@ -85,7 +85,7 @@ Filament 表单字段**不是** Livewire 组件。在表单字段类上定义公
 ```
 
 :::tip
-除非表单字段是[响应式的](../forms/overview#响应式的基础知识)，否则当字段值更改时，Blade 视图不会刷新，只有在下一次用户交互发起服务器请求时才会刷新。如果你需要对字段值的变化做出反应，它应该是 `live()` 的。
+除非表单字段是[响应式的](../forms/overview#响应式基础)，否则当字段值更改时，Blade 视图不会刷新，只有在下一次用户交互发起服务器请求时才会刷新。如果你需要对字段值的变化做出反应，它应该是 `live()` 的。
 :::
 
 ## 在 Blade 视图中访问 Eloquent 记录
@@ -229,7 +229,7 @@ class LocationPicker extends Field
 }
 ```
 
-现在，你可以向 `zoom()` 方法传递静态值或函数，并[注入任何工具](overview#组件工具注入)作为参数：
+现在，你可以向 `zoom()` 方法传递静态值或函数，并[注入任何工具](overview#字段工具注入)作为参数：
 
 ```php
 use App\Filament\Forms\Components\LocationPicker;
@@ -242,7 +242,7 @@ LocationPicker::make('location')
 
 当你将字段绑定到状态路径时，你可以使用 `defer` 修饰符来确保状态仅在用户提交表单时或下一次 Livewire 请求时发送到服务器。这是默认行为。
 
-然而，你可以在字段上使用 [`live()`](overview#响应式的基础知识) 来确保当用户与字段交互时，状态立即发送到服务器。这允许许多高级用例，如文档中[响应式](overview#响应式的基础知识)部分所述。
+然而，你可以在字段上使用 [`live()`](overview#响应式基础) 来确保当用户与字段交互时，状态立即发送到服务器。这允许许多高级用例，如文档中[响应式](overview#响应式基础)部分所述。
 
 Filament 提供了一个 `$applyStateBindingModifiers()` 函数，你可以在视图中使用它来将任何状态绑定修饰符应用于 `wire:model` 或 `$wire.$entangle()` 绑定：
 

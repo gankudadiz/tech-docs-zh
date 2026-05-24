@@ -12,7 +12,7 @@ use Filament\Tables\Columns\ImageColumn;
 ImageColumn::make('avatar')
 ```
 
-在这种情况下，`header_image` 状态可能包含 `posts/header-images/4281246003439.jpg`，这是相对于存储磁盘根目录的路径。存储磁盘在[配置文件](../../introduction/installation#publishing-configuration)中定义，默认为 `local`。你也可以设置 `FILESYSTEM_DISK` 环境变量来更改。
+在这种情况下，`header_image` 状态可能包含 `posts/header-images/4281246003439.jpg`，这是相对于存储磁盘根目录的路径。存储磁盘在[配置文件](../../introduction/installation#发布配置)中定义，默认为 `local`。你也可以设置 `FILESYSTEM_DISK` 环境变量来更改。
 
 或者，状态可以包含图片的绝对 URL，如 `https://example.com/images/header.jpg`。
 
@@ -20,7 +20,7 @@ ImageColumn::make('avatar')
 
 ## 管理图片磁盘
 
-默认存储磁盘在[配置文件](../../introduction/installation#publishing-configuration)中定义，默认为 `local`。你也可以设置 `FILESYSTEM_DISK` 环境变量来更改。如果你想偏离默认磁盘，可以向 `disk()` 方法传递自定义磁盘名称：
+默认存储磁盘在[配置文件](../../introduction/installation#发布配置)中定义，默认为 `local`。你也可以设置 `FILESYSTEM_DISK` 环境变量来更改。如果你想偏离默认磁盘，可以向 `disk()` 方法传递自定义磁盘名称：
 
 ```php
 use Filament\Tables\Columns\ImageColumn;
@@ -33,7 +33,7 @@ ImageColumn::make('header_image')
 
 ## 公开图片
 
-默认情况下，Filament 会为文件系统中的图片生成临时 URL，除非[磁盘](#managing-the-image-disk)设置为 `public`。如果你的图片存储在公开磁盘中，可以将 `visibility()` 设置为 `public`：
+默认情况下，Filament 会为文件系统中的图片生成临时 URL，除非[磁盘](#管理图片磁盘)设置为 `public`。如果你的图片存储在公开磁盘中，可以将 `visibility()` 设置为 `public`：
 
 ```php
 use Filament\Tables\Columns\ImageColumn;

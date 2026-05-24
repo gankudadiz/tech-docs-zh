@@ -17,7 +17,7 @@ Filament 插件建立在 Laravel 包的概念之上，允许你为任何 Filamen
 插件类用于允许你的包与面板[配置](../panel-configuration)文件进行交互。它是一个简单的 PHP 类，实现了 `Plugin` 接口。需要 3 个方法：
 
 - `getId()` 方法返回插件在其他插件中的唯一标识符。请确保它足够具体，不会与可能在同一项目中使用的其他插件冲突。
-- `register()` 方法允许你使用面板可用的任何[配置](../panel-configuration)选项。这包括注册[资源](../resources/overview)、[自定义页面](../navigation/custom-pages)、[主题](../styling/overview#creating-a-custom-theme)、[渲染钩子](../panel-configuration#render-hooks)等。
+- `register()` 方法允许你使用面板可用的任何[配置](../panel-configuration)选项。这包括注册[资源](../resources/overview)、[自定义页面](../navigation/custom-pages)、[主题](../styling/overview#创建自定义主题)、[渲染钩子](../panel-configuration#渲染钩子)等。
 - `boot()` 方法仅在插件注册到的面板实际使用时才运行。它由中间件类执行。
 
 ```php

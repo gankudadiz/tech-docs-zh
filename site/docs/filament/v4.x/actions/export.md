@@ -12,7 +12,7 @@ php artisan vendor:publish --tag=filament-actions-migrations
 php artisan migrate
 ```
 
-如果你想在面板中接收导出通知，可以在[面板配置](../notifications/database-notifications#enabling-database-notifications-in-a-panel)中启用它们。
+如果你想在面板中接收导出通知，可以在[面板配置](../notifications/database-notifications#在面板中启用数据库通知)中启用它们。
 
 :::info
 如果你使用 PostgreSQL，请确保通知迁移中的 `data` 列使用 `json()`：`$table->json('data')`。
@@ -449,7 +449,7 @@ public static function modifyQuery(Builder $query): Builder
 
 ### 自定义存储磁盘
 
-默认情况下，导出的文件将上传到[配置文件](../introduction/installation#publishing-configuration)中定义的存储磁盘，默认为 `public`。你可以设置 `FILESYSTEM_DISK` 环境变量来更改此设置。
+默认情况下，导出的文件将上传到[配置文件](../introduction/installation#发布配置)中定义的存储磁盘，默认为 `public`。你可以设置 `FILESYSTEM_DISK` 环境变量来更改此设置。
 
 虽然使用 `public` 磁盘对 Filament 的许多部分来说是好的默认值，但将其用于导出会导致导出文件存储在公共位置。因此，如果默认文件系统磁盘是 `public` 且你的 `config/filesystems.php` 中存在 `local` 磁盘，Filament 将改用 `local` 磁盘进行导出。如果你将磁盘覆盖为 `ExportAction` 或导出器类中的 `public`，Filament 将使用该磁盘。
 

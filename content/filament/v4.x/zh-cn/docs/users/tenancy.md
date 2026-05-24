@@ -531,7 +531,7 @@ class Team extends Model implements HasAvatar
 
 `getFilamentAvatarUrl()` 方法用于获取当前用户的头像。如果此方法返回 `null`，Filament 将回退到 [ui-avatars.com](https://ui-avatars.com)。
 
-你可以通过创建新的头像提供者轻松替换 [ui-avatars.com](https://ui-avatars.com) 为其他服务。[你可以在这里了解如何操作。](overview#using-a-different-avatar-provider)
+你可以通过创建新的头像提供者轻松替换 [ui-avatars.com](https://ui-avatars.com) 为其他服务。[你可以在这里了解如何操作。](overview#使用不同的头像提供者)
 
 ## 配置租户关系
 
@@ -829,7 +829,7 @@ TextInput::make('email')
     ->scopedExists()
 ```
 
-有关更多信息，请参阅 [`unique()`](../forms/validation#unique) 和 [`exists()`](../forms/validation#exists) 的[验证文档](../forms/validation)。
+有关更多信息，请参阅 [`unique()`](../forms/validation#唯一) 和 [`exists()`](../forms/validation#存在) 的[验证文档](../forms/validation)。
 
 ### 使用租户感知中间件应用额外的全局作用域
 

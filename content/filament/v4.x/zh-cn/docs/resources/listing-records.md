@@ -182,11 +182,11 @@ public function getTabs(): array
 
 如果模型策略的 `viewAny()` 方法返回 `true`，用户可以访问列表页。
 
-`reorder()` 方法用于控制[重新排序记录](#reordering-records)。
+`reorder()` 方法用于控制[重新排序记录](../tables/overview#重新排序记录)。
 
 ## 自定义表格 Eloquent 查询
 
-虽然你可以[为整个资源自定义 Eloquent 查询](overview#customizing-the-resource-eloquent-query)，但你也可以为列表页表格进行特定的修改。为此，在资源的 `table()` 方法中使用 `modifyQueryUsing()` 方法：
+虽然你可以[为整个资源自定义 Eloquent 查询](overview#自定义资源-eloquent-查询)，但你也可以为列表页表格进行特定的修改。为此，在资源的 `table()` 方法中使用 `modifyQueryUsing()` 方法：
 
 ```php
 use Filament\Tables\Table;

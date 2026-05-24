@@ -20,7 +20,7 @@ Filament 也支持 [`spatie/laravel-medialibrary`](https://github.com/spatie/lar
 
 ## 配置存储磁盘和目录
 
-默认情况下，文件将上传到[配置文件](../introduction/installation#publishing-configuration)中定义的存储磁盘。你也可以通过设置 `FILESYSTEM_DISK` 环境变量来更改磁盘。
+默认情况下，文件将上传到[配置文件](../introduction/installation#发布配置)中定义的存储磁盘。你也可以通过设置 `FILESYSTEM_DISK` 环境变量来更改磁盘。
 
 :::tip
 要正确预览图片和其他文件，FilePond 要求文件从与应用相同的域名提供服务，或者需要设置正确的 CORS 头。请确保 `APP_URL` 环境变量正确，或修改[文件系统](https://laravel.com/docs/filesystem)驱动以设置正确的 URL。如果你将文件托管在 S3 等单独的域名上，请确保已设置 CORS 头。
@@ -240,7 +240,7 @@ FileUpload::make('avatar')
 你可以向传递给 `allowFilePathUsing` 的函数中注入各种工具作为参数。除了标准工具外，`$file` 参数包含正在授权的已提交文件路径。
 :::
 
-可以通过 [`validationMessages()`](validation#customizing-validation-messages) 使用 `tampered` 键自定义验证错误消息：
+可以通过 [`validationMessages()`](validation#验证消息) 使用 `tampered` 键自定义验证错误消息：
 
 ```php
 use Filament\Forms\Components\FileUpload;

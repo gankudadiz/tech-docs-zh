@@ -10,7 +10,7 @@ title: 单一资源
 
 例如，一个 CMS 可能有一个 `Page` Eloquent 模型和一个 `PageResource`，但你可能还想在 `PageResource` 之外创建一个单一页面来编辑网站的"首页"。这样用户可以直接编辑首页，而无需导航到 `PageResource` 并在表格中找到首页记录。
 
-其他使用场景还包括"设置"页面，或当前登录用户的"个人资料"页面。不过对于这些用例，我们建议使用 [Spatie Settings 插件](https://filamentphp.com/plugins/filament-spatie-settings) 和 Filament 的[个人资料](../users/overview#authentication-features)功能，它们需要更少的代码即可实现。
+其他使用场景还包括"设置"页面，或当前登录用户的"个人资料"页面。不过对于这些用例，我们建议使用 [Spatie Settings 插件](https://filamentphp.com/plugins/filament-spatie-settings) 和 Filament 的[个人资料](../users/overview#认证功能)功能，它们需要更少的代码即可实现。
 
 ![用于管理首页的单一资源页面](/assets/filament/v4.x/screenshots/images/light/panels/resources/singular.jpg)
 

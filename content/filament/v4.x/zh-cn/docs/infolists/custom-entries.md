@@ -31,7 +31,7 @@ class AudioPlayerEntry extends Entry
 
 ## 在 Blade 视图中访问条目的状态
 
-在 Blade 视图内，你可以使用 `$getState()` 函数访问条目的[状态](overview#entry-content-state)：
+在 Blade 视图内，你可以使用 `$getState()` 函数访问条目的[状态](overview#条目内容状态)：
 
 ```blade
 <x-dynamic-component
@@ -56,7 +56,7 @@ class AudioPlayerEntry extends Entry
 ```
 
 :::tip
-    除非表单字段是[响应式的](../infolists/overview#the-basics-of-reactivity)，否则当字段值更改时，Blade 视图不会刷新，只有在下一次用户交互发生并向服务器发出请求时才会刷新。如果你需要对字段值的更改做出反应，它应该是 `live()`。
+    除非表单字段是[响应式的](../forms/overview#响应式基础)，否则当字段值更改时，Blade 视图不会刷新，只有在下一次用户交互发生并向服务器发出请求时才会刷新。如果你需要对字段值的更改做出反应，它应该是 `live()`。
 :::
 
 ## 在 Blade 视图中访问 Eloquent 记录
@@ -174,7 +174,7 @@ AudioPlayerEntry::make('recording')
 
 ## 在自定义条目配置方法中允许工具注入
 
-[工具注入](overview#entry-utility-injection)是 Filament 的一个强大功能，允许用户使用可以访问各种实用工具的函数来配置组件。你可以通过确保配置的参数类型和属性类型允许用户传递 `Closure` 来允许工具注入。在 getter 方法中，你应该将配置值传递给 `$this->evaluate()` 方法，如果用户传递了函数，它将把实用工具注入到用户的函数中，或者如果它是静态值则返回该值：
+[工具注入](overview#条目工具注入)是 Filament 的一个强大功能，允许用户使用可以访问各种实用工具的函数来配置组件。你可以通过确保配置的参数类型和属性类型允许用户传递 `Closure` 来允许工具注入。在 getter 方法中，你应该将配置值传递给 `$this->evaluate()` 方法，如果用户传递了函数，它将把实用工具注入到用户的函数中，或者如果它是静态值则返回该值：
 
 ```php
 use Closure;
@@ -200,7 +200,7 @@ class AudioPlayerEntry extends Entry
 }
 ```
 
-现在，你可以向 `speed()` 方法传递静态值或函数，并[注入任何实用工具](overview#entry-utility-injection)作为参数：
+现在，你可以向 `speed()` 方法传递静态值或函数，并[注入任何实用工具](overview#条目工具注入)作为参数：
 
 ```php
 use App\Filament\Infolists\Components\AudioPlayerEntry;

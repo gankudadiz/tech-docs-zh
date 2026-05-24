@@ -133,7 +133,7 @@ public function panel(Panel $panel): Panel
 
 ### 使用 Echo 通过 Websocket 接收新的数据库通知
 
-Websocket 是实时接收新通知的更高效方式。要设置 Websocket，必须先在面板中[配置](broadcast-notifications#setting-up-websockets-in-a-panel)它。
+Websocket 是实时接收新通知的更高效方式。要设置 Websocket，必须先在面板中[配置](broadcast-notifications#在面板中设置-websocket)它。
 
 设置好 Websocket 后，你可以在发送通知时将 `isEventDispatched` 参数设置为 `true` 来自动触发 `DatabaseNotificationsSent` 事件。这将触发用户立即获取新通知：
 
@@ -149,7 +149,7 @@ Notification::make()
 
 ## 将数据库通知标记为已读
 
-模态框顶部有一个按钮可以将所有通知一次性标记为已读。你也可以为通知添加[操作](overview#adding-actions-to-notifications)，用于将单个通知标记为已读。为此，在操作上使用 `markAsRead()` 方法：
+模态框顶部有一个按钮可以将所有通知一次性标记为已读。你也可以为通知添加[操作](overview#为通知添加操作)，用于将单个通知标记为已读。为此，在操作上使用 `markAsRead()` 方法：
 
 ```php
 use Filament\Actions\Action;

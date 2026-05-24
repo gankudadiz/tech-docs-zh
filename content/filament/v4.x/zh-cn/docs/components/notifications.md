@@ -8,7 +8,7 @@ title: 在面板外渲染通知
 ```bash
 composer show filament/notifications
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 简介

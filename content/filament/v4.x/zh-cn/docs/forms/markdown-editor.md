@@ -25,7 +25,7 @@ MarkdownEditor::make('content')
 ```
 
 :::danger
-Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片尺寸调整。这意味着 `background: url(...)` 或 `position: fixed` 等 CSS 属性不会从清理后的 HTML 中被移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#customizing-the-sanitizer)。
+Filament 内置的 HTML 清理器允许内联 `style` 属性，以支持富文本格式化功能，如字体颜色、文本高亮和图片尺寸调整。这意味着 `background: url(...)` 或 `position: fixed` 等 CSS 属性不会从清理后的 HTML 中被移除。如果你的内容来自不受信任的用户，应考虑限制默认配置。有关如何自定义清理器的详细信息，请参阅[安全文档](../advanced/security#自定义清理器)。
 :::
 
 ## 自定义工具栏按钮

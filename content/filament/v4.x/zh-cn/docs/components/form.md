@@ -8,7 +8,7 @@ title: 在 Blade 视图中渲染表单
 ```bash
 composer show filament/forms
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 设置 Livewire 组件
@@ -37,14 +37,14 @@ Route::get('posts/create', CreatePost::class);
 ## 添加表单
 
 :::warning
-在继续之前，请确保**表单包**已安装在你的项目中。请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+在继续之前，请确保**表单包**已安装在你的项目中。请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 在 Livewire 组件类中添加表单有 5 个主要任务，每个都必不可少：
 
 1) 实现 `HasSchemas` 接口并使用 `InteractsWithSchemas` trait。
 2) 定义一个公共 Livewire 属性来存储表单数据。在我们的示例中，我们称之为 `$data`，但你可以随意命名。
-3) 添加一个 `form()` 方法，这是你配置表单的地方。[添加表单的 schema](../forms/overview#form-schemas)，并告诉 Filament 将表单数据存储在 `$data` 属性中（使用 `statePath('data')`）。
+3) 添加一个 `form()` 方法，这是你配置表单的地方。[添加表单的 schema](../forms/overview#表单字段)，并告诉 Filament 将表单数据存储在 `$data` 属性中（使用 `statePath('data')`）。
 4) 在 `mount()` 中使用 `$this->form->fill()` 初始化表单。这对于你构建的每个表单都是必须的，即使没有初始数据也是如此。
 5) 定义一个方法来处理表单提交。在我们的示例中，我们称之为 `create()`，但你可以随意命名。在该方法内部，你可以使用 `$this->form->getState()` 来验证和获取表单数据。使用此方法而不是直接访问 `$this->data` 属性很重要，因为表单数据需要在返回之前经过验证和转换。
 
@@ -139,7 +139,7 @@ public function create(): void
 这些包允许你在 Livewire 组件中使用它们的组件。
 例如，如果你的表单使用了[操作](../actions)，请记得在 Livewire 组件类上实现 `HasActions` 接口并使用 `InteractsWithActions` trait。
 
-如果你在表单中使用了任何其他 [Filament 组件](overview#package-components)，请确保也安装并集成了相应的包。
+如果你在表单中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::
 
 ## 使用数据初始化表单
@@ -161,8 +161,8 @@ public function mount(Post $post): void
 
 让 `$form` 访问模型在以下几种情况下很有用：
 
-- 它允许该表单中的字段从该模型加载信息。例如，选择器字段可以[自动从数据库加载选项](../forms/select#integrating-with-an-eloquent-relationship)。
-- 表单可以自动加载和保存模型的关系数据。例如，你有一个编辑帖子的表单，其中有一个管理该帖子关联评论的[重复器](../forms/repeater#integrating-with-an-eloquent-relationship)。当你调用 `$this->form->fill([...])` 时，Filament 会自动加载该帖子的评论，并在调用 `$this->form->getState()` 时将它们保存回关系中。
+- 它允许该表单中的字段从该模型加载信息。例如，选择器字段可以[自动从数据库加载选项](../forms/select#与-eloquent-关联集成)。
+- 表单可以自动加载和保存模型的关系数据。例如，你有一个编辑帖子的表单，其中有一个管理该帖子关联评论的[重复器](../forms/repeater#与-eloquent-关联集成)。当你调用 `$this->form->fill([...])` 时，Filament 会自动加载该帖子的评论，并在调用 `$this->form->getState()` 时将它们保存回关系中。
 - `exists()` 和 `unique()` 等验证规则可以自动从模型中获取数据库表名。
 
 建议在有模型时始终将模型传递给表单。如前所述，它解锁了 Filament 表单系统的许多新能力。

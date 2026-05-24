@@ -8,7 +8,7 @@ title: 在 Livewire 组件中渲染操作
 ```bash
 composer show filament/actions
 ```
-如果尚未安装，请参考[安装指南](../introduction/installation#installing-the-individual-components)并按照说明配置**独立组件**。
+如果尚未安装，请参考[安装指南](../introduction/installation#安装独立组件)并按照说明配置**独立组件**。
 :::
 
 ## 设置 Livewire 组件
@@ -113,7 +113,7 @@ class ManagePost extends Component implements HasActions, HasSchemas
 这些包允许你在 Livewire 组件中使用它们的组件。
 例如，如果你的操作使用了[通知](notifications)，请记得在布局中包含 `@livewire('notifications')`，并在 CSS 文件中添加 `@import '../../vendor/filament/notifications/resources/css/index.css'`。
 
-如果你在操作中使用了任何其他 [Filament 组件](overview#package-components)，请确保也安装并集成了相应的包。
+如果你在操作中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::
 
 ## 传递操作参数

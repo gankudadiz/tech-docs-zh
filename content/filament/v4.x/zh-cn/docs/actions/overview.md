@@ -262,7 +262,7 @@ Action::make('edit')
 ```
 
 :::info
-如果你在面板资源或关系管理器中使用操作，你不需要使用 `authorize()` 方法，因为 Filament 会自动根据资源模型读取内置操作（如 `CreateAction`、`EditAction` 和 `DeleteAction`）的策略。更多信息请访问[资源授权](../resources/overview#authorization)部分。
+如果你在面板资源或关系管理器中使用操作，你不需要使用 `authorize()` 方法，因为 Filament 会自动根据资源模型读取内置操作（如 `CreateAction`、`EditAction` 和 `DeleteAction`）的策略。更多信息请访问[资源授权](../resources/overview#授权)部分。
 :::
 
 如果你的策略方法返回[响应消息](https://laravel.com/docs/authorization#policy-responses)，你可以禁用操作而不是隐藏它，并使用 `authorizationTooltip()` 方法添加包含消息的工具提示：
@@ -543,7 +543,7 @@ Action::make('delete')
 
 ## 在模式中使用操作
 
-操作对象可以插入到[模式](../schemas/overview)中的任何位置，例如[表单字段插槽](../forms/overview#adding-extra-content-to-a-field)、[节标题和页脚](../schemas/sections)或与[主要组件](../schemas/primes)一起。当操作在模式中使用时，它可以通过[工具注入](#从模式注入工具)访问模式的状态——你可以在闭包中使用 `$schemaGet` 和 `$schemaSet` 来读取和修改表单字段值。
+操作对象可以插入到[模式](../schemas/overview)中的任何位置，例如[表单字段插槽](../forms/overview#为字段添加额外内容)、[节标题和页脚](../schemas/sections)或与[主要组件](../schemas/primes)一起。当操作在模式中使用时，它可以通过[工具注入](#从模式注入工具)访问模式的状态——你可以在闭包中使用 `$schemaGet` 和 `$schemaSet` 来读取和修改表单字段值。
 
 ```php
 use Filament\Actions\Action;
@@ -699,7 +699,7 @@ Action::make('edit')
 
 ### 注入当前模态框表单数据
 
-如果你想访问当前[模态框表单数据](modals#rendering-a-form-in-a-modal)，请定义 `$data` 参数：
+如果你想访问当前[模态框表单数据](modals#在模态框中渲染表单)，请定义 `$data` 参数：
 
 ```php
 // 注入当前模态框表单数据
@@ -725,7 +725,7 @@ function (Model $record) {                       // $record 是当前操作关�
 
 ### 注入当前参数
 
-如果你想访问传递给操作的[当前参数](../components/action#passing-action-arguments)，请定义 `$arguments` 参数：
+如果你想访问传递给操作的[当前参数](../components/action#传递操作参数)，请定义 `$arguments` 参数：
 
 ```php
 // 注入传递给操作的当前参数
@@ -746,7 +746,7 @@ function (array $arguments) {                    // $arguments 包含所有传�
 - `$schemaSet` - 在模式数据中设置值的函数。
 - `$schemaOperation` - 模式正在执行的当前操作。通常是 `create`、`edit` 或 `view`。
 
-更多信息，请访问[模式部分](../schemas/overview#component-utility-injection)。
+更多信息，请访问[模式部分](../schemas/overview#组件实用工具注入)。
 
 ### 注入当前 Livewire 组件实例
 

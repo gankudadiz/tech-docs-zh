@@ -81,7 +81,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-可用渲染钩子的完整列表可以在[这里](advanced/render-hooks#可用渲染钩子)找到。
+可用渲染钩子的完整列表可以在[这里](advanced/render-hooks#可用的渲染钩子)找到。
 
 ## 设置域名
 

@@ -120,7 +120,7 @@ Radio::make('status')
     ->in(fn (Radio $component): array => array_keys($component->getEnabledOptions()))
 ```
 
-有关 `in()` 函数的更多信息，请参阅[验证文档](validation#in)。
+有关 `in()` 函数的更多信息，请参阅[验证文档](validation#在中)。
 
 ## 布尔选项
 

@@ -17,7 +17,7 @@ protected function mutateFormDataBeforeFill(array $data): array
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#customizing-data-before-filling-the-form)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#在填充表单前自定义数据)。
 
 ## 在保存前自定义数据
 
@@ -32,7 +32,7 @@ protected function mutateFormDataBeforeSave(array $data): array
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#customizing-data-before-saving)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#在保存前自定义数据)。
 
 ## 自定义保存过程
 
@@ -49,7 +49,7 @@ protected function handleRecordUpdate(Model $record, array $data): Model
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#customizing-the-saving-process)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#自定义保存过程)。
 
 ## 自定义重定向
 
@@ -111,7 +111,7 @@ protected function getSavedNotificationTitle(): ?string
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#customizing-the-save-notification)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#自定义保存通知)。
 
 你可以通过覆盖编辑页面类中的 `getSavedNotification()` 方法来自定义整个通知：
 
@@ -192,11 +192,11 @@ class EditUser extends EditRecord
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#lifecycle-hooks)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#生命周期钩子)。
 
 ## 独立保存表单的某部分
 
-你可能希望允许用户独立保存表单的某一部分。一种方法是使用[章节头部或底部的操作](../schemas/sections#adding-actions-to-the-sections-header-or-footer)。在 `action()` 方法中，你可以调用 `saveFormComponentOnly()`，传入你想要保存的 `Section` 组件：
+你可能希望允许用户独立保存表单的某一部分。一种方法是使用[章节头部或底部的操作](../schemas/sections#在区块标题中插入操作和其他组件)。在 `action()` 方法中，你可以调用 `saveFormComponentOnly()`，传入你想要保存的 `Section` 组件：
 
 ```php
 use Filament\Actions\Action;
@@ -255,7 +255,7 @@ protected function beforeSave(): void
 }
 ```
 
-或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#halting-the-saving-process)。
+或者，如果你在模态操作中编辑记录，请查阅[操作文档](../actions/edit#中止保存过程)。
 
 ## 授权
 
@@ -321,7 +321,7 @@ class EditUser extends EditRecord
 }
 ```
 
-要查看完整的操作 API，请访问[页面部分](../navigation/custom-pages#adding-actions-to-pages)。
+要查看完整的操作 API，请访问[页面部分](../navigation/custom-pages#为页面添加操作)。
 
 ### 将保存操作按钮添加到头部
 
@@ -350,7 +350,7 @@ protected function getFormActions(): array
 
 ## 创建另一个编辑页面
 
-一个编辑页面可能不足以让用户浏览大量的表单字段。你可以为资源创建任意多个编辑页面。如果你使用[资源子导航](overview#resource-sub-navigation)，这一点尤其有用，因为你可以轻松地在不同的编辑页面之间切换。
+一个编辑页面可能不足以让用户浏览大量的表单字段。你可以为资源创建任意多个编辑页面。如果你使用[资源子导航](overview#资源子导航)，这一点尤其有用，因为你可以轻松地在不同的编辑页面之间切换。
 
 要创建编辑页面，你应该使用 `make:filament-page` 命令：
 
@@ -389,7 +389,7 @@ public function form(Schema $schema): Schema
 
 ## 将编辑页面添加到资源子导航
 
-如果你使用[资源子导航](overview#resource-sub-navigation)，你可以像平常一样在资源的 `getRecordSubNavigation()` 中注册此页面：
+如果你使用[资源子导航](overview#资源子导航)，你可以像平常一样在资源的 `getRecordSubNavigation()` 中注册此页面：
 
 ```php
 use App\Filament\Resources\Customers\Pages;

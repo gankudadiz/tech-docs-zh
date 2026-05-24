@@ -48,7 +48,7 @@ QueryBuilder::make()
     ])
 ```
 
-当深度嵌套查询构建器时，你可能需要增加过滤器可占用的空间。一种方法是[将过滤器定位在表格内容上方](layout#displaying-filters-above-the-table-content)：
+当深度嵌套查询构建器时，你可能需要增加过滤器可占用的空间。一种方法是[将过滤器定位在表格内容上方](layout#在表格内容上方显示过滤器)：
 
 ```php
 use Filament\Tables\Enums\FiltersLayout;
@@ -69,14 +69,14 @@ public function table(Table $table): Table
 
 ## 可用约束
 
-Filament 附带了许多不同的约束，你可以开箱即用。你也可以[创建自己的自定义约束](#creating-custom-constraints)：
+Filament 附带了许多不同的约束，你可以开箱即用。你也可以[创建自己的自定义约束](#创建自定义约束)：
 
-- [文本约束](#text-constraints)
-- [布尔约束](#boolean-constraints)
-- [数字约束](#number-constraints)
-- [日期约束](#date-constraints)
-- [选择约束](#select-constraints)
-- [关联关系约束](#relationship-constraints)
+- [文本约束](#文本约束)
+- [布尔约束](#布尔约束)
+- [数字约束](#数字约束)
+- [日期约束](#日期约束)
+- [选择约束](#选择约束)
+- [关联关系约束](#关联关系约束)
 
 ### 文本约束
 
@@ -290,7 +290,7 @@ RelationshipConstraint::make('categories')
 
 #### 空关联关系约束
 
-`RelationshipConstraint` 不像其他约束那样支持 [`nullable()`](#nullable-constraints)。
+`RelationshipConstraint` 不像其他约束那样支持 [`nullable()`](#可空约束)。
 
 如果关联关系是 `multiple()`，那么约束将显示一个选项来筛选"空"关联关系。这意味着关联关系没有相关记录。如果你的关联关系是单数的，那么你可以使用 `emptyable()` 方法来显示一个筛选"空"关联关系的选项：
 
@@ -392,7 +392,7 @@ TextConstraint::make('author.name')
 
 ## 创建自定义约束
 
-自定义约束可以使用 `Constraint::make()` 方法与其他约束"内联"创建。你还应该通过 `icon()` 方法传递一个[图标](#customizing-the-constraint-icon)：
+自定义约束可以使用 `Constraint::make()` 方法与其他约束"内联"创建。你还应该通过 `icon()` 方法传递一个[图标](#自定义约束图标)：
 
 ```php
 use Filament\QueryBuilder\Constraints\Constraint;
@@ -417,7 +417,7 @@ Constraint::make('subscribed')
     ]),
 ```
 
-现在，你必须为约束[定义操作符](#creating-custom-operators)。这些是你可以选择用来筛选列的选项。如果列是[可空的](#nullable-constraints)，你也可以为自定义约束注册该内置操作符：
+现在，你必须为约束[定义操作符](#创建自定义操作符)。这些是你可以选择用来筛选列的选项。如果列是[可空的](#可空约束)，你也可以为自定义约束注册该内置操作符：
 
 ```php
 use Filament\QueryBuilder\Constraints\Constraint;
@@ -481,7 +481,7 @@ QueryBuilder::make()
 
 ### 增加约束选择器的宽度
 
-当你[增加列数](#changing-the-number-of-columns-in-the-constraint-picker)时，下拉菜单的宽度应逐渐增加以处理额外的列。如果你想更多控制，可以使用 `constraintPickerWidth()` 方法手动设置下拉菜单的最大宽度。选项对应于 [Tailwind 的最大宽度比例](https://tailwindcss.com/docs/max-width)。选项有 `xs`、`sm`、`md`、`lg`、`xl`、`2xl`、`3xl`、`4xl`、`5xl`、`6xl`、`7xl`：
+当你[增加列数](#更改约束选择器中的列数)时，下拉菜单的宽度应逐渐增加以处理额外的列。如果你想更多控制，可以使用 `constraintPickerWidth()` 方法手动设置下拉菜单的最大宽度。选项对应于 [Tailwind 的最大宽度比例](https://tailwindcss.com/docs/max-width)。选项有 `xs`、`sm`、`md`、`lg`、`xl`、`2xl`、`3xl`、`4xl`、`5xl`、`6xl`、`7xl`：
 
 ```php
 use Filament\Tables\Filters\QueryBuilder;

@@ -285,7 +285,7 @@ ToggleButtons::make('technologies')
 
 ![2 列开关按钮组](/assets/filament/v4.x/screenshots/images/light/forms/fields/toggle-buttons/columns.jpg)
 
-该方法接受与[网格](../schemas/layouts#grid-system)的 `columns()` 方法相同的选项。这允许你在不同断点处响应式地自定义列数。
+该方法接受与[网格](../schemas/layouts#网格系统)的 `columns()` 方法相同的选项。这允许你在不同断点处响应式地自定义列数。
 
 ### 设置网格方向
 
@@ -346,4 +346,4 @@ ToggleButtons::make('status')
     ->in(fn (ToggleButtons $component): array => array_keys($component->getEnabledOptions()))
 ```
 
-有关 `in()` 函数的更多信息，请参阅[验证文档](validation#in)。
+有关 `in()` 函数的更多信息，请参阅[验证文档](validation#在中)。

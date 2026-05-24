@@ -57,7 +57,7 @@ RepeatableEntry::make('comments')
     ->grid(2)
 ```
 
-此方法接受与[网格](../schemas/layouts#grid-system)的 `columns()` 方法相同的选项。这允许你在各种断点处响应式地自定义网格列数。
+此方法接受与[网格](../schemas/layouts#网格系统)的 `columns()` 方法相同的选项。这允许你在各种断点处响应式地自定义网格列数。
 
 除了允许静态值外，`grid()` 方法还接受一个函数来动态计算它。你可以将各种实用工具作为参数注入到函数中。
 

@@ -62,7 +62,7 @@ class User extends Authenticatable implements FilamentUser
 
 ## 授权访问资源
 
-请参阅资源文档中的[授权](../resources/overview#authorization)部分，了解如何控制对资源页面及其数据记录的访问。
+请参阅资源文档中的[授权](../resources/overview#授权)部分，了解如何控制对资源页面及其数据记录的访问。
 
 ## 设置用户头像
 
@@ -339,7 +339,7 @@ public function panel(Panel $panel): Panel
 
 ### 禁用可显示的密码输入
 
-默认情况下，认证表单中的所有密码输入都是[`revealable()`](../forms/text-input#revealable-password-inputs)。这允许用户通过点击按钮查看正在输入的密码的明文版本。要禁用此功能，你可以向 `revealablePasswords()` [配置](../panel-configuration)方法传入 `false`：
+默认情况下，认证表单中的所有密码输入都是[`revealable()`](../forms/text-input#可显示的密码输入)。这允许用户通过点击按钮查看正在输入的密码的明文版本。要禁用此功能，你可以向 `revealablePasswords()` [配置](../panel-configuration)方法传入 `false`：
 
 ```php
 use Filament\Panel;

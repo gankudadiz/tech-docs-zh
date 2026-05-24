@@ -16,7 +16,7 @@ Filament 是一个强大的框架，为开发者提供了对组件配置和渲�
 
 ### 资源授权
 
-Filament 会自动检查 [Laravel 模型策略](https://laravel.com/docs/authorization#creating-policies)来处理[资源](../resources/overview#authorization)的标准 CRUD 操作。当资源的模型存在策略时，Filament 会在允许访问相应页面和操作之前检查 `viewAny()`、`create()`、`update()`、`view()`、`delete()` 等方法。
+Filament 会自动检查 [Laravel 模型策略](https://laravel.com/docs/authorization#creating-policies)来处理[资源](../resources/overview#授权)的标准 CRUD 操作。当资源的模型存在策略时，Filament 会在允许访问相应页面和操作之前检查 `viewAny()`、`create()`、`update()`、`view()`、`delete()` 等方法。
 
 然而，Filament 的自动授权仅覆盖这些内置资源操作。你添加的任何自定义功能 -- 自定义操作、自定义页面、自定义 Livewire 组件、API 端点或其他业务逻辑 -- 都必须由你自行授权。Filament 无法了解标准 CRUD 操作之外的应用授权需求。
 
@@ -51,7 +51,7 @@ Filament 在每个 Livewire 请求上都会重新运行授权 -- 无论是在初
 
 ### 自定义操作
 
-当你创建[自定义操作](../actions/overview#authorization)时，你有责任对其进行授权。Filament 提供了 `visible()`、`hidden()` 和 `authorize()` 方法来帮助完成此工作，但你必须使用它们 -- 它们不会自动应用。如果操作修改数据或执行敏感操作，请始终确保它已获得授权。
+当你创建[自定义操作](../actions/overview#授权)时，你有责任对其进行授权。Filament 提供了 `visible()`、`hidden()` 和 `authorize()` 方法来帮助完成此工作，但你必须使用它们 -- 它们不会自动应用。如果操作修改数据或执行敏感操作，请始终确保它已获得授权。
 
 ### 测试授权
 
@@ -197,7 +197,7 @@ public function register(): void
 
 ## 面板访问
 
-默认情况下，所有 `App\Models\User` 记录都可以在本地环境中访问 Filament 面板。在生产环境中，你必须在 User 模型上实现 `FilamentUser` 契约并定义 `canAccessPanel()` 方法来控制谁可以登录。有关详细信息，请参阅[用户文档](../users/overview#authorizing-access-to-the-panel)。
+默认情况下，所有 `App\Models\User` 记录都可以在本地环境中访问 Filament 面板。在生产环境中，你必须在 User 模型上实现 `FilamentUser` 契约并定义 `canAccessPanel()` 方法来控制谁可以登录。有关详细信息，请参阅[用户文档](../users/overview#授权访问面板)。
 
 如果你的应用有多个面板（例如管理面板和面向用户的面板），请确保 `canAccessPanel()` 检查 `$panel` 参数并为每个面板返回适当的结果。
 
@@ -207,13 +207,13 @@ Filament 通过 TOTP 应用和电子邮件验证码支持[多因素认证](../us
 
 ## 模型属性暴露
 
-Filament 通过 Livewire 的模型绑定将所有非 `$hidden` 的模型属性暴露给 JavaScript。这对于动态表单功能是必需的，只有具有对应表单字段的属性才实际可编辑 -- 这不是批量赋值漏洞。然而，如果你的模型包含不应在浏览器中可见的敏感属性（如 API 密钥或内部标志），你应该将它们添加到模型的 `$hidden` 属性中，或在编辑或查看页面上使用 `mutateFormDataBeforeFill()` 方法移除它们。有关更多详细信息，请参阅[资源文档](../resources/overview#protecting-model-attributes)。
+Filament 通过 Livewire 的模型绑定将所有非 `$hidden` 的模型属性暴露给 JavaScript。这对于动态表单功能是必需的，只有具有对应表单字段的属性才实际可编辑 -- 这不是批量赋值漏洞。然而，如果你的模型包含不应在浏览器中可见的敏感属性（如 API 密钥或内部标志），你应该将它们添加到模型的 `$hidden` 属性中，或在编辑或查看页面上使用 `mutateFormDataBeforeFill()` 方法移除它们。有关更多详细信息，请参阅[资源文档](../resources/overview#保护模型属性)。
 
 ## 文件上传
 
 Filament 的 `FileUpload` 组件使用 Livewire 的文件上传机制。允许用户上传文件时有重要的安全注意事项，特别是在文件名、存储可见性和接受的文件类型方面。
 
-默认情况下，Filament 生成随机文件名并以 `private` 可见性存储文件。如果你使用 `preserveFilenames()` 或 `getUploadedFileNameForStorageUsing()` 配合本地或公共磁盘，攻击者可能会上传一个带有欺骗性 MIME 类型的 PHP 文件，该文件会被你的服务器执行。更安全的替代方案是使用 `storeFileNamesIn()`，它将原始文件名存储在单独的数据库列中，同时在磁盘上保留随机生成的文件名。有关这些风险和推荐缓解措施的完整说明，请参阅[文件上传文档](../forms/file-upload#security-implications-of-controlling-file-names)。
+默认情况下，Filament 生成随机文件名并以 `private` 可见性存储文件。如果你使用 `preserveFilenames()` 或 `getUploadedFileNameForStorageUsing()` 配合本地或公共磁盘，攻击者可能会上传一个带有欺骗性 MIME 类型的 PHP 文件，该文件会被你的服务器执行。更安全的替代方案是使用 `storeFileNamesIn()`，它将原始文件名存储在单独的数据库列中，同时在磁盘上保留随机生成的文件名。有关这些风险和推荐缓解措施的完整说明，请参阅[文件上传文档](../forms/file-upload#控制文件名的安全隐患)。
 
 你应该始终使用 `acceptedFileTypes()` 来限制用户可以上传的文件类型，并使用 `maxSize()` 验证文件大小。这些约束在服务器端强制执行，而不仅仅是在浏览器中。
 
@@ -223,8 +223,8 @@ Filament 的 `FileUpload` 组件使用 Livewire 的文件上传机制。允许�
 
 Filament 默认允许这样做，因为合法功能依赖于它 -- 例如，将字段设置为预上传模板文件的操作，或"从其他记录复制"按钮。如果你的表单不依赖此类流程，请选择启用内置检查：
 
-- 对于 `FileUpload` 字段，调用 [`preventFilePathTampering()`](../forms/file-upload#authorizing-existing-file-paths) 以在提交的路径与记录上的原始值不匹配时使验证失败。
-- 对于 `RichEditor` 字段，调用 [`preventFileAttachmentPathTampering()`](../forms/rich-editor#securing-file-attachment-ids) 以在提交的 `data-id` 不存在于记录存储内容中时使验证失败。
+- 对于 `FileUpload` 字段，调用 [`preventFilePathTampering()`](../forms/file-upload#授权现有文件路径) 以在提交的路径与记录上的原始值不匹配时使验证失败。
+- 对于 `RichEditor` 字段，调用 [`preventFileAttachmentPathTampering()`](../forms/rich-editor#保护文件附件-id) 以在提交的 `data-id` 不存在于记录存储内容中时使验证失败。
 
 这两种方法都通过 `$record->getOriginal()` 将提交的值与记录上的属性进行比较，并且都接受 `allowFilePathUsing` 回调用于在记录之外合法添加的路径（如共享模板文件）。新上传的文件和图像始终会原封不动地通过。
 
