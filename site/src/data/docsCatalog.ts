@@ -24,15 +24,15 @@ export const docsProducts: DocsProduct[] = [
     id: 'filament',
     name: 'Filament',
     description:
-      'Laravel 生态的 Server-Driven UI 框架文档。当前站点保留官方原文快照，并接入一组 normalized 页面用于验证阅读、翻译和校对流程。',
+      'Laravel 生态的 Server-Driven UI 框架文档。',
     defaultVersionSlug: 'v4.x',
     versions: [
       {
         label: 'v4.x',
         slug: 'v4.x',
-        status: '翻译中',
+        status: '翻译完成',
         pages: '32 个站点页面',
-        stage: '结构验证中',
+        stage: '锚点修复完成',
         docsPath: '/docs/filament/v4.x/introduction/overview',
         docsBasePath: '/docs/filament/v4.x',
         sourceHref: 'https://github.com/filamentphp/filament/tree/4.x/docs',
