@@ -147,29 +147,24 @@ Packages
 
 按风险低到高推进：
 
-- [ ] 第一批：Getting Started
-  - [ ] quickstart
-  - [ ] installation
-  - [ ] upgrading
-- [ ] 第二批：Essentials
-  - [ ] components
-  - [ ] properties
-  - [ ] actions
-  - [ ] forms
-  - [ ] events
-  - [ ] lifecycle-hooks
-  - [ ] nesting
-  - [ ] testing
-- [ ] 第三批：Features
-- [ ] 第四批：HTML Directives
-- [ ] 第五批：Concepts、Advanced、Packages
+- [x] 所有 53 页占位文件已就绪（2026-05-25 全部创建占位页）
+  - 已翻译 3 页（quickstart、installation、components）
+  - 未翻译 50 页标注 `translation_status: placeholder`
+- 后续翻译批次建议：
+  - [ ] 第一批补齐：upgrading
+  - [ ] 第二批：properties、actions、forms
+  - [ ] 第三批：events、lifecycle-hooks、nesting、testing
+  - [ ] 第四批：Features 分组
+  - [ ] 第五批：HTML Directives 分组
+  - [ ] 第六批：Concepts、Advanced、Packages
 
 执行规则：
 
 - 每个页面必须同时同步 `content/` 与 `site/docs/`。
-- 如果先创建占位页，必须明确标注“翻译中”，不要伪装成完整译文。
+- 如果先创建占位页，必须明确标注"翻译中"，不要伪装成完整译文。
 - 不翻译代码、类名、方法名、配置键、命令和命令输出。
 - 链接优先适配到本地真实页面；未接入页面可临时保留官方链接或创建明确占位页。
+- 占位页引用文件：`sources/livewire/v3.x/normalized/docs/*.md`（53 页）
 
 ## 6. 校对和链接适配
 
@@ -211,6 +206,19 @@ npm run build
 - 2026-05-25：`npm run build` 通过；构建仍提示一批 Filament v4.x 既有 broken links，未发现 Livewire 样板页新增 broken links。
 - 2026-05-25：`grep -rn "raw-assets\|docs-assets" site/docs/livewire/v3.x/` 无匹配。
 - 2026-05-25：`grep -rn "@components\|AutoScreenshot\|<Aside\|<Disclosure\|<RadioGroup\|<UtilityInjection" site/docs/livewire/v3.x/` 无匹配。
+- 2026-05-25：（第二轮占位部署）为所有 50 个未翻译页面创建占位文件。
+  - `content/livewire/v3.x/zh-cn/docs/` 和 `site/docs/livewire/v3.x/` 各新增 50 个占位页。
+  - sidebar 补全全部 7 个分类（入门、基础、功能、HTML 指令、概念、高级、包）共 53 条。
+  - docsCatalog 页面数更新为 `53 个站点页面`，阶段更新为 `翻译中（含占位页）`。
+  - 占位页均标注 `translation_status: placeholder` 并提示"翻译中"。
+  - 已翻译 3 页（quickstart、installation、components）保持不变。
+- 2026-05-25：（第二轮小批次）翻译并接入 installation.md 和 components.md 共 2 页。
+  - `content/` 与 `site/docs/` 同步完成。
+  - sidebar 新增 `安装` 到"入门"分组，`组件` 到"基础"分组。
+  - docsCatalog 页面数更新为 `3 个站点页面`，阶段更新为 `翻译中`。
+  - 未接入页面内链（如 properties、actions、lifecycle-hooks、nesting、javascript）已转为官方 3.x 外链。
+  - `npm run typecheck` 通过。
+  - `npm run build` 通过；仍存在 Filament v4.x 既有 broken links，未新增 Livewire broken links。
 
 ## 8. 收尾文档
 
