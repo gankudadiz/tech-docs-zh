@@ -1,0 +1,41 @@
+product: livewire
+version: v3.x
+source:
+  repo: https://github.com/livewire/livewire
+  ref: v3.8.0
+  commit: d81d269243c3f18d302663c0ce5672990df08ca1
+  docs_tree: ae89cf882aa4eb770beee0e6ebd81eb0e95660d4
+  paths:
+    - docs
+    - LICENSE.md
+    - README.md
+    - composer.json
+retrieved_at: 2026-05-25
+license: MIT
+local:
+  upstream: sources/_upstream/livewire-v3.x-docs
+  raw_docs: sources/livewire/v3.x/raw/docs
+  raw_assets: sources/livewire/v3.x/raw-assets
+  normalized_docs: sources/livewire/v3.x/normalized/docs
+counts:
+  raw_docs_files: 84
+  normalized_docs_files: 53
+verification:
+  checked_at: 2026-05-25
+  web_pages_checked:
+    - https://livewire.laravel.com/docs/3.x/quickstart
+    - https://livewire.laravel.com/docs/3.x/installation
+  web_nav_slugs: 53
+  github_nav_slugs: 53
+  normalized_slugs: 53
+  diff:
+    web_minus_normalized: []
+    normalized_minus_web: []
+    github_nav_minus_normalized: []
+    normalized_minus_github_nav: []
+notes:
+  - 以 docs/__nav.md 作为官方可见页面和 sidebar 的主要依据。
+  - docs/.obsidian、docs/rules、Untitled*.md、__outline.md 默认不进入站点。
+  - docs/morph.md 的官方 URI 是 /docs/3.x/morphing，normalized 和站点路径映射为 morphing.md。
+  - 未发现需要复制到 raw-assets 的本地图片资源；当前资源引用主要是代码示例、外部 CDN、外部 Vimeo iframe 和临时上传文件名。
+  - raw/docs 保留不在官方导航中的 Markdown 作为参考，normalized/docs 只保留 53 个官方导航页面。

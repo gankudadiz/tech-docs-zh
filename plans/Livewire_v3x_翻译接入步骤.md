@@ -2,7 +2,7 @@
 
 **日期**: 2026-05-25  
 **目标**: 将 Livewire v3.x 作为下一个中文翻译文档目标接入本项目  
-**当前状态**: 待开始采集  
+**当前状态**: 源文档采集与结构清洗完成  
 
 ## 0. 依据和范围
 
@@ -38,7 +38,7 @@ local version: v3.x
 
 ## 1. 源文档采集
 
-- [ ] 建立采集目录：
+- [x] 建立采集目录：
 
 ```text
 sources/_upstream/livewire-v3.x-docs/
@@ -47,10 +47,15 @@ sources/livewire/v3.x/raw-assets/
 sources/livewire/v3.x/normalized/docs/
 ```
 
-- [ ] 从 `livewire/livewire` 的 `v3.8.0` 标签采集 `docs/`、`LICENSE.md`、`README.md`。
-- [ ] 保留完整原始 `docs/` 快照到 `sources/livewire/v3.x/raw/docs/`。
-- [ ] 检查是否存在正文图片或静态资源引用；如有，复制到 `sources/livewire/v3.x/raw-assets/`。
-- [ ] 创建 `sources/livewire/v3.x/manifest.yml`，记录 repo、ref、commit、路径、采集日期、license 和排除规则。
+- [x] 从 `livewire/livewire` 的 `v3.8.0` 标签采集 `docs/`、`LICENSE.md`、`README.md`。
+- [x] 保留完整原始 `docs/` 快照到 `sources/livewire/v3.x/raw/docs/`。
+- [x] 检查是否存在正文图片或静态资源引用；如有，复制到 `sources/livewire/v3.x/raw-assets/`。
+- [x] 创建 `sources/livewire/v3.x/manifest.yml`，记录 repo、ref、commit、路径、采集日期、license 和排除规则。
+
+执行记录：
+
+- 2026-05-25：已克隆 `livewire/livewire` 的 `v3.8.0` 标签到 `sources/_upstream/livewire-v3.x-docs/`，HEAD 为 `d81d269243c3f18d302663c0ce5672990df08ca1`。
+- 2026-05-25：`raw/docs` 保存 84 个文件；`raw-assets` 暂无本地资源文件。
 
 建议 manifest 初稿：
 
@@ -75,11 +80,18 @@ notes:
 
 ## 2. 结构清洗
 
-- [ ] 解析 `docs/__nav.md`，生成 53 个可见页面清单。
-- [ ] 将可见页面复制或规范化到 `sources/livewire/v3.x/normalized/docs/`。
-- [ ] 按官方 URI 映射文件名，特别处理 `morph.md` -> `morphing.md`。
-- [ ] 确认 normalized 目录不包含 `.obsidian`、`rules`、`Untitled*.md`、`__outline.md`。
-- [ ] 记录未进入站点但保留在 raw 中的参考文件，例如 `best-practices.md`、`how-livewire-works.md`、`the-livewire-protocol.md`。
+- [x] 解析 `docs/__nav.md`，生成 53 个可见页面清单。
+- [x] 将可见页面复制或规范化到 `sources/livewire/v3.x/normalized/docs/`。
+- [x] 按官方 URI 映射文件名，特别处理 `morph.md` -> `morphing.md`。
+- [x] 确认 normalized 目录不包含 `.obsidian`、`rules`、`Untitled*.md`、`__outline.md`。
+- [x] 记录未进入站点但保留在 raw 中的参考文件，例如 `best-practices.md`、`how-livewire-works.md`、`the-livewire-protocol.md`。
+
+执行记录：
+
+- 2026-05-25：`normalized/docs` 已生成 53 个页面。
+- 2026-05-25：`docs/morph.md` 已按官方 URI 输出为 `normalized/docs/morphing.md`。
+- 2026-05-25：`best-practices.md`、`blade-components.md`、`component-hooks.md`、`dirty.md`、`how-livewire-works.md`、`polling.md`、`the-livewire-protocol.md`、`__outline.md`、`Untitled*.md` 和 `rules/*.md` 仅保留在 raw 中。
+- 2026-05-25：已联网抓取 `https://livewire.laravel.com/docs/3.x/quickstart` 和 `https://livewire.laravel.com/docs/3.x/installation`，提取网页版 `/docs/3.x/...` 导航 slug，与 GitHub `docs/__nav.md` 和本地 `normalized/docs` 对比，三方均为 53 个 slug，差集为空。
 
 ## 3. 最小站点接入
 
