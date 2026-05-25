@@ -95,7 +95,7 @@ notes:
 
 ## 3. 最小站点接入
 
-- [ ] 建立翻译和站点目录：
+- [x] 建立翻译和站点目录：
 
 ```text
 content/livewire/v3.x/zh-cn/docs/
@@ -103,20 +103,25 @@ site/docs/livewire/v3.x/
 site/static/assets/livewire/v3.x/
 ```
 
-- [ ] 先接入 `quickstart.md`，同时写入：
+- [x] 先接入 `quickstart.md`，同时写入：
 
 ```text
 content/livewire/v3.x/zh-cn/docs/quickstart.md
 site/docs/livewire/v3.x/quickstart.md
 ```
 
-- [ ] 为页面 frontmatter 保留来源、版本和翻译状态信息。
-- [ ] 如页面存在图片，站点引用必须转换为 `/assets/livewire/v3.x/...`。
+- [x] 为页面 frontmatter 保留来源、版本和翻译状态信息。
+- [x] 如页面存在图片，站点引用必须转换为 `/assets/livewire/v3.x/...`。
+
+执行记录：
+
+- 2026-05-25：已接入 `quickstart.md` 样板页，`content/` 与 `site/docs/` 同步。
+- 2026-05-25：样板页未引用本地图片；未接入的 Livewire 内链暂保留为官方 3.x 外链，避免新增站内 broken links。
 
 ## 4. 导航和目录
 
-- [ ] 在 `site/src/data/docsCatalog.ts` 中新增 `livewire` 产品和 `v3.x` 版本项。
-- [ ] 在 `site/sidebars.ts` 中新增 `livewireV3Sidebar`。
+- [x] 在 `site/src/data/docsCatalog.ts` 中新增 `livewire` 产品和 `v3.x` 版本项。
+- [x] 在 `site/sidebars.ts` 中新增 `livewireV3Sidebar`。
 - [ ] 按 `docs/__nav.md` 的分组组织 sidebar：
 
 ```text
@@ -129,9 +134,14 @@ Advanced
 Packages
 ```
 
-- [ ] 修改 `site/docusaurus.config.ts`，把当前 Filament 专用 navbar/footer 扩展为多产品入口。
-- [ ] 确认首页产品卡片能显示 Livewire。
-- [ ] 确认顶部产品入口、版本下拉和源文档链接都能到 Livewire v3.x。
+- [x] 修改 `site/docusaurus.config.ts`，把当前 Filament 专用 navbar/footer 扩展为多产品入口。
+- [x] 确认首页产品卡片能显示 Livewire。
+- [x] 确认顶部产品入口、版本下拉和源文档链接都能到 Livewire v3.x。
+
+执行记录：
+
+- 2026-05-25：`docsProducts` 中 Livewire 已排在 Filament 前面，首页列表按该顺序渲染。
+- 2026-05-25：`livewireV3Sidebar` 当前只注册样板页 `quickstart`，后续批量接入时再扩展完整 53 页。
 
 ## 5. 批量页面占位或翻译
 
@@ -188,12 +198,19 @@ npm run build
 验收项：
 
 - [ ] `sources/livewire/v3.x/manifest.yml` 存在且信息完整。
-- [ ] `content/livewire/v3.x/zh-cn/docs/` 与 `site/docs/livewire/v3.x/` 页面同步。
-- [ ] `site/sidebars.ts` 注册了 `livewireV3Sidebar`。
-- [ ] `site/src/data/docsCatalog.ts` 注册了 Livewire v3.x。
-- [ ] `site/docusaurus.config.ts` 支持多产品导航。
-- [ ] `npm run typecheck` 通过。
-- [ ] `npm run build` 通过；如存在 broken links，已记录来源和处理计划。
+- [x] `content/livewire/v3.x/zh-cn/docs/` 与 `site/docs/livewire/v3.x/` 页面同步。
+- [x] `site/sidebars.ts` 注册了 `livewireV3Sidebar`。
+- [x] `site/src/data/docsCatalog.ts` 注册了 Livewire v3.x。
+- [x] `site/docusaurus.config.ts` 支持多产品导航。
+- [x] `npm run typecheck` 通过。
+- [x] `npm run build` 通过；如存在 broken links，已记录来源和处理计划。
+
+执行记录：
+
+- 2026-05-25：`npm run typecheck` 通过。
+- 2026-05-25：`npm run build` 通过；构建仍提示一批 Filament v4.x 既有 broken links，未发现 Livewire 样板页新增 broken links。
+- 2026-05-25：`grep -rn "raw-assets\|docs-assets" site/docs/livewire/v3.x/` 无匹配。
+- 2026-05-25：`grep -rn "@components\|AutoScreenshot\|<Aside\|<Disclosure\|<RadioGroup\|<UtilityInjection" site/docs/livewire/v3.x/` 无匹配。
 
 ## 8. 收尾文档
 

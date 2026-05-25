@@ -32,57 +32,59 @@ export default function Home(): ReactNode {
             </Heading>
           </div>
 
-          {docsProducts.map((product) => {
-            const defaultVersion = getProductDefaultVersion(product);
+          <div className={styles.productList}>
+            {docsProducts.map((product) => {
+              const defaultVersion = getProductDefaultVersion(product);
 
-            return (
-              <article className={styles.product} key={product.id}>
-                <div className={styles.productMain}>
-                  <div className={styles.productHeader}>
-                    <span className={styles.status}>{defaultVersion.status}</span>
-                    <span>{product.versions.length} 个版本</span>
-                  </div>
-                  <Heading as="h3">{product.name}</Heading>
-                  <p>{product.description}</p>
+              return (
+                <article className={styles.product} key={product.id}>
+                  <div className={styles.productMain}>
+                    <div className={styles.productHeader}>
+                      <span className={styles.status}>{defaultVersion.status}</span>
+                      <span>{product.versions.length} 个版本</span>
+                    </div>
+                    <Heading as="h3">{product.name}</Heading>
+                    <p>{product.description}</p>
 
-                  <div className={styles.versionList} aria-label={`${product.name} 版本`}>
-                    {product.versions.map((version) => (
-                      <Link
-                        className={styles.versionPill}
-                        key={version.slug}
-                        to={version.docsPath}>
-                        {version.label}
-                      </Link>
-                    ))}
+                    <div className={styles.versionList} aria-label={`${product.name} 版本`}>
+                      {product.versions.map((version) => (
+                        <Link
+                          className={styles.versionPill}
+                          key={version.slug}
+                          to={version.docsPath}>
+                          {version.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <dl className={styles.productMeta}>
-                  <div>
-                    <dt>默认版本</dt>
-                    <dd>{defaultVersion.label}</dd>
-                  </div>
-                  <div>
-                    <dt>页面</dt>
-                    <dd>{defaultVersion.pages}</dd>
-                  </div>
-                  <div>
-                    <dt>阶段</dt>
-                    <dd>{defaultVersion.stage}</dd>
-                  </div>
-                </dl>
+                  <dl className={styles.productMeta}>
+                    <div>
+                      <dt>默认版本</dt>
+                      <dd>{defaultVersion.label}</dd>
+                    </div>
+                    <div>
+                      <dt>页面</dt>
+                      <dd>{defaultVersion.pages}</dd>
+                    </div>
+                    <div>
+                      <dt>阶段</dt>
+                      <dd>{defaultVersion.stage}</dd>
+                    </div>
+                  </dl>
 
-                <div className={styles.actions}>
-                  <Link className={`${styles.action} ${styles.actionPrimary}`} to={defaultVersion.docsPath}>
-                    开始阅读
-                  </Link>
-                  <Link className={styles.action} to={defaultVersion.sourceHref}>
-                    查看原文
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
+                  <div className={styles.actions}>
+                    <Link className={`${styles.action} ${styles.actionPrimary}`} to={defaultVersion.docsPath}>
+                      开始阅读
+                    </Link>
+                    <Link className={styles.action} to={defaultVersion.sourceHref}>
+                      查看原文
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </section>
       </main>
     </Layout>

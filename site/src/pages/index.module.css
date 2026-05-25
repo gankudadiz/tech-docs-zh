@@ -71,6 +71,13 @@
   font-size: 1.6rem;
 }
 
+.productList {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .product {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 180px;
@@ -200,6 +207,10 @@
   .library,
   .product {
     grid-template-columns: 1fr;
+  }
+
+  .productList {
+    gap: 16px;
   }
 
   .sectionLead {

@@ -6,14 +6,42 @@ import {docsProducts, getProductDefaultVersion} from './src/data/docsCatalog';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const filament = docsProducts.find((product) => product.id === 'filament');
-const filamentDefaultVersion = filament ? getProductDefaultVersion(filament) : undefined;
-const filamentVersionItems =
-  filament?.versions.map((version) => ({
-    label: version.label,
+const productNavItems = docsProducts.map((product) => {
+  const defaultVersion = getProductDefaultVersion(product);
+
+  return {
+    type: 'docSidebar' as const,
+    sidebarId: defaultVersion.sidebarId,
+    position: 'left' as const,
+    label: product.name,
+  };
+});
+
+const versionItems = docsProducts.flatMap((product) =>
+  product.versions.map((version) => ({
+    label: `${product.name} ${version.label}`,
     to: version.docsPath,
     activeBasePath: version.docsBasePath,
-  })) ?? [];
+  })),
+);
+
+const sourceItems = docsProducts.map((product) => {
+  const defaultVersion = getProductDefaultVersion(product);
+
+  return {
+    label: defaultVersion.sourceLabel,
+    href: defaultVersion.sourceHref,
+  };
+});
+
+const footerProductItems = docsProducts.map((product) => {
+  const defaultVersion = getProductDefaultVersion(product);
+
+  return {
+    label: product.name,
+    to: defaultVersion.docsPath,
+  };
+});
 
 const config: Config = {
   title: '中文技术文档站',
@@ -69,30 +97,18 @@ const config: Config = {
     navbar: {
       title: '中文技术文档站',
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: filamentDefaultVersion?.sidebarId ?? 'filamentV4Sidebar',
-          position: 'left',
-          label: 'Filament',
-        },
+        ...productNavItems,
         {
           type: 'dropdown',
           label: '版本',
           position: 'left',
-          items: filamentVersionItems,
+          items: versionItems,
         },
         {
           type: 'dropdown',
           label: '源文档',
           position: 'right',
-          items: [
-            {
-              label: filamentDefaultVersion?.sourceLabel ?? 'Filament v4.x',
-              href:
-                filamentDefaultVersion?.sourceHref ??
-                'https://github.com/filamentphp/filament/tree/4.x/docs',
-            },
-          ],
+          items: sourceItems,
         },
       ],
     },
@@ -101,12 +117,7 @@ const config: Config = {
       links: [
         {
           title: '已收录产品',
-          items: [
-            {
-              label: 'Filament',
-              to: filamentDefaultVersion?.docsPath ?? '/docs/filament/v4.x/introduction/overview',
-            },
-          ],
+          items: footerProductItems,
         },
         {
           title: '项目',

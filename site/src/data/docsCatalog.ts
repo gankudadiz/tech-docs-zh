@@ -21,6 +21,27 @@ export type DocsProduct = {
 
 export const docsProducts: DocsProduct[] = [
   {
+    id: 'livewire',
+    name: 'Livewire',
+    description:
+      'Laravel 生态中用于构建动态界面的基础全栈组件框架。',
+    defaultVersionSlug: 'v3.x',
+    versions: [
+      {
+        label: 'v3.x',
+        slug: 'v3.x',
+        status: '翻译中',
+        pages: '1 个站点页面',
+        stage: '样板页接入',
+        docsPath: '/docs/livewire/v3.x/quickstart',
+        docsBasePath: '/docs/livewire/v3.x',
+        sourceHref: 'https://github.com/livewire/livewire/tree/v3.8.0/docs',
+        sourceLabel: 'Livewire v3.x',
+        sidebarId: 'livewireV3Sidebar',
+      },
+    ],
+  },
+  {
     id: 'filament',
     name: 'Filament',
     description:

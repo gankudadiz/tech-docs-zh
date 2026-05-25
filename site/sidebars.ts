@@ -13,6 +13,16 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
+  livewireV3Sidebar: [
+    {
+      type: 'category',
+      label: '入门',
+      collapsed: false,
+      items: [
+        'livewire/v3.x/quickstart',
+      ],
+    },
+  ],
   filamentV4Sidebar: [
     {
       type: 'category',
