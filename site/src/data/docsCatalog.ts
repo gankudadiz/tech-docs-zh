@@ -75,9 +75,9 @@ export const docsProducts: DocsProduct[] = [
       {
         label: 'v3.x',
         slug: 'v3.x',
-        status: '翻译中',
+        status: '翻译完成',
         pages: '50 个站点页面',
-        stage: '接入中（含占位页）',
+        stage: '翻译完成',
         docsPath: '/docs/alpine/v3.x/start-here',
         docsBasePath: '/docs/alpine/v3.x',
         sourceHref: 'https://github.com/alpinejs/alpine/tree/main/packages/docs/src/en',
