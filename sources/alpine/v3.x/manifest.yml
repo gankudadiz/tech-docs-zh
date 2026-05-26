@@ -1,0 +1,18 @@
+product: alpine
+version: v3.x
+source:
+  repo: https://github.com/alpinejs/alpine
+  ref: main
+  commit: 3b125f96058aa53904befbb3fa35dbfb1cd0e69a
+  paths:
+    - packages/docs/src/en
+    - LICENSE.md
+    - README.md
+retrieved_at: 2026-05-26
+license: MIT
+version_tag: 3.15.12
+notes:
+  - 官方无版本化目录，本项目统一使用 v3.x。
+  - essentials.md/directives.md/magics.md/globals.md/plugins.md/advanced.md 为分类索引占位页，不纳入站点页面。
+  - UI Components (Dropdown/Modal) 无对应源文件，初步跳过。
+  - 文档无图片资源，无 Astro/Vue 等框架组件残留。
