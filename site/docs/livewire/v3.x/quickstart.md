@@ -19,8 +19,12 @@ translation_status: draft
 在 Laravel 应用的根目录中，运行下面的 [Composer](https://getcomposer.org/) 命令：
 
 ```shell
-composer require livewire/livewire
+composer require livewire/livewire "^3.0"
 ```
+
+:::tip[固定安装 Livewire 3]
+这份文档对应 Livewire 3.x。由于 Livewire 4.x 已经发布，直接运行 `composer require livewire/livewire` 会安装当前最新主版本；如果你要跟随本页内容学习，请保留上面的 `^3.0` 版本约束。
+:::
 
 :::warning[确保 Alpine 没有被重复安装]
 如果你使用的应用已经安装了 AlpineJS，需要先将它移除，Livewire 才能正常工作；否则 Alpine 会被加载两次，Livewire 将无法运行。例如，如果你安装了 Laravel Breeze 的 “Blade with Alpine” 入门套件，就需要从 `resources/js/app.js` 中移除 Alpine。

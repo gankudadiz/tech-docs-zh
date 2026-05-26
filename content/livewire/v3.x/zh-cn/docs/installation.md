@@ -10,8 +10,12 @@ Livewire 是一个 Laravel 包，因此你需要先有一个运行中的 Laravel
 要安装 Livewire，打开终端并进入你的 Laravel 应用目录，然后运行以下命令：
 
 ```shell
-composer require livewire/livewire
+composer require livewire/livewire "^3.0"
 ```
+
+:::tip[固定安装 Livewire 3]
+这份文档对应 Livewire 3.x。由于 Livewire 4.x 已经发布，直接运行 `composer require livewire/livewire` 会安装当前最新主版本；如果你要跟随本页内容学习，请保留上面的 `^3.0` 版本约束。
+:::
 
 就是这样——真的。如果你想要更多的自定义选项，请继续阅读。否则，你可以直接开始使用 Livewire。
 
