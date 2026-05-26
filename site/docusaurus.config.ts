@@ -88,6 +88,17 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    function prismBladeLanguagePlugin() {
+      return {
+        name: 'prism-blade-language',
+        getClientModules() {
+          return ['./src/prism/blade'];
+        },
+      };
+    },
+  ],
+
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
