@@ -30,7 +30,7 @@ const sourceItems = docsProducts.map((product) => {
 
   return {
     label: defaultVersion.sourceLabel,
-    href: defaultVersion.sourceHref,
+    href: defaultVersion.docsHref ?? defaultVersion.sourceHref,
   };
 });
 
