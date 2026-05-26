@@ -1,12 +1,19 @@
 ---
-title: root
+title: $root
 source:
   repo: https://github.com/alpinejs/alpine
   ref: main
   path: packages/docs/src/en/magics/root.md
 version: v3.x
-translation_status: placeholder
+translation_status: translated
 ---
 
-> 该页面尚未翻译完成，当前为占位页面。
+# $root
 
+`$root` 可用于检索任何 Alpine 组件的根元素。
+
+```html
+<div x-data data-message="Hello World!">
+    <button @click="alert($root.dataset.message)">Say Hi</button>
+</div>
+```

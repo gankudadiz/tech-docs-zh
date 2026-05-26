@@ -1,9 +1,16 @@
 ---
-title: root（翻译中）
+title: $root
 source: https://github.com/alpinejs/alpine/blob/main/packages/docs/src/en/magics/root.md
 source_version: v3.x
-translation_status: placeholder
+translation_status: draft
 ---
 
-> 该页面尚未翻译完成，当前为占位页面。
+# $root
 
+`$root` 是一个魔法属性，可用于检索任何 Alpine 组件的根元素。换句话说，就是 DOM 树中包含 `x-data` 的最近上层元素。
+
+```html
+<div x-data data-message="Hello World!">
+    <button @click="alert($root.dataset.message)">Say Hi</button>
+</div>
+```
