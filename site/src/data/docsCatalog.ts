@@ -44,28 +44,6 @@ export const docsProducts: DocsProduct[] = [
     ],
   },
   {
-    id: 'filament',
-    name: 'Filament',
-    description:
-      'Laravel 生态的 Server-Driven UI 框架文档。',
-    defaultVersionSlug: 'v4.x',
-    versions: [
-      {
-        label: 'v4.x',
-        slug: 'v4.x',
-        status: '翻译完成',
-        pages: '32 个站点页面',
-        stage: '锚点修复完成',
-        docsPath: '/docs/filament/v4.x/introduction/overview',
-        docsBasePath: '/docs/filament/v4.x',
-        sourceHref: 'https://github.com/filamentphp/filament/tree/4.x/docs',
-        sourceLabel: 'Filament v4.x',
-        sidebarId: 'filamentV4Sidebar',
-        docsHref: 'https://filamentphp.com/docs/4.x/getting-started',
-      },
-    ],
-  },
-  {
     id: 'alpine',
     name: 'Alpine.js',
     description:
@@ -84,6 +62,28 @@ export const docsProducts: DocsProduct[] = [
         sourceLabel: 'Alpine.js v3.x',
         sidebarId: 'alpineV3Sidebar',
         docsHref: 'https://alpinejs.dev/start-here',
+      },
+    ],
+  },
+  {
+    id: 'filament',
+    name: 'Filament',
+    description:
+      'Laravel 生态的 Server-Driven UI 框架文档。',
+    defaultVersionSlug: 'v4.x',
+    versions: [
+      {
+        label: 'v4.x',
+        slug: 'v4.x',
+        status: '翻译完成',
+        pages: '32 个站点页面',
+        stage: '锚点修复完成',
+        docsPath: '/docs/filament/v4.x/introduction/overview',
+        docsBasePath: '/docs/filament/v4.x',
+        sourceHref: 'https://github.com/filamentphp/filament/tree/4.x/docs',
+        sourceLabel: 'Filament v4.x',
+        sidebarId: 'filamentV4Sidebar',
+        docsHref: 'https://filamentphp.com/docs/4.x/getting-started',
       },
     ],
   },
