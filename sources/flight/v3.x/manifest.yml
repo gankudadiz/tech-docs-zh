@@ -1,0 +1,13 @@
+product: flight
+version: v3.x
+source:
+  repo: https://github.com/flightphp/docs
+  ref: master
+  docs_path: content/v3/en
+  assets_path: public/images
+retrieved_at: 2026-05-27
+license: MIT
+notes:
+  - 57 个英文 Markdown 页面，分 5 个板块（顶层、install、learn、awesome-plugins、guides）
+  - 官方仓库已有 zh/ 目录的 ChatGPT 机翻，本翻译独立进行
+  - 图片 11 个，包括 logo、favicon、apm 截图等

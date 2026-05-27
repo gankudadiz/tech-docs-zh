@@ -87,6 +87,28 @@ export const docsProducts: DocsProduct[] = [
       },
     ],
   },
+  {
+    id: 'flight',
+    name: 'Flight',
+    description:
+      '轻量级、可扩展的 PHP 微框架文档。',
+    defaultVersionSlug: 'v3.x',
+    versions: [
+      {
+        label: 'v3.x',
+        slug: 'v3.x',
+        status: '翻译中',
+        pages: '57 个站点页面',
+        stage: '骨架搭建中',
+        docsPath: '/docs/flight/v3.x/learn/learn',
+        docsBasePath: '/docs/flight/v3.x',
+        sourceHref: 'https://github.com/flightphp/docs/tree/master/content/v3/en',
+        sourceLabel: 'Flight v3.x',
+        sidebarId: 'flightV3Sidebar',
+        docsHref: 'https://docs.flightphp.com/en/v3',
+      },
+    ],
+  },
 ];
 
 export function getProductDefaultVersion(product: DocsProduct): DocsVersion {
