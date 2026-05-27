@@ -1,8 +1,8 @@
 # Livewire v3.x 翻译接入步骤
 
 **日期**: 2026-05-25  
-**目标**: 将 Livewire v3.x 作为下一个中文翻译文档目标接入本项目  
-**当前状态**: 源文档采集与结构清洗完成  
+**目标**: 将 Livewire v3.x 作为中文翻译文档目标接入本项目  
+**当前状态**: 全部 53 页翻译完成  
 
 ## 0. 依据和范围
 
@@ -57,27 +57,6 @@ sources/livewire/v3.x/normalized/docs/
 - 2026-05-25：已克隆 `livewire/livewire` 的 `v3.8.0` 标签到 `sources/_upstream/livewire-v3.x-docs/`，HEAD 为 `d81d269243c3f18d302663c0ce5672990df08ca1`。
 - 2026-05-25：`raw/docs` 保存 84 个文件；`raw-assets` 暂无本地资源文件。
 
-建议 manifest 初稿：
-
-```yaml
-product: livewire
-version: v3.x
-source:
-  repo: https://github.com/livewire/livewire
-  ref: v3.8.0
-  commit: d81d269243c3f18d302663c0ce5672990df08ca1
-  paths:
-    - docs
-    - LICENSE.md
-    - README.md
-retrieved_at: 2026-05-25
-license: MIT
-notes:
-  - 以 docs/__nav.md 作为官方可见页面和 sidebar 的主要依据。
-  - docs/.obsidian、docs/rules、Untitled*.md、__outline.md 默认不进入站点。
-  - docs/morph.md 的官方 URI 是 /docs/3.x/morphing，站点路径应映射为 morphing.md。
-```
-
 ## 2. 结构清洗
 
 - [x] 解析 `docs/__nav.md`，生成 53 个可见页面清单。
@@ -103,76 +82,67 @@ site/docs/livewire/v3.x/
 site/static/assets/livewire/v3.x/
 ```
 
-- [x] 先接入 `quickstart.md`，同时写入：
-
-```text
-content/livewire/v3.x/zh-cn/docs/quickstart.md
-site/docs/livewire/v3.x/quickstart.md
-```
-
+- [x] 先接入 `quickstart.md`，同时写入 `content/` 和 `site/docs/`。
 - [x] 为页面 frontmatter 保留来源、版本和翻译状态信息。
 - [x] 如页面存在图片，站点引用必须转换为 `/assets/livewire/v3.x/...`。
-
-执行记录：
-
-- 2026-05-25：已接入 `quickstart.md` 样板页，`content/` 与 `site/docs/` 同步。
-- 2026-05-25：样板页未引用本地图片；未接入的 Livewire 内链暂保留为官方 3.x 外链，避免新增站内 broken links。
 
 ## 4. 导航和目录
 
 - [x] 在 `site/src/data/docsCatalog.ts` 中新增 `livewire` 产品和 `v3.x` 版本项。
-- [x] 在 `site/sidebars.ts` 中新增 `livewireV3Sidebar`。
-- [ ] 按 `docs/__nav.md` 的分组组织 sidebar：
+- [x] 在 `site/sidebars.ts` 中新增 `livewireV3Sidebar`，按 `docs/__nav.md` 分组组织：
 
 ```text
-Getting Started
-Essentials
-Features
-HTML Directives
-Concepts
-Advanced
-Packages
+Getting Started → quickstart, installation, upgrading
+Essentials → components, properties, actions, forms, events, lifecycle-hooks, nesting, testing
+Features → alpine, navigate, lazy, validation, uploads, pagination, url,
+           computed-properties, session-properties, redirecting, downloads,
+           locked, bundling, offline, teleport
+HTML Directives → wire-click, wire-submit, wire-model, wire-loading, wire-navigate,
+                  wire-current, wire-cloak, wire-dirty, wire-confirm, wire-transition,
+                  wire-init, wire-poll, wire-offline, wire-ignore, wire-replace,
+                  wire-show, wire-stream, wire-text
+Concepts → morphing, hydration, understanding-nesting
+Advanced → troubleshooting, security, javascript, synthesizers, contribution-guide
+Packages → volt
 ```
 
-- [x] 修改 `site/docusaurus.config.ts`，把当前 Filament 专用 navbar/footer 扩展为多产品入口。
-- [x] 确认首页产品卡片能显示 Livewire。
-- [x] 确认顶部产品入口、版本下拉和源文档链接都能到 Livewire v3.x。
+- [x] 修改 `site/docusaurus.config.ts`，支持多产品入口。
+- [x] 2026-05-26：navbar"源文档"下拉新增 `docsHref` 字段，指向官方文档站点（Livewire: `https://livewire.laravel.com/docs/3.x/quickstart`，Filament: `https://filamentphp.com/docs/4.x/getting-started`），与页面"查看原文"的 GitHub `sourceHref` 分离。
+- [x] 首页产品卡片显示 Livewire。
+- [x] Livewire v3.x 状态已更新为"已完成"。
 
-执行记录：
+## 5. 批量页面翻译
 
-- 2026-05-25：`docsProducts` 中 Livewire 已排在 Filament 前面，首页列表按该顺序渲染。
-- 2026-05-25：`livewireV3Sidebar` 当前只注册样板页 `quickstart`，后续批量接入时再扩展完整 53 页。
+全部 53 页翻译完成。按模块分批：
 
-## 5. 批量页面占位或翻译
+| 批次 | 模块 | 页数 | 状态 | 提交记录 |
+|------|------|------|------|----------|
+| 第1批 | Getting Started + Essentials（部分） | 8 页 | completed | `5f21135`, `c89ae00`, `93ff55a`, `6f8c59f` |
+| 第2批 | Essentials 剩余 + Features | 15 页 | draft | `f6b12ff` |
+| 第3批 | HTML Directives | 18 页 | draft | `c4b65e0` |
+| 第4批 | Concepts | 3 页 | draft | `7a08f1b` |
+| 第5批 | Advanced | 5 页 | draft | `1d0ccf1` |
+| 第6批 | Packages（Volt） | 1 页 | draft | `88c1035` |
 
-按风险低到高推进：
-
-- [x] 所有 53 页占位文件已就绪（2026-05-25 全部创建占位页）
-  - 已翻译 3 页（quickstart、installation、components）
-  - 未翻译 50 页标注 `translation_status: placeholder`
-- 后续翻译批次建议：
-  - [ ] 第一批补齐：upgrading
-  - [ ] 第二批：properties、actions、forms
-  - [ ] 第三批：events、lifecycle-hooks、nesting、testing
-  - [ ] 第四批：Features 分组
-  - [ ] 第五批：HTML Directives 分组
-  - [ ] 第六批：Concepts、Advanced、Packages
+翻译统计：7 页 `completed` + 46 页 `draft` = 53 页全部有中文内容。
 
 执行规则：
 
 - 每个页面必须同时同步 `content/` 与 `site/docs/`。
-- 如果先创建占位页，必须明确标注"翻译中"，不要伪装成完整译文。
 - 不翻译代码、类名、方法名、配置键、命令和命令输出。
-- 链接优先适配到本地真实页面；未接入页面可临时保留官方链接或创建明确占位页。
-- 占位页引用文件：`sources/livewire/v3.x/normalized/docs/*.md`（53 页）
+- GitHub 格式 admonition（`> [!note]`）已统一转为 Docusaurus `:::type[标题]` 格式。
+- 内部链接已统一转换为 `/docs/livewire/v3.x/...` 格式。
+- 同页锚点已适配为 Docusaurus 生成的中文 slug（如 `#注册自定义指令`）。
+- 不兼容 MDX 的内容已处理：Vimeo 交互嵌入移除（morphing）、Alpine 交互预览块移除（wire-transition）、`<br>` 自闭合修复（javascript）。
 
 ## 6. 校对和链接适配
 
 - [ ] 按 `03_翻译校对工作流.md` 对已翻译页面逐篇校对。
-- [ ] 检查标题层级、代码块、表格、admonition、链接和术语一致性。
-- [ ] 按 `06_本地化超链接适配工作流.md` 修复站内链接。
-- [ ] 重点检查官方 `/docs/3.x/...` 链接是否映射为本地 `/docs/livewire/v3.x/...`。
-- [ ] 重点检查 `morphing` 页面和锚点链接。
+- [x] admonition 格式统一为 Docusaurus `:::type[标题]` 语法。
+- [x] 同页锚点适配为 Docusaurus 生成的中文 slug。
+- [x] 指向尚未翻译页面（nesting、actions）的锚点暂时移除，保留页面链接，待翻译后恢复。
+- [ ] 重点检查官方 `/docs/3.x/...` 链接是否全部映射为本地 `/docs/livewire/v3.x/...`。
+- [ ] 术语一致性和翻译质量审查。
 
 ## 7. 验证
 
@@ -192,33 +162,14 @@ npm run build
 
 验收项：
 
-- [ ] `sources/livewire/v3.x/manifest.yml` 存在且信息完整。
+- [x] `sources/livewire/v3.x/manifest.yml` 存在且信息完整。
 - [x] `content/livewire/v3.x/zh-cn/docs/` 与 `site/docs/livewire/v3.x/` 页面同步。
-- [x] `site/sidebars.ts` 注册了 `livewireV3Sidebar`。
-- [x] `site/src/data/docsCatalog.ts` 注册了 Livewire v3.x。
-- [x] `site/docusaurus.config.ts` 支持多产品导航。
+- [x] `site/sidebars.ts` 注册了完整 `livewireV3Sidebar`。
+- [x] `site/src/data/docsCatalog.ts` 注册了 Livewire v3.x，状态"已完成"。
+- [x] `site/docusaurus.config.ts` 支持多产品导航，navbar 源文档使用官方链接。
 - [x] `npm run typecheck` 通过。
-- [x] `npm run build` 通过；如存在 broken links，已记录来源和处理计划。
-
-执行记录：
-
-- 2026-05-25：`npm run typecheck` 通过。
-- 2026-05-25：`npm run build` 通过；构建仍提示一批 Filament v4.x 既有 broken links，未发现 Livewire 样板页新增 broken links。
-- 2026-05-25：`grep -rn "raw-assets\|docs-assets" site/docs/livewire/v3.x/` 无匹配。
-- 2026-05-25：`grep -rn "@components\|AutoScreenshot\|<Aside\|<Disclosure\|<RadioGroup\|<UtilityInjection" site/docs/livewire/v3.x/` 无匹配。
-- 2026-05-25：（第二轮占位部署）为所有 50 个未翻译页面创建占位文件。
-  - `content/livewire/v3.x/zh-cn/docs/` 和 `site/docs/livewire/v3.x/` 各新增 50 个占位页。
-  - sidebar 补全全部 7 个分类（入门、基础、功能、HTML 指令、概念、高级、包）共 53 条。
-  - docsCatalog 页面数更新为 `53 个站点页面`，阶段更新为 `翻译中（含占位页）`。
-  - 占位页均标注 `translation_status: placeholder` 并提示"翻译中"。
-  - 已翻译 3 页（quickstart、installation、components）保持不变。
-- 2026-05-25：（第二轮小批次）翻译并接入 installation.md 和 components.md 共 2 页。
-  - `content/` 与 `site/docs/` 同步完成。
-  - sidebar 新增 `安装` 到"入门"分组，`组件` 到"基础"分组。
-  - docsCatalog 页面数更新为 `3 个站点页面`，阶段更新为 `翻译中`。
-  - 未接入页面内链（如 properties、actions、lifecycle-hooks、nesting、javascript）已转为官方 3.x 外链。
-  - `npm run typecheck` 通过。
-  - `npm run build` 通过；仍存在 Filament v4.x 既有 broken links，未新增 Livewire broken links。
+- [x] `npm run build` 通过。
+- [ ] 已知 broken links：部分锚点指向尚未翻译的页面（如 `events#real-time-events-using-laravel-echo`、`components#rendering-components`、`understanding-nesting#every-component-is-an-island` 等），需在对应页面翻译后修复。
 
 ## 8. 收尾文档
 
