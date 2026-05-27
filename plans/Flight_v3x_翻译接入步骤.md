@@ -102,7 +102,9 @@ site/static/assets/flight/v3.x/   （11 个图片）
 | 19 | `learn/ai.md` | AI 与开发者体验 |
 | 20-25 | `learn/flight_vs_*.md` | 框架对比（6 篇：generic/laravel/slim/symfony/fat-free） |
 | 26 | `learn/why_frameworks.md` | 为何使用框架 |
-| 27 | `learn/migrating_to_v3.md` | v2→v3 迁移指南 |
+| 27 | `learn/migrating_to_v3.md` | v2→v3 迁移指南（**提前**：routing 等多页引用其锚点） |
+
+> **依赖关系**：`routing.md` 引用了 `migrating_to_v3#输出缓冲行为`，该页目前是占位页，应在第一批翻译完成后优先翻译，或在翻译 routing 时将锚点链接暂时指向迁移页面。
 
 ### 第二阶段：awesome-plugins（21 页）
 
@@ -116,7 +118,50 @@ site/static/assets/flight/v3.x/   （11 个图片）
 - guides：Blog 教程、单元测试指南
 - 顶层：about、examples、guides 索引、license、media
 
-## 3. 翻译注意事项
+## 2.1 链接与锚点适配（每批翻译后执行）
+
+中文标题生成的锚点 ID 与英文原文不同，翻译后必须修复内部锚点链接。详见 `docs/05_开发功能细则文档/06_本地化超链接适配工作流.md`。
+
+### 适配规则
+
+1. **页内锚点**：将英文锚点替换为对应中文标题的文本。例如 `#passing` → `#将执行传递给下一个路由`。
+2. **跨页锚点**：确保目标页已翻译且目标标题存在。例如 `../middleware#分组路由与中间件`。
+3. **占位页锚点**：目标页尚未翻译时，暂时移除锚点只保留页面链接，或标记为已知问题。
+4. **空锚点**：`#` 必须修复为目标标题。
+
+### 每批翻译后检查命令
+
+```bash
+# 扫描当前产品/版本所有锚点链接
+grep -rn ']([^)]*#[^)]*)' site/docs/flight/v3.x/learn/
+
+# 验证目标标题是否存在
+for f in site/docs/flight/v3.x/learn/*.md; do
+  grep -n "^###\|^####\|^## " "$f" | head -5
+done
+
+# 构建验证（关注新增 broken anchors）
+cd site && npm run build 2>&1 | grep "broken anchor.*flight"
+```
+
+### 已知锚点问题
+
+| 来源页面 | 锚点链接 | 目标 | 状态 |
+|----------|----------|------|------|
+| routing.md | `../migrating-to-v3#输出缓冲行为` | migrating_to_v3.md | ⏳ 占位页，待翻译 |
+| autoloading.md | `#`（空锚点） | 自身页面 | ❌ 需修复 |
+| DIC.md | `#基本用法` | 自身页面 | ✅ 已正确 |
+
+## 3. 翻译工作流（每批）
+
+1. 读取源文件（`sources/flight/v3.x/raw/docs/learn/xxx.md`）
+2. 翻译为中文，保持代码块不变，内部链接用相对路径
+3. 写入 `content/flight/v3.x/zh-cn/docs/` 归档
+4. 复制到 `site/docs/flight/v3.x/` 发布
+5. **锚点适配**：按 [2.1 节](#21-链接与锚点适配每批翻译后执行) 检查修复内部锚点
+6. `npm run build` 验证，关注新增 broken anchors
+
+## 4. 翻译注意事项
 
 - FlightPHP 大量使用 `Flight::` 静态调用和 `$app->` Engine 对象两种风格，翻译时保持原文代码不变。
 - 框架对比页面可能包含对其他框架的主观评价，翻译时保持原文语气。
@@ -124,7 +169,7 @@ site/static/assets/flight/v3.x/   （11 个图片）
 - `pdo_wrapper.md` 已标记为弃用（v3.18.0+），翻译时需注明替代方案为 SimplePdo。
 - 内部链接需要适配为当前产品的绝对路径（如 `/learn/routing` → 相对路径需逐个调整）。
 
-## 4. 验收清单
+## 5. 验收清单
 
 每完成一个阶段的翻译后，至少确认：
 
@@ -136,6 +181,7 @@ site/static/assets/flight/v3.x/   （11 个图片）
 - [ ] `npm run typecheck` 通过
 - [ ] `npm run build` 通过（关注新增 broken links）
 
-## 5. 更新记录
+## 6. 更新记录
 
 - 2026-05-27：采集源文档 57 页 + 11 张图片，搭建完整骨架，翻译 install + learn 导航页，创建 55 个占位页，构建验证通过。
+- 2026-05-27：批次 1-3 完成，learn 核心文档已翻译 14/27 页。新增链接与锚点适配工作流（第 2.1 节），发现 migrating_to_v3 占位页锚点问题。
