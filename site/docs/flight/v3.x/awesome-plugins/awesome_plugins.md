@@ -103,7 +103,7 @@ Cookie 是在客户端存储小量数据的好方法。它们可用于存储用�
 
 模板是任何有 UI 的 Web 应用的核心。有许多模板引擎可以与 Flight 配合使用。
 
-- <span class="badge bg-warning">已弃用</span> [flightphp/core View](../../learn/learn#视图) - 这是核心内置的一个非常基础的模板引擎。如果你的项目超过几页，不推荐使用。
+- <span class="badge bg-warning">已弃用</span> [flightphp/core View](../../learn/templates) - 这是核心内置的一个非常基础的模板引擎。如果你的项目超过几页，不推荐使用。
 - [latte/latte](../latte) - Latte 是一个功能齐全的模板引擎，非常易于使用，感觉比 Twig 或 Smarty 更接近 PHP 语法。它也非常容易扩展并添加你自己的过滤器和函数。
 - [knifelemon/comment-template](../comment-template) - CommentTemplate 是一个强大的 PHP 模板引擎，具有资源编译、模板继承和变量处理功能。支持自动 CSS/JS 压缩、缓存、Base64 编码，以及可选的 Flight PHP 框架集成。
 
