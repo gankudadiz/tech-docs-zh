@@ -1,0 +1,141 @@
+# FlightPHP v3.x 翻译接入步骤
+
+**日期**: 2026-05-27  
+**目标**: 将 FlightPHP v3.x 作为新产品中文翻译文档接入本项目  
+**当前状态**: 骨架搭建完成，待逐模块翻译
+
+## 0. 依据和范围
+
+执行前先阅读：
+
+- `docs/05_开发功能细则文档/00_工作流总览.md`
+- `docs/05_开发功能细则文档/01_文档采集与翻译工作流.md`
+- `docs/05_开发功能细则文档/02_翻译操作指南.md`
+- `docs/05_开发功能细则文档/03_翻译校对工作流.md`
+- `docs/05_开发功能细则文档/04_新增产品或版本接入工作流.md`
+
+固定上游来源：
+
+```text
+repository: https://github.com/flightphp/docs
+ref: master
+docs path: content/v3/en/
+official docs URL: https://docs.flightphp.com/en/v3
+local product: flight
+local version: v3.x
+```
+
+核心边界：
+
+- FlightPHP v3.x 文档源位于 `flightphp/docs` 仓库的 `content/v3/en/` 目录，纯 Markdown 文件。
+- 官方仓库已有 `zh/` 目录的 ChatGPT 机翻，质量较低，本翻译独立进行。
+- 图片资源位于 `public/images/`，共 11 个（logo、favicon、APM 截图等），已全部复制到站点资源目录。
+- 文档分为 5 大板块：顶层（5 页）、install（1 页）、learn（29 页）、awesome-plugins（21 页）、guides（2 页），共 57 页。
+
+## 1. 骨架搭建（已完成）
+
+### 1.1 目录结构
+
+```text
+sources/flight/v3.x/
+  ├── manifest.yml
+  ├── raw/docs/        （57 个英文原稿）
+  └── raw-assets/      （11 个图片）
+
+content/flight/v3.x/zh-cn/docs/   （57 个中文归档）
+site/docs/flight/v3.x/            （57 个站点页面）
+site/static/assets/flight/v3.x/   （11 个图片）
+```
+
+### 1.2 已注册的系统配置
+
+- [x] `site/src/data/docsCatalog.ts` — 注册 Flight 产品（v3.x，状态"翻译中"）
+- [x] `site/sidebars.ts` — 注册 `flightV3Sidebar`（7 个分类，覆盖全部 57 页）
+- [x] `site/docusaurus.config.ts` — 无需修改（数据驱动，自动生效）
+- [x] `sources/flight/v3.x/manifest.yml` — 记录采集信息
+
+### 1.3 已翻译页面（2 页）
+
+- [x] `install/install.md` — 安装指南（macOS/Windows/Ubuntu/Rocky Linux + Apache/Nginx 配置）
+- [x] `learn/learn.md` — 学习导航/目录页（Flight 概述 + 功能索引）
+
+### 1.4 翻译中占位页（55 页）
+
+- [x] 顶层：`about.md`、`examples.md`、`guides.md`、`license.md`、`media.md`
+- [x] learn 核心文档 27 页（路由、中间件、请求、响应、模板、安全、配置、事件、扩展、过滤、DIC、集合、JSON、SimplePdo、PdoWrapper、上传文件、单元测试、AI、自动加载、框架对比系列、迁移指南）
+- [x] awesome-plugins 21 页（Session、Tracy、Latte、Runway、ActiveRecord、APM、Async 等）
+- [x] guides 2 页（Blog 教程、单元测试指南）
+
+### 1.5 构建验证
+
+- [x] `npm run typecheck` — 通过
+- [x] `npm run build` — 通过（broken links 均为既有或跨产品 navbar 误报）
+
+## 2. 翻译计划
+
+按照"先核心后外围"的原则分批翻译：
+
+### 第一阶段：learn 核心文档（27 页）
+
+优先级高，是用户最常查阅的文档。
+
+| 序号 | 文件 | 主题 |
+|------|------|------|
+| 1 | `learn/routing.md` | 路由 |
+| 2 | `learn/middleware.md` | 中间件 |
+| 3 | `learn/requests.md` | 请求处理 |
+| 4 | `learn/responses.md` | 响应处理 |
+| 5 | `learn/templates.md` | HTML 模板 |
+| 6 | `learn/configuration.md` | 框架配置 |
+| 7 | `learn/security.md` | 安全 |
+| 8 | `learn/events.md` | 事件管理器 |
+| 9 | `learn/extending.md` | 扩展 Flight |
+| 10 | `learn/filtering.md` | 方法钩子与过滤 |
+| 11 | `learn/dependency_injection_container.md` | 依赖注入容器 |
+| 12 | `learn/autoloading.md` | 自动加载 |
+| 13 | `learn/collections.md` | 集合 |
+| 14 | `learn/json.md` | JSON 包装器 |
+| 15 | `learn/simple_pdo.md` | SimplePdo |
+| 16 | `learn/pdo_wrapper.md` | PdoWrapper（已弃用） |
+| 17 | `learn/uploaded_file.md` | 上传文件处理器 |
+| 18 | `learn/unit_testing.md` | 单元测试 |
+| 19 | `learn/ai.md` | AI 与开发者体验 |
+| 20-25 | `learn/flight_vs_*.md` | 框架对比（6 篇：generic/laravel/slim/symfony/fat-free） |
+| 26 | `learn/why_frameworks.md` | 为何使用框架 |
+| 27 | `learn/migrating_to_v3.md` | v2→v3 迁移指南 |
+
+### 第二阶段：awesome-plugins（21 页）
+
+官方插件文档，按使用频率排序。
+
+重点插件：Session、Tracy、Latte、Runway、ActiveRecord  
+其他插件：APM、Async、EasyQuery、GhostSession、JWT、MCP、Migrations、Permissions、Cookie、Encryption、FileCache、JobQueue、CommentTemplate、WordPress
+
+### 第三阶段：guides + 顶层（7 页）
+
+- guides：Blog 教程、单元测试指南
+- 顶层：about、examples、guides 索引、license、media
+
+## 3. 翻译注意事项
+
+- FlightPHP 大量使用 `Flight::` 静态调用和 `$app->` Engine 对象两种风格，翻译时保持原文代码不变。
+- 框架对比页面可能包含对其他框架的主观评价，翻译时保持原文语气。
+- `unit_testing_and_solid_principles.md` 是 2015 年的归档文章（来自 Airpair），篇幅较长（约 400 行），翻译优先级可适当降低。
+- `pdo_wrapper.md` 已标记为弃用（v3.18.0+），翻译时需注明替代方案为 SimplePdo。
+- 内部链接需要适配为当前产品的绝对路径（如 `/learn/routing` → 相对路径需逐个调整）。
+
+## 4. 验收清单
+
+每完成一个阶段的翻译后，至少确认：
+
+- [ ] `content/` 和 `site/docs/` 对应页面同步更新
+- [ ] `content/flight/v3.x/zh-cn/docs/` 已覆盖该阶段所有页面
+- [ ] `site/docs/flight/v3.x/` 已覆盖该阶段所有页面
+- [ ] 图片路径转换为 `/assets/flight/v3.x/...`
+- [ ] 内部链接正确指向已翻译页面
+- [ ] `npm run typecheck` 通过
+- [ ] `npm run build` 通过（关注新增 broken links）
+
+## 5. 更新记录
+
+- 2026-05-27：采集源文档 57 页 + 11 张图片，搭建完整骨架，翻译 install + learn 导航页，创建 55 个占位页，构建验证通过。
