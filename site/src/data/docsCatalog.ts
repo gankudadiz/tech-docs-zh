@@ -97,9 +97,9 @@ export const docsProducts: DocsProduct[] = [
       {
         label: 'v3.x',
         slug: 'v3.x',
-        status: '翻译中',
+        status: '翻译完成',
         pages: '57 个站点页面',
-        stage: '骨架搭建中',
+        stage: '翻译完成',
         docsPath: '/docs/flight/v3.x/learn/learn',
         docsBasePath: '/docs/flight/v3.x',
         sourceHref: 'https://github.com/flightphp/docs/tree/master/content/v3/en',
