@@ -20,7 +20,7 @@ HTTP 请求是理解 HTTP 生命周期的核心方面之一。用户在 Web 浏�
 
 ## 基本用法
 
-PHP 有几个超全局变量，包括 `$_GET`、`$_POST`、`$_REQUEST`、`$_SERVER`、`$_FILES` 和 `$_COOKIE`。Flight 将这些抽象为方便的[集合](../collections)。你可以像数组或对象一样访问 `query`、`data`、`cookies` 和 `files` 属性。
+PHP 有几个超全局变量，包括 `$_GET`、`$_POST`、`$_REQUEST`、`$_SERVER`、`$_FILES` 和 `$_COOKIE`。Flight 将这些抽象为方便的[集合](collections)。你可以像数组或对象一样访问 `query`、`data`、`cookies` 和 `files` 属性。
 
 > **注意**：**强烈**不建议在你的项目中使用这些超全局变量，而应该通过 `request()` 对象进行引用。
 
@@ -74,7 +74,7 @@ Flight::route('GET /login', function(){
 });
 ```
 
-关于设置新的 cookie 值的帮助，参见 [overclokk/cookie](../../awesome-plugins/php_cookie)
+关于设置新的 cookie 值的帮助，参见 [overclokk/cookie](../awesome-plugins/php_cookie)
 
 ### `$_SERVER`
 
@@ -96,7 +96,7 @@ $uploadedFile = Flight::request()->files['myFile'];
 $uploadedFile = Flight::request()->files->myFile;
 ```
 
-更多信息见[上传文件处理器](../uploaded_file)。
+更多信息见[上传文件处理器](uploaded_file)。
 
 #### 处理文件上传
 
@@ -257,11 +257,11 @@ if ($typeToServe === 'application/json') {
 
 ## 参见
 
-- [路由](../routing) - 了解如何将路由映射到控制器并渲染视图。
-- [响应](../responses) - 如何自定义 HTTP 响应。
-- [为什么使用框架？](../why_frameworks) - 请求在整个框架中的位置。
-- [集合](../collections) - 处理数据集合。
-- [上传文件处理器](../uploaded_file) - 处理文件上传。
+- [路由](routing) - 了解如何将路由映射到控制器并渲染视图。
+- [响应](responses) - 如何自定义 HTTP 响应。
+- [为什么使用框架？](why_frameworks) - 请求在整个框架中的位置。
+- [集合](collections) - 处理数据集合。
+- [上传文件处理器](uploaded_file) - 处理文件上传。
 
 ## 故障排除
 

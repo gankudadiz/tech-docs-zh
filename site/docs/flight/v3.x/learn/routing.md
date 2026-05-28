@@ -14,7 +14,7 @@ Flight PHP 中的路由将 URL 模式映射到回调函数或类方法，能够�
 
 路由是将 HTTP 请求连接到 Flight 应用逻辑的核心机制。通过定义路由，你可以指定不同的 URL 如何触发不同的代码，无论是函数、类方法还是控制器操作。Flight 的路由系统非常灵活，支持基本模式、命名参数、正则表达式，以及依赖注入和资源路由等高级功能。这种方式使代码组织良好、易于维护，同时对初学者来说保持快速简单，对高级用户又可扩展。
 
-> **注意**：想了解更多关于路由的内容？查看["为什么使用框架？"](../why_frameworks)页面获取更深入的解释。
+> **注意**：想了解更多关于路由的内容？查看["为什么使用框架？"](why_frameworks)页面获取更深入的解释。
 
 ## 基本用法
 
@@ -88,7 +88,7 @@ $greeting = new GreetingController($app);
 Flight::route('/', [ $greeting, 'hello' ]);
 ```
 
-> **注意**：默认情况下，当控制器在框架内被调用时，`flight\Engine` 类总是会被注入，除非你通过[依赖注入容器](../dependency_injection_container)进行指定。
+> **注意**：默认情况下，当控制器在框架内被调用时，`flight\Engine` 类总是会被注入，除非你通过[依赖注入容器](dependency_injection_container)进行指定。
 
 ### 指定请求方法的路由
 
@@ -260,7 +260,7 @@ Flight::route('*', function () {
 ### 404 未找到处理器
 
 默认情况下，如果找不到 URL，Flight 将发送一个非常简单朴素的 `HTTP 404 Not Found` 响应。
-如果你想要更自定义的 404 响应，可以[映射](../extending)你自己的 `notFound` 方法：
+如果你想要更自定义的 404 响应，可以[映射](extending)你自己的 `notFound` 方法：
 
 ```php
 Flight::map('notFound', function() {
@@ -284,7 +284,7 @@ Flight::map('notFound', function() {
 
 默认情况下，如果找到了 URL 但请求方法不被允许，Flight 将发送一个非常简单朴素的 `HTTP 405 Method Not Allowed` 响应（例如：Method Not Allowed. Allowed Methods are: GET, POST）。同时还会包含一个 `Allow` 响应头，列出该 URL 的允许方法。
 
-如果你想要更自定义的 405 响应，可以[映射](../extending)你自己的 `methodNotFound` 方法：
+如果你想要更自定义的 405 响应，可以[映射](extending)你自己的 `methodNotFound` 方法：
 
 ```php
 use flight\net\Route;
@@ -313,7 +313,7 @@ Flight::map('methodNotFound', function(Route $route) {
 
 ### 路由中的依赖注入
 
-如果你想通过容器（PSR-11、PHP-DI、Dice 等）使用依赖注入，只有以下类型的路由支持：直接自己创建对象并使用容器来创建对象，或者使用字符串来定义要调用的类和方法。你可以查看[依赖注入](../dependency_injection_container)页面获取更多信息。
+如果你想通过容器（PSR-11、PHP-DI、Dice 等）使用依赖注入，只有以下类型的路由支持：直接自己创建对象并使用容器来创建对象，或者使用字符串来定义要调用的类和方法。你可以查看[依赖注入](dependency_injection_container)页面获取更多信息。
 
 以下是一个快速示例：
 
@@ -386,7 +386,7 @@ Flight::route('/user/*', function () {
 });
 ```
 
-现在推荐使用[中间件](../middleware)来处理此类复杂用例。
+现在推荐使用[中间件](middleware)来处理此类复杂用例。
 
 ### 路由别名
 
@@ -460,7 +460,7 @@ Flight::route('/', function() {
 });
 ```
 
-> **注意**：`executedRoute` 属性只有在路由执行后才会被设置。如果你在路由执行之前尝试访问它，它将是 `NULL`。你也可以在[中间件](../middleware)中使用 `executedRoute`！
+> **注意**：`executedRoute` 属性只有在路由执行后才会被设置。如果你在路由执行之前尝试访问它，它将是 `NULL`。你也可以在[中间件](middleware)中使用 `executedRoute`！
 
 #### 在路由定义中传入 `true`
 
@@ -568,7 +568,7 @@ Flight::group('/api/v1', function () {
 }, [ MyAuthMiddleware::class ]); // 或 [ new MyAuthMiddleware() ] 如果你想使用实例
 ```
 
-更多详情见[分组中间件](../middleware#分组路由与中间件)页面。
+更多详情见[分组中间件](middleware#分组路由与中间件)页面。
 
 ### 资源路由
 
@@ -676,7 +676,7 @@ Flight::resource('/users', UsersController::class, [ 'middleware' => [ MyAuthMid
 这对于发送大文件、长时间运行的进程或生成大量响应非常有用。
 流式路由的处理方式与普通路由略有不同。
 
-> **注意**：流式响应仅在 [`flight.v2.output_buffering`](../migrating_to_v3#输出缓冲行为) 设置为 `false` 时可用。
+> **注意**：流式响应仅在 [`flight.v2.output_buffering`](migrating_to_v3#输出缓冲行为) 设置为 `false` 时可用。
 
 #### 手动设置响应头的流式传输
 
@@ -755,10 +755,10 @@ Flight::route('/stream-users', function() {
 
 ## 参见
 
-- [中间件](../middleware) - 对路由使用中间件进行身份验证、日志记录等。
-- [依赖注入](../dependency_injection_container) - 简化路由中对象的创建和管理。
-- [为什么使用框架？](../why_frameworks) - 了解使用 Flight 这样的框架的好处。
-- [扩展](../extending) - 如何使用你自己的功能扩展 Flight，包括 `notFound` 方法。
+- [中间件](middleware) - 对路由使用中间件进行身份验证、日志记录等。
+- [依赖注入](dependency_injection_container) - 简化路由中对象的创建和管理。
+- [为什么使用框架？](why_frameworks) - 了解使用 Flight 这样的框架的好处。
+- [扩展](extending) - 如何使用你自己的功能扩展 Flight，包括 `notFound` 方法。
 - [php.net: preg_match](https://www.php.net/manual/en/function.preg-match.php) - 正则表达式匹配的 PHP 函数。
 
 ## 故障排除

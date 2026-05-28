@@ -8,7 +8,7 @@ status: 已翻译
 
 这是用于 [Flight PHP 框架](https://docs.flightphp.com/) 的一个轻量级、基于文件的会话处理器插件。它提供了一种简单但强大的会话管理解决方案，具有非阻塞会话读取、可选的加密、自动提交功能和开发测试模式等特性。会话数据存储在文件中，非常适合不需要数据库的应用。
 
-如果你想使用数据库，请查看具有许多相同特性但基于数据库后端存储的 [ghostff/session](../ghost_session) 插件。
+如果你想使用数据库，请查看具有许多相同特性但基于数据库后端存储的 [ghostff/session](ghost_session) 插件。
 
 访问 [Github 仓库](https://github.com/flightphp/session) 获取完整的源代码和详细信息。
 
@@ -162,7 +162,7 @@ Flight::route('/admin', function() {
 });
 ```
 
-这只是一个简单的中间件使用示例。有关更深入的示例，请参见[中间件](../../learn/middleware)文档。
+这只是一个简单的中间件使用示例。有关更深入的示例，请参见[中间件](../learn/middleware)文档。
 
 ## 方法
 

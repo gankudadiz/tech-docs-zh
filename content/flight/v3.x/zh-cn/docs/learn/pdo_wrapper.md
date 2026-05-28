@@ -8,11 +8,11 @@ status: 已翻译
 
 > **警告**  
 >  
-> **已弃用：** `PdoWrapper` 自 Flight v3.18.0 起已弃用。它不会在未来的版本中被移除，但将为向后兼容而保留。请改用 [SimplePdo](../simple_pdo)，它提供了相同的功能以及常见数据库操作的额外辅助方法。
+> **已弃用：** `PdoWrapper` 自 Flight v3.18.0 起已弃用。它不会在未来的版本中被移除，但将为向后兼容而保留。请改用 [SimplePdo](simple_pdo)，它提供了相同的功能以及常见数据库操作的额外辅助方法。
 
 ## 概述
 
-Flight 中的 `PdoWrapper` 类是一个使用 PDO 操作数据库的友好助手。它简化了常见的数据库任务，添加了一些获取结果的便捷方法，并将结果返回为[集合](../collections)以便于访问。它还支持查询日志记录和应用性能监控 (APM) 等高级用例。
+Flight 中的 `PdoWrapper` 类是一个使用 PDO 操作数据库的友好助手。它简化了常见的数据库任务，添加了一些获取结果的便捷方法，并将结果返回为[集合](collections)以便于访问。它还支持查询日志记录和应用性能监控 (APM) 等高级用例。
 
 ## 理解
 
@@ -172,7 +172,7 @@ Flight::route('/users', function () {
 
 ## 参见
 
-- [集合](../collections) - 了解如何使用 Collection 类轻松访问数据。
+- [集合](collections) - 了解如何使用 Collection 类轻松访问数据。
 
 ## 故障排除
 

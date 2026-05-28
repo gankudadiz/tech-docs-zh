@@ -29,7 +29,7 @@ Flight v3 的一些功能的灵感实际上来自 Slim。路由分组和按特�
 - Flight 适合首次接触框架的开发者。
 - Flight 也可以用于企业级应用，但没有 Slim 那么多的示例和教程。这也要求开发者更自律。
 - Flight 给开发者更大的控制权，而 Slim 背后可能会有一些"魔法"。
-- Flight 有一个简单的 [PdoWrapper](../../pdo_wrapper) 可用于与数据库交互。Slim 需要使用第三方库。
-- Flight 有一个[权限插件](../../awesome-plugins/permissions)可用于保护应用安全。Slim 需要使用第三方库。
-- Flight 有一个称为 [active-record](../../awesome-plugins/active_record) 的 ORM 可用于与数据库交互。Slim 需要使用第三方库。
-- Flight 有一个称为 [runway](../../awesome-plugins/runway) 的 CLI 应用程序可用于命令行运行应用。Slim 没有。
+- Flight 有一个简单的 [PdoWrapper](pdo_wrapper) 可用于与数据库交互。Slim 需要使用第三方库。
+- Flight 有一个[权限插件](../awesome-plugins/permissions)可用于保护应用安全。Slim 需要使用第三方库。
+- Flight 有一个称为 [active-record](../awesome-plugins/active_record) 的 ORM 可用于与数据库交互。Slim 需要使用第三方库。
+- Flight 有一个称为 [runway](../awesome-plugins/runway) 的 CLI 应用程序可用于命令行运行应用。Slim 没有。

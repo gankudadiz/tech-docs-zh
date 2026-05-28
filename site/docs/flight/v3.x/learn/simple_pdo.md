@@ -8,7 +8,7 @@ status: 已翻译
 
 ## 概述
 
-Flight 中的 `SimplePdo` 类是一个现代化、功能丰富的数据库操作助手，基于 PDO。它扩展了 `PdoWrapper`，并添加了常见数据库操作的便捷辅助方法，如 `insert()`、`update()`、`delete()` 和事务处理。它简化了数据库任务，将结果返回为[集合](../collections)以便于访问，并支持查询日志记录和应用性能监控 (APM) 等高级用例。
+Flight 中的 `SimplePdo` 类是一个现代化、功能丰富的数据库操作助手，基于 PDO。它扩展了 `PdoWrapper`，并添加了常见数据库操作的便捷辅助方法，如 `insert()`、`update()`、`delete()` 和事务处理。它简化了数据库任务，将结果返回为[集合](collections)以便于访问，并支持查询日志记录和应用性能监控 (APM) 等高级用例。
 
 ## 理解
 
@@ -312,8 +312,8 @@ Flight::route('/users', function () {
 
 ## 参见
 
-- [集合](../collections) - 了解如何使用 Collection 类轻松访问数据。
-- [PdoWrapper](../pdo_wrapper) - 旧版 PDO 辅助类（已弃用）。
+- [集合](collections) - 了解如何使用 Collection 类轻松访问数据。
+- [PdoWrapper](pdo_wrapper) - 旧版 PDO 辅助类（已弃用）。
 
 ## 故障排除
 

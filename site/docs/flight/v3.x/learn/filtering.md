@@ -8,7 +8,7 @@ status: 已翻译
 
 ## 概述
 
-Flight 允许你在[映射方法](../extending)被调用之前和之后进行过滤。
+Flight 允许你在[映射方法](extending)被调用之前和之后进行过滤。
 
 ## 理解
 
@@ -101,11 +101,11 @@ Flight::before('start', function (array &$params, string &$output): bool {
 });
 ```
 
-> **注意**：核心方法如 `map` 和 `register` 不能被过滤，因为它们是直接调用的，不是动态调用的。更多信息见[扩展 Flight](../extending)。
+> **注意**：核心方法如 `map` 和 `register` 不能被过滤，因为它们是直接调用的，不是动态调用的。更多信息见[扩展 Flight](extending)。
 
 ## 参见
 
-- [扩展 Flight](../extending)
+- [扩展 Flight](extending)
 
 ## 故障排除
 

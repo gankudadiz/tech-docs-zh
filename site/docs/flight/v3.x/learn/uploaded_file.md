@@ -118,9 +118,9 @@ if ($file->getError() !== UPLOAD_ERR_OK) {
 
 ## 参见
 
-- [请求](../requests) - 了解如何从 HTTP 请求访问上传的文件，查看更多文件上传示例。
-- [配置](../configuration) - 如何在 PHP 中配置上传限制和目录。
-- [扩展](../extending) - 如何自定义或扩展 Flight 的核心类。
+- [请求](requests) - 了解如何从 HTTP 请求访问上传的文件，查看更多文件上传示例。
+- [配置](configuration) - 如何在 PHP 中配置上传限制和目录。
+- [扩展](extending) - 如何自定义或扩展 Flight 的核心类。
 
 ## 故障排除
 

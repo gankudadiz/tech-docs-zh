@@ -19,15 +19,15 @@ Flight 与 Fat-Free 在许多方面相似，在功能和简洁性方面可能是
 - Fat-Free 有一些不错的文档，但在某些方面缺乏清晰度。
 - Fat-Free 有一些零散的资源，如 YouTube 教程和在线文章，可用于学习框架。
 - Fat-Free 内置[一些有用的插件](https://fatfreeframework.com/3.8/api-reference)，有时很有帮助。
-- Fat-Free 有一个称为 Mapper 的内置 ORM，可用于与数据库交互。Flight 有 [active-record](../../awesome-plugins/active_record)。
-- Fat-Free 内置了 Session、缓存和本地化功能。Flight 需要使用第三方库，但在[文档](../../awesome-plugins)中有相关说明。
-- Fat-Free 有一小部分[社区创建的插件](https://fatfreeframework.com/3.8/development#Community)可用于扩展框架。Flight 在[文档](../../awesome-plugins)和[示例](../../examples)页面中涵盖了一些。
+- Fat-Free 有一个称为 Mapper 的内置 ORM，可用于与数据库交互。Flight 有 [active-record](../awesome-plugins/active_record)。
+- Fat-Free 内置了 Session、缓存和本地化功能。Flight 需要使用第三方库，但在[文档](../awesome-plugins/awesome_plugins)中有相关说明。
+- Fat-Free 有一小部分[社区创建的插件](https://fatfreeframework.com/3.8/development#Community)可用于扩展框架。Flight 在[文档](../awesome-plugins/awesome_plugins)和[示例](../examples)页面中涵盖了一些。
 - Fat-Free 和 Flight 一样没有依赖。
 - Fat-Free 和 Flight 一样致力于给开发者对应用的控制权和简单的开发体验。
 - Fat-Free 与 Flight 一样保持向后兼容性（部分是因为更新[越来越不频繁](https://github.com/bcosca/fatfree/releases)）。
 - Fat-Free 和 Flight 一样适合首次接触框架的开发者。
-- Fat-Free 有一个比 Flight 模板引擎更强大的内置模板引擎。Flight 推荐使用 [Latte](../../awesome-plugins/latte) 来实现类似功能。
-- Fat-Free 有一个独特的 CLI 类型"路由"命令，你可以在 Fat-Free 内部构建 CLI 应用，并将其视为 `GET` 请求一样处理。Flight 通过 [runway](../../awesome-plugins/runway) 实现类似功能。
+- Fat-Free 有一个比 Flight 模板引擎更强大的内置模板引擎。Flight 推荐使用 [Latte](../awesome-plugins/latte) 来实现类似功能。
+- Fat-Free 有一个独特的 CLI 类型"路由"命令，你可以在 Fat-Free 内部构建 CLI 应用，并将其视为 `GET` 请求一样处理。Flight 通过 [runway](../awesome-plugins/runway) 实现类似功能。
 
 ## 与 Flight 相比的劣势
 
@@ -35,9 +35,9 @@ Flight 与 Fat-Free 在许多方面相似，在功能和简洁性方面可能是
 - 你必须使用搜索引擎如 Google 来实际搜索文档网站。
 - Flight 的文档网站有暗色模式。（重点）
 - Fat-Free 有一些模块严重缺乏维护。
-- Flight 有一个简单的 [PdoWrapper](../../pdo_wrapper)，比 Fat-Free 内置的 `DB\SQL` 类稍微更简单。
-- Flight 有一个[权限插件](../../awesome-plugins/permissions)可用于保护应用安全。Fat-Free 需要使用第三方库。
-- Flight 有一个称为 [active-record](../../awesome-plugins/active_record) 的 ORM，比 Fat-Free 的 Mapper 更像 ORM。`active-record` 的额外好处是你可以定义记录间的关系以实现自动连接，而 Fat-Free 的 Mapper 需要你创建 [SQL 视图](https://fatfreeframework.com/3.8/databases#ProsandCons)。
+- Flight 有一个简单的 [PdoWrapper](pdo_wrapper)，比 Fat-Free 内置的 `DB\SQL` 类稍微更简单。
+- Flight 有一个[权限插件](../awesome-plugins/permissions)可用于保护应用安全。Fat-Free 需要使用第三方库。
+- Flight 有一个称为 [active-record](../awesome-plugins/active_record) 的 ORM，比 Fat-Free 的 Mapper 更像 ORM。`active-record` 的额外好处是你可以定义记录间的关系以实现自动连接，而 Fat-Free 的 Mapper 需要你创建 [SQL 视图](https://fatfreeframework.com/3.8/databases#ProsandCons)。
 - 令人惊讶的是，Fat-Free 没有根命名空间。Flight 全局使用命名空间，以避免与你的代码冲突。`Cache` 类是最大的问题点。
 - Fat-Free 没有中间件。取而代之的是 `beforeroute` 和 `afterroute` 钩子，可用于过滤控制器中的请求和响应。
 - Fat-Free 不能分组路由。

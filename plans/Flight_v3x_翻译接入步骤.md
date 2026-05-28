@@ -133,9 +133,9 @@ site/static/assets/flight/v3.x/   （11 个图片）
 
 ```bash
 # 自动扫描并修复连字符→下划线 slug 错误（推荐）
-python3 scripts/fix_underscore_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/ --dry-run
+python3 scripts/fix_relative_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/ --dry-run
 # 确认无误后执行实际修复
-python3 scripts/fix_underscore_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/
+python3 scripts/fix_relative_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/
 
 # 扫描当前产品/版本所有锚点链接
 grep -rn ']([^)]*#[^)]*)' site/docs/flight/v3.x/learn/
@@ -166,7 +166,7 @@ cd site && npm run build 2>&1 | grep "broken anchor.*flight"
 
 **修复范围**（2026-05-28）：
 - `docsCatalog.ts:103`：`docsPath` 从 `/docs/flight/v3.x/learn/learn` 修正为 `/docs/flight/v3.x/learn/`
-- 使用 `scripts/fix_underscore_links.py` 批量修复 70 处连字符→下划线链接，覆盖 25 个文件（site/ 和 content/ 各一套同步修复）
+- 使用 `scripts/fix_relative_links.py` 批量修复 70 处连字符→下划线链接，覆盖 25 个文件（site/ 和 content/ 各一套同步修复）
 
 | Slug 映射 | 涉及文件数 | 修复数 |
 |-----------|-----------|--------|

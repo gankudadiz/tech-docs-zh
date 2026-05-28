@@ -115,7 +115,7 @@ Flight::route('/settings', [ SettingsController::class, 'view' ]);
 
 ### 创建集中式 DIC 处理器
 
-你可以通过[扩展](../extending)你的应用在 services 文件中创建一个集中式 DIC 处理器。以下是一个示例：
+你可以通过[扩展](extending)你的应用在 services 文件中创建一个集中式 DIC 处理器。以下是一个示例：
 
 ```php
 // services.php
@@ -342,10 +342,10 @@ Flight::start();
 
 ## 参见
 
-- [扩展 Flight](../extending) - 了解如何通过扩展框架将依赖注入添加到你自己的类中。
-- [配置](../configuration) - 了解如何为你的应用配置 Flight。
-- [路由](../routing) - 了解如何为应用定义路由以及依赖注入如何与控制器配合工作。
-- [中间件](../middleware) - 了解如何为应用创建中间件以及依赖注入如何与中间件配合工作。
+- [扩展 Flight](extending) - 了解如何通过扩展框架将依赖注入添加到你自己的类中。
+- [配置](configuration) - 了解如何为你的应用配置 Flight。
+- [路由](routing) - 了解如何为应用定义路由以及依赖注入如何与控制器配合工作。
+- [中间件](middleware) - 了解如何为应用创建中间件以及依赖注入如何与中间件配合工作。
 
 ## 故障排除
 

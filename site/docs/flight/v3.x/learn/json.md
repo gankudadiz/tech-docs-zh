@@ -116,9 +116,9 @@ $data = Json::decode($json, false, 1024);
 
 ## 参见
 
-- [集合](../collections) - 处理可轻松转换为 JSON 的结构化数据。
-- [配置](../configuration) - 如何配置你的 Flight 应用。
-- [扩展](../extending) - 如何添加自己的工具或覆盖核心类。
+- [集合](collections) - 处理可轻松转换为 JSON 的结构化数据。
+- [配置](configuration) - 如何配置你的 Flight 应用。
+- [扩展](extending) - 如何添加自己的工具或覆盖核心类。
 
 ## 故障排除
 

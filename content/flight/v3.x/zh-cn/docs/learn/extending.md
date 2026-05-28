@@ -19,7 +19,7 @@ Flight 被设计为一个可扩展的框架。框架自带一组默认方法和�
 
 你也可以覆盖现有的框架方法，以改变其默认行为来更好地满足项目需求。
 
-> 如果你在寻找 DIC（依赖注入容器），请跳转到[依赖注入容器](../dependency_injection_container)页面。
+> 如果你在寻找 DIC（依赖注入容器），请跳转到[依赖注入容器](dependency_injection_container)页面。
 
 ## 基本用法
 
@@ -114,7 +114,7 @@ Flight::onEvent(string $event, callable $callback) // 注册事件监听器。
 Flight::triggerEvent(string $event, ...$args) // 触发事件。
 ```
 
-任何使用 `map` 和 `register` 添加的自定义方法也可以被过滤。有关如何过滤这些方法的示例，请参见[过滤方法](../filtering)指南。
+任何使用 `map` 和 `register` 添加的自定义方法也可以被过滤。有关如何过滤这些方法的示例，请参见[过滤方法](filtering)指南。
 
 #### 可扩展框架类
 
@@ -273,7 +273,7 @@ Flight::after('start', function() {
 
 #### 缓存
 
-Flight 没有内置的缓存系统，但是将缓存库与 Flight 配合使用非常简单。以下是使用 [PHP File Cache](../../awesome-plugins/php_file_cache) 库的示例：
+Flight 没有内置的缓存系统，但是将缓存库与 Flight 配合使用非常简单。以下是使用 [PHP File Cache](../awesome-plugins/php_file_cache) 库的示例：
 
 ```php
 // services.php
@@ -345,8 +345,8 @@ $emailCron->send();
 
 ## 参见
 
-- [依赖注入容器](../dependency_injection_container) - 如何在 Flight 中使用 DIC。
-- [文件缓存](../../awesome-plugins/php_file_cache) - 将缓存库与 Flight 配合使用的示例。
+- [依赖注入容器](dependency_injection_container) - 如何在 Flight 中使用 DIC。
+- [文件缓存](../awesome-plugins/php_file_cache) - 将缓存库与 Flight 配合使用的示例。
 
 ## 故障排除
 

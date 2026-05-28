@@ -146,8 +146,8 @@ $collection->setData(['foo' => 'bar']);
 
 ## 参见
 
-- [请求](../requests) - 了解如何处理 HTTP 请求以及如何使用集合管理请求数据。
-- [PDO 包装器](../pdo_wrapper) - 了解如何使用 Flight 中的 PDO 包装器以及如何使用集合管理数据库结果。
+- [请求](requests) - 了解如何处理 HTTP 请求以及如何使用集合管理请求数据。
+- [PDO 包装器](pdo_wrapper) - 了解如何使用 Flight 中的 PDO 包装器以及如何使用集合管理数据库结果。
 
 ## 故障排除
 

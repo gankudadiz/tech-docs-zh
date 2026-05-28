@@ -91,7 +91,7 @@ Flight::route('/@name', function ($name) {
 
 #### 进一步阅读
 
-使用 Latte 布局的更复杂示例见本文档的[插件](../../awesome-plugins/latte)部分。
+使用 Latte 布局的更复杂示例见本文档的[插件](../awesome-plugins/latte)部分。
 
 你可以通过阅读[官方文档](https://latte.nette.org/en/)了解 Latte 的全部功能，包括翻译和语言功能。
 
@@ -287,10 +287,10 @@ Hello, Bob!
 
 ## 参见
 
-- [扩展](../extending) - 如何覆盖 `render` 方法以使用不同的模板引擎。
-- [路由](../routing) - 如何将路由映射到控制器并渲染视图。
-- [响应](../responses) - 如何自定义 HTTP 响应。
-- [为什么使用框架？](../why_frameworks) - 模板在整个框架中的位置。
+- [扩展](extending) - 如何覆盖 `render` 方法以使用不同的模板引擎。
+- [路由](routing) - 如何将路由映射到控制器并渲染视图。
+- [响应](responses) - 如何自定义 HTTP 响应。
+- [为什么使用框架？](why_frameworks) - 模板在整个框架中的位置。
 
 ## 故障排除
 

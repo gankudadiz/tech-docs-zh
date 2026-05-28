@@ -10,7 +10,7 @@ _自 v3.15.0 起_
 
 ## 概述
 
-事件允许你在应用中注册和触发自定义行为。通过新增的 `Flight::onEvent()` 和 `Flight::triggerEvent()`，你现在可以钩入应用生命周期的关键时刻，或定义自己的事件（如通知和邮件），使代码更加模块化且可扩展。这些方法是 Flight [可映射方法](../extending)的一部分，意味着你可以覆盖它们的行为以满足你的需求。
+事件允许你在应用中注册和触发自定义行为。通过新增的 `Flight::onEvent()` 和 `Flight::triggerEvent()`，你现在可以钩入应用生命周期的关键时刻，或定义自己的事件（如通知和邮件），使代码更加模块化且可扩展。这些方法是 Flight [可映射方法](extending)的一部分，意味着你可以覆盖它们的行为以满足你的需求。
 
 ## 理解
 
@@ -110,7 +110,7 @@ Flight::onEvent('user.login', function ($username) {
 
 ### 覆盖事件方法
 
-`Flight::onEvent()` 和 `Flight::triggerEvent()` 可以被[扩展](../extending)，这意味着你可以重新定义它们的工作方式。这对于想要自定义事件系统的高级用户来说非常有用，例如添加日志记录或更改事件的分发方式。
+`Flight::onEvent()` 和 `Flight::triggerEvent()` 可以被[扩展](extending)，这意味着你可以重新定义它们的工作方式。这对于想要自定义事件系统的高级用户来说非常有用，例如添加日志记录或更改事件的分发方式。
 
 #### 示例：自定义 `onEvent`
 
@@ -332,8 +332,8 @@ Flight PHP 附带了一些内置事件，你可以使用它们来钩入框架的
 
 ## 参见
 
-- [扩展 Flight](../extending) - 如何扩展和自定义 Flight 的核心功能。
-- [缓存](../../awesome-plugins/php_file_cache) - 使用事件在页面更新时清除缓存的示例。
+- [扩展 Flight](extending) - 如何扩展和自定义 Flight 的核心功能。
+- [缓存](../awesome-plugins/php_file_cache) - 使用事件在页面更新时清除缓存的示例。
 
 ## 故障排除
 

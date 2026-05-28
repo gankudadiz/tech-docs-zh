@@ -81,7 +81,7 @@ AI instructions updated successfully.
 ## 参见
 
 - [Flight Skeleton](https://github.com/flightphp/skeleton) – 带有 AI 集成的官方入门项目
-- [Runway CLI](../../awesome-plugins/runway) – 关于支持这些命令的 CLI 工具的更多信息
+- [Runway CLI](../awesome-plugins/runway) – 关于支持这些命令的 CLI 工具的更多信息
 
 ## 故障排除
 

@@ -170,13 +170,13 @@ class UserControllerDICTest extends TestCase {
 
 ## 参见
 
-- [单元测试指南](../../guides/unit_testing) - 关于单元测试最佳实践的综合指南。
-- [依赖注入容器](../dependency_injection_container) - 如何使用 DIC 管理依赖并提高可测试性。
-- [扩展](../extending) - 如何添加自己的辅助方法或覆盖核心类。
-- [PDO 包装器](../pdo_wrapper) - 简化数据库交互，在测试中更容易模拟。
-- [请求](../requests) - 在 Flight 中处理 HTTP 请求。
-- [响应](../responses) - 向用户发送响应。
-- [单元测试与 SOLID 原则](../unit_testing_and_solid_principles) - 了解 SOLID 原则如何改进你的单元测试。
+- [单元测试指南](../guides/unit_testing) - 关于单元测试最佳实践的综合指南。
+- [依赖注入容器](dependency_injection_container) - 如何使用 DIC 管理依赖并提高可测试性。
+- [扩展](extending) - 如何添加自己的辅助方法或覆盖核心类。
+- [PDO 包装器](pdo_wrapper) - 简化数据库交互，在测试中更容易模拟。
+- [请求](requests) - 在 Flight 中处理 HTTP 请求。
+- [响应](responses) - 向用户发送响应。
+- [单元测试与 SOLID 原则](unit_testing_and_solid_principles) - 了解 SOLID 原则如何改进你的单元测试。
 
 ## 故障排除
 

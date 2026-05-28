@@ -10,10 +10,10 @@ Flight PHP 设计为简单而强大，我们的指南将帮助你逐步构建真
 
 ## 官方指南
 
-### [构建博客](../guides/blog)
+### [构建博客](guides/blog)
 学习使用 Flight PHP 创建功能性博客应用。包括项目结构搭建、Latte 模板、路由实现、数据存取、表单处理和错误处理。
 
-### [单元测试与 SOLID 原则](../guides/unit_testing)
+### [单元测试与 SOLID 原则](guides/unit_testing)
 涵盖 Flight PHP 应用中单元测试的基础知识。包括 PHPUnit 设置、SOLID 原则编写可测试代码、模拟依赖、常见陷阱及测试扩展。
 
 ## 非官方指南

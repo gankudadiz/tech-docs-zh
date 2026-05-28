@@ -6,7 +6,7 @@ status: 已翻译
 
 # EasyQuery
 
-[knifelemon/easy-query](https://github.com/knifelemon/EasyQueryBuilder) 是一个轻量级、流式 SQL 查询构建器，生成 SQL 和参数用于预处理语句。与 [SimplePdo](../../learn/simple_pdo) 配合使用。
+[knifelemon/easy-query](https://github.com/knifelemon/EasyQueryBuilder) 是一个轻量级、流式 SQL 查询构建器，生成 SQL 和参数用于预处理语句。与 [SimplePdo](../learn/simple_pdo) 配合使用。
 
 ## 特性
 

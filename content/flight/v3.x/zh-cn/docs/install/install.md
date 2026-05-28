@@ -31,7 +31,7 @@ composer require flightphp/core
 composer create-project flightphp/skeleton my-project/
 ```
 
-这将为你设置好项目结构、配置带命名空间的自动加载、设置配置文件，并提供其他工具，如 [Tracy](/awesome-plugins/tracy)、[Tracy Extensions](/awesome-plugins/tracy_extensions) 和 [Runway](/awesome-plugins/runway)。
+这将为你设置好项目结构、配置带命名空间的自动加载、设置配置文件，并提供其他工具，如 [Tracy](../awesome-plugins/tracy)、[Tracy Extensions](../awesome-plugins/tracy_extensions) 和 [Runway](../awesome-plugins/runway)。
 
 ## 配置 Web 服务器
 
