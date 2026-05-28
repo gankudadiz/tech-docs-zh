@@ -74,7 +74,7 @@ Flight::route('GET /login', function(){
 });
 ```
 
-关于设置新的 cookie 值的帮助，参见 [overclokk/cookie](../../awesome-plugins/php-cookie)
+关于设置新的 cookie 值的帮助，参见 [overclokk/cookie](../../awesome-plugins/php_cookie)
 
 ### `$_SERVER`
 
@@ -96,7 +96,7 @@ $uploadedFile = Flight::request()->files['myFile'];
 $uploadedFile = Flight::request()->files->myFile;
 ```
 
-更多信息见[上传文件处理器](../uploaded-file)。
+更多信息见[上传文件处理器](../uploaded_file)。
 
 #### 处理文件上传
 
@@ -259,9 +259,9 @@ if ($typeToServe === 'application/json') {
 
 - [路由](../routing) - 了解如何将路由映射到控制器并渲染视图。
 - [响应](../responses) - 如何自定义 HTTP 响应。
-- [为什么使用框架？](../why-frameworks) - 请求在整个框架中的位置。
+- [为什么使用框架？](../why_frameworks) - 请求在整个框架中的位置。
 - [集合](../collections) - 处理数据集合。
-- [上传文件处理器](../uploaded-file) - 处理文件上传。
+- [上传文件处理器](../uploaded_file) - 处理文件上传。
 
 ## 故障排除
 

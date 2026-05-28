@@ -313,7 +313,7 @@ Flight::route('/users', function () {
 ## 参见
 
 - [集合](../collections) - 了解如何使用 Collection 类轻松访问数据。
-- [PdoWrapper](../pdo-wrapper) - 旧版 PDO 辅助类（已弃用）。
+- [PdoWrapper](../pdo_wrapper) - 旧版 PDO 辅助类（已弃用）。
 
 ## 故障排除
 

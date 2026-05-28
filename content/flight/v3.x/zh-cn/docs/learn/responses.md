@@ -415,7 +415,7 @@ Flight::route('/download', function () {
 - [路由](../routing) - 如何将路由映射到控制器并渲染视图。
 - [请求](../requests) - 了解如何处理传入的请求。
 - [中间件](../middleware) - 对路由使用中间件进行身份验证、日志记录等。
-- [为什么使用框架？](../why-frameworks) - 了解使用 Flight 这样的框架的好处。
+- [为什么使用框架？](../why_frameworks) - 了解使用 Flight 这样的框架的好处。
 - [扩展](../extending) - 如何使用你自己的功能扩展 Flight。
 
 ## 故障排除

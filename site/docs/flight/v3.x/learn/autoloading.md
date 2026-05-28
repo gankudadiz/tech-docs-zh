@@ -158,7 +158,7 @@ class My_Controller {
 ## 参见
 
 - [路由](../routing) - 如何将路由映射到控制器并渲染视图。
-- [为什么使用框架？](../why-frameworks) - 了解使用 Flight 这样的框架的好处。
+- [为什么使用框架？](../why_frameworks) - 了解使用 Flight 这样的框架的好处。
 
 ## 故障排除
 

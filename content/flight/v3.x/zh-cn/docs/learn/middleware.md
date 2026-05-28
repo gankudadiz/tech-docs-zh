@@ -110,7 +110,7 @@ Flight::start();
 Flight::route('/path', function() { echo ' Here I am! '; })->addMiddleware(MyMiddleware::class); 
 ```
 
-> **注意**：如果你只传入中间件的名称，它将自动由[依赖注入容器](../dependency-injection-container)执行，中间件将通过其所需的参数执行。如果你没有注册依赖注入容器，它将默认把 `flight\Engine` 实例传入 `__construct(Engine $app)`。
+> **注意**：如果你只传入中间件的名称，它将自动由[依赖注入容器](../dependency_injection_container)执行，中间件将通过其所需的参数执行。如果你没有注册依赖注入容器，它将默认把 `flight\Engine` 实例传入 `__construct(Engine $app)`。
 
 ### 在路由中使用参数
 
@@ -371,8 +371,8 @@ class MyMiddleware {
 - [路由](../routing) - 如何将路由映射到控制器并渲染视图。
 - [请求](../requests) - 了解如何处理传入的请求。
 - [响应](../responses) - 如何自定义 HTTP 响应。
-- [依赖注入](../dependency-injection-container) - 简化路由中对象的创建和管理。
-- [为什么使用框架？](../why-frameworks) - 了解使用 Flight 这样的框架的好处。
+- [依赖注入](../dependency_injection_container) - 简化路由中对象的创建和管理。
+- [为什么使用框架？](../why_frameworks) - 了解使用 Flight 这样的框架的好处。
 - [中间件执行策略示例](https://www.slimframework.com/docs/v4/concepts/middleware.html#how-does-middleware-work)
 
 ## 故障排除

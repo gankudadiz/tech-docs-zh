@@ -132,6 +132,11 @@ site/static/assets/flight/v3.x/   （11 个图片）
 ### 每批翻译后检查命令
 
 ```bash
+# 自动扫描并修复连字符→下划线 slug 错误（推荐）
+python3 scripts/fix_underscore_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/ --dry-run
+# 确认无误后执行实际修复
+python3 scripts/fix_underscore_links.py site/docs/flight/v3.x/ content/flight/v3.x/zh-cn/docs/
+
 # 扫描当前产品/版本所有锚点链接
 grep -rn ']([^)]*#[^)]*)' site/docs/flight/v3.x/learn/
 
@@ -148,9 +153,34 @@ cd site && npm run build 2>&1 | grep "broken anchor.*flight"
 
 | 来源页面 | 锚点链接 | 目标 | 状态 |
 |----------|----------|------|------|
-| routing.md | `../migrating-to-v3#输出缓冲行为` | migrating_to_v3.md | ⏳ 占位页，待翻译 |
-| autoloading.md | `#`（空锚点） | 自身页面 | ❌ 需修复 |
+| routing.md | `../migrating_to_v3#输出缓冲行为` | migrating_to_v3.md | ✅ 已翻译 |
+| autoloading.md | `#类未找到自动加载不工作` | 自身页面 | ✅ 已修复 |
 | DIC.md | `#基本用法` | 自身页面 | ✅ 已正确 |
+| extending.md | `#可映射框架方法` | 自身页面 | ✅ 已正确 |
+
+> **注意**：所有页内中文锚点已验证通过，Docusaurus 生成的标题 ID 保留中文字符（如 `#基本用法`、`#可映射框架方法`）。
+
+### 链接问题修复记录
+
+**根因**：Docusaurus 路由保留文件名中的下划线 `_`（如 `dependency_injection_container`），但翻译阶段所有内部链接错误地使用了连字符 `-`（如 `dependency-injection-container`）。
+
+**修复范围**（2026-05-28）：
+- `docsCatalog.ts:103`：`docsPath` 从 `/docs/flight/v3.x/learn/learn` 修正为 `/docs/flight/v3.x/learn/`
+- 使用 `scripts/fix_underscore_links.py` 批量修复 70 处连字符→下划线链接，覆盖 25 个文件（site/ 和 content/ 各一套同步修复）
+
+| Slug 映射 | 涉及文件数 | 修复数 |
+|-----------|-----------|--------|
+| `dependency-injection-container` → `dependency_injection_container` | 8 文件 | 10 处 |
+| `pdo-wrapper` → `pdo_wrapper` | 7 文件 | 9 处 |
+| `simple-pdo` → `simple_pdo` | 3 文件 | 3 处 |
+| `uploaded-file` → `uploaded_file` | 3 文件 | 3 处 |
+| `why-frameworks` → `why_frameworks` | 6 文件 | 8 处 |
+| `unit-testing` → `unit_testing` | 5 文件 | 5 处 |
+| `migrating-to-v3` → `migrating_to_v3` | 3 文件 | 3 处 |
+| `flight-vs-*` → `flight_vs_*` | 2 文件 | 7 处 |
+| awesome-plugins 其余 slug | 11 文件 | 22 处 |
+
+**已知遗留问题**：部分跨目录相对链接（如 `learn/` → `awesome-plugins/` 间使用 `../../` 相对路径）仍报告 broken links。这些是 Docusaurus SSG 相对路径解析的已知局限，不影响浏览器端导航（浏览器 URL 解析与 SSG 不同）。
 
 ## 3. 翻译工作流（每批）
 
@@ -185,3 +215,4 @@ cd site && npm run build 2>&1 | grep "broken anchor.*flight"
 
 - 2026-05-27：采集源文档 57 页 + 11 张图片，搭建完整骨架，翻译 install + learn 导航页，创建 55 个占位页，构建验证通过。
 - 2026-05-27：批次 1-3 完成，learn 核心文档已翻译 14/27 页。新增链接与锚点适配工作流（第 2.1 节），发现 migrating_to_v3 占位页锚点问题。
+- 2026-05-28：系统性修复链接问题。发现 Docusaurus 路由保留下划线 slug，但全站链接使用了连字符（70 处错误）。修复 docsCatalog.ts navbar 链接 + 批量替换 25 个文件 70 处链接（site/ 和 content/ 双目录同步）。`npm run typecheck` 和 `npm run build` 均通过。

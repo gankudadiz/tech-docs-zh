@@ -10,7 +10,7 @@ status: 已翻译
 
 ## 文章
 
-- [单元测试与 SOLID 原则](../../learn/unit-testing-and-solid-principles) - Brian Fenton (2015?)
+- [单元测试与 SOLID 原则](../../learn/unit_testing_and_solid_principles) - Brian Fenton (2015?)
 - [Define, Generate, and Implement: API-First with OpenAPI Generator and FlightPHP](https://dev.to/danielsc/define-generate-and-implement-an-api-first-approach-with-openapi-generator-and-flightphp-1fb3) - Daniel Schreiber (2025)
 - [Best PHP Micro Frameworks for 2024](https://dev.to/n0nag0n/best-php-micro-frameworks-for-2024-19h6) - n0nag0n (2024)
 - [Creating a RESTful API with Flight Framework](https://dev.to/n0nag0n/creating-a-restful-api-with-flight-framework-56lj) - n0nag0n (2024)

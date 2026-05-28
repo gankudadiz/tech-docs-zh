@@ -56,7 +56,7 @@ Flight 是一个快速、简洁、可扩展的 PHP 框架。它非常灵活，�
 
 了解如何为你的方法和内部框架方法添加事件钩子。
 
-### [依赖注入容器 (DIC)](dependency-injection-container)
+### [依赖注入容器 (DIC)](dependency_injection_container)
 
 了解如何使用依赖注入容器 (DIC) 来管理应用的依赖项。
 
@@ -70,33 +70,33 @@ Flight 是一个快速、简洁、可扩展的 PHP 框架。它非常灵活，�
 
 提供一些简单的函数，使 JSON 的编码和解码保持一致。
 
-### [SimplePdo](simple-pdo)
+### [SimplePdo](simple_pdo)
 
 PDO 有时会带来不必要的麻烦。SimplePdo 是一个现代的 PDO 辅助类，提供 `insert()`、`update()`、`delete()` 和 `transaction()` 等便捷方法，使数据库操作更加简单。
 
-### [PdoWrapper](pdo-wrapper)（已弃用）
+### [PdoWrapper](pdo_wrapper)（已弃用）
 
-原始的 PDO 包装器自 v3.18.0 起已弃用。请改用 [SimplePdo](simple-pdo)。
+原始的 PDO 包装器自 v3.18.0 起已弃用。请改用 [SimplePdo](simple_pdo)。
 
-### [上传文件处理器](uploaded-file)
+### [上传文件处理器](uploaded_file)
 
 一个简单的类，用于管理上传的文件并将其移动到永久位置。
 
 ## 重要概念
 
-### [为什么要用框架？](why-frameworks)
+### [为什么要用框架？](why_frameworks)
 
 这是一篇关于为什么应该使用框架的简短文章。在开始使用框架之前，了解使用框架的好处是个好主意。
 
 此外，[@lubiana](https://git.php.fail/lubiana) 创建了一个优秀的教程。虽然它没有详细介绍 Flight，但这个指南将帮助你理解围绕框架的一些主要概念以及为什么它们是有益的。你可以在[这里](https://git.php.fail/lubiana/no-framework-tutorial/src/branch/master/README.md)找到该教程。
 
-### [Flight 与其他框架对比](flight-vs-another-framework)
+### [Flight 与其他框架对比](flight_vs_another_framework)
 
 如果你正在从 Laravel、Slim、Fat-Free 或 Symfony 等其他框架迁移到 Flight，本页面将帮助你理解两者之间的差异。
 
 ## 其他主题
 
-### [单元测试](unit-testing)
+### [单元测试](unit_testing)
 
 遵循本指南学习如何对 Flight 代码进行单元测试，确保代码坚如磐石。
 
@@ -104,6 +104,6 @@ PDO 有时会带来不必要的麻烦。SimplePdo 是一个现代的 PDO 辅助�
 
 了解 Flight 如何与 AI 工具和现代开发者工作流协同工作，帮助你更快更智能地编写代码。
 
-### [从 v2 迁移到 v3](migrating-to-v3)
+### [从 v2 迁移到 v3](migrating_to_v3)
 
 向后兼容性在大部分情况下得到了保持，但从 v2 迁移到 v3 时，仍有一些需要注意的变化。

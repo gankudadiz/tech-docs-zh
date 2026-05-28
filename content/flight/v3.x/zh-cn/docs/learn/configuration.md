@@ -44,7 +44,7 @@ Flight::set('flight.log_errors', true);
 - **flight.views.extension** `string` - 视图模板文件扩展名。（默认：.php）
 - **flight.content_length** `bool` - 设置 `Content-Length` 响应头。（默认：true）
   - 如果你使用了 [Tracy](../../awesome-plugins/tracy)，需要将此设为 false，以便 Tracy 能够正确渲染。
-- **flight.v2.output_buffering** `bool` - 使用旧版输出缓冲。参见[迁移到 v3](../migrating-to-v3)。（默认：false）
+- **flight.v2.output_buffering** `bool` - 使用旧版输出缓冲。参见[迁移到 v3](../migrating_to_v3)。（默认：false）
 
 ### 加载器配置
 
@@ -86,7 +86,7 @@ Flight::clear('id');
 Flight::clear();
 ```
 
-> **注意**：仅仅因为你可以设置变量并不意味着你应该这样做。请谨慎使用此功能。原因是存储在其中的任何内容都会成为全局变量。全局变量不好，因为它们可以从应用的任何地方被修改，这使得追踪 bug 变得困难。此外，这还会使[单元测试](../../guides/unit-testing)等操作变得复杂。
+> **注意**：仅仅因为你可以设置变量并不意味着你应该这样做。请谨慎使用此功能。原因是存储在其中的任何内容都会成为全局变量。全局变量不好，因为它们可以从应用的任何地方被修改，这使得追踪 bug 变得困难。此外，这还会使[单元测试](../../guides/unit_testing)等操作变得复杂。
 
 ### 错误和异常
 
@@ -124,7 +124,7 @@ Flight::map('notFound', function () {
 ## 参见
 
 - [扩展 Flight](../extending) - 如何扩展和自定义 Flight 的核心功能。
-- [单元测试](../../guides/unit-testing) - 如何为你的 Flight 应用编写单元测试。
+- [单元测试](../../guides/unit_testing) - 如何为你的 Flight 应用编写单元测试。
 - [Tracy](../../awesome-plugins/tracy) - 用于高级错误处理和调试的插件。
 - [Tracy 扩展](../../awesome-plugins/tracy_extensions) - 将 Tracy 与 Flight 集成的扩展。
 - [APM](../../awesome-plugins/apm) - 用于应用性能监控和错误跟踪的插件。

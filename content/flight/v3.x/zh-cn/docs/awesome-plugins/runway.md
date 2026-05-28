@@ -74,7 +74,7 @@ php runway make:controller MyController
 
 ### 生成 Active Record 模型
 
-首先确保你已经安装了 [Active Record](../active-record) 插件。基于 `runway.app_root` 中的配置，该命令将在 `app/records/` 目录中为你生成一个记录。
+首先确保你已经安装了 [Active Record](../active_record) 插件。基于 `runway.app_root` 中的配置，该命令将在 `app/records/` 目录中为你生成一个记录。
 
 ```bash
 php runway make:record users

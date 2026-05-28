@@ -19,7 +19,7 @@ Flight 被设计为一个可扩展的框架。框架自带一组默认方法和�
 
 你也可以覆盖现有的框架方法，以改变其默认行为来更好地满足项目需求。
 
-> 如果你在寻找 DIC（依赖注入容器），请跳转到[依赖注入容器](../dependency-injection-container)页面。
+> 如果你在寻找 DIC（依赖注入容器），请跳转到[依赖注入容器](../dependency_injection_container)页面。
 
 ## 基本用法
 
@@ -345,7 +345,7 @@ $emailCron->send();
 
 ## 参见
 
-- [依赖注入容器](../dependency-injection-container) - 如何在 Flight 中使用 DIC。
+- [依赖注入容器](../dependency_injection_container) - 如何在 Flight 中使用 DIC。
 - [文件缓存](../../awesome-plugins/php_file_cache) - 将缓存库与 Flight 配合使用的示例。
 
 ## 故障排除

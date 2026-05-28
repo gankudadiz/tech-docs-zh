@@ -19,7 +19,7 @@ status: 已翻译
 - SQL 注入
 - 跨源资源共享 (CORS)
 
-[模板](../templates)通过默认转义输出来帮助防御 XSS，这样你就不需要记住去做了。[会话](../../awesome-plugins/session)可以通过在用户会话中存储 CSRF 令牌来帮助防御 CSRF，如下文所述。在 PDO 中使用预处理语句可以帮助防止 SQL 注入攻击（或使用 [PdoWrapper](../pdo-wrapper) 类中的便捷方法）。CORS 可以在 `Flight::start()` 被调用之前用一个简单的钩子来处理。
+[模板](../templates)通过默认转义输出来帮助防御 XSS，这样你就不需要记住去做了。[会话](../../awesome-plugins/session)可以通过在用户会话中存储 CSRF 令牌来帮助防御 CSRF，如下文所述。在 PDO 中使用预处理语句可以帮助防止 SQL 注入攻击（或使用 [PdoWrapper](../pdo_wrapper) 类中的便捷方法）。CORS 可以在 `Flight::start()` 被调用之前用一个简单的钩子来处理。
 
 所有这些方法协同工作，帮助确保你的 Web 应用安全。学习和理解安全最佳实践应始终是你关注的重点。
 
@@ -488,7 +488,7 @@ Flight::before('start', function() {
 
 - [会话](../../awesome-plugins/session) - 如何安全管理用户会话。
 - [模板](../templates) - 使用模板自动转义输出以防止 XSS。
-- [PDO 包装器](../pdo-wrapper) - 使用预处理语句简化数据库交互。
+- [PDO 包装器](../pdo_wrapper) - 使用预处理语句简化数据库交互。
 - [中间件](../middleware) - 如何使用中间件简化安全响应头的添加过程。
 - [响应](../responses) - 如何使用安全响应头自定义 HTTP 响应。
 - [请求](../requests) - 如何处理和清理用户输入。

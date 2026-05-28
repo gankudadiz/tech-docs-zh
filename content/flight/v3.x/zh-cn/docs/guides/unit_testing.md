@@ -6,7 +6,7 @@ status: 已翻译
 
 # 使用 PHPUnit 进行单元测试
 
-本指南介绍在 Flight PHP 中使用 [PHPUnit](https://phpunit.de/) 进行单元测试，面向希望理解*为什么*测试重要以及如何实际应用的初学者。我们专注于测试*行为*——确保应用按预期工作。[查看更多](../learn/unit-testing)
+本指南介绍在 Flight PHP 中使用 [PHPUnit](https://phpunit.de/) 进行单元测试，面向希望理解*为什么*测试重要以及如何实际应用的初学者。我们专注于测试*行为*——确保应用按预期工作。[查看更多](../learn/unit_testing)
 
 ## 为什么单元测试？
 
@@ -65,4 +65,4 @@ public function testUserRegistration() {
 
 测试容器用于验证容器是否正确解析依赖。使用 `Flight::registerContainerHandler()` 和模拟容器。
 
-完整指南见 [单元测试文档](../learn/unit-testing)。
+完整指南见 [单元测试文档](../learn/unit_testing)。
