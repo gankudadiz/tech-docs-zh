@@ -19,7 +19,7 @@ status: 已翻译
 composer require flightphp/core
 ```
 
-这只会将 Flight 核心文件放到你的系统上。你需要自行定义项目结构、[布局](/learn/templates)、[依赖项](/learn/dependency-injection-container)、[配置](/learn/configuration)、[自动加载](/learn/autoloading)等。这种方式确保除 Flight 外不会安装其他依赖。
+这只会将 Flight 核心文件放到你的系统上。你需要自行定义项目结构、[布局](../learn/templates)、[依赖项](../learn/dependency-injection-container)、[配置](../learn/configuration)、[自动加载](../learn/autoloading)等。这种方式确保除 Flight 外不会安装其他依赖。
 
 你也可以直接[下载文件](https://github.com/flightphp/core/archive/master.zip)并解压到你的 Web 目录。
 
