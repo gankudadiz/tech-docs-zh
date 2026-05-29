@@ -6,7 +6,7 @@ title: 用户菜单
 
 用户菜单位于管理布局的右上角。它是完全可自定义的。
 
-每个菜单项由一个[操作](../actions)表示，可以用相同的方式自定义。要注册新项，你可以将操作传递给[配置](../panel-configuration)的 `userMenuItems()` 方法：
+每个菜单项由一个[操作](../actions/overview)表示，可以用相同的方式自定义。要注册新项，你可以将操作传递给[配置](../panel-configuration)的 `userMenuItems()` 方法：
 
 ```php
 use App\Filament\Pages\Settings;
@@ -50,7 +50,7 @@ public function panel(Panel $panel): Panel
 
 ## 自定义个人资料链接
 
-要自定义用户菜单开头的用户个人资料链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions)对象的函数：
+要自定义用户菜单开头的用户个人资料链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions/overview)对象的函数：
 
 ```php
 use Filament\Actions\Action;
@@ -67,11 +67,11 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-有关创建个人资料页面的更多信息，请查看[认证功能文档](../users#authentication-features)。
+有关创建个人资料页面的更多信息，请查看[认证功能文档](../users/overview#authentication-features)。
 
 ## 自定义退出链接
 
-要自定义用户菜单末尾的用户退出链接，使用 `logout` 数组键注册一个新项，并传递一个[自定义操作](../actions)对象的函数：
+要自定义用户菜单末尾的用户退出链接，使用 `logout` 数组键注册一个新项，并传递一个[自定义操作](../actions/overview)对象的函数：
 
 ```php
 use Filament\Actions\Action;

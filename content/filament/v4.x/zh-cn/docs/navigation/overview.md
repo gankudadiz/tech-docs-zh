@@ -417,7 +417,7 @@ public static function shouldRegisterNavigation(): bool
 }
 ```
 
-请注意，这些方法不控制对资源或页面的直接访问。它们仅控制资源或页面是否会在导航中显示。如果你想同时控制访问权限，则应使用[资源授权](../resources#authorization)或[页面授权](custom-pages#授权)。
+请注意，这些方法不控制对资源或页面的直接访问。它们仅控制资源或页面是否会在导航中显示。如果你想同时控制访问权限，则应使用[资源授权](../resources/overview#authorization)或[页面授权](custom-pages#授权)。
 
 ## 使用顶部导航
 

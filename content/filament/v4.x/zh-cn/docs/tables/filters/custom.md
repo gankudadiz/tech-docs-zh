@@ -4,7 +4,7 @@ title: 自定义过滤器
 
 ## 自定义过滤器模式
 
-你可以使用[模式组件](../../schemas)创建自定义过滤器。自定义过滤器模式中的数据可在 `query()` 回调的 `$data` 数组中使用：
+你可以使用[模式组件](../../schemas/overview)创建自定义过滤器。自定义过滤器模式中的数据可在 `query()` 回调的 `$data` 数组中使用：
 
 ```php
 use Filament\Forms\Components\DatePicker;

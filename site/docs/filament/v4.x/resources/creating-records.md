@@ -490,7 +490,7 @@ protected function getFormActions(): array
 
 ## 自定义页面内容
 
-Filament 中的每个页面都有自己的[模式](../schemas)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的模式。创建页面的 `content()` 方法默认包含以下组件：
+Filament 中的每个页面都有自己的[模式](../schemas/overview)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的模式。创建页面的 `content()` 方法默认包含以下组件：
 
 ```php
 use Filament\Schemas\Schema;
@@ -504,7 +504,7 @@ public function content(Schema $schema): Schema
 }
 ```
 
-在 `components()` 数组中，你可以插入任何[模式组件](../schemas)。你可以通过更改数组的顺序来重新排列组件，或移除不需要的组件。
+在 `components()` 数组中，你可以插入任何[模式组件](../schemas/overview)。你可以通过更改数组的顺序来重新排列组件，或移除不需要的组件。
 
 ### 使用自定义 Blade 视图
 

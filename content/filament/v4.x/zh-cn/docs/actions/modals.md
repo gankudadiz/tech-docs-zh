@@ -49,7 +49,7 @@ Action::make('delete')
 
 ### 在模态框中渲染 Schema
 
-Filament 允许你在模态框中渲染 [Schema](../schemas)，这使你可以渲染任何可用的组件来构建 UI。通常，在 Schema 中构建表单以在操作运行前从用户收集额外信息非常有用，但可以渲染任何 UI：
+Filament 允许你在模态框中渲染 [Schema](../schemas/overview)，这使你可以渲染任何可用的组件来构建 UI。通常，在 Schema 中构建表单以在操作运行前从用户收集额外信息非常有用，但可以渲染任何 UI：
 
 ```php
 use Filament\Actions\Action;
@@ -93,7 +93,7 @@ Action::make('viewUser')
 
 #### 在模态框中渲染表单
 
-你可以使用[表单字段](../forms)来创建操作模态框表单。表单中的数据可在 `action()` 闭包的 `$data` 数组中获取：
+你可以使用[表单字段](../forms/overview)来创建操作模态框表单。表单中的数据可在 `action()` 闭包的 `$data` 数组中获取：
 
 ```php
 use App\Models\Post;

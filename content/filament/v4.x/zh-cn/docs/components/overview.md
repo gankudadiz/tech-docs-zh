@@ -13,7 +13,7 @@ Filament 项目中的各个包可以在面板之外使用：
 - [操作](action)
 - [表单](form)
 - [信息列表](infolist)
-- [通知](notifications)
+- [通知](../notifications/overview)
 - [Schema](schema)
 - [表格](table)
 - [小部件](widget)

@@ -137,7 +137,7 @@ Callout::make('专业提示')
 
 ## 向提示框页脚添加操作
 
-你可以使用 `actions()` 方法向提示框页脚添加[操作](../actions)：
+你可以使用 `actions()` 方法向提示框页脚添加[操作](../actions/overview)：
 
 ```php
 use Filament\Actions\Action;
@@ -240,7 +240,7 @@ Callout::make('备份完成')
 
 ## 向提示框添加控制操作
 
-你可以使用 `controlActions()` 方法向提示框的右上角添加控制[操作](../actions)。例如，你可以添加一个关闭按钮，在用户会话期间隐藏提示框：
+你可以使用 `controlActions()` 方法向提示框的右上角添加控制[操作](../actions/overview)。例如，你可以添加一个关闭按钮，在用户会话期间隐藏提示框：
 
 ```php
 use Filament\Actions\Action;

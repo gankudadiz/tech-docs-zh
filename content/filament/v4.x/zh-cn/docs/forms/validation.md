@@ -501,7 +501,7 @@ Field::make('name')->string()
 Field::make('email')->unique()
 ```
 
-如果你的 Filament 表单已经关联了 Eloquent 模型（如在[面板资源](../resources)中），Filament 将使用它。你也可以指定自定义表名或模型进行搜索：
+如果你的 Filament 表单已经关联了 Eloquent 模型（如在[面板资源](../resources/overview)中），Filament 将使用它。你也可以指定自定义表名或模型进行搜索：
 
 ```php
 use App\Models\User;
@@ -515,7 +515,7 @@ Field::make('email')->unique(table: User::class)
 Field::make('email')->unique(column: 'email_address')
 ```
 
-通常，你希望在唯一性验证期间忽略给定的模型。例如，考虑一个包含用户名、电子邮件地址和位置的"更新个人资料"表单。你可能希望验证电子邮件地址是唯一的。然而，如果用户只更改了名称字段而没有更改电子邮件字段，你不希望因为用户已经是该电子邮件地址的所有者而抛出验证错误。如果你的 Filament 表单已经关联了 Eloquent 模型（如在[面板资源](../resources)中），Filament 将忽略它。
+通常，你希望在唯一性验证期间忽略给定的模型。例如，考虑一个包含用户名、电子邮件地址和位置的"更新个人资料"表单。你可能希望验证电子邮件地址是唯一的。然而，如果用户只更改了名称字段而没有更改电子邮件字段，你不希望因为用户已经是该电子邮件地址的所有者而抛出验证错误。如果你的 Filament 表单已经关联了 Eloquent 模型（如在[面板资源](../resources/overview)中），Filament 将忽略它。
 
 要防止 Filament 忽略当前的 Eloquent 记录，你可以向 `ignoreRecord` 参数传递 `false`：
 

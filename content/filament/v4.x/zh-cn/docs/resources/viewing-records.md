@@ -34,7 +34,7 @@ public static function infolist(Schema $schema): Schema
 
 `components()` 方法用于定义信息列表的结构。它是一个由[条目](../infolists/overview#定义条目)和[布局组件](../schemas/layouts#基本布局组件)组成的数组，按它们在信息列表中出现的顺序排列。
 
-请查阅信息列表文档，了解如何使用 Filament 构建信息列表的[指南](../infolists)。
+请查阅信息列表文档，了解如何使用 Filament 构建信息列表的[指南](../infolists/overview)。
 
 ## 向现有资源添加查看页面
 
@@ -221,7 +221,7 @@ public static function getRecordSubNavigation(Page $page): array
 
 ## 自定义页面内容
 
-Filament 中的每个页面都有自己的[模式](../schemas)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的模式。查看页面的 `content()` 方法默认包含以下组件：
+Filament 中的每个页面都有自己的[模式](../schemas/overview)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的模式。查看页面的 `content()` 方法默认包含以下组件：
 
 ```php
 use Filament\Schemas\Schema;
@@ -238,7 +238,7 @@ public function content(Schema $schema): Schema
 }
 ```
 
-在 `components()` 数组中，你可以插入任何[模式组件](../schemas)。你可以通过更改数组的顺序来重新排列组件，或移除不需要的组件。
+在 `components()` 数组中，你可以插入任何[模式组件](../schemas/overview)。你可以通过更改数组的顺序来重新排列组件，或移除不需要的组件。
 
 ### 使用自定义 Blade 视图
 

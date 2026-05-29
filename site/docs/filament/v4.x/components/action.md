@@ -111,7 +111,7 @@ class ManagePost extends Component implements HasActions, HasSchemas
 - `filament/support`
 
 这些包允许你在 Livewire 组件中使用它们的组件。
-例如，如果你的操作使用了[通知](notifications)，请记得在布局中包含 `@livewire('notifications')`，并在 CSS 文件中添加 `@import '../../vendor/filament/notifications/resources/css/index.css'`。
+例如，如果你的操作使用了[通知](../notifications/overview)，请记得在布局中包含 `@livewire('notifications')`，并在 CSS 文件中添加 `@import '../../vendor/filament/notifications/resources/css/index.css'`。
 
 如果你在操作中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::

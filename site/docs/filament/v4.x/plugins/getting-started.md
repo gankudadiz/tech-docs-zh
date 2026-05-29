@@ -76,7 +76,7 @@ class MyPluginServiceProvider extends PackageServiceProvider
 在升级插件之前，请完整阅读本指南。它将帮助你理解概念以及如何构建插件。
 
 1. [Filament 资源管理](../advanced/assets)
-2. [面板插件开发](../plugins)
+2. [面板插件开发](../plugins/getting-started)
 3. [图标管理](../styling/icons)
 4. [颜色管理](../styling/colors)
 5. [CSS 钩子](../styling/css-hooks)

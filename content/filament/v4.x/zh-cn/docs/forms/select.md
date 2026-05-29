@@ -980,7 +980,7 @@ Select::make('feedback')
 
 ## 从模态框中的表格选择选项
 
-你可以使用 `ModalTableSelect` 组件在模态框中打开一个 Filament [表格](../tables)，允许用户从中选择记录。当你有一个包含大量记录的[关联](#与-eloquent-关联集成)，并且希望用户能够执行高级过滤和搜索时，这非常有用。
+你可以使用 `ModalTableSelect` 组件在模态框中打开一个 Filament [表格](../tables/overview)，允许用户从中选择记录。当你有一个包含大量记录的[关联](#与-eloquent-关联集成)，并且希望用户能够执行高级过滤和搜索时，这非常有用。
 
 要使用 `ModalTableSelect`，你必须有一个该模型的表格配置类。你可以使用 `make:filament-table` 命令生成此类：
 
@@ -1041,7 +1041,7 @@ ModalTableSelect::make('categories')
 
 ### 自定义模态表格选择器的操作
 
-你可以使用[操作](../actions)对象配置方法来自定义"选择"按钮和模态框。向 `selectAction()` 方法传递一个函数允许你修改 `$action` 对象，例如更改按钮标签和模态框标题：
+你可以使用[操作](../actions/overview)对象配置方法来自定义"选择"按钮和模态框。向 `selectAction()` 方法传递一个函数允许你修改 `$action` 对象，例如更改按钮标签和模态框标题：
 
 ```php
 use Filament\Actions\Action;

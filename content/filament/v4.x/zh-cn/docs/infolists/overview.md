@@ -498,7 +498,7 @@ TextEntry::make('title')
 
 ## 向条目添加额外内容
 
-条目包含许多"插槽"，可以在子 schema 中插入内容。插槽可以接受文本、[任何 schema 组件](../schemas)、[操作](../actions/overview)和[操作组](../actions/grouping-actions)。通常，[Prime 组件](../schemas/primes)用于内容。
+条目包含许多"插槽"，可以在子 schema 中插入内容。插槽可以接受文本、[任何 schema 组件](../schemas/overview)、[操作](../actions/overview)和[操作组](../actions/grouping-actions)。通常，[Prime 组件](../schemas/primes)用于内容。
 
 所有条目都可以使用以下插槽：
 

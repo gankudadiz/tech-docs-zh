@@ -36,7 +36,7 @@ Toggle::make('is_active')
     ->onColor('success')
 ```
 
-如果你想在 [Blade 组件](../components)中使用颜色，可以将其作为属性传递：
+如果你想在 [Blade 组件](../components/overview)中使用颜色，可以将其作为属性传递：
 
 ```blade
 <x-filament::badge color="success">

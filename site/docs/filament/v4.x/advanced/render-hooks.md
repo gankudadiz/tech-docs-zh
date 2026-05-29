@@ -103,8 +103,8 @@ use Filament\View\PanelsRenderHook;
 - `PanelsRenderHook::SCRIPTS_BEFORE` - 脚本定义之前
 - `PanelsRenderHook::SIDEBAR_LOGO_AFTER` - 侧边栏 Logo 之后
 - `PanelsRenderHook::SIDEBAR_LOGO_BEFORE` - 侧边栏 Logo 之前
-- `PanelsRenderHook::SIDEBAR_NAV_END` - [侧边栏](../navigation)中，`</nav>` 之前
-- `PanelsRenderHook::SIDEBAR_NAV_START` - [侧边栏](../navigation)中，`<nav>` 之后
+- `PanelsRenderHook::SIDEBAR_NAV_END` - [侧边栏](../navigation/overview)中，`</nav>` 之前
+- `PanelsRenderHook::SIDEBAR_NAV_START` - [侧边栏](../navigation/overview)中，`<nav>` 之后
 - `PanelsRenderHook::SIMPLE_LAYOUT_END` - 简单布局容器末尾，也可以[限定范围](#限定渲染钩子范围)到页面类
 - `PanelsRenderHook::SIMPLE_LAYOUT_START` - 简单布局容器开头，也可以[限定范围](#限定渲染钩子范围)到页面类
 - `PanelsRenderHook::SIMPLE_PAGE_END` - 简单页面内容容器末尾，也可以[限定范围](#限定渲染钩子范围)到页面类

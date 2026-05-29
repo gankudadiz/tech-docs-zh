@@ -4,7 +4,7 @@ title: 集群
 
 ## 简介
 
-集群是面板中的分层结构，允许你将[资源](../resources)和[自定义页面](custom-pages)组合在一起。它们对于将面板组织成逻辑部分很有用，并且可以帮助减小面板侧边栏的大小。
+集群是面板中的分层结构，允许你将[资源](../resources/overview)和[自定义页面](custom-pages)组合在一起。它们对于将面板组织成逻辑部分很有用，并且可以帮助减小面板侧边栏的大小。
 
 ![带有子导航的集群页面](/assets/filament/v4.x/screenshots/images/light/panels/cluster.jpg)
 
@@ -13,7 +13,7 @@ title: 集群
 - 一个新的导航项会添加到导航中，它是集群中第一个资源或页面的链接。
 - 资源或页面的各个导航项在主导航中不再可见。
 - 每个集群中的资源或页面会添加一个新的子导航 UI，其中包含集群中资源或页面的导航项。
-- 集群中的资源和页面会获得一个新的 URL，以集群名称为前缀。如果你正确生成了[资源](../resources#generating-urls-to-resource-pages)和[页面](custom-pages#生成页面-url)的 URL，那么此更改应该会自动为你处理。
+- 集群中的资源和页面会获得一个新的 URL，以集群名称为前缀。如果你正确生成了[资源](../resources/overview#generating-urls-to-resource-pages)和[页面](custom-pages#生成页面-url)的 URL，那么此更改应该会自动为你处理。
 - 集群的名称位于集群中所有资源和页面的面包屑中。点击它时，你会被带到集群中的第一个资源或页面。
 
 ## 创建集群
@@ -54,7 +54,7 @@ class SettingsCluster extends Cluster
 }
 ```
 
-[`$navigationIcon`](../navigation#customizing-a-navigation-items-icon) 属性默认定义，因为你很可能想要立即自定义它。所有其他[导航属性和方法](../navigation)也可用，包括 [`$navigationLabel`](../navigation#customizing-a-navigation-items-label)、[`$navigationSort`](../navigation#sorting-navigation-items) 和 [`$navigationGroup`](../navigation#grouping-navigation-items)。这些用于自定义集群的主导航项，方式与自定义资源或页面的项目相同。
+[`$navigationIcon`](../navigation/overview#customizing-a-navigation-items-icon) 属性默认定义，因为你很可能想要立即自定义它。所有其他[导航属性和方法](../navigation/overview)也可用，包括 [`$navigationLabel`](../navigation/overview#customizing-a-navigation-items-label)、[`$navigationSort`](../navigation/overview#sorting-navigation-items) 和 [`$navigationGroup`](../navigation/overview#grouping-navigation-items)。这些用于自定义集群的主导航项，方式与自定义资源或页面的项目相同。
 
 ## 向集群添加资源和页面
 

@@ -36,7 +36,7 @@ php artisan make:filament-resource Customer
 
 `Pages` 目录中的类用于自定义与资源交互的页面。它们都是全页的 [Livewire](https://livewire.laravel.com) 组件，你可以按需进行任意定制。
 
-`Schemas` 目录中的类用于定义资源的[表单](../forms)和[信息列表](../infolists)内容。`Tables` 目录中的类用于构建资源的表格。
+`Schemas` 目录中的类用于定义资源的[表单](../forms/overview)和[信息列表](../infolists/overview)内容。`Tables` 目录中的类用于构建资源的表格。
 
 :::tip
     创建了资源但没有出现在导航菜单中？如果你有[模型策略](#授权)，请确保 `viewAny()` 方法返回 `true`。
@@ -155,7 +155,7 @@ public static function configure(Schema $schema): Schema
 
 `components()` 方法用于定义表单的结构。它是一个包含[字段](../forms/overview#表单字段)和布局组件的数组，按照它们在表单中出现的顺序排列。
 
-查看表单文档，了解如何使用 Filament 构建表单的[指南](../forms)。
+查看表单文档，了解如何使用 Filament 构建表单的[指南](../forms/overview)。
 
 :::tip
     如果你更喜欢直接在资源类中定义表单，可以这样做并删除表单 Schema 类：
@@ -255,7 +255,7 @@ public static function configure(Table $table): Table
 }
 ```
 
-查看[表格](../tables)文档，了解如何添加表格列、筛选器、操作等。
+查看[表格](../tables/overview)文档，了解如何添加表格列、筛选器、操作等。
 
 :::tip
     如果你更喜欢直接在资源类中定义表格，可以这样做并删除表格类：
@@ -585,7 +585,7 @@ public static function getRecordSubNavigation(Page $page): array
 }
 ```
 
-子导航中的每个项都可以使用与普通页面相同的[导航方法](../navigation)进行自定义。
+子导航中的每个项都可以使用与普通页面相同的[导航方法](../navigation/overview)进行自定义。
 
 ![带子导航的资源](/assets/filament/v4.x/screenshots/images/light/panels/resources/sub-navigation.jpg)
 

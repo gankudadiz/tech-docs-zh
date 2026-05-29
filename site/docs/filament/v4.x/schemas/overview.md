@@ -10,8 +10,8 @@ Schema 在 Filament 中被广泛用于动态渲染 UI 元素。无论你是在�
 
 Filament 包为你提供了各种组件。你可以在[可用组件部分](#可用组件)找到完整列表：
 
-- [表单字段](../forms)接受用户的输入，例如文本输入、选择框或复选框。它们带有集成验证。
-- [信息列表条目](../infolists)是用于渲染"描述列表"的组件。条目是键值 UI 元素，可以呈现只读信息，如文本、图标和图像。信息列表的数据可以来自任何地方，但通常来自单个 Eloquent 记录。
+- [表单字段](../forms/overview)接受用户的输入，例如文本输入、选择框或复选框。它们带有集成验证。
+- [信息列表条目](../infolists/overview)是用于渲染"描述列表"的组件。条目是键值 UI 元素，可以呈现只读信息，如文本、图标和图像。信息列表的数据可以来自任何地方，但通常来自单个 Eloquent 记录。
 - [布局组件](layouts)用于组织组件。例如，网格、标签页或多步表单向导。
 - [基础组件](primes)是用于渲染基本独立静态内容的简单组件，如文本、图像和按钮（操作）。
 
@@ -21,7 +21,7 @@ Schema 由 `Filament\Schemas\Schema` 对象表示，你可以在 `components()` 
 
 ## 可用组件
 
-为了构建[表单](../forms)，Filament 包含了一组用于不同数据类型的字段：
+为了构建[表单](../forms/overview)，Filament 包含了一组用于不同数据类型的字段：
 
 - [文本输入](../forms/text-input)
 - [选择框](../forms/select)
@@ -45,7 +45,7 @@ Schema 由 `Filament\Schemas\Schema` 对象表示，你可以在 `components()` 
 - [隐藏字段](../forms/hidden)
 - 或者，构建你自己的[自定义表单字段](../forms/custom-fields)
 
-为了以标签-值的"描述列表"格式显示数据，Filament 包含了[信息列表](../infolists)条目组件：
+为了以标签-值的"描述列表"格式显示数据，Filament 包含了[信息列表](../infolists/overview)条目组件：
 
 - [文本条目](../infolists/text-entry)
 - [图标条目](../infolists/icon-entry)
@@ -75,7 +75,7 @@ Schema 由 `Filament\Schemas\Schema` 对象表示，你可以在 `components()` 
 - [图像](primes#图像组件)
 - [无序列表](primes#无序列表组件)
 
-你还可以在 schema 中插入"操作"按钮。这些按钮可以运行 PHP 函数，甚至可以打开模态框。更多信息，请参阅[操作文档](../actions)。
+你还可以在 schema 中插入"操作"按钮。这些按钮可以运行 PHP 函数，甚至可以打开模态框。更多信息，请参阅[操作文档](../actions/overview)。
 
 你可以在[自定义组件文档](custom-components)中了解更多关于构建自定义组件来渲染自己的 Blade 视图的信息。
 

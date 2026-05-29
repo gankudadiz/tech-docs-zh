@@ -65,13 +65,13 @@ Tailwind CSS 是一个基于工具类的 CSS 框架，Filament 将其用作基�
 
 这会将 Filament 中所有按钮的默认 `rounded-lg` 类覆盖为 `rounded-sm`，同时保留按钮的其他样式属性。这个系统提供了极高的灵活性，让你可以自定义 Filament 组件的外观，而无需编写完整的自定义样式表或为每个组件维护 HTML 副本。
 
-更多关于自定义 Filament 外观的信息，请访问[自定义样式文档](../styling)。
+更多关于自定义 Filament 外观的信息，请访问[自定义样式文档](../styling/overview)。
 
 ## 测试
 
 Filament 的核心包经过单元测试，确保各版本之间的稳定性。作为 Filament 用户，你可以为使用该框架构建的应用编写测试。Filament 提供了用于测试功能和 UI 组件的工具，兼容 Pest 或 PHPUnit 测试套件。在自定义框架或实现自定义功能时，测试尤为重要，当然对于验证基本功能的正确性也同样有价值。
 
-更多关于测试 Filament 应用的信息，请访问[测试文档](../testing)。
+更多关于测试 Filament 应用的信息，请访问[测试文档](../testing/overview)。
 
 ## Filament 的替代方案
 

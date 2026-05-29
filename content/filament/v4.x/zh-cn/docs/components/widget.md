@@ -13,7 +13,7 @@ composer show filament/widgets
 
 ## 创建小部件
 
-使用 `make:filament-widget` 命令生成新的小部件。有关自定义和使用的详细信息，请参阅[小部件部分](../widgets)。
+使用 `make:filament-widget` 命令生成新的小部件。有关自定义和使用的详细信息，请参阅[小部件部分](../widgets/overview)。
 
 ## 添加小部件
 

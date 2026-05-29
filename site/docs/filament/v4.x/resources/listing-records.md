@@ -201,7 +201,7 @@ public static function table(Table $table): Table
 
 ## 自定义页面内容
 
-Filament 中的每个页面都有自己的 [Schema](../schemas)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的 Schema。列表页的 `content()` 方法默认包含以下组件：
+Filament 中的每个页面都有自己的 [Schema](../schemas/overview)，用于定义整体结构和内容。你可以通过在页面上定义 `content()` 方法来覆盖页面的 Schema。列表页的 `content()` 方法默认包含以下组件：
 
 ```php
 use Filament\Schemas\Components\EmbeddedTable;
@@ -220,7 +220,7 @@ public function content(Schema $schema): Schema
 }
 ```
 
-在 `components()` 数组中，你可以插入任何 [Schema 组件](../schemas)。你可以通过更改数组的顺序来重新排列组件，或删除不需要的组件。
+在 `components()` 数组中，你可以插入任何 [Schema 组件](../schemas/overview)。你可以通过更改数组的顺序来重新排列组件，或删除不需要的组件。
 
 ### 使用自定义 Blade 视图
 

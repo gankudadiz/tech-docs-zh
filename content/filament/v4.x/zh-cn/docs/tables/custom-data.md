@@ -50,9 +50,9 @@ public function table(Table $table): Table
 
 ## 列
 
-表格中的[列](columns)与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)时的工作方式类似，但有一个关键区别：列名表示 `records()` 函数返回的数组中的键，而不是模型属性或关联关系。
+表格中的[列](../columns/overview)与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)时的工作方式类似，但有一个关键区别：列名表示 `records()` 函数返回的数组中的键，而不是模型属性或关联关系。
 
-在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](columns#设置列的状态) 函数定义列，你可以这样做：
+在列函数中使用当前记录时，将 `$record` 类型设置为 `array` 而不是 `Model`。例如，要使用 [`state()`](../columns/overview#设置列的状态) 函数定义列，你可以这样做：
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -65,7 +65,7 @@ TextColumn::make('is_featured')
 
 ### 排序
 
-Filament 的内置[排序](columns#排序)功能使用 SQL 对数据进行排序。使用自定义数据时，你需要自己处理排序。
+Filament 的内置[排序](../columns/overview#排序)功能使用 SQL 对数据进行排序。使用自定义数据时，你需要自己处理排序。
 
 要访问当前排序的列和方向，你可以将 `$sortColumn` 和 `$sortDirection` 注入到 `records()` 函数中。如果没有应用排序，这些变量为 `null`。
 
@@ -106,7 +106,7 @@ public function table(Table $table): Table
 
 ### 搜索
 
-Filament 的内置[搜索](columns#搜索)功能使用 SQL 搜索数据。使用自定义数据时，你需要自己处理搜索。
+Filament 的内置[搜索](../columns/overview#搜索)功能使用 SQL 搜索数据。使用自定义数据时，你需要自己处理搜索。
 
 要访问当前搜索查询，你可以将 `$search` 注入到 `records()` 函数中。如果没有正在使用的搜索查询，此变量为 `null`。
 
@@ -192,7 +192,7 @@ public function table(Table $table): Table
 
 ## 过滤器
 
-Filament 还提供了一种使用[过滤器](filters)过滤数据的方式。使用自定义数据时，你需要自己处理过滤。
+Filament 还提供了一种使用[过滤器](../filters/overview)过滤数据的方式。使用自定义数据时，你需要自己处理过滤。
 
 Filament 通过将 `$filters` 注入到 `records()` 函数中，让你访问过滤器数据数组。该数组包含过滤器名称作为键，以及过滤器表单本身的值。
 
@@ -334,7 +334,7 @@ public function table(Table $table): Table
 
 ## 操作
 
-表格中的[操作](actions)与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)时的工作方式类似。唯一的区别是操作回调函数中的 `$record` 参数将是 `array` 而不是 `Model`。
+表格中的[操作](../actions/overview)与使用 [Eloquent 模型](https://laravel.com/docs/eloquent)时的工作方式类似。唯一的区别是操作回调函数中的 `$record` 参数将是 `array` 而不是 `Model`。
 
 ```php
 use Filament\Actions\Action;
@@ -556,7 +556,7 @@ TextColumn::make('category_brand')
 
 ### 外部 API 排序
 
-即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[排序](columns#排序)。下面的示例演示了如何将排序参数（`sort_column` 和 `sort_direction`）传递给 [DummyJSON](https://dummyjson.com/docs/products#products-sort) API 以及 API 如何处理它们。
+即使使用外部 API 作为数据源，你也可以在[列](../columns/overview)中启用[排序](../columns/overview#排序)。下面的示例演示了如何将排序参数（`sort_column` 和 `sort_direction`）传递给 [DummyJSON](https://dummyjson.com/docs/products#products-sort) API 以及 API 如何处理它们。
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -599,7 +599,7 @@ DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-a
 
 ### 外部 API 搜索
 
-即使使用外部 API 作为数据源，你也可以在[列](columns)中启用[搜索](columns#搜索)。下面的示例演示了如何将 `search` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
+即使使用外部 API 作为数据源，你也可以在[列](../columns/overview)中启用[搜索](../columns/overview#搜索)。下面的示例演示了如何将 `search` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
 
 ```php
 use Filament\Tables\Columns\TextColumn;
@@ -641,7 +641,7 @@ DummyJSON 默认返回 30 个项目。你可以使用 [limit 和 skip](#外部-a
 
 ### 外部 API 过滤
 
-即使使用外部 API 作为数据源，你也可以在表格中启用[过滤](filters)。下面的示例演示了如何将 `filter` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
+即使使用外部 API 作为数据源，你也可以在表格中启用[过滤](../filters/overview)。下面的示例演示了如何将 `filter` 参数传递给 [DummyJSON](https://dummyjson.com/docs/products#products-search) API 以及 API 如何处理它。
 
 ```php
 use Filament\Tables\Columns\TextColumn;

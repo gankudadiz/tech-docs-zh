@@ -80,7 +80,7 @@ composer require
     ```
 :::
 
-如果你只需要使用 [Blade UI 组件](../components)，需要在此阶段安装 `filament/support`。
+如果你只需要使用 [Blade UI 组件](../components/overview)，需要在此阶段安装 `filament/support`。
 
 ### 新建 Laravel 项目
 
@@ -102,7 +102,7 @@ npm install
 npm run dev
 ```
 
-在脚手架安装过程中，如果你已安装 [Notifications](../notifications) 包，Filament 会询问是否在默认布局文件中安装所需的 Livewire 组件。如果你想通过 Filament 发送闪现通知，这个组件是必需的。
+在脚手架安装过程中，如果你已安装 [Notifications](../notifications/overview) 包，Filament 会询问是否在默认布局文件中安装所需的 Livewire 组件。如果你想通过 Filament 发送闪现通知，这个组件是必需的。
 
 ### 已有 Laravel 项目
 
@@ -228,7 +228,7 @@ php artisan livewire:layout
 布局中的关键部分是 `<head>` 中的 `@filamentStyles` 和 `<body>` 末尾的 `@filamentScripts`。同时确保包含 Vite 编译后的应用 CSS 和 JavaScript 文件！
 
 :::info
-    `@livewire('notifications')` 这行代码仅在你安装了 [Notifications](../notifications) 包且需要通过 Filament 发送闪现通知时才是必需的。
+    `@livewire('notifications')` 这行代码仅在你安装了 [Notifications](../notifications/overview) 包且需要通过 Filament 发送闪现通知时才是必需的。
 :::
 
 ## 发布配置

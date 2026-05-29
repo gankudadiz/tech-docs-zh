@@ -109,7 +109,7 @@ Table::configureUsing(function (Table $table) {
 
 ### 定义表格过滤器
 
-除了使列可 `searchable()`（允许用户通过搜索列内容来筛选表格）之外，你还可以允许用户以其他方式筛选表格中的行。[过滤器](filters)可以在 `$table->filters()` 方法中定义：
+除了使列可 `searchable()`（允许用户通过搜索列内容来筛选表格）之外，你还可以允许用户以其他方式筛选表格中的行。[过滤器](filters/overview)可以在 `$table->filters()` 方法中定义：
 
 ```php
 use Filament\Tables\Filters\Filter;
@@ -144,11 +144,11 @@ public function table(Table $table): Table
 
 第二个过滤器渲染为选择下拉框。当用户选择一个选项时，只显示具有该状态的行。未选择任何选项时，将显示所有行。
 
-你可以使用任何[模式组件](../schemas)来构建过滤器的 UI。例如，你可以创建[自定义日期范围过滤器](filters/custom)。
+你可以使用任何[模式组件](../schemas/overview)来构建过滤器的 UI。例如，你可以创建[自定义日期范围过滤器](filters/custom)。
 
 ### 定义表格操作
 
-Filament 的表格可以使用[操作](../actions/overview)。它们是可以添加到[任何表格行末尾](actions#记录操作)的按钮，甚至可以放在表格的[标题](actions#头部操作)中。例如，你可能希望在标题中有一个"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](actions#批量操作)可以在选中表格中的记录时执行代码。
+Filament 的表格可以使用[操作](../actions/overview)。它们是可以添加到[任何表格行末尾](../actions/overview#记录操作)的按钮，甚至可以放在表格的[标题](../actions/overview#头部操作)中。例如，你可能希望在标题中有一个"创建"新记录的操作，然后在每一行上有"编辑"和"删除"操作。[批量操作](../actions/overview#批量操作)可以在选中表格中的记录时执行代码。
 
 ```php
 use App\Models\Post;
@@ -188,11 +188,11 @@ public function table(Table $table): Table
 
 在这个示例中，我们为表格行定义了 2 个操作。第一个是"精选"操作。点击时，它会将记录的 `is_featured` 属性设置为 `true`——这写在 `action()` 方法中。使用 `hidden()` 方法，如果记录已经是精选的，该操作将被隐藏。第二个是"取消精选"操作。点击时，它会将记录的 `is_featured` 属性设置为 `false`。使用 `visible()` 方法，如果记录不是精选的，该操作将被隐藏。
 
-我们还定义了一个批量操作。定义批量操作时，表格中的每一行都会有一个复选框。这个批量操作是 [Filament 内置的](../actions/delete#提高批量删除操作的性能)，它将删除所有选中的记录。不过，你也可以轻松地[编写自定义批量操作](actions#批量操作)。
+我们还定义了一个批量操作。定义批量操作时，表格中的每一行都会有一个复选框。这个批量操作是 [Filament 内置的](../actions/delete#提高批量删除操作的性能)，它将删除所有选中的记录。不过，你也可以轻松地[编写自定义批量操作](../actions/overview#批量操作)。
 
 ![打开操作模态框的表格](/assets/filament/v4.x/screenshots/images/light/tables/overview/actions-modal.jpg)
 
-操作还可以打开模态框来请求用户确认，以及在其中渲染表单来收集额外数据。建议阅读[操作文档](../actions)以了解它们在 Filament 中的广泛功能。
+操作还可以打开模态框来请求用户确认，以及在其中渲染表单来收集额外数据。建议阅读[操作文档](../actions/overview)以了解它们在 Filament 中的广泛功能。
 
 ## 分页
 
@@ -333,7 +333,7 @@ public function table(Table $table): Table
 }
 ```
 
-使用[资源](../resources)表格时，每行的 URL 通常已经为你设置好了，但可以调用此方法来覆盖每行的默认 URL。
+使用[资源](../resources/overview)表格时，每行的 URL 通常已经为你设置好了，但可以调用此方法来覆盖每行的默认 URL。
 
 :::tip
 你还可以为特定列[覆盖 URL](columns/overview#打开-url)，或在点击列时[触发操作](columns/overview#触发操作)。

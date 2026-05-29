@@ -647,7 +647,7 @@ Builder::make('content')
 
 ### 向构建器添加额外的项操作
 
-你可以通过将 `Action` 对象传递给 `extraItemActions()` 来向每个构建器项的头部添加新的[操作按钮](../actions)：
+你可以通过将 `Action` 对象传递给 `extraItemActions()` 来向每个构建器项的头部添加新的[操作按钮](../actions/overview)：
 
 ```php
 use Filament\Actions\Action;

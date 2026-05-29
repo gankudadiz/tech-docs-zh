@@ -21,4 +21,4 @@ composer show filament/notifications
 </div>
 ```
 
-现在，当从 Livewire 请求中[发送通知](../notifications)时，它将对用户可见。
+现在，当从 Livewire 请求中[发送通知](../notifications/overview)时，它将对用户可见。

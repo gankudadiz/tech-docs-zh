@@ -58,7 +58,7 @@ public function table(Table $table): Table
 
 ## 添加空状态操作
 
-你可以向空状态添加[操作](actions)以提示用户采取行动。将这些传递给 `emptyStateActions()` 方法：
+你可以向空状态添加[操作](../actions/overview)以提示用户采取行动。将这些传递给 `emptyStateActions()` 方法：
 
 ```php
 use Filament\Actions\Action;

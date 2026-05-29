@@ -8,7 +8,7 @@ Filament 允许你在页面内显示小部件，位于页头下方和页脚上�
 
 ![带页头小部件的资源页面](/assets/filament/v4.x/screenshots/images/light/panels/resources/widgets.jpg)
 
-你可以使用现有的[仪表盘小部件](../widgets)，也可以专门为资源创建一个。
+你可以使用现有的[仪表盘小部件](../widgets/overview)，也可以专门为资源创建一个。
 
 ## 创建资源小部件
 
@@ -33,7 +33,7 @@ public static function getWidgets(): array
 }
 ```
 
-如果你想了解如何构建和自定义小部件，请查阅[仪表盘](../widgets)文档部分。
+如果你想了解如何构建和自定义小部件，请查阅[仪表盘](../widgets/overview)文档部分。
 
 ## 在资源页面上显示小部件
 

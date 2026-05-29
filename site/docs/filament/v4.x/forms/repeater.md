@@ -46,7 +46,7 @@ Repeater::make('members')
 
 ## 设置空的默认项
 
-重复器可以默认创建一定数量的空项。默认值仅在 schema 加载时没有数据的情况下使用。在标准的[面板资源](../resources)中，默认值用于创建页面，而非编辑页面。要使用默认项，请将项的数量传递给 `defaultItems()` 方法：
+重复器可以默认创建一定数量的空项。默认值仅在 schema 加载时没有数据的情况下使用。在标准的[面板资源](../resources/overview)中，默认值用于创建页面，而非编辑页面。要使用默认项，请将项的数量传递给 `defaultItems()` 方法：
 
 ```php
 use Filament\Forms\Components\Repeater;
@@ -1004,7 +1004,7 @@ Repeater::make('members')
 
 ### 向重复器添加额外的项操作
 
-你可以通过将 `Action` 对象传递给 `extraItemActions()` 来向每个重复器项的头部添加新的[操作按钮](../actions)：
+你可以通过将 `Action` 对象传递给 `extraItemActions()` 来向每个重复器项的头部添加新的[操作按钮](../actions/overview)：
 
 ```php
 use Filament\Actions\Action;

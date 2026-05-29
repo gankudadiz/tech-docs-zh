@@ -157,7 +157,7 @@ class RegisterTeam extends RegisterTenant
 }
 ```
 
-你可以在 `form()` 方法中添加任何[表单组件](../forms)，并在 `handleRegistration()` 方法中创建团队。
+你可以在 `form()` 方法中添加任何[表单组件](../forms/overview)，并在 `handleRegistration()` 方法中创建团队。
 
 现在，我们需要告诉 Filament 使用这个页面。我们可以在[配置](../panel-configuration)中做到这一点：
 
@@ -210,7 +210,7 @@ class EditTeamProfile extends EditTenantProfile
 }
 ```
 
-你可以在 `form()` 方法中添加任何[表单组件](../forms)。它们将直接保存到租户模型中。
+你可以在 `form()` 方法中添加任何[表单组件](../forms/overview)。它们将直接保存到租户模型中。
 
 现在，我们需要告诉 Filament 使用这个页面。我们可以在[配置](../panel-configuration)中做到这一点：
 
@@ -352,7 +352,7 @@ public function panel(Panel $panel): Panel
 
 租户切换菜单位于管理布局中。它是完全可自定义的。
 
-每个菜单项由一个[操作](../actions)表示，可以用相同的方式自定义。要注册新项，你可以将操作传递给[配置](../panel-configuration)的 `tenantMenuItems()` 方法：
+每个菜单项由一个[操作](../actions/overview)表示，可以用相同的方式自定义。要注册新项，你可以将操作传递给[配置](../panel-configuration)的 `tenantMenuItems()` 方法：
 
 ```php
 use App\Filament\Pages\Settings;
@@ -391,7 +391,7 @@ public function panel(Panel $panel): Panel
 
 ### 自定义注册链接
 
-要自定义租户菜单中的[注册](#添加租户注册页面)链接，使用 `register` 数组键注册一个新项，并传递一个[自定义操作](../actions)对象的函数：
+要自定义租户菜单中的[注册](#添加租户注册页面)链接，使用 `register` 数组键注册一个新项，并传递一个[自定义操作](../actions/overview)对象的函数：
 
 ```php
 use Filament\Actions\Action;
@@ -410,7 +410,7 @@ public function panel(Panel $panel): Panel
 
 ### 自定义个人资料链接
 
-要自定义租户菜单开头的用户个人资料链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions)对象的函数：
+要自定义租户菜单开头的用户个人资料链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions/overview)对象的函数：
 
 ```php
 use Filament\Actions\Action;
@@ -429,7 +429,7 @@ public function panel(Panel $panel): Panel
 
 ### 自定义计费链接
 
-要自定义租户菜单中的计费链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions)对象的函数：
+要自定义租户菜单中的计费链接，使用 `profile` 数组键注册一个新项，并传递一个[自定义操作](../actions/overview)对象的函数：
 
 ```php
 use Filament\Actions\Action;

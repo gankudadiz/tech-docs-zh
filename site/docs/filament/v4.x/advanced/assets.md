@@ -68,7 +68,7 @@ FilamentAsset::register([
 
 通常，注册 CSS 文件用于注册应用的自定义样式表。如果你想使用 Tailwind CSS 处理这些文件，你需要考虑其影响，特别是如果你是插件开发者。
 
-Tailwind 构建对每个应用都是唯一的 -- 它们只包含你实际在应用中使用的最小工具类集。这意味着如果你是插件开发者，你可能不应该将 Tailwind CSS 文件构建到你的插件中。相反，你应该提供原始的 CSS 文件并指导用户自行构建 Tailwind CSS 文件。为此，他们需要使用 `@source` 指令将你的 vendor 目录添加到其自定义主题的 CSS 文件中。在他们的[自定义主题](../styling#creating-a-custom-theme) CSS 文件（例如 `resources/css/filament/admin/theme.css`）中，应添加：
+Tailwind 构建对每个应用都是唯一的 -- 它们只包含你实际在应用中使用的最小工具类集。这意味着如果你是插件开发者，你可能不应该将 Tailwind CSS 文件构建到你的插件中。相反，你应该提供原始的 CSS 文件并指导用户自行构建 Tailwind CSS 文件。为此，他们需要使用 `@source` 指令将你的 vendor 目录添加到其自定义主题的 CSS 文件中。在他们的[自定义主题](../styling/overview#creating-a-custom-theme) CSS 文件（例如 `resources/css/filament/admin/theme.css`）中，应添加：
 
 ```css
 @import "tailwindcss";
@@ -80,7 +80,7 @@ Tailwind 构建对每个应用都是唯一的 -- 它们只包含你实际在应�
 
 这意味着当他们构建 Tailwind CSS 文件时，它将包含你的插件视图中使用的所有工具类，以及他们的应用和 Filament 核心中使用的工具类。
 
-然而，使用此技术时，将你的插件与 [Panel Builder](../panel-configuration) 一起使用的用户可能会遇到额外的复杂情况。如果他们有[自定义主题](../styling#creating-a-custom-theme)，他们没问题，因为他们反正都在使用 Tailwind CSS 构建自己的 CSS 文件。但是，如果他们使用的是 Panel Builder 附带的默认样式表，你可能需要注意在插件视图中使用的工具类。例如，如果你使用了默认样式表中未包含的工具类，而用户没有自行编译它，它将不会包含在最终的 CSS 文件中。这意味着你的插件视图可能不会按预期显示。这是少数我建议在你的插件中编译并[注册](#注册-css-文件)一个 Tailwind CSS 编译样式表的情况之一。
+然而，使用此技术时，将你的插件与 [Panel Builder](../panel-configuration) 一起使用的用户可能会遇到额外的复杂情况。如果他们有[自定义主题](../styling/overview#creating-a-custom-theme)，他们没问题，因为他们反正都在使用 Tailwind CSS 构建自己的 CSS 文件。但是，如果他们使用的是 Panel Builder 附带的默认样式表，你可能需要注意在插件视图中使用的工具类。例如，如果你使用了默认样式表中未包含的工具类，而用户没有自行编译它，它将不会包含在最终的 CSS 文件中。这意味着你的插件视图可能不会按预期显示。这是少数我建议在你的插件中编译并[注册](#注册-css-文件)一个 Tailwind CSS 编译样式表的情况之一。
 
 ### 延迟加载 CSS
 

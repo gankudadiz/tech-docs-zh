@@ -185,7 +185,7 @@ php artisan make:filament-relation-manager CategoryResource posts title --soft-d
 
 关联记录将以表格形式列出。整个关联管理器都基于此表格，其中包含[创建](#创建关联记录)、[编辑](#编辑关联记录)、[关联 / 取消关联](#关联和取消关联记录)、[关联 / 取消关联](#关联和取消关联记录)以及删除记录的操作。
 
-你可以使用 [Table Builder](../tables) 的任何功能来自定义关联管理器。
+你可以使用 [Table Builder](../tables/overview) 的任何功能来自定义关联管理器。
 
 ### 带中间表属性的列表
 

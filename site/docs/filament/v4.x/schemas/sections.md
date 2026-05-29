@@ -253,7 +253,7 @@ Section::make('备注')
 
 ## 在区块标题中插入操作和其他组件
 
-你可以通过将组件数组传递给 `afterHeader()` 方法，在区块标题中插入[操作](../actions)和任何其他 schema 组件（通常是[基础组件](primes)）：
+你可以通过将组件数组传递给 `afterHeader()` 方法，在区块标题中插入[操作](../actions/overview)和任何其他 schema 组件（通常是[基础组件](primes)）：
 
 ```php
 use Filament\Schemas\Components\Section;
@@ -276,7 +276,7 @@ Section::make('速率限制')
 
 ## 在区块页脚中插入操作和其他组件
 
-你可以通过将组件数组传递给 `footer()` 方法，在区块页脚中插入[操作](../actions)和任何其他 schema 组件（通常是[基础组件](primes)）：
+你可以通过将组件数组传递给 `footer()` 方法，在区块页脚中插入[操作](../actions/overview)和任何其他 schema 组件（通常是[基础组件](primes)）：
 
 ```php
 use Filament\Schemas\Components\Section;

@@ -591,7 +591,7 @@ TextColumn::make('title')
 
 #### 操作模态框
 
-你可以通过将 `Action` 对象传递给 `action()` 方法来打开[操作模态框](../../actions#modals)：
+你可以通过将 `Action` 对象传递给 `action()` 方法来打开[操作模态框](../../actions/overview#modals)：
 
 ```php
 use Filament\Actions\Action;

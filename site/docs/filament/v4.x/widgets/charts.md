@@ -183,7 +183,7 @@ protected function getData(): array
 
 ### 自定义过滤器
 
-你可以使用[架构组件](../schemas)为图表小部件构建自定义过滤器。这种方法提供了更灵活的方式来定义过滤器。
+你可以使用[架构组件](../schemas/overview)为图表小部件构建自定义过滤器。这种方法提供了更灵活的方式来定义过滤器。
 
 要开始使用，请使用 `HasFiltersSchema` trait 并实现 `filtersSchema()` 方法：
 

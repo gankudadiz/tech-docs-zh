@@ -361,7 +361,7 @@ $undoRepeaterFake();
 
 ### 测试重复器操作
 
-为了测试重复器操作是否按预期工作，你可以使用 `callFormComponentAction()` 方法来调用重复器操作，然后[执行额外的断言](../testing#actions)。
+为了测试重复器操作是否按预期工作，你可以使用 `callFormComponentAction()` 方法来调用重复器操作，然后[执行额外的断言](../testing/overview#actions)。
 
 要与特定重复器项目上的操作进行交互，你需要传入 `item` 参数，该参数包含该重复器项目的键。如果你的重复器正在从关系中读取数据，你应该在相关记录的 ID（键）前加上 `record-` 以形成重复器项目的键：
 

@@ -28,7 +28,7 @@ Toggle::make('is_starred')
 
 Heroicons 集包含多种尺寸（16px、20px 和 24px）的实心图标，使用 `Heroicon` 枚举类时，Filament 会自动根据使用上下文选择正确的尺寸。
 
-如果你想在 [Blade 组件](../components)中使用图标，可以将其作为属性传递：
+如果你想在 [Blade 组件](../components/overview)中使用图标，可以将其作为属性传递：
 
 ```blade
 @php
@@ -55,7 +55,7 @@ Toggle::make('is_starred')
     ->onIcon('iconic-check-circle')
 ```
 
-如果你想在 [Blade 组件](../components)中使用图标，可以将其作为属性传递：
+如果你想在 [Blade 组件](../components/overview)中使用图标，可以将其作为属性传递：
 
 ```blade
 <x-filament::badge icon="iconic-star">

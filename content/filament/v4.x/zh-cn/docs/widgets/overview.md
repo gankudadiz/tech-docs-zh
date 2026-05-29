@@ -174,7 +174,7 @@ public static function canView(): bool
 php artisan make:filament-widget LatestOrders --table
 ```
 
-你现在可以通过编辑小部件文件来[自定义表格](../tables)。
+你现在可以通过编辑小部件文件来[自定义表格](../tables/overview)。
 
 ## 自定义小部件
 

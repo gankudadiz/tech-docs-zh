@@ -16,7 +16,7 @@ title: 单一资源
 
 ## 创建单一资源
 
-尽管 Filament 中没有特定的"单一资源"功能，但这是一个被广泛需求的行为，可以使用[自定义页面](../navigation/custom-pages)配合[表单](../forms)轻松实现。本指南将介绍如何操作。
+尽管 Filament 中没有特定的"单一资源"功能，但这是一个被广泛需求的行为，可以使用[自定义页面](../navigation/custom-pages)配合[表单](../forms/overview)轻松实现。本指南将介绍如何操作。
 
 首先，创建一个[自定义页面](../navigation/custom-pages)：
 

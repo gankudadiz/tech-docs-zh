@@ -80,7 +80,7 @@ public function productInfolist(Schema $schema): Schema
 - `filament/support`
 
 这些包允许你在 Livewire 组件中使用它们的组件。
-例如，如果你的信息列表使用了[操作](../actions)，请记得在 Livewire 组件类上实现 `HasActions` 接口并使用 `InteractsWithActions` trait。
+例如，如果你的信息列表使用了[操作](../actions/overview)，请记得在 Livewire 组件类上实现 `HasActions` 接口并使用 `InteractsWithActions` trait。
 
 如果你在信息列表中使用了任何其他 [Filament 组件](overview#包组件)，请确保也安装并集成了相应的包。
 :::

@@ -8,7 +8,7 @@ title: 汇总
 
 默认情况下，会有一行当前页面数据的汇总行，如果有多页数据，还会有一行所有数据的总计汇总行。你还可以为记录的[分组](grouping)添加汇总，请参阅["汇总行组"](#汇总行组)。
 
-"汇总器"对象可以使用 `summarize()` 方法添加到任何[表格列](columns)：
+"汇总器"对象可以使用 `summarize()` 方法添加到任何[表格列](columns/overview)：
 
 ```php
 use Filament\Tables\Columns\Summarizers\Average;

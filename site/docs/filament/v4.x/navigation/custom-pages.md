@@ -33,7 +33,7 @@ public static function canAccess(): bool
 
 ## 为页面添加操作
 
-操作是可以在页面上执行任务或访问 URL 的按钮。你可以[在这里](../actions)阅读更多关于它们的功能。
+操作是可以在页面上执行任务或访问 URL 的按钮。你可以[在这里](../actions/overview)阅读更多关于它们的功能。
 
 由于所有页面都是 Livewire 组件，你可以在任何地方[添加操作](../components/action#添加操作)。页面已经为你设置好了 `InteractsWithActions` trait、`HasActions` 接口和 `<x-filament-actions::modals />` Blade 组件。
 
@@ -117,7 +117,7 @@ Action::make('approve')
 
 ## 为页面添加小部件
 
-Filament 允许你在页面中显示[小部件](../widgets)，位于头部下方和页脚上方。
+Filament 允许你在页面中显示[小部件](../widgets/overview)，位于头部下方和页脚上方。
 
 要将小部件添加到页面，使用 `getHeaderWidgets()` 或 `getFooterWidgets()` 方法：
 
@@ -134,7 +134,7 @@ protected function getHeaderWidgets(): array
 
 `getHeaderWidgets()` 返回要在页面内容上方显示的小部件数组，而 `getFooterWidgets()` 则在下方显示。
 
-如果你想了解如何构建和自定义小部件，请查看[小部件](../widgets)文档部分。
+如果你想了解如何构建和自定义小部件，请查看[小部件](../widgets/overview)文档部分。
 
 ### 自定义小部件的网格
 
@@ -163,7 +163,7 @@ public function getHeaderWidgetsColumns(): int | array
 }
 ```
 
-这与[响应式小部件宽度](../widgets#responsive-widget-widths)配合得很好。
+这与[响应式小部件宽度](../widgets/overview#responsive-widget-widths)配合得很好。
 
 #### 从页面向小部件传递数据
 
