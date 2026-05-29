@@ -4,7 +4,10 @@
 
 ## 当前计划
 
-- [Livewire v3.x 翻译接入步骤](Livewire_v3x_翻译接入步骤.md)：把 Livewire v3.x 作为下一个翻译目标，从官方源文档采集、结构清洗、站点接入、翻译、校对到构建验证的分步清单。
+- [Livewire v3.x 翻译接入步骤](Livewire_v3x_翻译接入步骤.md)：Livewire v3.x 翻译目标的分步清单。（已完成）
+- [Alpine v3.x 翻译接入步骤](Alpine_v3x_翻译接入步骤.md)：Alpine.js v3.x 翻译目标的分步清单。（已完成）
+- [Flight v3.x 翻译接入步骤](Flight_v3x_翻译接入步骤.md)：FlightPHP v3.x 翻译目标的分步清单。（已完成）
+- [后续翻译计划与 Filament 修复方案](2026-05-28_01_后续翻译计划与Filament修复方案.md)：Filament broken links 修复、新版本接入评估、新产品翻译优先级规划。
 
 ## 使用约定
 
