@@ -109,6 +109,28 @@ export const docsProducts: DocsProduct[] = [
       },
     ],
   },
+  {
+    id: 'marktext',
+    name: 'MarkText',
+    description:
+      '免费开源的 Markdown 编辑器，支持实时预览、多种编辑模式和主题。',
+    defaultVersionSlug: 'v1.x',
+    versions: [
+      {
+        label: 'v1.x',
+        slug: 'v1.x',
+        status: '翻译中',
+        pages: '35 个站点页面',
+        stage: '接入中',
+        docsPath: '/docs/marktext/v1.x/end-user/BASICS',
+        docsBasePath: '/docs/marktext/v1.x',
+        sourceHref: 'https://github.com/marktext/marktext/tree/develop/packages/website/content/docs',
+        sourceLabel: 'MarkText v1.x',
+        sidebarId: 'marktextV1Sidebar',
+        docsHref: 'https://marktext.github.io/marktext/',
+      },
+    ],
+  },
 ];
 
 export function getProductDefaultVersion(product: DocsProduct): DocsVersion {

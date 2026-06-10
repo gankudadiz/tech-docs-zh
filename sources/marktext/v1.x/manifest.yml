@@ -1,0 +1,26 @@
+product: marktext
+version: v1.x
+source:
+  repo: https://github.com/marktext/marktext
+  ref: develop
+  commit: 0c8bf3b794e35616edcb16dbb21c3b02e61a0835
+  paths:
+    - packages/website/content/docs
+    - packages/website/public/docs/assets
+  docs_prefix: packages/website/content/docs
+  assets_prefix: packages/website/public/docs/assets
+retrieved_at: 2026-06-10
+license: MIT
+file_stats:
+  total_md: 35
+  end_user: 21
+  dev: 12
+  top_level: 2
+  assets: 27
+notes:
+  - 桌面应用文档，非 Web 框架。
+  - 分 end-user（用户文档 21 页）和 dev（开发者文档 12 页）两部分。
+  - 图片通过 ../assets/ 相对路径引用，实际位于 packages/website/public/docs/assets/。
+  - 官方标注文档仍在开发中，内容可能变动。
+  - 比原计划多 5 个文件：INSTALLATION.md、LINUX.md、KEYBINDINGS_LINUX.md、KEYBINDINGS_OSX.md、KEYBINDINGS_WINDOWS.md。
+  - assets 包含 sponsors/ 子目录（1 个文件）。

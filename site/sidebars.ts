@@ -647,6 +647,92 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  marktextV1Sidebar: [
+    {
+      type: 'category',
+      label: '快速开始',
+      collapsed: false,
+      items: [
+        'marktext/v1.x/README',
+        'marktext/v1.x/end-user/BASICS',
+        'marktext/v1.x/end-user/EDITING',
+        'marktext/v1.x/end-user/MARKDOWN_SYNTAX',
+        'marktext/v1.x/end-user/SPELLING',
+      ],
+    },
+    {
+      type: 'category',
+      label: '安装与平台',
+      collapsed: false,
+      items: [
+        'marktext/v1.x/end-user/INSTALLATION',
+        'marktext/v1.x/end-user/PORTABLE',
+        'marktext/v1.x/end-user/LINUX',
+        'marktext/v1.x/end-user/ENVIRONMENT',
+        'marktext/v1.x/end-user/APPLICATION_DATA_DIRECTORY',
+      ],
+    },
+    {
+      type: 'category',
+      label: '使用指南',
+      collapsed: true,
+      items: [
+        'marktext/v1.x/end-user/FAQ',
+        'marktext/v1.x/end-user/CLI',
+        'marktext/v1.x/end-user/PREFERENCES',
+        'marktext/v1.x/end-user/KEYBINDINGS',
+        'marktext/v1.x/end-user/KEYBINDINGS_LINUX',
+        'marktext/v1.x/end-user/KEYBINDINGS_OSX',
+        'marktext/v1.x/end-user/KEYBINDINGS_WINDOWS',
+      ],
+    },
+    {
+      type: 'category',
+      label: '导出与图片',
+      collapsed: true,
+      items: [
+        'marktext/v1.x/end-user/EXPORT',
+        'marktext/v1.x/end-user/EXPORT_THEMES',
+        'marktext/v1.x/end-user/IMAGES',
+        'marktext/v1.x/end-user/IMAGE_UPLOADER_CONFIGRATION',
+      ],
+    },
+    {
+      type: 'category',
+      label: '主题',
+      collapsed: true,
+      items: [
+        'marktext/v1.x/end-user/THEMES',
+      ],
+    },
+    {
+      type: 'category',
+      label: '开发者文档',
+      collapsed: true,
+      items: [
+        'marktext/v1.x/dev/README',
+        'marktext/v1.x/dev/ARCHITECTURE',
+        'marktext/v1.x/dev/BUILD',
+        'marktext/v1.x/dev/DEBUGGING',
+        'marktext/v1.x/dev/INTERFACE',
+        'marktext/v1.x/dev/IPC',
+        'marktext/v1.x/dev/LINUX_DEV',
+        'marktext/v1.x/dev/PERFORMANCE',
+        'marktext/v1.x/dev/RELEASE',
+        'marktext/v1.x/dev/RELEASE_HOTFIX',
+        'marktext/v1.x/dev/TYPESCRIPT',
+        'marktext/v1.x/dev/CODE_OF_CONDUCT',
+      ],
+    },
+    {
+      type: 'category',
+      label: '其他',
+      collapsed: true,
+      items: [
+        'marktext/v1.x/CHANGELOG',
+      ],
+    },
+  ],
 };
 
 export default sidebars;
