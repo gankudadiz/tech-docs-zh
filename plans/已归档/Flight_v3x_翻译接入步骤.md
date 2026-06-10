@@ -204,12 +204,12 @@ cd site && npm run build 2>&1 | grep "broken anchor.*flight"
 每完成一个阶段的翻译后，至少确认：
 
 - [ ] `content/` 和 `site/docs/` 对应页面同步更新
-- [ ] `content/flight/v3.x/zh-cn/docs/` 已覆盖该阶段所有页面
-- [ ] `site/docs/flight/v3.x/` 已覆盖该阶段所有页面
-- [ ] 图片路径转换为 `/assets/flight/v3.x/...`
-- [ ] 内部链接正确指向已翻译页面
-- [ ] `npm run typecheck` 通过
-- [ ] `npm run build` 通过（关注新增 broken links）
+- [x] `content/flight/v3.x/zh-cn/docs/` 已覆盖该阶段所有页面
+- [x] `site/docs/flight/v3.x/` 已覆盖该阶段所有页面
+- [x] 图片路径转换为 `/assets/flight/v3.x/...`
+- [x] 内部链接正确指向已翻译页面
+- [x] `npm run typecheck` 通过
+- [x] `npm run build` 通过（0 broken links）
 
 ## 6. 更新记录
 

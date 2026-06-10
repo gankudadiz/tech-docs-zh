@@ -9,7 +9,8 @@ Filament v4.x 是项目中规模最大的文档（158 页），存在 43 条 bro
 
 ## 2. 关联提交
 
-本次修复尚未提交。本记录依据 2026-05-29 工作区变更编写。
+- `7298f57` fix(filament): 修复 Filament v4.x broken links
+- `b35b086` feat(scripts): 添加 Filament v4.x broken links 修复脚本
 
 ## 3. 实现要点
 

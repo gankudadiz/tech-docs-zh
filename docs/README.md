@@ -24,11 +24,7 @@
 - [07_Livewire_v3x_翻译完成记录](03_开发历史记录/07_Livewire_v3x_翻译完成记录.md)：记录 Livewire v3.x 全部 53 页文档翻译完成，成为项目第一个完成全量翻译的产品。
 - [08_Alpine_v3x_接入与翻译完成记录](03_开发历史记录/08_Alpine_v3x_接入与翻译完成记录.md)：记录 Alpine.js v3.x 接入与全部 50 页文档翻译完成。
 - [09_Flight_v3x_接入与翻译完成记录](03_开发历史记录/09_Flight_v3x_接入与翻译完成记录.md)：记录 FlightPHP v3.x 接入与全部 57 页文档翻译完成，实现 0 broken links。
-- [10_Filament_v4x_broken_links修复记录](03_开发历史记录/10_Filament_v4x_broken_links修复记录.md)：记录 Filament v4.x 43 条 broken links 清零修复，创建专用修复脚本。
-
-## 04_历史归档报告
-
-当前暂无归档报告。
+- [10_Filament_v4x_broken_links修复记录](03_开发历史记录/10_Filament_v4x_broken_links修复记录.md)：记录 Filament v4.x 43 条 broken links 清零修复（112+ 处链接），创建专用修复脚本 `scripts/fix_filamentv4_directory_links.py`。
 
 ## 05_开发功能细则文档
 
@@ -40,3 +36,4 @@
 - [05_代码注释增强工作流](05_开发功能细则文档/05_代码注释增强工作流.md)：定义校对后为示例代码补充高密度中文注释的流程，要求对照英文源文和中文译文理解代码含义，并保持 `content/` 与 `site/docs/` 同步。
 - [06_本地化超链接适配工作流](05_开发功能细则文档/06_本地化超链接适配工作流.md)：定义站内链接从官方路径适配到本地 Docusaurus 真实页面和锚点的检查、修复与验证流程。
 - [Filament_v4x_官方GitHub源文件结构详解](05_开发功能细则文档/源文件结构详解/Filament_v4x_官方GitHub源文件结构详解.md)：仅针对 Filament v4.x，说明官方 GitHub 仓库中根 `docs/`、`packages/*/docs` 和 `04-_PACKAGES` 占位之间的关系。
+- [Livewire_v3x_官方GitHub源文件结构详解](05_开发功能细则文档/源文件结构详解/Livewire_v3x_官方GitHub源文件结构详解.md)：仅针对 Livewire v3.x，说明官方 GitHub 仓库中 `docs/` 目录结构和 `__nav.md` 导航文件。

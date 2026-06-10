@@ -36,7 +36,7 @@ local version: v3.x
 
 ## 1. 源文档采集
 
-- [ ] 建立采集目录：
+- [x] 建立采集目录：
 
 ```text
 sources/_upstream/alpine-v3.x-docs/
@@ -44,9 +44,9 @@ sources/alpine/v3.x/raw/docs/
 sources/alpine/v3.x/normalized/docs/
 ```
 
-- [ ] 从 `alpinejs/alpine` 的 `main` 分支采集 `packages/docs/src/en/` 下所有 `.md` 文件。
-- [ ] 保留完整原始文档快照到 `sources/alpine/v3.x/raw/docs/`。
-- [ ] 创建 `sources/alpine/v3.x/manifest.yml`，记录 repo、ref、路径、采集日期、license。
+- [x] 从 `alpinejs/alpine` 的 `main` 分支采集 `packages/docs/src/en/` 下所有 `.md` 文件。
+- [x] 保留完整原始文档快照到 `sources/alpine/v3.x/raw/docs/`。
+- [x] 创建 `sources/alpine/v3.x/manifest.yml`，记录 repo、ref、路径、采集日期、license。
 
 建议 manifest 初稿：
 
@@ -73,7 +73,7 @@ notes:
 
 ## 2. 结构清洗
 
-- [ ] 将 `raw/docs/` 中所有 `.md` 文件（排除分类索引占位页）复制到 `sources/alpine/v3.x/normalized/docs/`，保留原有目录结构。
+- [x] 将 `raw/docs/` 中所有 `.md` 文件（排除分类索引占位页）复制到 `sources/alpine/v3.x/normalized/docs/`，保留原有目录结构。
 
 最终 normalized 目录结构：
 
@@ -137,13 +137,13 @@ sources/alpine/v3.x/normalized/docs/
     └── async.md
 ```
 
-- [ ] 排除的分类索引占位页（保留在 raw 中）：`essentials.md`、`directives.md`、`magics.md`、`globals.md`、`plugins.md`、`advanced.md`。
+- [x] 排除的分类索引占位页（保留在 raw 中）：`essentials.md`、`directives.md`、`magics.md`、`globals.md`、`plugins.md`、`advanced.md`。
 
 文档统计：总计约 **50 个页面**（2 个顶层 + 5 个 essentials + 18 个 directives + 9 个 magics + 3 个 globals + 9 个 plugins + 4 个 advanced）。
 
 ## 3. 最小站点接入（样板页）
 
-- [ ] 建立翻译和站点目录：
+- [x] 建立翻译和站点目录：
 
 ```text
 content/alpine/v3.x/zh-cn/docs/
@@ -151,19 +151,19 @@ site/docs/alpine/v3.x/
 site/static/assets/alpine/v3.x/        # Alpine 无图片资源，此目录预留
 ```
 
-- [ ] 先接入 `start-here.md` 作为样板页，同时写入：
+- [x] 先接入 `start-here.md` 作为样板页，同时写入：
 
 ```text
 content/alpine/v3.x/zh-cn/docs/start-here.md
 site/docs/alpine/v3.x/start-here.md
 ```
 
-- [ ] 页面 frontmatter 保留来源、版本和翻译状态信息。
-- [ ] 代码块语言使用 `html` 和 `javascript`（Alpine.js 特点），确保 Prism 高亮正确。
+- [x] 页面 frontmatter 保留来源、版本和翻译状态信息。
+- [x] 代码块语言使用 `html` 和 `javascript`（Alpine.js 特点），确保 Prism 高亮正确。
 
 ## 4. 导航和目录
 
-- [ ] 在 `site/src/data/docsCatalog.ts` 中新增 `alpine` 产品和 `v3.x` 版本项（Alpine 排在 Livewire 之后、Filament 之前或最后均可）。
+- [x] 在 `site/src/data/docsCatalog.ts` 中新增 `alpine` 产品和 `v3.x` 版本项（Alpine 排在 Livewire 之后、Filament 之前或最后均可）。
 
 建议结构：
 
@@ -191,7 +191,7 @@ site/docs/alpine/v3.x/start-here.md
 }
 ```
 
-- [ ] 在 `site/sidebars.ts` 中新增 `alpineV3Sidebar`，按官网导航结构组织：
+- [x] 在 `site/sidebars.ts` 中新增 `alpineV3Sidebar`，按官网导航结构组织：
 
 ```text
 入门         start-here, upgrade-guide
@@ -204,18 +204,18 @@ site/docs/alpine/v3.x/start-here.md
 高级         csp, reactivity, extending, async
 ```
 
-- [ ] `site/docusaurus.config.ts` 无需修改（navbar/footer 已通过 `docsProducts` 数据驱动，新增产品自动适配）。
-- [ ] 确认首页产品卡片能显示 Alpine.js。
-- [ ] 确认顶部产品入口、版本下拉和源文档链接都能到 Alpine.js v3.x。
+- [x] `site/docusaurus.config.ts` 无需修改（navbar/footer 已通过 `docsProducts` 数据驱动，新增产品自动适配）。
+- [x] 确认首页产品卡片能显示 Alpine.js。
+- [x] 确认顶部产品入口、版本下拉和源文档链接都能到 Alpine.js v3.x。
 
 ## 5. 批量页面翻译
 
 按难度和篇幅分批推进（Alpine.js 文档普遍较短，可分 3-4 批完成）：
 
-- [ ] **第一批（入口 + 基础，共 7 页）**：start-here、upgrade-guide、installation、state、templating、events、lifecycle
-- [ ] **第二批（指令，共 18 页）**：data、init、show、bind、on、text、html、model、modelable、for、transition、effect、ignore、ref、cloak、teleport、if、id
-- [ ] **第三批（魔法 + 全局，共 12 页）**：el、refs、store、watch、dispatch、nextTick、root、data、id、alpine-data、alpine-store、alpine-bind
-- [ ] **第四批（插件 + 高级，共 13 页）**：mask、intersect、resize、persist、focus、collapse、anchor、morph、sort、csp、reactivity、extending、async
+- [x] **第一批（入口 + 基础，共 7 页）**：start-here、upgrade-guide、installation、state、templating、events、lifecycle
+- [x] **第二批（指令，共 18 页）**：data、init、show、bind、on、text、html、model、modelable、for、transition、effect、ignore、ref、cloak、teleport、if、id
+- [x] **第三批（魔法 + 全局，共 12 页）**：el、refs、store、watch、dispatch、nextTick、root、data、id、alpine-data、alpine-store、alpine-bind
+- [x] **第四批（插件 + 高级，共 13 页）**：mask、intersect、resize、persist、focus、collapse、anchor、morph、sort、csp、reactivity、extending、async
 
 执行规则：
 
@@ -239,11 +239,11 @@ site/docs/alpine/v3.x/start-here.md
 
 ## 6. 校对和链接适配
 
-- [ ] 按 `03_翻译校对工作流.md` 对已翻译页面逐篇校对。
-- [ ] 检查标题层级、代码块、表格、链接和术语一致性。
-- [ ] 按 `06_本地化超链接适配工作流.md` 修复站内链接。
-- [ ] 重点检查官方 `https://alpinejs.dev/...` 链接是否映射为本地 `/docs/alpine/v3.x/...`。
-- [ ] 检查指令和魔法属性页面间的交叉引用链接。
+- [x] 按 `03_翻译校对工作流.md` 对已翻译页面逐篇校对。
+- [x] 检查标题层级、代码块、表格、链接和术语一致性。
+- [x] 按 `06_本地化超链接适配工作流.md` 修复站内链接。
+- [x] 重点检查官方 `https://alpinejs.dev/...` 链接是否映射为本地 `/docs/alpine/v3.x/...`。
+- [x] 检查指令和魔法属性页面间的交叉引用链接。
 
 ## 7. 验证
 
@@ -263,26 +263,26 @@ npm run build
 
 验收项：
 
-- [ ] `sources/alpine/v3.x/manifest.yml` 存在且信息完整。
-- [ ] `content/alpine/v3.x/zh-cn/docs/` 与 `site/docs/alpine/v3.x/` 页面同步。
-- [ ] `site/sidebars.ts` 注册了 `alpineV3Sidebar`。
-- [ ] `site/src/data/docsCatalog.ts` 注册了 Alpine.js v3.x。
-- [ ] `npm run typecheck` 通过。
-- [ ] `npm run build` 通过；如存在 broken links，已记录来源和处理计划。
-- [ ] 无 `raw-assets`、`docs-assets` 路径残留。
-- [ ] 无上游框架组件（`@components`、`<Aside` 等）残留。
+- [x] `sources/alpine/v3.x/manifest.yml` 存在且信息完整。
+- [x] `content/alpine/v3.x/zh-cn/docs/` 与 `site/docs/alpine/v3.x/` 页面同步。
+- [x] `site/sidebars.ts` 注册了 `alpineV3Sidebar`。
+- [x] `site/src/data/docsCatalog.ts` 注册了 Alpine.js v3.x。
+- [x] `npm run typecheck` 通过。
+- [x] `npm run build` 通过；如存在 broken links，已记录来源和处理计划。
+- [x] 无 `raw-assets`、`docs-assets` 路径残留。
+- [x] 无上游框架组件（`@components`、`<Aside` 等）残留。
 
 ## 8. 收尾文档
 
-- [ ] 更新 `docs/README.md`，补充 Alpine.js v3.x 结构说明和本计划入口。
-- [ ] 更新 `docs/01_项目规划与设计/04_目录结构详解.md`，补充 Alpine.js 目录示例。
-- [ ] 新增开发历史记录，建议文件名：
+- [x] 更新 `docs/README.md`，补充 Alpine.js v3.x 结构说明和本计划入口。
+- [x] 更新 `docs/01_项目规划与设计/04_目录结构详解.md`，补充 Alpine.js 目录示例。
+- [x] 新增开发历史记录，建议文件名：
 
 ```text
 docs/03_开发历史记录/10_Alpine_v3x_文档接入记录.md
 ```
 
-- [ ] 可选：创建 Alpine.js 官方源文件结构详解文档：
+- [x] 可选：创建 Alpine.js 官方源文件结构详解文档：
 
 ```text
 docs/05_开发功能细则文档/源文件结构详解/Alpine_v3x_官方GitHub源文件结构详解.md

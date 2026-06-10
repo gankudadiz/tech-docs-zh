@@ -137,12 +137,12 @@ Packages → volt
 
 ## 6. 校对和链接适配
 
-- [ ] 按 `03_翻译校对工作流.md` 对已翻译页面逐篇校对。
+- [x] 按 `03_翻译校对工作流.md` 对已翻译页面逐篇校对。
 - [x] admonition 格式统一为 Docusaurus `:::type[标题]` 语法。
 - [x] 同页锚点适配为 Docusaurus 生成的中文 slug。
 - [x] 指向尚未翻译页面（nesting、actions）的锚点暂时移除，保留页面链接，待翻译后恢复。
-- [ ] 重点检查官方 `/docs/3.x/...` 链接是否全部映射为本地 `/docs/livewire/v3.x/...`。
-- [ ] 术语一致性和翻译质量审查。
+- [x] 重点检查官方 `/docs/3.x/...` 链接是否全部映射为本地 `/docs/livewire/v3.x/...`。
+- [x] 术语一致性和翻译质量审查。
 
 ## 7. 验证
 
@@ -169,16 +169,11 @@ npm run build
 - [x] `site/docusaurus.config.ts` 支持多产品导航，navbar 源文档使用官方链接。
 - [x] `npm run typecheck` 通过。
 - [x] `npm run build` 通过。
-- [ ] 已知 broken links：部分锚点指向尚未翻译的页面（如 `events#real-time-events-using-laravel-echo`、`components#rendering-components`、`understanding-nesting#every-component-is-an-island` 等），需在对应页面翻译后修复。
+- [x] 已知 broken links：部分锚点指向尚未翻译的页面（如 `events#real-time-events-using-laravel-echo`、`components#rendering-components`、`understanding-nesting#every-component-is-an-island` 等），需在对应页面翻译后修复。（随翻译完成已修复）
 
 ## 8. 收尾文档
 
-- [ ] 更新 `docs/README.md`，补充 Livewire v3.x 结构说明和本计划入口。
-- [ ] 更新 `docs/01_项目规划与设计/04_目录结构详解.md`，补充 Livewire 目录示例。
-- [ ] 新增开发历史记录，建议文件名：
-
-```text
-docs/03_开发历史记录/07_Livewire_v3x_文档接入记录.md
-```
-
-- [ ] 在最终说明中列出变更文件、验证命令和剩余风险。
+- [x] 更新 `docs/README.md`，补充 Livewire v3.x 结构说明和本计划入口。（已在 docs 索引中补充）
+- [x] 更新 `docs/01_项目规划与设计/04_目录结构详解.md`，补充 Livewire 目录示例。
+- [x] 新增开发历史记录：`docs/03_开发历史记录/07_Livewire_v3x_翻译完成记录.md`。
+- [x] 在最终说明中列出变更文件、验证命令和剩余风险。
