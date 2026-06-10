@@ -12,6 +12,7 @@ plans/
 
 ## 进行中
 
+- [MarkText 文档翻译接入步骤](进行中/2026-06-10_01_MarkText文档翻译接入步骤.md)：MarkText 官方文档（30 页）中文翻译接入，分 end-user 和 dev 两部分。
 - [后续翻译计划与 Filament 修复方案](进行中/2026-05-28_01_后续翻译计划与Filament修复方案.md)：Filament broken links 修复（已完成）、新版本接入评估（待推进）、新产品翻译优先级规划（待推进）。
 
 ## 最近归档
