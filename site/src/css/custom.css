@@ -224,12 +224,29 @@ body {
   background: color-mix(in srgb, var(--docs-paper-muted) 52%, transparent);
 }
 
+/* 覆盖 Infima 的 display:block;overflow:auto，恢复 table 布局 */
 .markdown table {
-  display: block;
+  display: table;
   width: 100%;
-  overflow-x: auto;
+  table-layout: fixed;
   border: 1px solid var(--docs-line);
   background: var(--docs-paper-soft);
+}
+
+/* 三列表格列宽：Id 32% | Default 32% | Description 36% */
+.markdown table th:nth-child(1),
+.markdown table td:nth-child(1) {
+  width: 32%;
+}
+
+.markdown table th:nth-child(2),
+.markdown table td:nth-child(2) {
+  width: 32%;
+}
+
+.markdown table th:nth-child(3),
+.markdown table td:nth-child(3) {
+  width: 36%;
 }
 
 .markdown th,

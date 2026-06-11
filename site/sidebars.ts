@@ -27,7 +27,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '基础',
-      collapsed: false,
+      collapsed: true,
       items: [
         'livewire/v3.x/components',
         'livewire/v3.x/properties',
@@ -444,7 +444,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '基础',
-      collapsed: false,
+      collapsed: true,
       items: [
         'alpine/v3.x/essentials/installation',
         'alpine/v3.x/essentials/state',
@@ -544,7 +544,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '入门',
-      collapsed: false,
+      collapsed: true,
       items: [
         'flight/v3.x/learn/learn',
       ],
@@ -663,7 +663,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '安装与平台',
-      collapsed: false,
+      collapsed: true,
       items: [
         'marktext/v1.x/end-user/INSTALLATION',
         'marktext/v1.x/end-user/PORTABLE',
