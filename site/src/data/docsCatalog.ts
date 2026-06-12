@@ -119,9 +119,9 @@ export const docsProducts: DocsProduct[] = [
       {
         label: 'v1.x',
         slug: 'v1.x',
-        status: '翻译中',
+        status: '已完成',
         pages: '35 个站点页面',
-        stage: '接入中',
+        stage: '已完成',
         docsPath: '/docs/marktext/v1.x/end-user/BASICS',
         docsBasePath: '/docs/marktext/v1.x',
         sourceHref: 'https://github.com/marktext/marktext/tree/develop/packages/website/content/docs',

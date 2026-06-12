@@ -12,11 +12,11 @@ plans/
 
 ## 进行中
 
-- [MarkText 文档翻译接入步骤](进行中/2026-06-10_01_MarkText文档翻译接入步骤.md)：MarkText 官方文档（30 页）中文翻译接入，分 end-user 和 dev 两部分。
 - [后续翻译计划与 Filament 修复方案](进行中/2026-05-28_01_后续翻译计划与Filament修复方案.md)：Filament broken links 修复（已完成）、新版本接入评估（待推进）、新产品翻译优先级规划（待推进）。
 
 ## 最近归档
 
+- [MarkText 文档翻译接入步骤](已归档/2026-06-10_01_MarkText文档翻译接入步骤.md)：MarkText v1.x 全部 35 页翻译完成，成为首个非 Web 框架类产品。（2026-06-10 ~ 2026-06-12）
 - [Livewire v3.x 翻译接入步骤](已归档/Livewire_v3x_翻译接入步骤.md)：Livewire v3.x 全部 53 页翻译完成。（2026-05-25 ~ 2026-05-26）
 - [Alpine.js v3.x 翻译接入步骤](已归档/Alpine_v3x_翻译接入步骤.md)：Alpine.js v3.x 全部 50 页翻译完成。（2026-05-26 ~ 2026-05-27）
 - [FlightPHP v3.x 翻译接入步骤](已归档/Flight_v3x_翻译接入步骤.md)：FlightPHP v3.x 全部 57 页翻译完成，0 broken links。（2026-05-27 ~ 2026-05-28）

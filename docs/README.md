@@ -25,6 +25,7 @@
 - [08_Alpine_v3x_接入与翻译完成记录](03_开发历史记录/08_Alpine_v3x_接入与翻译完成记录.md)：记录 Alpine.js v3.x 接入与全部 50 页文档翻译完成。
 - [09_Flight_v3x_接入与翻译完成记录](03_开发历史记录/09_Flight_v3x_接入与翻译完成记录.md)：记录 FlightPHP v3.x 接入与全部 57 页文档翻译完成，实现 0 broken links。
 - [10_Filament_v4x_broken_links修复记录](03_开发历史记录/10_Filament_v4x_broken_links修复记录.md)：记录 Filament v4.x 43 条 broken links 清零修复（112+ 处链接），创建专用修复脚本 `scripts/fix_filamentv4_directory_links.py`。
+- [11_MarkText_v1x_翻译完成记录](03_开发历史记录/11_MarkText_v1x_翻译完成记录.md)：记录 MarkText v1.x 全部 35 页文档翻译完成，成为项目首个非 Web 框架类产品。
 
 ## 05_开发功能细则文档
 
